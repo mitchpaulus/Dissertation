@@ -1,0 +1,149 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  New template code for TAMU Theses and Dissertations starting Fall 2012.  
+%  For more info about this template or the 
+%  TAMU LaTeX User's Group, see http://www.howdy.me/.
+%
+%  Author: Wendy Lynn Turner 
+%	 Version 1.0 
+%  Last updated 8/5/2012
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                           SECTION III
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\chapter{\uppercase{Optimization Methodology}}
+
+In order to optimize the system, the energy use from each of the components comprising the air-side equipment needs to be estimated. This includes fan energy, cooling energy, and reheat energy.
+
+
+Fan Energy:
+\begin{equation} \label{eq:FanEqnergy} 
+\dot E_{fan} = fct\left( {{{\dot V}_{supply}},\Delta {P_{s,{\rm{fan}}}}} \right)
+\end{equation}
+
+Cooling Energy:
+\begin{equation} \label{eq:CoolingEnergy}
+{\dot E_{cooling}} = {\dot V_{{\rm{supply}}}}\rho_a c_{p,a}\:\left( {{T_{ma}} - {T_{sa}}} \right) + h_v\rho_a{\dot V_{{\rm{supply}}}}\:\left( {{\omega _{ma}} - {\omega _{sa}}} \right)
+\end{equation}
+
+\section{Reheat in Terminal Units}
+
+Terminal Boxes can be distributed into 3 classifications for this work. Terminal units with no fans, series flow, or parallel flow arrangements.
+
+\subsection{No Fan in Terminal Unit}
+
+If there is no fan and only a damper for air volume modulation, then the reheat energy use is 
+
+\begin{equation} \label{eq:ReheatEnergy}
+{\dot E_{reheat}} = \sum\limits_i {{{\dot V}_i}\rho_a c_{p,a}\:\left( {{T_{i,dis}} - {T_{i,sa}}} \right)} 
+\end{equation}
+
+\subsection{Series Flow Configuration}
+
+For a series flow terminal unit, the total flow is ideally constant. \(\dot V_{tot}\) is known from specification of the terminal unit and   \({\dot V_{pri}}\) is a measured variable.
+
+%-------------------------------------------------------------------------------------------
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+	xmin=0,
+    xmax=100,
+    ymin=0,
+    ymax=120,
+	grid=major, 
+	ylabel = {Percent Design CFM},
+	%height=9cm,
+	ymin = 0,
+    xtick=\empty, 
+    ytick={0,25,...,100},
+    ymajorgrids=false,
+    clip mode=individual,
+]
+\addplot[
+	no markers, 
+	mark=o,
+    color=black,
+    dashed,
+] 
+table[x=RoomConditionsPrimary,y=PercentDesignCFMPrimary] {SeriesFanPlot.dat};
+
+\addplot[
+	no markers,
+    color=black,
+    solid,
+]
+table[x=RoomConditionsTotal,y=PercentDesignCFMTotal]{SeriesFanPlot.dat};
+
+
+\node at (25,60) {Plenum Air};
+\node at (78,20) {Primary Air};
+\node at (50,110) {Total Air};
+\node [anchor=south west] at (0, -15) {Heating};
+\node [anchor=south east] at (100, -15) {Cooling};
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Example Series Flow Operation.}
+\label{fig:SeriesFlow}
+
+\end{figure}
+%-------------------------------------------------------------------------------------------
+
+
+\begin{equation} \label{eq:TotalFlow}
+{\dot V_{tot}} = {\dot V_{pri}} + {\dot V_{plenum}}
+\end{equation}
+
+If the density and specific heat of air is assumed to be constant, the discharge temperature 
+
+The discharge temperature will be sensed. 
+
+The temperature of the air after mixing can be estimated from the flow information and an assumption or measurement of plenum air. 
+
+
+\begin{equation} \label{eq:MixedAirTemperature}
+{T_{mix}} = \frac{{{{\dot V}_{pri}}\left( {{T_{pri}}} \right) + \dot V\left( {{T_{plen}}} \right)}}{{{{\dot V}_{total}}}}
+\end{equation}
+
+
+
+
+The increase in temperature to the discharge temperature is due to heat gain from the fan and from any supplementary heating.
+
+The heat gain from the fan can be estimated from historical data when the supplementary heating is off, either when the heating coil is completely closed or all stages of electrical reheat are inactive. If there is no other heating, the temperature increase from the fan is
+
+\begin{equation}
+\Delta {T_{fan}} = {T_{dis}} - {T_{mix}}.
+\end{equation}
+%
+For other times, the temperature increase due to reheat will be
+%
+\begin{equation}
+\Delta {T_{reheat}} = {T_{dis}} - \left( {\Delta {T_{fan}} + {T_{mix}}} \right),
+\end{equation}
+%
+and the reheat energy will be
+%
+\begin{equation}
+{\dot Q_{reheat}} = {\dot V_{tot}}{\rho _a}{c_{p,a}}\left( {\Delta {T_{reheat}}} \right).
+\end{equation}
+
+\subsection{Parallel Flow Configuration}
+
+During periods of cooling, the fan in a parallel arrangement is off and the total flow is equal to the primary flow.
+
+The fan volume flow will be known from manufacturers specifications and the total flow can be calculated using Eq. \eqref{eq:TotalFlow}. The temperature from mixing the plenum air and primary can be estimated from Eq. \eqref{eq:MixedAirTemperature} or from historical data when the primary flow is at the minimum and there is no activated reheat components.
+
+\subsection{Other Terminal Unit Types}
+
+Terminal units come in even more configurations than the three specified in this document, induction units being one example. Using a combination of energy balances, historical data under particular conditions, and appropriate assumptions, a model of the terminal unit can be made. 
+
+\section{Necessary Sensors}
+
+In order to fulfill the proposed methodology, there are several sensors that are not common that would need to be installed. 
