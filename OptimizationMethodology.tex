@@ -58,7 +58,6 @@ For a series flow terminal unit, the total flow is ideally constant. \(\dot V_{t
 	grid=major, 
 	ylabel = {Percent Design CFM},
 	%height=9cm,
-	ymin = 0,
     xtick=\empty, 
     ytick={0,25,...,100},
     ymajorgrids=false,
@@ -70,14 +69,14 @@ For a series flow terminal unit, the total flow is ideally constant. \(\dot V_{t
     color=black,
     dashed,
 ] 
-table[x=RoomConditionsPrimary,y=PercentDesignCFMPrimary] {SeriesFanPlot.dat};
+table[x=RoomConditionsPrimary,y=PercentDesignCFMPrimary,col sep=tab] {SeriesFanPlot.dat};
 
 \addplot[
 	no markers,
     color=black,
     solid,
 ]
-table[x=RoomConditionsTotal,y=PercentDesignCFMTotal]{SeriesFanPlot.dat};
+table[x=RoomConditionsTotal,y=PercentDesignCFMTotal,col sep=tab]{SeriesFanPlot.dat};
 
 
 \node at (25,60) {Plenum Air};
@@ -88,7 +87,32 @@ table[x=RoomConditionsTotal,y=PercentDesignCFMTotal]{SeriesFanPlot.dat};
 
 \end{axis}
 \end{tikzpicture}
-
+\begin{tikzpicture}
+\begin{axis}[
+	xmin=0,
+    xmax=100,
+    ymin=50,
+    ymax=110,
+	grid=major, 
+	ylabel = {Discharge Air Temperature \(^\circ\)F},
+	%height=9cm,
+    xtick=\empty, 
+    ytick={50,60,...,100},
+    ymajorgrids=false,
+    clip = false,
+    clip mode=individual,
+]
+\addplot[
+	no markers,
+    color=black,
+    solid,
+]
+table[x=RoomTemp,y=Tdischarge,col sep=tab]{SeriesFanPlot.dat};
+\node [anchor=south west] at (0, -60) {Heating};
+\node [anchor=south east] at (100, -60
+) {Cooling};
+\end{axis}
+\end{tikzpicture}
 \caption{Example Series Flow Operation.}
 \label{fig:SeriesFlow}
 
@@ -147,3 +171,101 @@ Terminal units come in even more configurations than the three specified in this
 \section{Necessary Sensors}
 
 In order to fulfill the proposed methodology, there are several sensors that are not common that would need to be installed. 
+
+Table \ref{tab:NecessarySensors} is the minimum set of sensors required. The sensors that are least likely to be available are the static pressure at the fan and the discharge air temperature from each terminal box.
+
+\begin{table}
+\centering
+\begin{tabular}{l l}
+\toprule
+
+Level & Sensor \\
+\midrule\midrule
+\multirow{2}{*}{Weather} & Outdoor Air Temperature \\
+ & Outdoor Dew Point Temperature \\
+ 
+ \midrule
+ 
+ \multirow{6}{*}{AHU} & Supply Air Temperature \\
+ & Mixed Air Temperature \\
+ & Fan Power \\
+ & VFD Command \\
+ & Static Pressure at Fan \\
+ & Static Pressure for Control \\
+ 
+ 
+\midrule
+
+\multirow{4}{*}{Terminal Units} & Primary Air Flow Rate \\
+& Discharge Air Temperature \\
+& Primary Damper Position \\
+
+\bottomrule
+
+\end{tabular}
+\caption{Necessary Sensors}
+\label{tab:NecessarySensors}
+\end{table}
+
+
+\section{Setup Employing Historical Trend Data}
+
+Before the system can be run, some of first principles models need to be calibrated. The calibration will employ historical measured data.
+
+\subsection{Fan Modeling}
+
+Fan energy is a significant component to the air side energy use for air conditioning. Fan static pressure, flow, speed, and power will all be measured. The total primary air flow can either be measured directly (ideal), or estimated from the sum of the children terminal units. With this information a complete set of fan curves can be created. 
+
+\subsection{Air Distribution Modeling}
+
+Estimating the system pressure loss for particular conditions is important for estimating the potential fan energy at different speeds. The node layout of the terminal units will be created. If the air flow through each terminal unit is measured the flow through each portion of the duct work can be estimated. 
+
+
+\begin{sidewaysfigure}
+\begin{tikzpicture}
+
+\coordinate (bottomLeft) at (0,0);
+\coordinate (belowFan) at (0,5); 
+\coordinate (bottomRight) at (10,0);
+\coordinate (topLeft) at (0,13);
+
+\node [circle, draw] at (-2,10) {\(P_{s,fan}\) };
+
+\draw (bottomRight) -- (bottomLeft) -- (belowFan);
+\draw (-0.5,10) -- (0.5,10);
+\draw (-1, 10.5) -- (1,10.5);
+\draw (0,10.5) -- (topLeft);
+
+
+
+
+
+\end{tikzpicture}
+\end{sidewaysfigure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
