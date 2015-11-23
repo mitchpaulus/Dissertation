@@ -89,58 +89,45 @@ Numerous other researchers have thoroughly covered many aspects of an optimally 
 
 There are many different networking and communication levels and protocols related to buildings. Kastner, Neugschwandtner, and Soucek et al. provided a summary of the different systems that exist in buildings \cite{Kastner2005}. An understanding of the different levels (described as management, automation, and field by \cite{Kastner2005}) is important for developing any automated system. The most important open systems related to building automation include BACnet, LonWorks, EIB/KNX. Other important and relative standards, protocols, and technologies are shown in Table \ref{tab:CommunicationProtocols}.
 
+
 \begin{table}
 \centering
-\begin{tabular}{ c }
+\begin{tabular}{ l  p{4cm} }
 \toprule
-
-Network Communication Protocols \\
+Important Standards/Technology & Type \\
 \midrule
 \midrule
-BACnet\\ 
-LonWorks \\
-EIB/KNX\\
-IP \\
-\\
+BACnet & \multirow{3}{*}{\parbox[t]{4cm}{Network Communication Protocols}} \\
+LonWorks & \\ 
+EIB/KNX & \\
 \midrule
-Object Access Protocols \\
-\midrule
-\midrule
-Common Object Request Broker Architecture (CORBA) \\
-Java Remote Method Invocation (RMI)     \\
-Microsoft Distributed Component Object Model (DCOM)  \\
-Simple Object Access Protocol (SOAP) \\
-\\
+Common Object Request Broker Architecture (CORBA) &  \multirow{4}{*}{\parbox[t]{4cm}{Object Access\\Protocols}}  \\
+Java Remote Method Invocation (RMI) &            \\
+Microsoft Distributed Component Object Model (DCOM) & \\
+Simple Object Access Protocol (SOAP) & \\
 \midrule	
-Architecture Style \\
+Representational State Transfer (REST) &  Architecture Style \\
 \midrule
+Ethernet & \multirow{5}{*}{\parbox[t]{4cm}{Local Area\\Network Type}} \\
+ARCNET & \\
+Master-Slave/Token-Passing (MS/TP) & \\
+LonTalk & \\
+Point-to-Point (PTP) & \\
 \midrule
-Representational State Transfer (REST) \\
-\\
-\midrule
-Local Area Network Type \\
-\midrule
-\midrule
-Ethernet \\
-ARCNET  \\
-Master-Slave/Token-Passing (MS/TP) \\
-LonTalk  \\
-Point-to-Point (PTP)  \\
-\\
-\midrule
-Data Format \\
-\midrule
-\midrule
-Javascript Object Notation (JSON) \\ 
-Extensible Markup Language (XML)  \\
+Javascript Object Notation (JSON) & \multirow{2}{*}{Data Format} \\
+Extensible Markup Language (XML) & \\
+
+
 \bottomrule
+
 \end{tabular}
 \caption{Important Standards/Technologies in Building Automation}
 \label{tab:CommunicationProtocols}
+
 \end{table}
 
+At a more abstract level than BACnet, LonWorks, and EIB/KNX, Project Haystack is an important open source initiative that is looking to bring specific naming conventions to building operational data (project-haystack.org). Before data from sensors in buildings can be used effectively, an ``association''  of the data to an HVAC object (say data being associated with an air temperature sensor located in a specific air handling unit) needs to occur. In order to create an environment where an intelligent building makes sense, raw numeric data needs to have extensive meta-data to give it context. This can be related to engineering units, what piece of equipment the data belongs to, the hierarchy of equipment and relationships to one another, and other modifiers. 
 
-Project Haystack is an important open source initiative that is looking to bring specific naming conventions to building operational data (project-haystack.org). It accomplishes this at a more abstract level than BACnet, LonWorks, and EIB/KNX, using lexical rules. Before data from sensors in buildings can be used effectively, an ``association''  of the data to an HVAC object (say data being associated with an air temperature sensor located in a specific air handling unit) needs to occur. In order to create an environment where an intelligent building makes sense, raw numeric data needs to have extensive meta-data to give it context. This can be related to engineering units, what piece of equipment the data belongs to, the hierarchy of equipment and relationships to one another, and other modifiers. 
 
 
 
