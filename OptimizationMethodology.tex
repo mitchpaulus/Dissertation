@@ -44,7 +44,7 @@ If there is no fan and only a damper for air volume modulation, then the reheat 
 
 \subsection{Series Flow Configuration}
 
-For a series flow terminal unit, the total flow is ideally constant. \(\dot V_{tot}\) is known from specification of the terminal unit and   \({\dot V_{pri}}\) is a measured variable.
+For a series flow terminal unit, the total flow is ideally constant. \(\dot V_{tot}\) is known from specification of the terminal unit and   \({\dot V_{pri}}\) is a measured variable. \(\dot V_{plen}\) can be calculated from Eq. (\ref{eq:TotalFlow}). 
 
 %-------------------------------------------------------------------------------------------
 \begin{figure}
@@ -113,7 +113,7 @@ table[x=RoomTemp,y=Tdischarge,col sep=tab]{SeriesFanPlot.dat};
 ) {Cooling};
 \end{axis}
 \end{tikzpicture}
-\caption{Example Series Flow Operation.}
+\caption{Example Series Terminal Unit Flow Operation.}
 \label{fig:SeriesFlow}
 
 \end{figure}
@@ -121,18 +121,14 @@ table[x=RoomTemp,y=Tdischarge,col sep=tab]{SeriesFanPlot.dat};
 
 
 \begin{equation} \label{eq:TotalFlow}
-{\dot V_{tot}} = {\dot V_{pri}} + {\dot V_{plenum}}
+{\dot V_{plenum}} = {\dot V_{tot}} - {\dot V_{pri}}
 \end{equation}
 
-If the density and specific heat of air is assumed to be constant, the discharge temperature 
-
-The discharge temperature will be sensed. 
-
-The temperature of the air after mixing can be estimated from the flow information and an assumption or measurement of plenum air. 
+\(T_{dis}\) will be sensed. The temperature of the air after mixing can be estimated from the flow information and an assumption or measurement of plenum air. 
 
 
 \begin{equation} \label{eq:MixedAirTemperature}
-{T_{mix}} = \frac{{{{\dot V}_{pri}}\left( {{T_{pri}}} \right) + \dot V\left( {{T_{plen}}} \right)}}{{{{\dot V}_{total}}}}
+{T_{mix}} = \frac{{{{\dot V}_{pri}}\left( {{T_{pri}}} \right) + \dot V_{plen}\left( {{T_{plen}}} \right)}}{{{{\dot V}_{total}}}}
 \end{equation}
 
 
@@ -140,7 +136,7 @@ The temperature of the air after mixing can be estimated from the flow informati
 
 The increase in temperature to the discharge temperature is due to heat gain from the fan and from any supplementary heating.
 
-The heat gain from the fan can be estimated from historical data when the supplementary heating is off, either when the heating coil is completely closed or all stages of electrical reheat are inactive. If there is no other heating, the temperature increase from the fan is
+The temperature rise from the fan, \(\Delta T_{fan}\), can be estimated from historical data when the supplementary heating is off, either when the heating coil is completely closed or all stages of electrical reheat are inactive. If there is no other heating, the temperature increase from the fan is
 
 \begin{equation}
 \Delta {T_{fan}} = {T_{dis}} - {T_{mix}}.
@@ -195,7 +191,6 @@ Level & Sensor \\
  
  
 \midrule
-
 \multirow{4}{*}{Terminal Units} & Primary Air Flow Rate \\
 & Discharge Air Temperature \\
 & Primary Damper Position \\
@@ -207,6 +202,27 @@ Level & Sensor \\
 \label{tab:NecessarySensors}
 \end{table}
 
+\section{Predicting Zone Loads}
+
+The zone loads can be estimated from terminal unit data of airflow rate, terminal unit leaving temperature and zone temperature. Note that using 
+
+\begin{equation}
+\dot Q_{zone} = \dot V_{zone} C_{air} \left(T_{zone}-T_{leaving} \right)
+\end{equation}
+
+assumes that the space is well-mixed and at steady-state. If the controls oscillate, then the zone load estimation will have some periodicity. In one sense, there is no ``single'' zone load coming from a point source, and as such we will have to use only an estimation.
+
+The independent variables available for prediction are the current time and outdoor air conditions. The current time can be separated into time of day, day of week, weekdays/weekends and such. Outdoor air temperature correlates with the external load. 
+
+The approach used is a related to the concept of a \textit{nearest neighbor}. The nearest neighbors are defined by any previous data that:
+
+\begin{enumerate}
+\item Was within 1 hour of the time of day 
+\item Was the same day of the week
+\item Had a corresponding \(T_{db}\) that is within \(\pm 2.5^\circ\)F of the the current \(T_{db}\). 
+\end{enumerate}
+
+The median value of the nearest neighbors can be used to estimate the particular zone load at any time and temperature. 
 
 \section{Setup Employing Historical Trend Data}
 

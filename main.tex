@@ -27,10 +27,9 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
 \usepackage{pgfplots}
-%\usepackage{positioning}
 \pgfplotsset{compat=1.3, width=10cm}
 	%Used for plotting.
-
+\usepackage{array}
 % Added to fix issues with pdf searching in some versions of LaTeX
 %\usepackage[T1]{fontenc}\usepackage{lmodern}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -58,6 +57,11 @@
 % \ifnum\value{subsection}>0\addtocontents{toc}{\vskip-6pt}\fi
 % } 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\newcommand{\dgF}{\(^\circ\)F }
 
 \begin{document}
 
