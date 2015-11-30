@@ -164,11 +164,11 @@ The fan volume flow will be known from manufacturers specifications and the tota
 
 Terminal units come in even more configurations than the three specified in this document, induction units being one example. Using a combination of energy balances, historical data under particular conditions, and appropriate assumptions, a model of the terminal unit can be made. 
 
-\section{Necessary Sensors}
+\section{Required Sensors}
 
 In order to fulfill the proposed methodology, there are several sensors that are not common that would need to be installed. 
 
-Table \ref{tab:NecessarySensors} is the minimum set of sensors required. The sensors that are least likely to be available are the static pressure at the fan and the discharge air temperature from each terminal box.
+Table \ref{tab:NecessarySensors} lists the minimum set of sensors required. The sensors that are least likely to be available are the static pressure at the fan and the discharge air temperature from each terminal box.
 
 \begin{table}
 \centering
@@ -232,10 +232,15 @@ Before the system can be run, some of first principles models need to be calibra
 
 Fan energy is a significant component to the air side energy use for air conditioning. Fan static pressure, flow, speed, and power will all be measured. The total primary air flow can either be measured directly (ideal), or estimated from the sum of the children terminal units. With this information a complete set of fan curves can be created. 
 
+Without all the sensors it is difficult to create a first-principle based model of the air-side equipment. Statistical techniques will be necessary to relate the speed of the fan, \(\dot N\), and the damper positions, \(X_{i,damper}\). 
+
 \subsection{Air Distribution Modeling}
 
 Estimating the system pressure loss for particular conditions is important for estimating the potential fan energy at different speeds. The node layout of the terminal units will be created. If the air flow through each terminal unit is measured the flow through each portion of the duct work can be estimated. 
 
+\section{Predicting the Mixed Air Temperature}
+
+In order to predict the energy use at the cooling/reheat coils in the air handling unit, the mixed air temperature needs to be estimated. The mixed air temperature will be dependent on several variables including the outdoor air temperature, return air temperature, and the damper positions of the outdoor air and return air. The damper positions will fluctuate greatly during times of economizing.  
 
 \begin{sidewaysfigure}
 \begin{tikzpicture}
