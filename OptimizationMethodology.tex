@@ -22,12 +22,12 @@ In order to optimize the system, the energy use from each of the components comp
 
 Fan Energy:
 \begin{equation} \label{eq:FanEqnergy} 
-\dot E_{fan} = fct\left( {{{\dot V}_{supply}},\Delta {P_{s,{\rm{fan}}}}} \right)
+\dot E_{fan} = fct\left( {\flow{supply},\Delta {P_{s,{\rm{fan}}}}} \right)
 \end{equation}
 
 Cooling Energy:
 \begin{equation} \label{eq:CoolingEnergy}
-{\dot E_{cooling}} = {\dot V_{{\rm{supply}}}}\rho_a c_{p,a}\:\left( {{T_{ma}} - {T_{sa}}} \right) + h_v\rho_a{\dot V_{{\rm{supply}}}}\:\left( {{\omega _{ma}} - {\omega _{sa}}} \right)
+{\dot E_{cooling}} = {\dot V_{{\rm{supply}}}}\rho_a c_{p,a}\:\left( {{T_{ma}} - {\sat}} \right) + h_v\rho_a{\dot V_{{\rm{supply}}}}\:\left( {{\omega _{ma}} - {\omega _{sa}}} \right)
 \end{equation}
 
 \section{Reheat in Terminal Units}
@@ -242,27 +242,68 @@ Estimating the system pressure loss for particular conditions is important for e
 
 In order to predict the energy use at the cooling/reheat coils in the air handling unit, the mixed air temperature needs to be estimated. The mixed air temperature will be dependent on several variables including the outdoor air temperature, return air temperature, and the damper positions of the outdoor air and return air. The damper positions will fluctuate greatly during times of economizing.  
 
-\begin{sidewaysfigure}
-\begin{tikzpicture}
 
-\coordinate (bottomLeft) at (0,0);
-\coordinate (belowFan) at (0,5); 
-\coordinate (bottomRight) at (10,0);
-\coordinate (topLeft) at (0,13);
+\section{Searching for Energy Minimum}
 
-\node [circle, draw] at (-2,10) {\(P_{s,fan}\) };
+The fan power can be estimated using a fan curve as a function of the part load ratio (PLR) calculated using air flow rate. A fan curve suggested by Kimla that accounts for VSDs and constant static pressure setpoints is
+\begin{equation}\label{eq:KimlaFanPower}
+\frac{\dot{W}}{\dot{W}_{rated}} = 0.0013+0.147\left(PLR \right)+0.9506\left(PLR \right)^2-0.0998\left(PLR \right)^3
+\end{equation}
+where \(PLR\) is defined as \(\frac{\dot{V}}{\dot{V}_{design}}\).
 
-\draw (bottomRight) -- (bottomLeft) -- (belowFan);
-\draw (-0.5,10) -- (0.5,10);
-\draw (-1, 10.5) -- (1,10.5);
-\draw (0,10.5) -- (topLeft);
+Since we are going to be using the gradient of this function, it is desired to reduce the order to the polynomial from 3 to 2. The corresponding closest second order polynomial to \ref{eq:KimlaFanPower} is
+\begin{equation}\label{eq:finalFanPower}
+\frac{\dot{W}}{\dot{W}_{rated}} = 0.21\left(PLR \right)+0.8\left(PLR \right)^2
+\end{equation}
+
+The total energy is the combination of fan, cooling, and reheat energy. If there are \(n\) terminal units, the total energy can be written as
+\begin{multline}\label{eq:totalEnergy}
+\energy=\dot{W}_{rated}\;0.8 \left(\frac{\flowsum}{\dot{V}_{design}} \right)^2 + \dot{W}_{rated}\;0.21 \left(\frac{\flowsum}{\dot{V}_{design}} \right)\\
++1.08\left(\flowsum \right)\left(T_{ma}-T_{sa} \right)\\
++1.08\left(V_1 \right)\left(T_{z,1}-\frac{\dot{Q}}{1.08\; V_1} -T_{sa}\right) +1.08\left(V_2 \right)\left(T_{z,2}-\frac{\dot{Q}}{1.08\; V_2} -T_{sa}\right)\\ 
++\ldots+1.08\left(V_n \right)\left(T_{z,n}-\frac{\dot{Q}}{1.08\; V_n} -T_{sa}\right) 
+\end{multline}
+The first line is related to the fan energy, the second line is related to the cooling load at the air handling unit, and the last two lines relate to reheat energy use. 
+
+This function \ref{eq:totalEnergy} is minimized under the constraints
+\begin{align}
+V_{min}&\leq V_1, V_2, \ldots V_n \\
+T_{sa,min}&\leq T_{sa} \leq T_{sa,max} \\
+\sum_i^n V_i &= V_T \leq V_{T,design} \\
+\forall i\in\left\{1,\ldots,n\right\}: T_{dis,i} &= T_{z,i} - \frac{\dot{Q}_i}{1.08\;V_i} \geq T_{sa}
+\end{align}
+
+The partial derivatives of \ref{eq:totalEnergy} are 
+\begin{multline}
+\pdv{\dot{E}}{V_i}=\frac{\dot{W}_{design}\;1.6}{\flow{design}^2} \left(\flowsum \right)\\ 
++\frac{0.2\;\dot{W}_{design}}{\dot{V}_{design}}+ 1.08\left(T_{ma}+T_{z,i} -2T_{sa}\right)
+\end{multline}
+\begin{equation}
+\pdv{\dot{E}}{\sat}=-2.16\left(\flowsum \right)
+\end{equation}
 
 
-
-
-
-\end{tikzpicture}
-\end{sidewaysfigure}
+%\begin{sidewaysfigure}
+%\begin{tikzpicture}
+%
+%\coordinate (bottomLeft) at (0,0);
+%\coordinate (belowFan) at (0,5); 
+%\coordinate (bottomRight) at (10,0);
+%\coordinate (topLeft) at (0,13);
+%
+%\node [circle, draw] at (-2,10) {\(P_{s,fan}\) };
+%
+%\draw (bottomRight) -- (bottomLeft) -- (belowFan);
+%\draw (-0.5,10) -- (0.5,10);
+%\draw (-1, 10.5) -- (1,10.5);
+%\draw (0,10.5) -- (topLeft);
+%
+%
+%
+%
+%
+%\end{tikzpicture}
+%\end{sidewaysfigure}
 
 
 
