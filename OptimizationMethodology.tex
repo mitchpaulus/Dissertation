@@ -232,11 +232,95 @@ Before the system can be run, some of first principles models need to be calibra
 
 Fan energy is a significant component to the air side energy use for air conditioning. Fan static pressure, flow, speed, and power will all be measured. The total primary air flow can either be measured directly (ideal), or estimated from the sum of the children terminal units. With this information a complete set of fan curves can be created. 
 
-Without all the sensors it is difficult to create a first-principle based model of the air-side equipment. Statistical techniques will be necessary to relate the speed of the fan, \(\dot N\), and the damper positions, \(X_{i,damper}\). 
+Without all the sensors it is difficult to create a first-principle based model of the air-side equipment. Statistical techniques will be necessary to relate the speed of the fan, \(\dot N\), and the damper positions, \(\damp{i,damper}\). 
 
-\subsection{Air Distribution Modeling}
+\subsection{Air Distribution Modeling: First Method}
 
 Estimating the system pressure loss for particular conditions is important for estimating the potential fan energy at different speeds. The node layout of the terminal units will be created. If the air flow through each terminal unit is measured the flow through each portion of the duct work can be estimated. 
+
+The first methodology developed attempted to break the air side pressure drops into parts for the major losses within the duct work and the minor losses due to the dampers at the terminal box. 
+
+The following assumptions were made:
+
+\begin{itemize}
+    \item Constant friction factors
+    \item Reference pressure of 0 at each zone
+    \item Linear flow response from the damper position
+\end{itemize}
+
+With the assumption of the constant friction factor, the pressure drop in each duct section will be proportional to a constant and the flow through the section squared. Figure \ref{fig:flowVersusDamperPos} shows the typical types of responses for a damper or valve.
+
+\begin{equation}\label{eq:PressureDrop}
+    \Delta P_{\text{fan}} = C\left(\flow{t}\right)^2
+\end{equation}
+
+ If \(\flow{t}\) is reduced to some percentage of full flow, then Equation \ref{eq:PressureDrop} will result in
+
+ \begin{equation}
+     C = \frac{\Delta P_{\text{fan}}}{\left( \flow{t} \cdot \%_{\text{full flow}} \right)^2}
+ \end{equation}
+ 
+For a linear response
+
+\begin{equation}
+    \%_{\text{full flow}} = \damp{}
+\end{equation}
+
+and therefore the local loss coefficient \(C\) equals
+
+
+\begin{equation}
+C = \frac{\Delta P_{\text{fan}}}{\left( \flow{t} \cdot \damp{}  \right)^2}
+\end{equation}
+
+and grows as a function of \(1/x^2\). 
+
+
+
+
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+
+\begin{axis}[
+        xmin=0,
+        xmax=1,
+        ymax=1,
+        ymin=0,
+        legend pos=outer north east,
+        xlabel={Damper Position (0-1), \(\damp{}\)},
+        ylabel={Percentage of full flow (0-1)},
+    ] \addplot[
+        domain=0:1,
+        black,
+    ]
+    {x};
+
+    \addlegendentry{Linear}
+
+    \addplot[
+        domain=0:1,
+        red,
+    ]{x*x};
+    \addlegendentry{Equal Percentage}
+
+    \addplot[
+        domain=0:1,
+        blue,
+    ]{sqrt(x)};
+    \addlegendentry{Quick Opening}
+
+
+\end{axis}
+
+
+
+\end{tikzpicture}
+\caption{Terminal box flow response as a function of damper position.}
+\label{fig:flowVersusDamperPos}
+\end{figure}
+
 
 \section{Predicting the Mixed Air Temperature}
 
