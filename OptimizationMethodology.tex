@@ -367,6 +367,25 @@ The partial derivatives of \ref{eq:totalEnergy} are
 \end{equation}
 
 
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={OA Dry Bulb Temperature (NOAA)},
+    ylabel={AHU-1-3 Mixed Air Temp},
+]
+\addplot[only marks, mark=o]
+table[x={OADryBulbTemperature(NOAA)}, y={AHU13MixedAirTemp}, col sep=tab]{Data/2016-05-17-1719-TikzData.dat};
+\end{axis}
+\end{tikzpicture}
+\caption{This is a sample caption.}
+\end{figure}
+
+
+
+
+
+
 %\begin{sidewaysfigure}
 %\begin{tikzpicture}
 %
