@@ -222,7 +222,10 @@ The approach used is a related to the concept of a \textit{nearest neighbor}. Th
 \item Had a corresponding \(T_{db}\) that is within \(\pm 2.5^\circ\)F of the the current \(T_{db}\). 
 \end{enumerate}
 
-The median value of the nearest neighbors can be used to estimate the particular zone load at any time and temperature. 
+The median value of the nearest neighbors can be used to estimate the particular zone load at any time and temperature.  The median is a more robust statistic in comparison to the mean, having a breakdown point of 50\%, meaning that up to 50\% of the data can be contaminated before the median statistic will no longer be reliable. For the mean, one arbitralily large data point can turn the mean statistic unreliable. 
+
+It is advised that in this approach, that the initial historical data be sorted in order of temperature, followed by the date time.  The lookup for the subsection of data to be used will then be \(O\left(\log n \right)\) with a binary lookup. 
+
 
 \section{Setup Employing Historical Trend Data}
 
