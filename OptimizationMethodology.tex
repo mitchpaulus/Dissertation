@@ -27,7 +27,7 @@ Fan Energy:
 
 Cooling Energy:
 \begin{equation} \label{eq:CoolingEnergy}
-{\dot E_{cooling}} = {\dot V_{{\rm{supply}}}}\rho_a c_{p,a}\:\left( {{T_{ma}} - {\sat}} \right) + h_v\rho_a{\dot V_{{\rm{supply}}}}\:\left( {{\omega _{ma}} - {\omega _{sa}}} \right)
+    {\dot E_{cooling}} = {\flow{\text{supply}}}\rho_a c_{p,a}\:\left( {{T_{ma}} - {\sat}} \right) + h_v\rho_a{\flow{\text{supply}}}\:\left( {{\omega _{ma}} - {\omega _{sa}}} \right)
 \end{equation}
 
 \section{Reheat in Terminal Units}
@@ -39,12 +39,12 @@ Terminal Boxes can be distributed into 3 classifications for this work. Terminal
 If there is no fan and only a damper for air volume modulation, then the reheat energy use is 
 
 \begin{equation} \label{eq:ReheatEnergy}
-{\dot E_{reheat}} = \sum\limits_i {{{\dot V}_i}\rho_a c_{p,a}\:\left( {{T_{i,dis}} - {T_{i,sa}}} \right)} 
+    {\dot E_{reheat}} = \sum\limits_i {{\flow{i}}\rho_a c_{p,a}\:\left( {{T_{i,dis}} - {T_{i,sa}}} \right)} 
 \end{equation}
 
 \subsection{Series Flow Configuration}
 
-For a series flow terminal unit, the total flow is ideally constant. \(\dot V_{tot}\) is known from specification of the terminal unit and   \({\dot V_{pri}}\) is a measured variable. \(\dot V_{plen}\) can be calculated from Eq. (\ref{eq:TotalFlow}). 
+For a series flow terminal unit, the total flow is ideally constant. \(\flow{tot}\) is known from specification of the terminal unit and   \(\flow{pri}\) is a measured variable. \(\flow{plen}\) can be calculated from Eq. (\ref{eq:TotalFlow}). 
 
 %-------------------------------------------------------------------------------------------
 \begin{figure}
@@ -121,7 +121,7 @@ table[x=RoomTemp,y=Tdischarge,col sep=tab]{SeriesFanPlot.dat};
 
 
 \begin{equation} \label{eq:TotalFlow}
-{\dot V_{plenum}} = {\dot V_{tot}} - {\dot V_{pri}}
+    \flow{plen} = \flow{tot} - \flow{pri}
 \end{equation}
 
 \(T_{dis}\) will be sensed. The temperature of the air after mixing can be estimated from the flow information and an assumption or measurement of plenum air. 
@@ -231,7 +231,7 @@ It is advised that in this approach, that the initial historical data be sorted 
 
 Before the system can be run, some of first principles models need to be calibrated. The calibration will employ historical measured data.
 
-\subsection{Fan Modeling}
+\subsection{Fan Modeling}\label{sec:FanModeling}
 
 Fan energy is a significant component to the air side energy use for air conditioning. Fan static pressure, flow, speed, and power will all be measured. The total primary air flow can either be measured directly (ideal), or estimated from the sum of the children terminal units. With this information a complete set of fan curves can be created. 
 
@@ -279,7 +279,19 @@ C = \frac{\Delta P_{\text{fan}}}{\left( \flow{t} \cdot \damp{}  \right)^2}
 and grows as a function of \(1/x^2\). 
 
 
+At any time, the pressure drop in all the flow loops must be equal. In a case where there are three terminal units, you would end up with relationships like the following
 
+\begin{align}
+    \Delta P_{fan}  &= C_1 \left(\flow{1}+\flow{2}+\flow{3} \right)^2 + \frac{C_2}{\damp{1}^2}\flow{1}^2 \\
+                    &= C_1 \left(\flow{1}+\flow{2}+\flow{3} \right)^2 + C_3\left(\flow{2}+\flow{3} \right)^2 + \frac{C_4}{\damp{2}^2}\flow{2}^2 \\
+                    &= C_1 \left(\flow{1}+\flow{2}+\flow{3} \right)^2 + C_3\left(\flow{2}+\flow{3} \right)^2 + C_5\flow{3}^2 + \frac{C_6}{\damp{3}^2}\flow{3}^2 
+\end{align}
+
+With historical data, for each timestep the terminal unit flows and the damper positions in the box is known. There are 3 equations with 6 unknowns however, and the problem becomes underconstrained. 
+
+A calibration for the pressure drop coefficients is possible. If the sum of the standard deviations between the three equations is used to determine the goodness of the calibration fit, then a trivial solution for a perfect fit arises. By setting all the coefficients besides the single shared major pressure loss coeffient \(C_1\) to zero, the three equations will always be equal, and the total absolute pressure drop can be arbitrarily set with the single coefficient. 
+
+Without further information regarding the actual terminal unit pressure drop relationships, this method loses the potential usefullness.  
 
 
 \begin{figure}
@@ -307,8 +319,7 @@ and grows as a function of \(1/x^2\).
         red,
     ]{x*x};
     \addlegendentry{Equal Percentage}
-
-    \addplot[
+\addplot[
         domain=0:1,
         blue,
     ]{sqrt(x)};
@@ -336,7 +347,7 @@ The fan power can be estimated using a fan curve as a function of the part load 
 \begin{equation}\label{eq:KimlaFanPower}
 \frac{\dot{W}}{\dot{W}_{rated}} = 0.0013+0.147\left(PLR \right)+0.9506\left(PLR \right)^2-0.0998\left(PLR \right)^3
 \end{equation}
-where \(PLR\) is defined as \(\frac{\dot{V}}{\dot{V}_{design}}\).
+where \(PLR\) is defined as \(\frac{\flow{}}{\flow{\text{design}}}\).
 
 Since we are going to be using the gradient of this function, it is desired to reduce the order to the polynomial from 3 to 2. The corresponding closest second order polynomial to \ref{eq:KimlaFanPower} is
 \begin{equation}\label{eq:finalFanPower}
@@ -345,18 +356,17 @@ Since we are going to be using the gradient of this function, it is desired to r
 
 The total energy is the combination of fan, cooling, and reheat energy. If there are \(n\) terminal units, the total energy can be written as
 \begin{multline}\label{eq:totalEnergy}
-\energy=\dot{W}_{rated}\;0.8 \left(\frac{\flowsum}{\dot{V}_{design}} \right)^2 + \dot{W}_{rated}\;0.21 \left(\frac{\flowsum}{\dot{V}_{design}} \right)\\
+    \energy=\dot{W}_{rated}\;0.8 \left(\frac{\flowsum}{\flow{\text{design}}} \right)^2 + \dot{W}_{rated}\;0.21 \left(\frac{\flowsum}{\dot{V}_{design}} \right)\\
 +1.08\left(\flowsum \right)\left(T_{ma}-T_{sa} \right)\\
-+1.08\left(V_1 \right)\left(T_{z,1}-\frac{\dot{Q}}{1.08\; V_1} -T_{sa}\right) +1.08\left(V_2 \right)\left(T_{z,2}-\frac{\dot{Q}}{1.08\; V_2} -T_{sa}\right)\\ 
-+\ldots+1.08\left(V_n \right)\left(T_{z,n}-\frac{\dot{Q}}{1.08\; V_n} -T_{sa}\right) 
++1.08\left(\flow{1} \right)\left(T_{z,1}-\frac{\dot{Q}}{1.08\; \flow{1}} -T_{sa}\right) +1.08\left(\flow{2} \right)\left(T_{z,2}-\frac{\dot{Q}}{1.08\; \flow{2}} -T_{sa}\right)\\ 
++\ldots+1.08\left(\flow{n} \right)\left(T_{z,n}-\frac{\dot{Q}}{1.08\; \flow{n}} -T_{sa}\right) 
 \end{multline}
 The first line is related to the fan energy, the second line is related to the cooling load at the air handling unit, and the last two lines relate to reheat energy use. 
-
 This function \ref{eq:totalEnergy} is minimized under the constraints
 \begin{align}
-V_{min}&\leq V_1, V_2, \ldots V_n \\
+    V_{min}&\leq \flow{1}, \flow{2}, \ldots \flow{n} \\
 T_{sa,min}&\leq T_{sa} \leq T_{sa,max} \\
-\sum_i^n V_i &= V_T \leq V_{T,design} \\
+    \sum_i^n \flow{i} &= V_T \leq V_{T,design} \\
 \forall i\in\left\{1,\ldots,n\right\}: T_{dis,i} &= T_{z,i} - \frac{\dot{Q}_i}{1.08\;V_i} \geq T_{sa}
 \end{align}
 
@@ -385,6 +395,15 @@ table[x={OADryBulbTemperature(NOAA)}, y={AHU13MixedAirTemp}, col sep=tab]{Data/2
 \end{figure}
 
 
+\section{Determining the Supply Air Static Pressure Requirement}
+
+As shown in Section \ref{sec:FanModeling}, building up a complete air flow model is challenging. A different approach is to reduce the number of parameters by focusing on the \textit{critical zone}. 
+
+One method of determining the critical zone is to simply check the percentage of time that a particular damper is the most open. This check can occur over any period, for example, over the previous week, month, or 6 months.
+
+At a particular static pressure, there should exist some relationship between the damper position and the flow through the terminal unit. For a conservative estimate of the maximum flow at a given static pressure, the measured values of flow at the 90\% open damper position can be investigated. 
+
+In a live setting, if data does not exist for a particular static pressure setpoint, then the system can slowly begin to explore until the desired number of data points are available. For example, the system could reduce the static pressure setpoint in increments of 0.1'' w.g. 
 
 
 
