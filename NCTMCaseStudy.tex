@@ -11,6 +11,8 @@ This document focuses on the academic side of the building since Utilities and E
 
 \begin{table}
 \centering
+\caption{Occupied/Unoccupied scheduling for the AHUs as described.}
+\label{tab:OnOffSched}
 \begin{tabular}{l c c c}
 \toprule
 Level 			& OAHU	 	& AHU \# 	& AHU Schedule 		 \\
@@ -25,8 +27,6 @@ Floor 2 		& OAHU 2-1 	& AHU 2-2	& 6am - 10pm, M-F	 \\
 Floor 2			& OAHU 2-1	& AHU 2-3	& 6am - 10pm, M-F 	 \\
 \bottomrule
 \end{tabular}
-\caption{Occupied/Unoccupied scheduling for the AHUs as described.}
-\label{tab:OnOffSched}
 \end{table}
 
 
@@ -37,6 +37,8 @@ Floor 2			& OAHU 2-1	& AHU 2-3	& 6am - 10pm, M-F 	 \\
 \end{figure}
 
 \begin{table}
+\caption{Fan schedule information for the dedicated outdoor air handlers.}
+\label{tab:OAFanSched}
 \centering
 \begin{tabular}{l c c}
 \toprule
@@ -48,12 +50,12 @@ OAHU 2-1 & 2,200 & 2 \\
 \bottomrule
 \multicolumn{1}{r}{Total:} & 19,500 & 27 \\
 \end{tabular}
-\caption{Fan schedule information for the dedicated outdoor air handlers.}
-\label{tab:OAFanSched}
 \end{table}
 
 \begin{table}
 \centering
+\caption{Fan schedule information for the AHUs.}
+\label{tab:FanSched}
 \begin{tabular}{l c c c c}
 \toprule
 AHU 	& Type	 	& Total Airflow (CFM) 	& HP 	& OA Served By\\
@@ -68,13 +70,54 @@ AHU 2-3 & VAV 		& 6,000					& 7.5	& OAHU 2-1 \\
 \bottomrule
 \multicolumn{2}{r}{Total:} & 40,800 & 50 &  \\
 \end{tabular}
-\caption{Fan schedule information for the AHUs.}
-\label{tab:FanSched}
 \end{table}
 
 \section{Terminal Unit Information}
 
-On the academic side, there are a total of 10 series fan powered terminal units on the first floor and 18 on the second floor. 
+On the academic side, there are a total of 10 series fan powered terminal units on the first floor and 18 on the second floor. Table \ref{tab:TerminalUnitInformation} shows the design (and assumed constant) flowrates for each of the terminal units. 
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+\centering
+\footnotesize
+\caption{Terminal unit information.}
+\label{tab:TerminalUnitInformation}
+\begin{tabular}{@{}llrl@{}}
+\toprule
+AHU &  Terminal Unit & \parbox{1.5cm}{Flow\\(CFM) }& Space Served \\ \midrule
+%%\parbox{2cm}{AHU-1-1 \\ (5 hp)} & \multicolumn{3}{l}{No boxes - Serves Teaching Module alone, Constant Fan} \\ \midrule
+AHU-1-2        & FPVAV-1-7 & 1,400 & Difficult to tell \\ \cmidrule(r){2-4}
+(5 hp)         & FPVAV-1-8 & 700 & Vestible/Men's \& Women's bathroom \\  \cmidrule(r){2-4}
+               & FPVAV-1-9 & 1,200 & Stairs/Front Corridor \\  \cmidrule(r){2-4}
+               & FPVAV-1-10 & 1,600 & Hallway \\\midrule
+AHU-1-3        & FPVAV-1-1 & 1,480 & Large Auditorium Lecture Hall \\  \cmidrule(r){2-4}
+(7.5 hp)       & FPVAV-1-2 & 1,160 & Large Auditorium Lecture Hall \\  \cmidrule(r){2-4}
+               & FPVAV-1-3 & 1,300 & Large Auditorium Lecture Hall \\  \cmidrule(r){2-4}
+               & FPVAV-1-4 & 1,400 & Large Auditorium Lecture Hall \\  \cmidrule(r){2-4}
+               & FPVAV-1-5 & 1,040 & Large Auditorium Lecture Hall \\  \cmidrule(r){2-4}
+               & FPVAV-1-6 & 1,120 & Large Auditorium Lecture Hall \\\midrule
+%%\parbox{2cm}{AHU-1-4 \\ (7.5 hp)} & \multicolumn{3}{l}{No boxes - Serves open atrium outside lecture halls, constant fan}  \\\midrule
+AHU-2-1  & FPVAV-2-1 & 2,000 & Large Study Area \\  \cmidrule(r){2-4}
+        (7.5 hp)   & FPVAV-2-2 & 2,200 & Large Study Area \\  \cmidrule(r){2-4}
+               & FPVAV-2-3 & 1,800 & Open Corridor \\\midrule
+AHU-2-2  & FPVAV-2-9 & 2,400 & Computer Lab \\  \cmidrule(r){2-4}
+         (10 hp)      & FPVAV-2-12 & 500 & Kitchen/Mail Room \\  \cmidrule(r){2-4}
+               & FPVAV-2-13 & 1,000 & Open Corridor \\  \cmidrule(r){2-4}
+               & FPVAV-2-14 & 850 & \pbox{\textwidth}{Men's/Women's Restroom \\ Copy/Mail \\ Waiting Area }\\  \cmidrule(r){2-4}
+               & FPVAV-2-15 & 1,400 & Reception/Seating/Admin Lobby \\  \cmidrule(r){2-4}
+               & FPVAV-2-16 & 500 & Small Conference Room \\  \cmidrule(r){2-4}
+               & FPVAV-2-17 & 1,280 & 4 Small Offices \\  \cmidrule(r){2-4}
+               & FPVAV-2-18 & 600 & Large Office \\\midrule
+AHU-2-3  & FPVAV-2-4 & 2,000 & Open Corridor \\  \cmidrule(r){2-4}
+        (7.5 hp)       & FPVAV-2-5 & 600 & Open Seating \\  \cmidrule(r){2-4}
+               & FPVAV-2-6 & 400 & Small Conference Room \\  \cmidrule(r){2-4}
+               & FPVAV-2-7 & 200 & Office \\  \cmidrule(r){2-4}
+               & FPVAV-2-8 & 1,200 & Visitor Conference \\  \cmidrule(r){2-4}
+               & FPVAV-2-10 & 540 & 3 Sponsor Offices \\  \cmidrule(r){2-4}
+               & FPVAV-2-11 & 560 & 3 Sponsor Offices \\ \bottomrule
+\end{tabular}
+\end{table}
 
 
 \section{Analysis of Zone Load Predictions}
@@ -90,6 +133,35 @@ If the zone loads are being met and steady-state conditions are assumed, the sen
 \end{equation}
 
 A useful simplification would be replacing the \(\rhocp{}\) term with a constant value. A value of 1.1, when \(\flow{z}\) is in units of CFM and temperature is in units of \(^\circ\)F is common. 
+
+Figure \ref{fig:ZoneLoadforContainerFPVAV214vsOADryBulbTemperatureNOAA} shows an example of the zone load plotted against outdoor air dry-bulb temperature. Notice that the load is not a well defined function of outdoor air temperature. This turns out to be the case for many of the internal zones, which will be related more to the time of day parameters. 
+
+
+% StartDate: 4/1/2016
+% EndDate: 5/1/2016
+% Ignoring:
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xychart,
+    align=center,
+    xlabel={OA Dry Bulb Temperature (NOAA) [\(^\circ\)F]},
+    ylabel={Zone Load for Container \\ FPVAV-2-14 [BTU/hr]},
+    xmin=40,
+    xmax=90,
+    ymin=-5000,
+    ymax=20000
+]
+\addplot[only marks]
+table[x={OADryBulbTemperature(NOAA)}, y={ZoneLoadforContainerFPVAV214}, col sep=tab]{Data/2016-05-25-1052-TikzData.dat};
+\end{axis}
+\end{tikzpicture}
+\caption{Calculated zone load for FPVAV-2-14 during the month of April 2016.}
+\label{fig:ZoneLoadforContainerFPVAV214vsOADryBulbTemperatureNOAA}
+\end{figure}
+
+
 
 \section{Analysis of the Mixed Air Temperature and Reheat Assumption}
 
