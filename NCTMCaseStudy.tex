@@ -136,6 +136,10 @@ A useful simplification would be replacing the \(\rhocp{}\) term with a constant
 
 Figure \ref{fig:ZoneLoadforContainerFPVAV214vsOADryBulbTemperatureNOAA} shows an example of the zone load plotted against outdoor air dry-bulb temperature. Notice that the load is not a well defined function of outdoor air temperature. This turns out to be the case for many of the internal zones, which will be related more to the time of day parameters. 
 
+Figure \ref{fig:ZoneLoadForContainer29vsNOAAOAT} shows the zone load for FPVAV-2-9 versus outdoor air Temperature. FPVAV-2-9 serves only internal zones, and the load only ranges from approximately 250 BTU/hr to 4,000 BTU/hr. 
+
+
+
 
 % StartDate: 4/1/2016
 % EndDate: 5/1/2016
@@ -162,6 +166,22 @@ table[x={OADryBulbTemperature(NOAA)}, y={ZoneLoadforContainerFPVAV214}, col sep=
 \end{figure}
 
 
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+        xychart, 
+        xlabel={OA Dry Bulb Temperature (NOAA) [\(^\circ\)F]},
+        ylabel={Zone Load for Container FPVAV-2-9 [BTU/hr]},xmin=40,xmax=90,ymin=-6000,ymax=6000
+]
+\addplot[only marks]
+table[x={OADryBulbTemperature(NOAA)}, y={ZoneLoadforContainerFPVAV29}, col sep=tab]{Data/2016-06-02-1459-TikzData.dat};
+\end{axis}
+\end{tikzpicture}
+\caption{Calculated zone load for FPVAV-2-9, which serves only internal space, during the month of April 2016.}
+\label{fig:ZoneLoadForContainer29vsNOAAOAT}
+\end{figure}
+
 
 \section{Analysis of the Mixed Air Temperature and Reheat Assumption}
 
@@ -171,4 +191,83 @@ For series fan powered boxes, the assumption was made that the total flow remain
 \section{Analysis of the Critical Zone Assumption}
 
 The critical zone/damper is to be used to determine the static pressure setpoint that can be used to supply the desired flows found from the optimization. An important consideration in the methodology is checking how how this assumption holds. Data from NCTM can be used to test the validity of the approach.
+
+
+The following figures show the maximum damper position of the children terminal units for each of the air handlers during the month of April 2016. During this time, for AHU-2-1 and AHU-2-2, there was no time in which a terminal unit damper was fully open which indicates that there is potential for the supply air static pressure setpoint to be reduced.  
+
+
+
+
+% StartDate: 4/1/2016
+% EndDate: 5/1/2016
+% Ignoring:
+%    When AHU is Off
+%    Sunday
+%    Saturday
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+        xychart,
+        align=center,
+        xlabel={OA Dry Bulb Temperature (NOAA) [\(^\circ\)F]},
+    ylabel={Max Damper Position for \\ Container AHU 1-2 [0-100\%]},
+            ymin=0,ymax=100,xmin=40,xmax=90,
+]
+\addplot[only marks]
+table[x={OADryBulbTemperatureNOAA}, y={MaxDamperPositionforContainerAHU12}, col sep=tab]{Data/2016-06-02-1533-MaxDamperPositionforContainerAHU12vsOADryBulbTemperatureNOAA.dat};
+\end{axis}
+\end{tikzpicture}
+\caption{Maximum damper position versus outside air temperature for AHU-1-2 during the month of April 2016.}
+\label{fig:MaxDamperPositionforContainerAHU12vsOADryBulbTemperatureNOAA}
+\end{figure}
+
+% StartDate: 4/1/2016
+% EndDate: 5/1/2016
+% Ignoring:
+%    When AHU is Off
+%    Sunday
+%    Saturday
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+        xychart,
+        align=center,
+        xlabel={OA Dry Bulb Temperature (NOAA) [\(^\circ\)F]},
+    ylabel={Max Damper Position for Container AHU 1-3 [0-100\%]},
+            ymin=0,ymax=100,xmin=40,xmax=90,
+]
+\addplot[only marks]
+table[x={OADryBulbTemperatureNOAA}, y={MaxDamperPositionforContainerAHU13}, col sep=tab]{Data/2016-06-02-1544-MaxDamperPositionforContainerAHU13vsOADryBulbTemperatureNOAA.dat};
+\end{axis}
+\end{tikzpicture}
+\caption{Maximum damper position versus outside air temperature for AHU-1-3 during the month of April 2016.}
+\label{fig:MaxDamperPositionforContainerAHU13vsOADryBulbTemperatureNOAA}
+\end{figure}
+
+
+% StartDate: 4/1/2016
+% EndDate: 5/1/2016
+% Ignoring:
+%    When AHU is Off
+%    Sunday
+%    Saturday
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+        xychart,
+        align=center,
+        xlabel={OA Dry Bulb Temperature (NOAA) [\(^\circ\)F]},
+    ylabel={Max Damper Position for\\Container AHU 2-1 [0-100\%]},
+  ymin=0,ymax=100,xmin=40,xmax=90,
+]
+\addplot[only marks]
+table[x={OADryBulbTemperatureNOAA}, y={MaxDamperPositionforContainerAHU21}, col sep=tab]{Data/2016-06-02-1552-MaxDamperPositionforContainerAHU21vsOADryBulbTemperatureNOAA.dat};
+\end{axis}
+\end{tikzpicture}
+\caption{Maximum damper position versus outside air temperature for AHU-2-1 during the month of April 2016.}
+\label{fig:MaxDamperPositionforContainerAHU21vsOADryBulbTemperatureNOAA}
+\end{figure}
 
