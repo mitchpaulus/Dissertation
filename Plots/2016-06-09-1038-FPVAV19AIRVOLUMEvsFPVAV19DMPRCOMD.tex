@@ -1,40 +1,26 @@
-
 \documentclass[12pt]{article}
-
 \usepackage[active, tightpage]{preview}
 \usepackage{tikz}
 \usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.3}
 \PreviewEnvironment{tikzpicture}
-%%Plot for the 2 Week 
-
 \input{../tikz/tikzDefaults}
-
 \begin{document}
+% StartDate: 10/6/2015
+% EndDate: 6/7/2016
+% Ignoring:
+%    When AHU is Off
 \begin{tikzpicture}
 \begin{axis}[
-        align=center,
-        xychart, 
-        xlabel={OA Dry Bulb Temperature (NOAA) [\(^\circ\)F]},
-        ylabel={Zone Load for Container \\ FPVAV-2-9 [BTU/hr]},xmin=40,xmax=90,ymin=-6000,ymax=6000
+    xychart,
+    align=center,
+    xlabel={FPVAV-1-9:DMPR COMD [0-100\%]},
+    ylabel={FPVAV-1-9:AIR VOLUME [CFM]},
+    xmin=0,xmax=100,ymin=0,ymax=1800,ytick={0,200,...,1800}
 ]
 \addplot[only marks]
-table[x={OADryBulbTemperature(NOAA)}, y={ZoneLoadforContainerFPVAV29}, col sep=tab]{../Data/2016-06-02-1459-TikzData.dat};
+table[x={FPVAV19DMPRCOMD}, y={FPVAV19AIRVOLUME}, col sep=tab]{../Data/2016-06-09-1038-FPVAV19AIRVOLUMEvsFPVAV19DMPRCOMD.dat};
 \end{axis}
 \end{tikzpicture}
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
