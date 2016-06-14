@@ -337,6 +337,22 @@ Without further information regarding the actual terminal unit pressure drop rel
 
 In order to predict the energy use at the cooling/reheat coils in the air handling unit, the mixed air temperature needs to be estimated. The mixed air temperature will be dependent on several variables including the outdoor air temperature, return air temperature, and the damper positions of the outdoor air and return air. The damper positions will fluctuate greatly during times of economizing.  
 
+If the flow for both outside and return air are known, along with either estimates or measurements of \(\oat{}\) and \(\rat{}\), then \(\mat{}\) can be predicted directly using a straightforward energy balance. 
+
+\begin{equation}
+    \mat{} = \frac{\flow{oa} \oat{} + \flow{ra} \rat{}}{\flow{oa}+\flow{ra}}
+\end{equation}
+
+In many cases, the temperatures can be estimated, but the individual flows are not measured or are difficult to measure. In these cases, it makes sense to investigate \(\mat{}\) as a function of \(\oat{}\). If the system is constant volume, then the \(\mat\) will be linearly related to \(\oat\) and the coefficients in a linear regression will be equal to
+
+\begin{equation}
+    \mat = \left(  \frac{\flow{oa}}{\flow{tot}}\right) \oat + \frac{\flow{ra}\rat}{\flow{tot}}
+\end{equation}
+
+If economizing is programmed, there should be a significant moderation that should be present in \(\mat{}\).
+
+In many cases, \(\mat\) will not vary significantly in operation and can be considered constant. The data can be investigated on a case-by-case basis and the best model of these can be used to estimate \(\mat\).
+
 
 \section{Searching for Energy Minimum}
 
