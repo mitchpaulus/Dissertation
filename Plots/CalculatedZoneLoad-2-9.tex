@@ -19,7 +19,7 @@
         xlabel={OA Dry Bulb Temperature (NOAA) [\(^\circ\)F]},
         ylabel={Zone Load for Container \\ FPVAV-2-9 [BTU/hr]},xmin=40,xmax=90,ymin=-6000,ymax=6000
 ]
-\addplot[only marks]
+\addplot[xymarker]
 table[x={OADryBulbTemperature(NOAA)}, y={ZoneLoadforContainerFPVAV29}, col sep=tab]{../Data/2016-06-02-1459-TikzData.dat};
 \end{axis}
 \end{tikzpicture}

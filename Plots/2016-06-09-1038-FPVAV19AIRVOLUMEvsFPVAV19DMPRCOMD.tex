@@ -19,7 +19,7 @@
     ylabel={FPVAV-1-9:AIR VOLUME [CFM]},
     xmin=0,xmax=100,ymin=0,ymax=1800,ytick={0,200,...,1800}
 ]
-\addplot[only marks]
+\addplot[xymarker]
 table[x={FPVAV19DMPRCOMD}, y={FPVAV19AIRVOLUME}, col sep=tab]{../Data/2016-06-09-1038-FPVAV19AIRVOLUMEvsFPVAV19DMPRCOMD.dat};
 \end{axis}
 \end{tikzpicture}

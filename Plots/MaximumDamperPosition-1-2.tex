@@ -25,7 +25,7 @@
     ylabel={Max Damper Position for \\ Container AHU 1-2 [0-100\%]},
             ymin=0,ymax=100,xmin=40,xmax=90,
 ]
-\addplot[only marks]
+\addplot[xymarker]
 table[x={OADryBulbTemperatureNOAA}, y={MaxDamperPositionforContainerAHU12}, col sep=tab]{../Data/2016-06-02-1533-MaxDamperPositionforContainerAHU12vsOADryBulbTemperatureNOAA.dat};
 \end{axis}
 \end{tikzpicture}
