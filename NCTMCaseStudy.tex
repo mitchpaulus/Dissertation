@@ -157,39 +157,36 @@ If the zone loads are being met and steady-state conditions are assumed, the sen
 
 A useful simplification would be replacing the \(\rhocp{}\) term with a constant value. A value of 1.08, when \(\flow{z}\) is in units of CFM and temperature is in units of \(^\circ\)F is common, and is used from this point forward in the estimation of the zone load.
 
-As a result of the dynamics of how  terminal units are actually controlled, the estimated zone load can vary back and forth, while the true zone load is a more smooth function. \figref{} \ref{fig:2016-06-16-1112-ZoneLoadforContainerFPVAV17-TikzData} shows how the estimated zone load can change directionality several times over the course of a day. The zone load for terminal unit FPVAV-1-7 typically varied from 6,000 BTU/hr to 20,000 BTU/hr over the course of the week from June 6, 2016 to June 11, 2016.
+As a result of the dynamics of how  terminal units are actually controlled, the estimated zone load can vary back and forth, while the true zone load is a more smooth function. \figref{} \ref{fig:2016-06-22-1654-ZoneLoadforContainerFPVAV17-TikzData} shows how the estimated zone load can change directionality several times over the course of a day. The zone load for terminal unit FPVAV-1-7 typically varied from 6,000 BTU/hr to 20,000 BTU/hr over the course of the week from June 6, 2016 to June 11, 2016.
 
-\figref{} \ref{fig:2016-06-16-1317-ZoneLoadforContainerFPVAV22-TikzData} shows another example of how the estimated zone load may vary throughout a typical week. \figref{} \ref{fig:2016-06-16-1317-ZoneLoadforContainerFPVAV22-TikzData} shows the zone load for FPVAV-2-2, which experiences a significant load compared to the other terminal units at NCTM. the zone load varies from near 5,000 BTU/hr to near 50,000 BTU/hr at its peak.
+\figref{} \ref{fig:2016-06-22-1643-ZoneLoadforContainerFPVAV22-TikzData} shows another example of how the estimated zone load may vary throughout a typical week. \figref{} \ref{fig:2016-06-22-1643-ZoneLoadforContainerFPVAV22-TikzData} shows the zone load for FPVAV-2-2, which experiences a significant load compared to the other terminal units at NCTM. the zone load varies from near 10,000 BTU/hr to near 50,000 BTU/hr at its peak.
 
-With \figref{} \ref{fig:2016-06-16-1112-ZoneLoadforContainerFPVAV17-TikzData} as evidence, it is clear that the ``true'' zone load cannot be reasonably estimated with the trend data that is available in typical BAS systems. However, the ratio of magnitudes of the load from zone to zone can still be inferred and be useful in improving the energy efficiency of the system.  
+With \figref{} \ref{fig:2016-06-22-1654-ZoneLoadforContainerFPVAV17-TikzData} as evidence, it is clear that the ``true'' zone load cannot be reasonably estimated with the trend data that is available in typical BAS systems. However, the ratio of magnitudes of the load from zone to zone can still be inferred and be useful in improving the energy efficiency of the system.  
 
 \begin{figure}
 \centering
-\includegraphics[]{Plots/2016-06-16-1112-ZoneLoadforContainerFPVAV17-TikzData.pdf}
-\caption{Zone load estimation for FPVAV-1-7. }
-\label{fig:2016-06-16-1112-ZoneLoadforContainerFPVAV17-TikzData}
+\includegraphics[]{Plots/2016-06-22-1654-ZoneLoadforContainerFPVAV17-TikzData.pdf}
+\caption{Zone load estimation for FPVAV-1-7.}
+\label{fig:2016-06-22-1654-ZoneLoadforContainerFPVAV17-TikzData}
 \end{figure}
 
-
 \begin{figure}
 \centering
-\includegraphics[]{Plots/2016-06-16-1317-ZoneLoadforContainerFPVAV22-TikzData.pdf}
+\includegraphics[]{Plots/2016-06-22-1643-ZoneLoadforContainerFPVAV22-TikzData.pdf}
 \caption{Zone load estimation for FPVAV-2-2.}
-\label{fig:2016-06-16-1317-ZoneLoadforContainerFPVAV22-TikzData}
+\label{fig:2016-06-22-1643-ZoneLoadforContainerFPVAV22-TikzData}
 \end{figure}
 
 
 
 \figref{} \ref{fig:ZoneLoadforContainerFPVAV214vsOADryBulbTemperatureNOAA} shows an example of the zone load plotted against outdoor air dry-bulb temperature. Notice that the load is not a well defined function of \(\oat\). This turns out to be the case for many of the internal zones, which will be related more to the time of day parameters. 
 
-\figref{} \ref{fig:ZoneLoadForContainer29vsNOAAOAT} shows the zone load for FPVAV-2-9 versus \(\oat\). FPVAV-2-9 serves only internal zones, and the load only ranges from approximately 250 BTU/hr to 4,000 BTU/hr.
-
-
+\figref{} \ref{fig:ZoneLoadforContainerFPVAV29vsOADryBulbTemperatureNOAA} shows the zone load for FPVAV-2-9 versus \(\oat\). FPVAV-2-9 serves only internal zones, and the load only ranges from approximately 250 BTU/hr to 4,000 BTU/hr.
 
 
 \begin{figure}
 \centering
-\includegraphics{Plots/CalculatedZoneLoadFPVAV-2-14.pdf}
+\includegraphics[]{Plots/2016-06-22-1704-ZoneLoadforContainerFPVAV214vsOADryBulbTemperatureNOAA.pdf}
 \caption{Calculated zone load for FPVAV-2-14 during the month of April 2016.}
 \label{fig:ZoneLoadforContainerFPVAV214vsOADryBulbTemperatureNOAA}
 \end{figure}
@@ -197,14 +194,13 @@ With \figref{} \ref{fig:2016-06-16-1112-ZoneLoadforContainerFPVAV17-TikzData} as
 
 \begin{figure}
 \centering
-\includegraphics{Plots/CalculatedZoneLoad-2-9.pdf} 
+\includegraphics[]{Plots/2016-06-22-1716-ZoneLoadforContainerFPVAV29vsOADryBulbTemperatureNOAA.pdf}
 \caption{Calculated zone load for FPVAV-2-9, which serves only internal space, during the month of April 2016.}
-\label{fig:ZoneLoadForContainer29vsNOAAOAT}
+\label{fig:ZoneLoadforContainerFPVAV29vsOADryBulbTemperatureNOAA}
 \end{figure}
 
 
 The statistics related to the predictions of the zone loads for data ranging from October 6, 2015 to June 1, 2016 is given in \tableref{} \ref{tab:zoneLoadStats}.
-
 
 
 %%Data from NCTM Report 2016-06-20 T 12-16.xlsx.
@@ -217,35 +213,35 @@ The statistics related to the predictions of the zone loads for data ranging fro
     \toprule
     Terminal Unit & \parbox{2.3cm}{Med. Abs. \\ \(\epsilon\) (BTU/hr)}  & \parbox{2.3cm}{Mean Abs.\\\(\epsilon\)  (BTU/hr)} & \parbox{2cm}{RMSE \\ (BTU/hr)} & \parbox{2cm}{MBE \\ (BTU/hr)}\\
     \midrule
-FPVAV-2-7   & 37 & 126 & 305 & -57 \\ 
-FPVAV-2-5   & 49 & 71 & 121 & -6 \\ 
-FPVAV-2-16  & 53 & 131 & 267 & 13 \\ 
-FPVAV-2-12  & 70 & 339 & 604 & -270 \\ 
-FPVAV-2-6   & 71 & 234 & 411 & -3 \\ 
-FPVAV-2-13  & 93 & 288 & 685 & -8 \\ 
-FPVAV-1-11  & 97 & 329 & 1,076 & 60 \\ 
-FPVAV-2-10  & 121 & 343 & 774 & -119 \\ 
-FPVAV-2-18  & 128 & 354 & 617 & 16 \\ 
-FPVAV-2-11  & 152 & 490 & 850 & -107 \\ 
-FPVAV-2-3   & 177 & 867 & 2,828 & -318 \\ 
-FPVAV-2-14  & 188 & 862 & 1,796 & -78 \\ 
-FPVAV-2-8   & 192 & 409 & 805 & -74 \\ 
-FPVAV-1-2   & 197 & 542 & 1,244 & -277 \\ 
-FPVAV-2-4   & 224 & 373 & 1,037 & -16 \\ 
-FPVAV-2-1   & 233 & 565 & 1,594 & -304 \\ 
-FPVAV-2-17  & 242 & 1,013 & 2,326 & 113 \\ 
-FPVAV-2-15  & 264 & 1,206 & 3,738 & 179 \\ 
-FPVAV-2-9   & 293 & 513 & 809 & 275 \\ 
-FPVAV-1-1   & 577 & 2,270 & 4,774 & -1,272 \\ 
-FPVAV-1-5   & 745 & 1,474 & 2,319 & 1 \\ 
-FPVAV-1-10  & 750 & 2,016 & 3,756 & 757 \\ 
-FPVAV-1-8   & 1,000 & 1,595 & 2,362 & 481 \\ 
-FPVAV-1-3   & 1,156 & 2,663 & 4,575 & -348 \\ 
-FPVAV-1-6   & 1,164 & 2,435 & 3,925 & 68 \\ 
-FPVAV-1-9   & 1,229 & 1,999 & 3,185 & 234 \\ 
-FPVAV-2-2   & 1,830 & 4,374 & 7,541 & 1,784 \\ 
-FPVAV-1-7   & 1,932 & 2,752 & 3,852 & -568 \\ 
-FPVAV-1-4   & 2,603 & 5,433 & 8,762 & -159 \\ 
+FPVAV-2-7 & 108 & 171 & 298 & -41 \\ 
+FPVAV-2-16 & 135 & 385 & 704 & 59 \\ 
+FPVAV-2-5 & 162 & 221 & 328 & -22 \\ 
+FPVAV-2-12 & 203 & 1,058 & 1,885 & -896 \\ 
+FPVAV-2-6 & 216 & 488 & 836 & 24 \\ 
+FPVAV-2-13 & 270 & 784 & 1,841 & 68 \\ 
+FPVAV-2-10 & 292 & 631 & 1,000 & -87 \\ 
+FPVAV-2-11 & 302 & 708 & 1,062 & -68 \\ 
+FPVAV-2-18 & 324 & 914 & 1,614 & 77 \\ 
+FPVAV-1-11 & 324 & 703 & 1,585 & 115 \\ 
+FPVAV-2-14 & 459 & 1,004 & 1,780 & -9 \\ 
+FPVAV-2-4 & 540 & 1,036 & 2,012 & 84 \\ 
+FPVAV-1-2 & 626 & 1,201 & 2,056 & -385 \\ 
+FPVAV-2-8 & 648 & 991 & 1,519 & -43 \\ 
+FPVAV-2-9 & 648 & 1,236 & 1,763 & 635 \\ 
+FPVAV-2-17 & 691 & 1,386 & 2,327 & 122 \\ 
+FPVAV-2-15 & 756 & 3,852 & 12,353 & 552 \\ 
+FPVAV-1-8 & 945 & 1,371 & 1,978 & 336 \\ 
+FPVAV-2-3 & 972 & 1,789 & 3,587 & -171 \\ 
+FPVAV-2-1 & 1,080 & 1,609 & 2,871 & -559 \\ 
+FPVAV-1-9 & 1,296 & 1,850 & 2,805 & 209 \\ 
+FPVAV-1-5 & 1,404 & 2,463 & 4,105 & -17 \\ 
+FPVAV-1-10 & 1,512 & 2,819 & 4,634 & 1,054 \\ 
+FPVAV-1-1 & 1,598 & 3,783 & 6,267 & -1,359 \\ 
+FPVAV-1-3 & 1,755 & 3,164 & 4,868 & -237 \\ 
+FPVAV-1-6 & 1,814 & 3,186 & 4,861 & 261 \\ 
+FPVAV-1-7 & 2,268 & 2,827 & 3,942 & -326 \\ 
+FPVAV-2-2 & 2,376 & 4,422 & 7,184 & 1,773 \\ 
+FPVAV-1-4 & 3,024 & 5,569 & 8,502 & 19 \\ 
     \bottomrule
 \end{tabular}
 \end{table}

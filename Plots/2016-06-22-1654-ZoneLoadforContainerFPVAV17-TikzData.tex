@@ -16,15 +16,15 @@ xmin=42527,
 xmax=42532,
 xtick={42527, 42528, 42529, 42530, 42531, 42532},
 xticklabels={Mon 6/6, Tue 6/7, Wed 6/8, Thu 6/9, Fri 6/10, Sat 6/11},
-ymin=0,ymax=50000,
 align=center,
-ylabel= {Zone Load for Container \\ FPVAV-2-2 (BTU/hr)},
+ylabel={Zone Load for Container \\ FPVAV-1-7 (BTU/hr)},
+ymin=-5000, ymax=25000,
 ]
 \addplot[
     tsline,
 no markers,
 ]
-table[x=Date,y=ZoneLoadforContainerFPVAV22,col sep=tab]{../Data/2016-06-16-1317-ZoneLoadforContainerFPVAV22-TikzData.dat};
+table[x=Date,y=ZoneLoadforContainerFPVAV17,col sep=tab]{../Data/2016-06-22-1654-ZoneLoadforContainerFPVAV17-TikzData.dat};
 \end{axis}
 \end{tikzpicture}
 \end{document}
