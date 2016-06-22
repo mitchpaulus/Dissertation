@@ -1,0 +1,29 @@
+\documentclass[12pt]{article} \usepackage[active, tightpage]{preview}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.3}
+\PreviewEnvironment{tikzpicture}
+\input{../tikz/tikzDefaults}
+% StartDate: 6/6/2016
+% EndDate: 6/11/2016
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+        tschart,
+        align=center,
+xmin=42527,
+xmax=42532,
+xtick={42527, 42528, 42529, 42530, 42531, 42532},
+xticklabels={Mon 6/6, Tue 6/7, Wed 6/8, Thu 6/9, Fri 6/10, Sat 6/11},
+ylabel={Zone Load for  \\ Container FPVAV-1-7 (BTU/hr)},
+ymin=-2000,ymax=22000,
+]
+\addplot[
+    tsline,
+no markers,
+]
+table[x=Date,y=ZoneLoadforContainerFPVAV17,col sep=tab]{../Data/2016-06-16-1112-ZoneLoadforContainerFPVAV17-TikzData.dat};
+\end{axis}
+\end{tikzpicture}
+\end{document}
