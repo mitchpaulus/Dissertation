@@ -72,9 +72,9 @@ urlcolor=black}
 % \ifnum\value{subsection}>0\addtocontents{toc}{\vskip-6pt}\fi
 % } 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}b{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}b{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}b{#1}}
 
 \newcommand{\dgF}{\(^\circ\)F }
 \newcommand{\sat}{T_{sa}}
@@ -115,7 +115,7 @@ urlcolor=black}
 
 \include{lists}  % This is simply a file that formats and adds your toc, lof, and lot, please do not edit this unless you have a specific need. .
 
-\include{section1}
+\include{introduction}
 \include{literatureReview}
 \include{OptimizationMethodology}
 \include{TechnologySetup}

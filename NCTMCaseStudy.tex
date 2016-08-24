@@ -141,7 +141,27 @@ In the case of \figref{} \ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA}, 
 \end{figure}
 
 
+\section{Analysis of the Plenum Air Temperature}
 
+Under certain assumptions, the plenum air temperature for the series fan powered boxes is possible. If the terminal unit is modeled as a simple mixing problem, the plenum air temperature will be 
+
+\begin{equation}
+    T_{plenum}=\frac{\flow{tot}T_{dis}-\flow{pri}T_{sa}}{\flow{tot} -\flow{pri}}
+\end{equation}
+
+Since \(T_{plenum}\) is a function of 4 variables, it is important to consider the uncertainty in the estimation. Clearly, when \(\flow{plenum}\) is low, assumed to be equivalent to \(\flow{tot} - \flow{pri}\), the uncertainty in  \(T_{plenum}\) grows significantly and when the flow is equal to zero \(T_{plenum}\) is undefined. 
+
+Using the Kline-McKlintock formulation of uncertainty, the uncertainty of \(T_{plenum}\) is 
+
+\begin{multline}
+    \delta T_{plen} = \left[\left( \pdv{T_{plen}}{\flow{pri}} \delta \flow{pri}   \right)^2  +\left( \pdv{T_{plen}}{\flow{tot}} \delta \flow{tot}   \right)^2 + \right. \\
+    \left. \left( \pdv{T_{plen}}{T_{dis}} \delta T_{dis}   \right)^2 + \left( \pdv{T_{plen}}{T_{sa}} \delta T_{sa}   \right)^2  \right]^{1/2}
+\end{multline}
+
+\begin{multline}
+    \delta T_{plen} = \left[\left(  \frac{\flow{tot}\left(T_{dis}-T_{sa} \right)}{{\flow{plen}}^2}   \delta \flow{pri} \right)^2  +\left(\frac{\flow{pri}\left(T_{sa}-T_{dis} \right)}{{\flow{plen}}^2}      \delta \flow{tot}   \right)^2 + \right. \\
+    \left. \left( \frac{\flow{tot}}{\flow{plen}} \delta T_{dis}   \right)^2 + \left(\frac{\flow{pri}}{\flow{plen}}  \delta T_{sa}   \right)^2  \right]^{1/2}
+\end{multline}
 
 \section{Analysis of Zone Load Predictions}
 
