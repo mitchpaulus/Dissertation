@@ -131,6 +131,13 @@ table[x=RoomTemp,y=Tdischarge,col sep=tab]{SeriesFanPlot.dat};
 {T_{mix}} = \frac{{{{\dot V}_{pri}}\left( {{T_{pri}}} \right) + \dot V_{plen}\left( {{T_{plen}}} \right)}}{{{{\dot V}_{total}}}}
 \end{equation}
 
+Another rearrangement of \ref{eq:MixedAirTemperature} that is important is solving for \(\flow{pri}\). 
+
+\begin{equation} \label{eq:PrimaryFlowInTerminalUnit}
+    \priflow = \text{MAX}\left(\frac{\totflow \left(T_{dis} - T_{\plenum} \right)}{\left(T_{\primary} - T_{\plenum} \right)}, \flow{\primary, \text{min}} \right)
+\end{equation}
+
+
 The increase in temperature to the discharge temperature is due to heat gain from the fan and from any supplementary heating.
 
 The temperature rise from the fan, \(\Delta T_{fan}\), can be estimated from historical data when the supplementary heating is off, either when the heating coil is completely closed or all stages of electrical reheat are inactive. If there is no other heating, the temperature increase from the fan is
@@ -353,6 +360,10 @@ In many cases, the temperatures can be estimated, but the individual flows are n
 If economizing is programmed, there should be a significant moderation that should be present in \(\mat{}\).
 
 In many cases, \(\mat\) will not vary significantly in operation and can be considered constant. The data can be investigated on a case-by-case basis and the best model of these can be used to estimate \(\mat\).
+
+A robust approach that will be investigated is the \textit{nearest neighbor} approach. It is known that \(\mat\) is related to outdoor air temperature, return air temperature, along with the available damper positions in the particular air handler. By searching through historical data for similar conditions and taking the median of the data, a robust and reliable estimate can be made. 
+
+Unfortunately, for a given request, only the outdoor air conditions and the time of day will be known. 
 
 
 \section{Searching for Energy Minimum}

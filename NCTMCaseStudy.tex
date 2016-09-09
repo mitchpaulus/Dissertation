@@ -141,6 +141,75 @@ In the case of \figref{} \ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA}, 
 \end{figure}
 
 
+The result of a \textit{nearest neighbor} approach is shown in \figref{} \ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA-2}. The algorithm looked back in history (at least a day before) under the following parameters:
+
+\begin{itemize}
+    \item The same day of the week
+    \item Same hour of day \(\pm\)1 hr.
+    \item Same \(\oat{}\) \(\pm\)3\(^\circ\)F
+    \item Searching backwards incrementally until 30 data points found
+\end{itemize}
+
+The median of the found data points is the resulting prediction. The following plots show the model fits for the different air handling units at NCTM. The data covers a period of 180 days. Figures \ref{fig:2016-09-07-1218-AHU12MixedAirTempvsOADryBulbTemperatureNOAA} and \ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA-2} show that the prediction algorithm can adequately handle the differences from when the air handling unit is on as well as off. The significant amount of spread in the mixed air temperature is due to data in which the air handler turns off and is allowed to drift, typically to higher temperature in the climate of College Station. 
+
+Figures \ref{fig:2016-09-07-1335-MixedAirTempPredictionforContainerAHU12vsAHU12MixedAirTemp} through \ref{fig:2016-09-07-1623-MixedAirTempPredictionforContainerAHU23vsAHU23MixedAirTemp} show the model fits during times when the air handling units are off, ignoring weekends and holidays, and times between 6:00 PM and 8:00 AM.
+
+\newcommand{\matcaption}[1]{#1 mixed air temperature prediction for data from Mar. 10, 2016 - Sept. 5, 2016, not ignoring any data.}
+
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2016-09-07-1218-AHU12MixedAirTempvsOADryBulbTemperatureNOAA.pdf}
+\caption{\matcaption{AHU-1-2}}
+\label{fig:2016-09-07-1218-AHU12MixedAirTempvsOADryBulbTemperatureNOAA}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2016-09-07-0943-AHU13MixedAirTempvsOADryBulbTemperatureNOAA.pdf}
+\caption{AHU-1-3 mixed air temperature prediction for data from Mar. 10, 2016 - Sept. 5, 2016, not ignoring any data.}
+\label{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA-2}
+\end{figure}
+
+
+
+%% 45 degree plots showing the adequacy of the model fit. 
+
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2016-09-07-1335-MixedAirTempPredictionforContainerAHU12vsAHU12MixedAirTemp.pdf}
+\caption{SampleCaption}
+\label{fig:2016-09-07-1335-MixedAirTempPredictionforContainerAHU12vsAHU12MixedAirTemp}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2016-09-07-1346-MixedAirTempPredictionforContainerAHU13vsAHU13MixedAirTemp.pdf}
+\caption{SampleCaption}
+\label{fig:2016-09-07-1346-MixedAirTempPredictionforContainerAHU13vsAHU13MixedAirTemp}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2016-09-07-1357-MixedAirTempPredictionforContainerAHU21vsAHU21MixedAirTemp.pdf}
+\caption{SampleCaption}
+\label{fig:2016-09-07-1357-MixedAirTempPredictionforContainerAHU21vsAHU21MixedAirTemp}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2016-09-07-1619-MixedAirTempPredictionforContainerAHU22vsAHU22MixedAirTemp.pdf}
+\caption{SampleCaption}
+\label{fig:2016-09-07-1619-MixedAirTempPredictionforContainerAHU22vsAHU22MixedAirTemp}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2016-09-07-1623-MixedAirTempPredictionforContainerAHU23vsAHU23MixedAirTemp.pdf}
+\caption{SampleCaption}
+\label{fig:2016-09-07-1623-MixedAirTempPredictionforContainerAHU23vsAHU23MixedAirTemp}
+\end{figure}
+
+
 \section{Analysis of the Plenum Air Temperature}
 
 Under certain assumptions, the plenum air temperature for the series fan powered boxes is possible. If the terminal unit is modeled as a simple mixing problem, the plenum air temperature will be 
@@ -162,6 +231,18 @@ Using the Kline-McKlintock formulation of uncertainty, the uncertainty of \(T_{p
     \delta T_{plen} = \left[\left(  \frac{\flow{tot}\left(T_{dis}-T_{sa} \right)}{{\flow{plen}}^2}   \delta \flow{pri} \right)^2  +\left(\frac{\flow{pri}\left(T_{sa}-T_{dis} \right)}{{\flow{plen}}^2}      \delta \flow{tot}   \right)^2 + \right. \\
     \left. \left( \frac{\flow{tot}}{\flow{plen}} \delta T_{dis}   \right)^2 + \left(\frac{\flow{pri}}{\flow{plen}}  \delta T_{sa}   \right)^2  \right]^{1/2}
 \end{multline}
+
+So for an example if, 
+
+\begin{itemize}
+    \item \(\totflow{}=2,200\text{ CFM}\)
+    \item \(\plenflow{}=1,000\text{ CFM}\)
+    \item \(\sat = 55^{\circ}\text{F} \)
+    \item \(\dat = 75^{\circ}\text{F} \)
+    \item \(\delta\priflow{}=\delta\plenflow=\delta\totflow=100 \text{ CFM}\)
+    \item \(\delta \sat = \delta \dat = 1^{\circ} \text{F} \)
+\end{itemize}
+
 
 \section{Analysis of Zone Load Predictions}
 
