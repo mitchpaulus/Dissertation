@@ -350,6 +350,34 @@ FPVAV-1-4 & 3,024 & 5,569 & 8,502 & 19 \\
 The highest errors in the prediction were for FPVAV-1-4, the zone that has the highest overall zone load in the building, by a significant margin. It has estimated loads near 50,000 BTU/hr.
 
 
+%% These items come from the analysis done with plus minus 15 min and 3 degree F OAT bounds in file Batch Plots -- Mitch Dissertation N -- 2016-09-14 0952
+
+An interesting pattern that was that the initial prediction routine overpredicted the zone load when the zone load was closer to the heating range and underpredicted the zone load during times of high cooling load. This bias was seen in every terminal unit in the building and this bias occured with both the largest and smallest terminal units. Figures \ref{fig:2016-09-14-1028-ZoneLoadResidualforContainerFPVAV22vsZoneLoadforContainerFPVAV22} through \ref{fig:2016-09-14-1020-ZoneLoadResidualforContainerFPVAV27vsZoneLoadforContainerFPVAV27} show examples of this phenomenon. The date period analyzed was from March 1, 2016 to August 1, 2016, ignoring when the AHUs were off, federal holidays and weekends, and hours from 5 PM to 9 AM. 
+
+\newcommand{\zoneLoadCaption}[1]{Bias in zone load prediction for #1.}
+
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2016-09-14-1028-ZoneLoadResidualforContainerFPVAV22vsZoneLoadforContainerFPVAV22.pdf}
+\caption{\zoneLoadCaption{FPVAV-2-2}}
+\label{fig:2016-09-14-1028-ZoneLoadResidualforContainerFPVAV22vsZoneLoadforContainerFPVAV22}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2016-09-14-1007-ZoneLoadResidualforContainerFPVAV14vsZoneLoadforContainerFPVAV14.pdf}
+\caption{\zoneLoadCaption{FPVAV-1-4}}
+\label{fig:2016-09-14-1007-ZoneLoadResidualforContainerFPVAV14vsZoneLoadforContainerFPVAV14}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2016-09-14-1020-ZoneLoadResidualforContainerFPVAV27vsZoneLoadforContainerFPVAV27.pdf}
+\caption{ \zoneLoadCaption{FPVAV-2-7} }
+\label{fig:2016-09-14-1020-ZoneLoadResidualforContainerFPVAV27vsZoneLoadforContainerFPVAV27}
+\end{figure}
+
+
 \section{Analysis of the Mixed Air Temperature in Series Terminal Unit and Reheat Assumption}
 
 For series fan powered boxes, the assumption was made that the total flow remains constant and that the mixed air temperature at the individual box can be predicted based on the primary flow value that is measured. 
