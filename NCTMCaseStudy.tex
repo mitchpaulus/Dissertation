@@ -227,21 +227,52 @@ Using the Kline-McKlintock formulation of uncertainty, the uncertainty of \(T_{p
     \left. \left( \pdv{T_{plen}}{T_{dis}} \delta T_{dis}   \right)^2 + \left( \pdv{T_{plen}}{T_{sa}} \delta T_{sa}   \right)^2  \right]^{1/2}
 \end{multline}
 
-\begin{multline}
+\begin{multline}\label{eq:plenumUncertainty}
     \delta T_{plen} = \left[\left(  \frac{\flow{tot}\left(T_{dis}-T_{sa} \right)}{{\flow{plen}}^2}   \delta \flow{pri} \right)^2  +\left(\frac{\flow{pri}\left(T_{sa}-T_{dis} \right)}{{\flow{plen}}^2}      \delta \flow{tot}   \right)^2 + \right. \\
     \left. \left( \frac{\flow{tot}}{\flow{plen}} \delta T_{dis}   \right)^2 + \left(\frac{\flow{pri}}{\flow{plen}}  \delta T_{sa}   \right)^2  \right]^{1/2}
 \end{multline}
 
 So for an example if, 
 
+\newcommand{\flowtotvalue}{2,200\text{ CFM}}
+\newcommand{\plenflowvalue}{1,000\text{ CFM}}
+
 \begin{itemize}
-    \item \(\totflow{}=2,200\text{ CFM}\)
-    \item \(\plenflow{}=1,000\text{ CFM}\)
+    \item \(\totflow{}=\flowtotvalue\)
+    \item \(\plenflow{}=\plenflowvalue\)
+    \item \(\priflow=\flowtotvalue - \plenflowvalue = 1,200\text{ CFM} \)
     \item \(\sat = 55^{\circ}\text{F} \)
     \item \(\dat = 75^{\circ}\text{F} \)
     \item \(\delta\priflow{}=\delta\plenflow=\delta\totflow=100 \text{ CFM}\)
     \item \(\delta \sat = \delta \dat = 1^{\circ} \text{F} \)
 \end{itemize}
+
+Equation \ref{eq:plenumUncertainty} becomes
+\begin{multline}\label{eq:plenumUncertainty}
+    \delta T_{plen} = \left[\left(  \frac{ \flowtotvalue   \left(T_{dis}-T_{sa} \right)}{{\plenflowvalue}^2}   \delta \flow{pri} \right)^2  +\left(\frac{\flow{pri}\left(T_{sa}-T_{dis} \right)}{{\plenflowvalue}^2} 100\text{ CFM} \right)^2 + \right. \\
+    \left. \left( \frac{\flowtotvalue}{\plenflowvalue} \delta T_{dis}   \right)^2 + \left(\frac{\flow{pri}}{\plenflowvalue}  \delta T_{sa}   \right)^2  \right]^{1/2}
+\end{multline}
+
+As an example as to how unstable the calculation for the plenum temperature is, \figref{} \ref{fig:2016-09-16-1006-PlenumTemperatureforContainerFPVAV19vsZoneLoadforContainerFPVAV19} shows the calculation for FPVAV-1-9 over the period from February 1, 2016 - May 1, 2016. The calculated values are unrealistic ranging from -1,500\(^\circ\)F to 1,500\(^\circ\)F. The reason for this is made clear in a time series plots of the flows related to the terminal unit. As shown in \figref{} \ref{fig:2016-09-16-1639-FPVAV19AIRVOLUME-TikzData}, for this particular terminal unit, the primary flow is either near zero or near design. At times, the measured flow is also above the design spec, making the plenum flow calculation zero. When the plenum flow is calculated to be zero, the plenum temperature calculation becomes undefined.
+
+
+
+
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2016-09-16-1006-PlenumTemperatureforContainerFPVAV19vsZoneLoadforContainerFPVAV19.pdf}
+\caption{Calculated plenum temperature for FPVAV-1-9.}
+\label{fig:2016-09-16-1006-PlenumTemperatureforContainerFPVAV19vsZoneLoadforContainerFPVAV19}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2016-09-16-1639-FPVAV19AIRVOLUME-TikzData.pdf}
+\caption{Flowrates for FPVAV-1-9}
+\label{fig:2016-09-16-1639-FPVAV19AIRVOLUME-TikzData}
+\end{figure}
+
+
 
 
 \section{Analysis of Zone Load Predictions}
