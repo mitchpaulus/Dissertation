@@ -49,6 +49,17 @@
     linkcolor=black,
 urlcolor=black}
 \usepackage{cancel}
+\usepackage{gensymb}
+\usepackage{textcomp}
+\usepackage{siunitx}
+\usepackage{url}
+
+
+\sisetup{group-separator={,}, group-minimum-digits=4}
+
+\DeclareSIUnit\CFM{CFM}
+\DeclareSIUnit[number-unit-product={}]\degreeF{\degree{}F}
+
 
 % Hyperref setup below.  You should be able to get away with using uncommenting just the first line.
 %\usepackage[hidelinks]{hyperref}
@@ -77,7 +88,7 @@ urlcolor=black}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}b{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}b{#1}}
 
-\newcommand{\dgF}{\(^\circ\)F }
+%%\newcommand{\dgF}{\(^\circ\)F }
 \newcommand{\flow}[1]{\dot{V}_{#1}}
 \newcommand{\flowsum}{\flow{1}+\flow{2}+\ldots+\flow{n}}
 \newcommand{\energy}{\dot{E}}

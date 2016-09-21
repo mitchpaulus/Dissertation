@@ -116,6 +116,58 @@ AHU-2-3  & FPVAV-2-4 & 2,000 & Open Corridor \\  \cmidrule(r){2-4}
 \end{tabular}
 \end{table}
 
+It is critical to have an understanding of what the actual controls in the building are at current. In practice, this will normally require that an engineer verifies both the control code along with the real measured performance.
+
+The software \textit{Implementer} is a tool that can ease the difficulty in this analysis by producing certain plots en mass for terminal units. The Figures below show the results of temperature rise within the terminal unit, versus the part-load ratio of the box (assuming the design specifications for the design flow). From these plots, the minimum primary air flow setpoint can be visually quickly.
+
+From the data, it appears that the majority of the terminal units in NCTM are operating with 30\% as the minimum flow rate. There are a few terminal units that are set to values less than this. \tableref{} \ref{tab:MinimumAirFlowRateSettings} shows the estimated minimum percent flows based on data from February 1, 2016 through May 1, 2016. There are several unique patterns and characteristics that were found in the data set.
+
+
+
+%% This information was gathered from the batch plot: 
+%% Batch Plots -- Mitch Dissertation N -- 2016-09-21 1347
+
+\begin{table}[]
+\centering
+\caption{Terminal unit minimum air flow rate settings.}
+\label{tab:MinimumAirFlowRateSettings}
+\begin{tabular}{ll}
+    \toprule
+Container Hierarchy                                & Min Percent Flow \\ \midrule
+FPVAV-2-1  & 20             \\
+FPVAV-2-2  & 30             \\
+FPVAV-2-3  & 20             \\
+FPVAV-2-12 & 30             \\
+FPVAV-2-13 & 30             \\
+FPVAV-2-14 & 30             \\
+FPVAV-2-15 & 30             \\
+FPVAV-2-16 & 30             \\
+FPVAV-2-17 & 30             \\
+FPVAV-2-18 & 30             \\
+FPVAV-2-9  & 5              \\
+FPVAV-2-10 & 30             \\
+FPVAV-2-11 & 30             \\
+FPVAV-2-4  & 30             \\
+FPVAV-2-5  & 30             \\
+FPVAV-2-6  & 30             \\
+FPVAV-2-7  & 30             \\
+FPVAV-2-8  & 30             \\
+FPVAV-1-10    & 30             \\
+FPVAV-1-7     & 30             \\
+FPVAV-1-8     & NA               \\
+FPVAV-1-9     & NA               \\
+FPVAV-1-1     & 30             \\
+FPVAV-1-2     & 30             \\
+FPVAV-1-3     & 25             \\
+FPVAV-1-4     & 25             \\
+FPVAV-1-5     &  NA              \\
+FPVAV-1-6     & 30             \\
+FPVAV-1-11      & 30            \\ \bottomrule
+\end{tabular}
+\end{table}
+
+
+
 
 \section{Analysis of the Mixed Air Temperature at the AHU}
 
@@ -234,13 +286,13 @@ Using the Kline-McKlintock formulation of uncertainty, the uncertainty of \(T_{p
 
 So for an example if, 
 
-\newcommand{\flowtotvalue}{2,200\text{ CFM}}
-\newcommand{\plenflowvalue}{1,000\text{ CFM}}
+\newcommand{\flowtotvalue}{\SI{2200}{\CFM}}
+\newcommand{\plenflowvalue}{\SI{1000}{\CFM}}
 
 \begin{itemize}
     \item \(\totflow{}=\flowtotvalue\)
     \item \(\plenflow{}=\plenflowvalue\)
-    \item \(\priflow=\flowtotvalue - \plenflowvalue = 1,200\text{ CFM} \)
+    \item \(\priflow=\flowtotvalue - \plenflowvalue = \SI{1200}{\CFM} \)
     \item \(\sat = 55^{\circ}\text{F} \)
     \item \(\dat = 75^{\circ}\text{F} \)
     \item \(\delta\priflow{}=\delta\plenflow=\delta\totflow=100 \text{ CFM}\)
@@ -248,13 +300,42 @@ So for an example if,
 \end{itemize}
 
 Equation \ref{eq:plenumUncertainty} becomes
-\begin{multline}\label{eq:plenumUncertainty}
-    \delta T_{plen} = \left[\left(  \frac{ \flowtotvalue   \left(T_{dis}-T_{sa} \right)}{{\plenflowvalue}^2}   \delta \flow{pri} \right)^2  +\left(\frac{\flow{pri}\left(T_{sa}-T_{dis} \right)}{{\plenflowvalue}^2} 100\text{ CFM} \right)^2 + \right. \\
-    \left. \left( \frac{\flowtotvalue}{\plenflowvalue} \delta T_{dis}   \right)^2 + \left(\frac{\flow{pri}}{\plenflowvalue}  \delta T_{sa}   \right)^2  \right]^{1/2}
-\end{multline}
+\begin{equation}\label{eq:plenumUncertainty}
+    \delta T_{plen} = \left[\left(  \SI{3.06}{\degreeF}  \right)^2  +\left( \SI{-1.39}{\degreeF}  \right)^2 +  \left( \SI{1.83}{\degreeF} \right)^2 + \left(\SI{0.83}{\degreeF}  \right)^2  \right]^{1/2}
+\end{equation}
+
+which results in a final uncertainty of \SI{3.91}{\degreeF}.
 
 As an example as to how unstable the calculation for the plenum temperature is, \figref{} \ref{fig:2016-09-16-1006-PlenumTemperatureforContainerFPVAV19vsZoneLoadforContainerFPVAV19} shows the calculation for FPVAV-1-9 over the period from February 1, 2016 - May 1, 2016. The calculated values are unrealistic ranging from -1,500\(^\circ\)F to 1,500\(^\circ\)F. The reason for this is made clear in a time series plots of the flows related to the terminal unit. As shown in \figref{} \ref{fig:2016-09-16-1639-FPVAV19AIRVOLUME-TikzData}, for this particular terminal unit, the primary flow is either near zero or near design. At times, the measured flow is also above the design spec, making the plenum flow calculation zero. When the plenum flow is calculated to be zero, the plenum temperature calculation becomes undefined.
 
+
+Using the assumptions that the uncertainty in the flow was 100 CFM and the uncertainty in the temperature measurements was 1\(^\circ\)F, the plenum temperature was recorded and plotted versus \(\oat\) from October 6, 2015 to September 12, 2016, ignoring items that appear in \tableref{} \ref{tab:PlenumTemperatureEstimation}. The distribution statistics for each terminal unit is found in \tableref{} \ref{tab:plenumStatistics}. The table is listed in ascending order by the median of the plenum temperature calculated.
+
+To notice is that percentage of ignored points is below 96\% for only 4 terminal units. The majority of the points are ignored because the uncertainy in the calculation is above the 2\(^\circ\)F threshold that was arbitrarily chosen. In fact, at no point was the uncertainy below 2\(^\circ\)F for FPVAV-2-7. The median plenum temperature ranges from 58.8\(^\circ\)F for FPVAV-1-8 to 75.6\(^\circ\)F for FPVAV-1-6.
+
+
+\begin{table}[]
+\centering
+\caption{Implementer settings for plenum temperature estimation for NCTM, used to calculate data in \tableref{} \ref{tab:plenumStatistics}.}
+\label{tab:PlenumTemperatureEstimation}
+\begin{tabular}{@{}rl@{}}
+\toprule
+Project:         & Mitch Dissertation NCTM---2016-09-19 10:34           \\ \midrule
+Scope:           & NCTM                                                 \\
+Axis Parameters: & Plenum Temperature vs. OA Drybulb Temp (NOAA)        \\
+Date Period:     & 10/6/2015 - 9/12/2016  (342 days)                    \\
+OAT range:       & 31 to 100\(^\circ\)F      \\
+Ignoring:        & When AHU is Off                                      \\
+                 & First 1.0 hours of operation                         \\
+                 & Last 1.0 hours of operation                          \\
+                 & Sundays                                              \\
+                 & Saturdays                                            \\
+                 & Federal Holidays                                     \\
+                 & Hours from 17:00 to 9:00                             \\
+                 & When label Plenum Temp Uncertainty is greater than 2 \\
+                 & When label Valve Positions is greater than 1         \\ \bottomrule
+\end{tabular}
+\end{table}
 
 
 
@@ -272,6 +353,43 @@ As an example as to how unstable the calculation for the plenum temperature is, 
 \label{fig:2016-09-16-1639-FPVAV19AIRVOLUME-TikzData}
 \end{figure}
 
+\begin{table}[]
+\centering
+\caption{Calculated plenum temperature statistics for NCTM.}
+\label{tab:plenumStatistics}
+\begin{tabular}{@{}llllllllll@{}}
+    \toprule
+    Unit & Min   & \parbox{1cm}{5th \\ Perc.}& Mean  & Median &\parbox{1cm}{95th \\ Perc.} & Max   & \parbox{1cm}{St. \\ Dev. }& \parbox{1cm}{Original\\ Count} & \parbox{1 cm}{\%  \\ Ignored }\\ \midrule
+1-8   & 56.5  & 56.5           & 60.6  & 58.8   & 71.8            & 71.8  & 4.25     & 29199          & 99.911\%      \\
+2-12 & 52.8  & 55.7           & 60.8  & 61.8   & 62.5            & 75.0  & 2.23     & 29319          & 88.062\%       \\
+2-15 & 52.1  & 57.4           & 61.3  & 61.8   & 62.6            & 78.5  & 1.84     & 29324          & 78.645\%       \\
+1-9   & 57.0  & 57.0           & 63.6  & 65.0   & 73.5            & 73.8  & 5.34     & 27961          & 99.939\%      \\
+2-6   & 65.0  & 65.0           & 65.0  & 65.0   & 65.0            & 65.0  & 0.00     & 29311          & 99.997\%      \\
+2-18 & 61.5  & 62.7           & 69.6  & 67.0   & 80.2            & 80.5  & 5.60     & 29312          & 99.846\%      \\
+2-16 & 67.0  & 67.0           & 67.3  & 67.5   & 67.5            & 67.5  & 0.29     & 29325          & 99.990\%      \\
+2-10 & 66.5  & 66.5           & 67.8  & 67.8   & 69.0            & 69.0  & 1.44     & 29236          & 99.986\%      \\
+2-14 & 60.0  & 61.0           & 68.8  & 68.5   & 79.0            & 79.8  & 6.28     & 29318          & 99.860\%      \\
+2-11 & 66.5  & 66.5           & 68.0  & 68.5   & 69.5            & 69.5  & 1.01     & 28557          & 99.958\%      \\
+2-5   & 68.5  & 68.5           & 69.1  & 69.0   & 70.0            & 70.0  & 0.65     & 29309          & 99.983\%      \\
+2-8   & 68.2  & 69.1           & 70.0  & 70.0   & 70.7            & 72.5  & 0.55     & 29304          & 98.601\%       \\
+2-13 & 68.0  & 68.5           & 70.0  & 70.0   & 71.5            & 72.6  & 1.34     & 29312          & 99.887\%      \\
+1-5   & 55.0  & 63.8           & 71.1  & 70.1   & 78.0            & 79.0  & 4.62     & 30170          & 99.450\%       \\
+2-17 & 61.5  & 68.5           & 70.3  & 70.4   & 71.5            & 72.5  & 1.23     & 29287          & 99.126\%       \\
+2-2   & 52.5  & 67.3           & 70.7  & 70.8   & 73.6            & 75.6  & 2.69     & 29363          & 98.685\%       \\
+1-7   & 60.0  & 64.5           & 71.8  & 71.8   & 75.1            & 75.7  & 3.11     & 29955          & 99.222\%       \\
+2-3   & 64.5  & 71.0           & 73.0  & 72.8   & 75.3            & 76.2  & 1.49     & 29367          & 96.391\%       \\
+1-2   & 67.0  & 70.8           & 73.9  & 72.9   & 77.8            & 78.5  & 2.60     & 30166          & 99.589\%      \\
+2-1   & 67.5  & 70.8           & 73.6  & 73.8   & 75.5            & 81.7  & 1.44     & 29366          & 96.016\%       \\
+1-3   & 71.4  & 72.6           & 74.2  & 74.4   & 75.4            & 76.9  & 0.94     & 30145          & 98.202\%       \\
+2-9   & 69.0  & 70.7           & 73.9  & 74.5   & 76.5            & 78.4  & 1.88     & 29272          & 76.356\%       \\
+1-1   & 57.0  & 71.8           & 74.6  & 74.8   & 79.0            & 82.5  & 2.64     & 30152          & 97.652\%       \\
+1-10 & 58.5  & 62.0           & 73.8  & 74.9   & 76.0            & 78.2  & 3.61     & 29941          & 99.008\%       \\
+1-4   & 54.0  & 72.4           & 74.9  & 75.1   & 77.2            & 81.7  & 2.51     & 30086          & 98.488\%       \\
+2-4   & 69.5  & 73.7           & 75.3  & 75.2   & 76.7            & 77.6  & 0.96     & 29304          & 86.916\%       \\
+1-6   & 56.5  & 66.2           & 74.1  & 75.6   & 81.3            & 81.6  & 5.43     & 30170          & 99.738\%      \\
+2-7   & N/A & N/A          & N/A & N/A  & N/A           & N/A & N/A    & 28906          & 100.000\%    \\ \bottomrule
+\end{tabular}
+\end{table}
 
 
 
