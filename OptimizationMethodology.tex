@@ -128,10 +128,27 @@ table[x=RoomTemp,y=Tdischarge,col sep=tab]{SeriesFanPlot.dat};
 
 
 \begin{equation} \label{eq:MixedAirTemperature}
-{T_{mix}} = \frac{{{{\dot V}_{pri}}\left( {{T_{pri}}} \right) + \dot V_{plen}\left( {{T_{plen}}} \right)}}{{{{\dot V}_{total}}}}
+\mat = \frac{{{\priflow}\left( {\sat} \right) + \plenflow \left( {{T_{plen}}} \right)}}{\totflow}
 \end{equation}
 
-Another rearrangement of \ref{eq:MixedAirTemperature} that is important is solving for \(\flow{pri}\). 
+Another rearrangement of \ref{eq:MixedAirTemperature} that is important is solving for \(\flow{pri}\). Under conditions when there is no reheat and the primary flow is not at the minimum setting, the energy balance across the terminal unit is
+
+\begin{equation}
+    \priflow \sat + \plenflow T_{plen} = \totflow \dat
+\end{equation}
+Replacing \(\plenflow{} \) with \eqreftext{} \ref{eq:TotalFlow} gives
+\begin{equation}
+    \priflow \sat +  \left(\totflow - \priflow \right)  T_{plen} = \totflow \dat
+\end{equation}
+\begin{equation}
+ \totflow T_{plen}  -   \totflow \dat  = \priflow  T_{plen}  - \priflow \sat  
+\end{equation}
+\begin{equation}\label{eq:priflowWithoutReheat}
+   \priflow = \totflow \left( \frac{T_{plen} - \dat }{T_{plen} - \sat} \right) 
+\end{equation}
+
+The actual primary flow will be the maximum of \eqreftext{} \ref{eq:priflowWithoutReheat} and the minimum flow setting. When at minimum flow, there will be resulting reheat. 
+
 
 \begin{equation} \label{eq:PrimaryFlowInTerminalUnit}
     \priflow = \text{MAX}\left(\frac{\totflow \left(T_{dis} - T_{\plenum} \right)}{\left(T_{\primary} - T_{\plenum} \right)}, \flow{\primary, \text{min}} \right)
@@ -262,7 +279,7 @@ With the assumption of the constant friction factor, the pressure drop in each d
     \Delta P_{\text{fan}} = C\left(\flow{t}\right)^2
 \end{equation}
 
- If \(\flow{t}\) is reduced to some percentage of full flow, then Equation \ref{eq:PressureDrop} will result in
+If \(\flow{t}\) is reduced to some percentage of full flow, then \eqreftext{} \ref{eq:PressureDrop} will result in
 
  \begin{equation}
      C = \frac{\Delta P_{\text{fan}}}{\left( \flow{t} \cdot \%_{\text{full flow}} \right)^2}
@@ -398,12 +415,32 @@ T_{sa,min}&\leq T_{sa} \leq T_{sa,max} \\
 The partial derivatives of \ref{eq:totalEnergy} are 
 \begin{multline}
 \pdv{\dot{E}}{V_i}=\frac{\dot{W}_{design}\;1.6}{\flow{design}^2} \left(\flowsum \right)\\ 
-+\frac{0.2\;\dot{W}_{design}}{\dot{V}_{design}}+ 1.08\left(T_{ma}+T_{z,i} -2T_{sa}\right)
++\frac{0.2\;\dot{W}_{design}}{\dot{V}_{design}}+ 1.08\left(\mat+T_{z,i} -2T_{sa}\right)
 \end{multline}
 \begin{equation}
 \pdv{\dot{E}}{\sat}=-2.16\left(\flowsum \right)
 \end{equation}
 
+\subsection{Brute Force Approach}
+
+Since the system is not going to expected to determine semi-optimal control setpoints at small time intervals, say less than a second, it is plausible that a straightforward, brute force approach would be appropriate.
+The brute force approach has several advantages including
+\begin{enumerate}
+        \item Straightforward to program and debug
+        \item Robust to small changes in energy prediciton algorithm 
+\end{enumerate}
+
+The uncertainty in the estimation of the zone loads, plenum temperatures, mixed air temperature, and the like, also tend to support the decision to use step sizes on the order of  \SI{0.1}{\degreeF}. The typical search range for the supply air temperature will be on the order of \SI{20}{\degreeF}, making for a total number of calculations in the hundreds. 
+This is extremely feasible for modern computers to handle in the sub-second time range. 
+
+The minimum value of \(\sat\) in the search range would be the lowest feasible \(\sat\) possible dependent on the chilled water system and capacity of the cooling coils. 
+This may be on the order of \SI{50}{\degreeF}.
+
+The upper end of the search range will be the minimum of the \(\mat\) and the maximum of the determined \(\dat\)'s.
+
+\begin{equation}
+    T_{sa,max} = \text{MIN}\left(\mat, \text{MAX}\left(T_{dis,1}, T_{dis,2}, \ldots, T_{dis,n} \right) \right)
+\end{equation}
 
 \section{Determining the Supply Air Static Pressure Requirement}
 

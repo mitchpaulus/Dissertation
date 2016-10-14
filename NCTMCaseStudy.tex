@@ -9,6 +9,7 @@ On the academic side there are three dedicated outdoor air handling units that s
 
 This document focuses on the academic side of the building since Utilities and Energy services with Texas A\&M University are only allowed to make immediate changes to the HVAC system on this side. In summary, the important parameters concerning NCTM are that it houses several biopharmaceutical labs, it has an academic side that can be immediately changed and a manufacturing side that cannot be immediately changed, and relies on dedicated outdoor air handling units to pretreat outdoor air. 
 
+
 \begin{table}
 \centering
 \caption{Occupied/Unoccupied scheduling for the AHUs as described.}
@@ -401,6 +402,7 @@ Before analyzing the prediction ability of different zone loads, it is important
 
 If the zone loads are being met and steady-state conditions are assumed, the sensible zone load will be
 
+
 \begin{equation}
     Q_{zone}=\flow{z} \rhocp{} \left(T_{dis}-T_{z} \right) \approx 1.08 \cdot \flow{z}\left(T_{dis}-T_{z} \right)
 \end{equation}
@@ -525,6 +527,10 @@ An interesting pattern that was that the initial prediction routine overpredicte
 \caption{ \zoneLoadCaption{FPVAV-2-7} }
 \label{fig:2016-09-14-1020-ZoneLoadResidualforContainerFPVAV27vsZoneLoadforContainerFPVAV27}
 \end{figure}
+
+\section{Analysis of the Zone Temperature Prediction} 
+
+The same prediction algorithm for the zone load can be used for predicting the zone temperatures. The zone temperatures will be a function of the time of day, day of week, and the outdoor air temperature. 
 
 
 \section{Analysis of the Mixed Air Temperature in Series Terminal Unit and Reheat Assumption}
@@ -673,3 +679,4 @@ Based on the previous results, several conclusions can be gathered that relate t
 The first is that it appears plausible that the ``zone load'' can be reasonably estimated to provide useful optimization. In fact, the general relationship in the size of the thermal loads of the different zones is more important than the precise value, of which the data available is not capable of estimating. 
 
 The second is that the design specifications from mechanical drawings can be used as the first approximation for flows and power. There was general agreement between the terminal unit design flows and the actual maximum realized flows at NCTM, as seen in \tableref{} \ref{tab:TerminalUnitDesignSpecCheck}. 
+
