@@ -55,11 +55,11 @@ urlcolor=black}
 \usepackage{url}
 
 
-\sisetup{group-separator={,}, group-minimum-digits=4}
+\sisetup{group-separator={,}, group-minimum-digits=4,per-mode=fraction}
 
 \DeclareSIUnit\CFM{CFM}
 \DeclareSIUnit[number-unit-product={}]\degreeF{\degree{}F}
-
+\DeclareSIUnit\BTU{BTU}
 
 % Hyperref setup below.  You should be able to get away with using uncommenting just the first line.
 %\usepackage[hidelinks]{hyperref}
@@ -91,7 +91,8 @@ urlcolor=black}
 %%\newcommand{\dgF}{\(^\circ\)F }
 \newcommand{\flow}[1]{\dot{V}_{#1}}
 \newcommand{\flowsum}{\flow{1}+\flow{2}+\ldots+\flow{n}}
-\newcommand{\energy}{\dot{E}}
+\newcommand{\energy}[1][]{\dot{E}_{#1}}
+\newcommand{\heatenergy}[1][]{\dot{Q}_{#1}}
 \newcommand{\damp}[1]{X_{#1}}
 \newcommand{\rhocp}{\rho_a c_{p,a}}
 \newcommand{\sat}{T_{sa}}
@@ -107,6 +108,7 @@ urlcolor=black}
 \newcommand{\priflow}{\flow{\primary}}
 \newcommand{\plenflow}{\flow{\plenum}}
 \newcommand{\totflow}{\flow{tot}}
+
 
 \begin{document}
 

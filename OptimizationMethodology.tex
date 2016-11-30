@@ -436,10 +436,23 @@ This is extremely feasible for modern computers to handle in the sub-second time
 The minimum value of \(\sat\) in the search range would be the lowest feasible \(\sat\) possible dependent on the chilled water system and capacity of the cooling coils. 
 This may be on the order of \SI{50}{\degreeF}.
 
-The upper end of the search range will be the minimum of the \(\mat\) and the maximum of the determined \(\dat\)'s.
+The upper end of the search range will be the minimum of the \(\mat\) and the determined \(\dat\)'s.
 
 \begin{equation}
-    T_{sa,max} = \text{MIN}\left(\mat, \text{MAX}\left(T_{dis,1}, T_{dis,2}, \ldots, T_{dis,n} \right) \right)
+    T_{sa,max} = \text{MIN}\left(\mat, \text{MIN}\left(T_{dis,1}, T_{dis,2}, \ldots, T_{dis,n} \right) \right)
+\end{equation}
+
+With a given zone load and constant flow, the \(\dat\) from the terminal unit can be calculated 
+\begin{equation}
+    \dat = T_{z} -  \frac{Q_{zone}}{1.08 \left( \text{CFM} \right)   }
+\end{equation}
+The primary airflow is then calculated from
+\begin{equation}
+    \flow{pri, req} = \totflow \left( \frac{T_{plen} - \dat }{T_{plen} - \sat} \right) 
+\end{equation}
+The actual primary airflow is then 
+\begin{equation}
+    \flow{pri} = \text{MAX}\left(\flow{pri, req}, \flow{pri, min}  \right)
 \end{equation}
 
 \section{Determining the Supply Air Static Pressure Requirement}
