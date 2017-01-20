@@ -1,0 +1,36 @@
+\documentclass[12pt]{article}
+\usepackage[active, tightpage]{preview}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.3}
+\PreviewEnvironment{tikzpicture}
+\input{../tikz/tikzDefaults}
+\begin{document}
+% StartDate: 9/2/2016
+% EndDate: 12/1/2016
+% Ignoring:
+%    When AHU is Off
+%    First 1 hrs
+%    Last 1 hrs
+%    Sunday
+%    Saturday
+%    Holidays
+%    From 17 to 9
+%    When NCTM_AW.FPVAV-2-15:VLV COMD <  or > 1
+\begin{tikzpicture}
+\begin{axis}[
+    xychart,
+    align=center,
+    xlabel={Tbox PLR for FPVAV-2-15 [0-100\%]},
+    ylabel={Tbox Discharge - (Mixed Air Temp from \\ Room Temp) for FPVAV-2-15 [\(^\circ\)F]},
+    ymin=-15,
+    ymax=5,
+    xmin=0,
+    xmax=100,
+]
+\addplot[xymarker]
+table[x={TboxPLRforFPVAV215}, y={TboxDischargeMixedAirTempfromRoomTempforFPVAV215}, col sep=tab]{../Data/2017-01-09-1434-TboxDischargeMixedAirTempfromRoomTempforFPVAV215vsTboxPLRforFPVAV215.dat};
+\end{axis}
+\end{tikzpicture}
+\end{document}

@@ -113,7 +113,7 @@ table[x=RoomTemp,y=Tdischarge,col sep=tab]{SeriesFanPlot.dat};
 ) {Cooling};
 \end{axis}
 \end{tikzpicture}
-\caption{Example Series Terminal Unit Flow Operation.}
+\caption{Example Series Terminal Unit Flow Operation}
 \label{fig:SeriesFlow}
 
 \end{figure}
@@ -184,7 +184,6 @@ The fan volume flow will be known from manufacturers specifications and the tota
 \subsection{Other Terminal Unit Types}
 
 Terminal units come in even more configurations than the three specified in this document, induction units being one example. Using a combination of energy balances, historical data under particular conditions, and appropriate assumptions, a model of the terminal unit can be made. 
-
 \section{Required Sensors}
 
 In order to fulfill the proposed methodology, there are several sensors that are not common that would need to be installed. 
@@ -203,18 +202,16 @@ Level & Sensor \\
  
  \midrule
  
- \multirow{6}{*}{AHU} & Supply Air Temperature \\
- & Mixed Air Temperature \\
- & Fan Power \\
- & VFD Command \\
- & Static Pressure at Fan \\
- & Static Pressure for Control \\
- 
- 
+\multirow{6}{*}{AHU} & Supply Air Temperature      \\
+                     & Mixed Air Temperature       \\
+                     & Fan Power                   \\
+                     & VFD Command                 \\
+                     & Static Pressure at Fan      \\
+                     & Static Pressure for Control \\
 \midrule
-\multirow{4}{*}{Terminal Units} & Primary Air Flow Rate \\
-& Discharge Air Temperature \\
-& Primary Damper Position \\
+\multirow{4}{*}{Terminal Units}  & Primary Air Flow Rate     \\
+                                 & Discharge Air Temperature \\
+                                 & Primary Damper Position   \\
 
 \bottomrule
 
@@ -414,11 +411,11 @@ T_{sa,min}&\leq T_{sa} \leq T_{sa,max} \\
 
 The partial derivatives of \ref{eq:totalEnergy} are 
 \begin{multline}
-\pdv{\dot{E}}{V_i}=\frac{\dot{W}_{design}\;1.6}{\flow{design}^2} \left(\flowsum \right)\\ 
-+\frac{0.2\;\dot{W}_{design}}{\dot{V}_{design}}+ 1.08\left(\mat+T_{z,i} -2T_{sa}\right)
+    \pdv{\dot{E}}{V_i}=\frac{\dot{W}_{design}\;1.6}{\flow{design}^2} \left(\flowsum \right)\\ 
+    +\frac{0.2\;\dot{W}_{design}}{\dot{V}_{design}}+ 1.08\left(\mat+T_{z,i} -2T_{sa}\right)
 \end{multline}
 \begin{equation}
-\pdv{\dot{E}}{\sat}=-2.16\left(\flowsum \right)
+    \pdv{\dot{E}}{\sat}=-2.16\left(\flowsum \right)
 \end{equation}
 
 \subsection{Brute Force Approach}
