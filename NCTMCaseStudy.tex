@@ -1,13 +1,40 @@
 \chapter{\uppercase{NCTM Case Study}}
-The National Center for Therapeutic Medicine (NCTM) was used as a test bed for the original methodology. NCTM is a building located on the campus of Texas A\&M University, in College Station, Texas. 
+The National Center for Therapeutic Medicine (NCTM) was used as a test
+bed for the original methodology. NCTM is a building located on the
+campus of Texas A\&M University, in College Station, Texas. 
 
-The National Center for Therapeutics Manufacturing (NCTM) combines the educational and manufacturing focuses of the biopharmaceutical industry. The NCTM building is approximately 150,000 ft\textsuperscript{2} with nearly 50,000 ft\textsuperscript{2} of educational facilities that include wet labs, culture facilities, large lecture halls, and a mock current Good Manufacturing Practice (cGMP) training suite. Around 120,000 ft\textsuperscript{2} is on the first level and 30,000 ft\textsuperscript{2} is on the second level. 
+The National Center for Therapeutics Manufacturing (NCTM) combines the
+educational and manufacturing focuses of the biopharmaceutical industry.
+The NCTM building is approximately 150,000 ft\textsuperscript{2} with
+nearly 50,000 ft\textsuperscript{2} of educational facilities that
+include wet labs, culture facilities, large lecture halls, and a mock
+current Good Manufacturing Practice (cGMP) training suite. Around
+120,000 ft\textsuperscript{2} is on the first level and 30,000
+ft\textsuperscript{2} is on the second level. 
 
-The cGMP Suite contains modern biopharmaceutical manufacturing equipment that students can use to learn industry practices. The wet labs are equipped with chemical fume hoods and the necessary electronic equipment for following standard operating procedures used in the biopharmaceutical industry. The lecture halls seat up to 120 students and have large floor to ceiling windows. There is also an Apple Computer laboratory with 48 workstations on the second floor. 
+The cGMP Suite contains modern biopharmaceutical manufacturing equipment
+that students can use to learn industry practices. The wet labs are
+equipped with chemical fume hoods and the necessary electronic equipment
+for following standard operating procedures used in the
+biopharmaceutical industry. The lecture halls seat up to 120 students
+and have large floor to ceiling windows. There is also an Apple Computer
+laboratory with 48 workstations on the second floor. 
 
-On the academic side there are three dedicated outdoor air handling units that serve seven child air handling units. Two of the air handling units are constant speed and the others are variable air volume. OAHU 1-1 serves its own wet lab and also feeds into AHU 1-1 and AHU 1-2. OAHU 1-2 serves AHU 1-3 and 1-4 on the first floor. OAHU 2-1 serves three children air handlers on the second floor, AHU 2-1, 2-2, and 2-3. 
+On the academic side there are three dedicated outdoor air handling
+units that serve seven child air handling units. Two of the air handling
+units are constant speed and the others are variable air volume. OAHU
+1-1 serves its own wet lab and also feeds into AHU 1-1 and AHU 1-2. OAHU
+1-2 serves AHU 1-3 and 1-4 on the first floor. OAHU 2-1 serves three
+children air handlers on the second floor, AHU 2-1, 2-2, and 2-3. 
 
-This document focuses on the academic side of the building since Utilities and Energy services with Texas A\&M University are only allowed to make immediate changes to the HVAC system on this side. In summary, the important parameters concerning NCTM are that it houses several biopharmaceutical labs, it has an academic side that can be immediately changed and a manufacturing side that cannot be immediately changed, and relies on dedicated outdoor air handling units to pretreat outdoor air. 
+This document focuses on the academic side of the building since
+Utilities and Energy services with Texas A\&M University are only
+allowed to make immediate changes to the HVAC system on this side. In
+summary, the important parameters concerning NCTM are that it houses
+several biopharmaceutical labs, it has an academic side that can be
+immediately changed and a manufacturing side that cannot be immediately
+changed, and relies on dedicated outdoor air handling units to pretreat
+outdoor air. 
 
 
 \begin{table}
@@ -74,7 +101,10 @@ AHU 2-3 & VAV 		& 6,000					& 7.5	& OAHU 2-1 \\
 
 \section{Terminal Unit Information}
 
-On the academic side, there are a total of 10 series fan powered terminal units on the first floor and 18 on the second floor. \tableref{} \ref{tab:TerminalUnitInformation} shows the design (and assumed constant) flowrates for each of the terminal units. 
+On the academic side, there are a total of 10 series fan powered
+terminal units on the first floor and 18 on the second floor.
+\tableref{} \ref{tab:TerminalUnitInformation} shows the design (and
+assumed constant) flowrates for each of the terminal units. 
 
 \begin{table}[]
 \centering
@@ -117,11 +147,25 @@ AHU-2-3           & FPVAV-2-4  & 2,000 & Open Corridor                          
 \end{tabular}
 \end{table}
 
-It is critical to have an understanding of what the actual controls in the building are at current. In practice, this will normally require that an engineer verifies both the control code along with the real measured performance.
+It is critical to have an understanding of what the actual controls in
+the building are at current. In practice, this will normally require
+that an engineer verifies both the control code along with the real
+measured performance.
 
-The software \textit{Implementer} is a tool that can ease the difficulty in this analysis by producing certain plots en mass for terminal units. The Figures below show the results of temperature rise within the terminal unit, versus the part-load ratio of the box (assuming the design specifications for the design flow). From these plots, the minimum primary air flow setpoint can be visually quickly.
+The software \textit{Implementer} is a tool that can ease the difficulty
+in this analysis by producing certain plots en mass for terminal units.
+The Figures below show the results of temperature rise within the
+terminal unit, versus the part-load ratio of the box (assuming the
+design specifications for the design flow). From these plots, the
+minimum primary air flow setpoint can be visually quickly.
 
-From the data, it appears that the majority of the terminal units in NCTM are operating with 30\% as the minimum flow rate. There are a few terminal units that are set to values less than this. \tableref{} \ref{tab:MinimumAirFlowRateSettings} shows the estimated minimum percent flows based on data from February 1, 2016 through May 1, 2016. There are several unique patterns and characteristics that were found in the data set.
+From the data, it appears that the majority of the terminal units in
+NCTM are operating with 30\% as the minimum flow rate. There are a few
+terminal units that are set to values less than this. \tableref{}
+\ref{tab:MinimumAirFlowRateSettings} shows the estimated minimum percent
+flows based on data from February 1, 2016 through May 1, 2016. There are
+several unique patterns and characteristics that were found in the data
+set.
 
 
 
@@ -172,9 +216,18 @@ FPVAV-1-11          & 30               \\ \bottomrule
 
 \section{Analysis of the Mixed Air Temperature at the AHU}
 
-This section investigates the feasibility of esitmating \(\mat\) based on historical data. \figref{} \ref{fig:AHU21MixedAirTempvsOADryBulbTemperatureNOAA} shows an example of an AHU in which \(\mat\) does not change significantly throughout time. \figref{} \ref{fig:AHU21MixedAirTempvsOADryBulbTemperatureNOAA} and \ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA} both show 90 days worth of data from March 14, 2016 to June 12, 2016. 
+This section investigates the feasibility of estimating \(\mat\) based
+on historical data. \figref{}
+\ref{fig:AHU21MixedAirTempvsOADryBulbTemperatureNOAA} shows an example
+of an AHU in which \(\mat\) does not change significantly throughout
+time. \figref{} \ref{fig:AHU21MixedAirTempvsOADryBulbTemperatureNOAA}
+and \ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA} both show 90
+days worth of data from March 14, 2016 to June 12, 2016. 
 
-In the case of \figref{} \ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA}, \(\mat\) is less constant, but still appears to be a function of \(\oat\) as a first order approximation. 
+In the case of \figref{}
+\ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA}, \(\mat\) is less
+constant, but still appears to be a function of \(\oat\) as a first
+order approximation. 
 
 
 %%These are found in Batch Plots -- Mitch Dissertation N -- 2016-06-13 1354.xlsx batch plot output. 
@@ -265,15 +318,22 @@ Figures \ref{fig:2016-09-07-1335-MixedAirTempPredictionforContainerAHU12vsAHU12M
 
 \section{Analysis of the Plenum Air Temperature}
 
-Under certain assumptions, the plenum air temperature for the series fan powered boxes is possible. If the terminal unit is modeled as a simple mixing problem, the plenum air temperature will be 
+Under certain assumptions, the plenum air temperature for the series fan
+powered boxes is possible. If the terminal unit is modeled as a simple
+mixing problem, the plenum air temperature will be 
 
 \begin{equation}
     T_{plenum}=\frac{\flow{tot}T_{dis}-\flow{pri}T_{sa}}{\flow{tot} -\flow{pri}}
 \end{equation}
 
-Since \(T_{plenum}\) is a function of 4 variables, it is important to consider the uncertainty in the estimation. Clearly, when \(\flow{plenum}\) is low, assumed to be equivalent to \(\flow{tot} - \flow{pri}\), the uncertainty in  \(T_{plenum}\) grows significantly and when the flow is equal to zero \(T_{plenum}\) is undefined. 
+Since \(T_{plenum}\) is a function of 4 variables, it is important to
+consider the uncertainty in the estimation. Clearly, when
+\(\flow{plenum}\) is low, assumed to be equivalent to \(\flow{tot} -
+\flow{pri}\), the uncertainty in  \(T_{plenum}\) grows significantly and
+when the flow is equal to zero \(T_{plenum}\) is undefined. 
 
-Using the Kline-McKlintock formulation of uncertainty, the uncertainty of \(T_{plenum}\) is 
+Using the Kline-McKlintock formulation of uncertainty, the uncertainty
+of \(T_{plenum}\) is 
 
 \begin{multline}
     \delta T_{plen} = \left[\left( \pdv{T_{plen}}{\flow{pri}} \delta \flow{pri}   \right)^2  +\left( \pdv{T_{plen}}{\flow{tot}} \delta \flow{tot}   \right)^2 + \right. \\
@@ -329,10 +389,12 @@ each terminal unit is found in \tableref{} \ref{tab:plenumStatistics}.
 The table is listed in ascending order by the median of the plenum
 temperature calculated.
 
-To notice is that percentage of ignored points is below 96\% for only 4 terminal units.
-The majority of the points are ignored because the uncertainty in the calculation is above the 2\(^\circ\)F threshold that was arbitrarily chosen.
-In fact, at no point was the uncertainty below 2\(^\circ\)F for FPVAV-2-7.
-The median plenum temperature ranges from 58.8\(^\circ\)F for FPVAV-1-8 to 75.6\(^\circ\)F for FPVAV-1-6.
+To notice is that percentage of ignored points is below 96\% for only 4
+terminal units.  The majority of the points are ignored because the
+uncertainty in the calculation is above the 2\(^\circ\)F threshold that
+was arbitrarily chosen.  In fact, at no point was the uncertainty below
+2\(^\circ\)F for FPVAV-2-7.  The median plenum temperature ranges from
+58.8\(^\circ\)F for FPVAV-1-8 to 75.6\(^\circ\)F for FPVAV-1-6.
 
 Another interesting way to examine the difference between the plenum
 temperature and the zone temperature is to plot the estimated reheat in
@@ -352,8 +414,11 @@ and the reheat energy could be estimated by
     \label{eq:TerminalUnitReheatEnergy}
 \end{equation}
 
-The following plots show the reheat energy as determined by \eqreftext{} \ref{eq:TerminalUnitReheatEnergy}. They are from the period of February 1, 2016 through May 1, 2016. 
-Timestamps during weekends, times between 5:00 PM and 9:00 AM, and when the corresponding reheat valve command is \( < 1 \) were ignored.
+The following plots show the reheat energy as determined by \eqreftext{}
+\ref{eq:TerminalUnitReheatEnergy}. They are from the period of February
+1, 2016 through May 1, 2016.  Timestamps during weekends, times between
+5:00 PM and 9:00 AM, and when the corresponding reheat valve command is
+\( < 1 \) were ignored.
 
 \begin{equation}
     1+2 = \priflow
@@ -632,12 +697,24 @@ FPVAV-1-4         & 3,024                    &  5,569                  & 8,502  
 \end{tabular}
 \end{table}
 
-The highest errors in the prediction were for FPVAV-1-4, the zone that has the highest overall zone load in the building, by a significant margin. It has estimated loads near 50,000 BTU/hr.
+The highest errors in the prediction were for FPVAV-1-4, the zone that
+has the highest overall zone load in the building, by a significant
+margin. It has estimated loads near 50,000 BTU/hr.
 
 
 %% These items come from the analysis done with plus minus 15 min and 3 degree F OAT bounds in file Batch Plots -- Mitch Dissertation N -- 2016-09-14 0952
 
-An interesting pattern that was that the initial prediction routine overpredicted the zone load when the zone load was closer to the heating range and underpredicted the zone load during times of high cooling load. This bias was seen in every terminal unit in the building and this bias occured with both the largest and smallest terminal units. Figures \ref{fig:2016-09-14-1028-ZoneLoadResidualforContainerFPVAV22vsZoneLoadforContainerFPVAV22} through \ref{fig:2016-09-14-1020-ZoneLoadResidualforContainerFPVAV27vsZoneLoadforContainerFPVAV27} show examples of this phenomenon. The date period analyzed was from March 1, 2016 to August 1, 2016, ignoring when the AHUs were off, federal holidays and weekends, and hours from 5 PM to 9 AM. 
+An interesting pattern that was that the initial prediction routine
+overpredicted the zone load when the zone load was closer to the heating
+range and underpredicted the zone load during times of high cooling
+load. This bias was seen in every terminal unit in the building and this
+bias occured with both the largest and smallest terminal units. Figures
+\ref{fig:2016-09-14-1028-ZoneLoadResidualforContainerFPVAV22vsZoneLoadforContainerFPVAV22}
+through
+\ref{fig:2016-09-14-1020-ZoneLoadResidualforContainerFPVAV27vsZoneLoadforContainerFPVAV27}
+show examples of this phenomenon. The date period analyzed was from
+March 1, 2016 to August 1, 2016, ignoring when the AHUs were off,
+federal holidays and weekends, and hours from 5 PM to 9 AM. 
 
 \newcommand{\zoneLoadCaption}[1]{Bias in zone load prediction for #1.}
 
@@ -666,22 +743,42 @@ An interesting pattern that was that the initial prediction routine overpredicte
 
 \section{Analysis of the Zone Temperature Prediction} 
 
-The same prediction algorithm for the zone load can be used for predicting the zone temperatures. The zone temperatures will be a function of the time of day, day of week, and the outdoor air temperature. 
+The same prediction algorithm for the zone load can be used for
+predicting the zone temperatures. The zone temperatures will be a
+function of the time of day, day of week, and the outdoor air
+temperature. 
 
 
 \section{Analysis of the Mixed Air Temperature in Series Terminal Unit and Reheat Assumption}
 
-For series fan powered boxes, the assumption was made that the total flow remains constant and that the mixed air temperature at the individual box can be predicted based on the primary flow value that is measured. 
+For series fan powered boxes, the assumption was made that the total
+flow remains constant and that the mixed air temperature at the
+individual box can be predicted based on the primary flow value that is
+measured. 
 
-One possible assumption for the plenum temperature is that it is equal to the corresponding zone temperature. An interesting analysis is then to calculate the mixed air temperature based on this assumption and then look at times when the reheat valve is commanded to zero. It would be expected that the calculated reheat would be near zero, if not slightly above zero due to leakage in the reheat valve.
+One possible assumption for the plenum temperature is that it is equal
+to the corresponding zone temperature. An interesting analysis is then
+to calculate the mixed air temperature based on this assumption and then
+look at times when the reheat valve is commanded to zero. It would be
+expected that the calculated reheat would be near zero, if not slightly
+above zero due to leakage in the reheat valve.
 The next series of plots look at data from February 1, 2016 to May 1, 2016, ignoring when the unit is off, weekends and holidays, and when the commanded reheat coil position is greater than 1\%. 
 
-\figref{} \ref{fig:2016-10-19-1424-ZoneReheatEnergyforContainerFPVAV216vsOADryBulbTemperatureNOAA} shows an example of where the assumption appears to hold properly.
-The vast majority of the points are greater than \SI{0}{\BTU\per\hour}.
+\figref{}
+\ref{fig:2016-10-19-1424-ZoneReheatEnergyforContainerFPVAV216vsOADryBulbTemperatureNOAA}
+shows an example of where the assumption appears to hold properly.  The
+vast majority of the points are greater than \SI{0}{\BTU\per\hour}.
 
-\figref{}  \ref{fig:2016-10-19-1438-ZoneReheatEnergyforContainerFPVAV24vsOADryBulbTemperatureNOAA} shows a case in which there is either constant reheat or the actual plenum temperature is lower than the zone temperature that was assumed.
+\figref{}
+\ref{fig:2016-10-19-1438-ZoneReheatEnergyforContainerFPVAV24vsOADryBulbTemperatureNOAA}
+shows a case in which there is either constant reheat or the actual
+plenum temperature is lower than the zone temperature that was assumed.
 
-\figref{} \ref{fig:2016-10-19-1521-ZoneReheatEnergyforContainerFPVAV213vsOADryBulbTemperatureNOAA} shows a case in which the reheat is estimated to be a negative value, which likely means that the actual plenum temperature is greater than the assumed plenum temperature equal to the zone temperature. 
+\figref{}
+\ref{fig:2016-10-19-1521-ZoneReheatEnergyforContainerFPVAV213vsOADryBulbTemperatureNOAA}
+shows a case in which the reheat is estimated to be a negative value,
+which likely means that the actual plenum temperature is greater than
+the assumed plenum temperature equal to the zone temperature. 
 
 \begin{figure}
 \centering
@@ -707,9 +804,17 @@ The vast majority of the points are greater than \SI{0}{\BTU\per\hour}.
 
 \section{Analysis of the Critical Zone Assumption}
 
-The critical zone/damper is to be used to determine the static pressure setpoint that can be used to supply the desired flows found from the optimization. An important consideration in the methodology is checking how how this assumption holds. Data from NCTM can be used to test the validity of the approach.
+The critical zone/damper is to be used to determine the static pressure
+setpoint that can be used to supply the desired flows found from the
+optimization. An important consideration in the methodology is checking
+how how this assumption holds. Data from NCTM can be used to test the
+validity of the approach.
 
-The following figures show the maximum damper position of the children terminal units for each of the air handlers during the month of April 2016. During this time, for AHU-2-1 and AHU-2-2, there was no time in which a terminal unit damper was fully open which indicates that there is potential for the supply air static pressure setpoint to be reduced.  
+The following figures show the maximum damper position of the children
+terminal units for each of the air handlers during the month of April
+2016. During this time, for AHU-2-1 and AHU-2-2, there was no time in
+which a terminal unit damper was fully open which indicates that there
+is potential for the supply air static pressure setpoint to be reduced.  
 
 \newcommand{\MaxDampCaption}[1]{Maximum damper position of all children terminal units versus \(\oat{}\) for #1 during the month of April 2016.}
 
@@ -752,7 +857,12 @@ The following figures show the maximum damper position of the children terminal 
 
 \subsection{Critical Zones for NCTM}
 
-An investigation into the critical zones based on historical data was completed. 15 minute interval data from Jan. 1, 2016 through Jun. 1, 2016 was used to check which damper positions were most open at a given timestamp. \tableref{} \ref{tab:AHU12CriticalZone} shows the results of this analysis. In all five of the applicable air handling units, there is a damper that is critical at least 59\% of the time. 
+An investigation into the critical zones based on historical data was
+completed. 15 minute interval data from Jan. 1, 2016 through Jun. 1,
+2016 was used to check which damper positions were most open at a given
+timestamp. \tableref{} \ref{tab:AHU12CriticalZone} shows the results of
+this analysis. In all five of the applicable air handling units, there
+is a damper that is critical at least 59\% of the time. 
 
 %% Comes from file 2016-06-08-1603-CriticalZoneAnalysis.xlsx
 %% Run from 2016-01-01 to 2016-06-01.
@@ -763,37 +873,49 @@ An investigation into the critical zones based on historical data was completed.
 \label{tab:AHU12CriticalZone}
 \begin{tabular}{@{}llll@{}}
 \toprule
-AHU                       &  Tbox       & Count of Max & Percent as Critical \\ \midrule
-\multirow{3}{*}{AHU-1-2}  &  FPVAV-1-8  & 3,518        & 68\%                \\
-                          &  FPVAV-1-9  & 1,281        & 25\%                \\
-                          &  2 others   & 354          & 7\%                 \\ \midrule
-\multirow{3}{*}{AHU-1-3} & FPVAV-1-5 & 2,331        & 59\%                \\
-                         & FPVAV-1-4 & 1,006        & 25\%                \\
-                         & 4 others  & 622          & 15\%                 \\ \midrule
-\multirow{3}{*}{AHU-2-1} &  FPVAV-2-1   &   10,965   &    79\%  \\
-                         &  FPVAV-2-2   &   2,648   &    19\%  \\
-                         &  FPVAV-2-3   &   258   &    2\% \\ \midrule
-\multirow{3}{*}{AHU-2-2} &    FPVAV-2-18   &   	10,003	&  72\%  \\
-&  FPVAV-2-14   &    	3,171   &  	23\%  \\
-&  6 others   &   	648	&  5\%  \\ \midrule
-\multirow{3}{*}{AHU-2-3}  & FPVAV-2-6   &   9,883     &   72\%  \\ 
-                        & FPVAV-2-11     &   3,743     &   27\%  \\ 
-                        & FPVAV-2-10     &   184     &   1\%  \\ \midrule
+AHU                        & Tbox       & Count of Max & Percent as Critical \\ \midrule
+\multirow{3}{*}{AHU-1-2}   & FPVAV-1-8  & 3,518        & 68\%                \\
+                           & FPVAV-1-9  & 1,281        & 25\%                \\
+                           & 2 others   & 354          & 7\%                 \\ \midrule
+\multirow{3}{*}{AHU-1-3}   & FPVAV-1-5  & 2,331        & 59\%                \\
+                           & FPVAV-1-4  & 1,006        & 25\%                \\
+                           & 4 others   & 622          & 15\%                 \\ \midrule
+\multirow{3}{*}{AHU-2-1}   & FPVAV-2-1  & 10,965       & 79\%  \\
+                           & FPVAV-2-2  & 2,648        & 19\%  \\
+                           & FPVAV-2-3  & 258          & 2\% \\ \midrule
+\multirow{3}{*}{AHU-2-2}   & FPVAV-2-18 & 10,003       & 72\%  \\
+                           & FPVAV-2-14 & 3,171        & 23\%  \\
+                           & 6 others   & 648          & 5\%  \\ \midrule
+\multirow{3}{*}{AHU-2-3}   & FPVAV-2-6  & 9,883        & 72\%  \\
+                           & FPVAV-2-11 & 3,743        & 27\%  \\
+                           & FPVAV-2-10 & 184          & 1\%  \\ \midrule
 \end{tabular}
 \end{table}
 
 
 \subsection{Accuracy of Mechanical Specifications}
 
-In simplified analysis and modeling such as being proposed, it would be ideal if the specifications in the mechanical drawings can be used directly.
-One important parameter is the design flow rate for the terminal unit.
-\tableref \ref{tab:TerminalUnitInformation} shows the design flow rates for all the series fan powered terminal units in the NCTM building.
-The results show that the design specifications were sufficiently accurate.
-All data that were available at the time (October 6, 2015 through June 7, 2016) were analyzed to capture a large number of timestamps (over 22,000 timestamps).
-There are several reasons for potential differences between the maximum measured flow and the design flow rates in the mechanical drawings.
-It may be the case that the terminal unit was oversized and the design flow rate was never necessary. There may be bias in the flow rate measurements.  
+In simplified analysis and modeling such as being proposed, it would be
+ideal if the specifications in the mechanical drawings can be used
+directly.  One important parameter is the design flow rate for the
+terminal unit.  \tableref \ref{tab:TerminalUnitInformation} shows the
+design flow rates for all the series fan powered terminal units in the
+NCTM building.  The results show that the design specifications were
+sufficiently accurate.  All data that were available at the time
+(October 6, 2015 through June 7, 2016) were analyzed to capture a large
+number of timestamps (over 22,000 timestamps).  There are several
+reasons for potential differences between the maximum measured flow and
+the design flow rates in the mechanical drawings.  It may be the case
+that the terminal unit was oversized and the design flow rate was never
+necessary. There may be bias in the flow rate measurements.  
 
-The largest percent difference and absolute difference between the measured maximum flow rate and design value was for FPVAV-1-9. The difference was due to less than 15 outliers in the data (out of over 20,000 data points in total), and if they were to be removed, the maximum is in line with the design value of 1,200 CFM for the vast majority of the data, as seen in \figref{} \ref{fig:FPVAV19AIRVOLUMEvsFPVAV19DMPRCOMD}. 
+The largest percent difference and absolute difference between the
+measured maximum flow rate and design value was for FPVAV-1-9. The
+difference was due to less than 15 outliers in the data (out of over
+20,000 data points in total), and if they were to be removed, the
+maximum is in line with the design value of 1,200 CFM for the vast
+majority of the data, as seen in \figref{}
+\ref{fig:FPVAV19AIRVOLUMEvsFPVAV19DMPRCOMD}. 
 
 %%See file: Batch Plots -- Mitch Dissertation N -- 2016-06-09 0942.xlsx
 \begin{table}[]
@@ -848,23 +970,46 @@ AHU-2-3          & FPVAV-2-4  & 2,000 & 1,944 \\ \cmidrule(r){2-4}
 
 \section{Optimal Supply Air Temperature Results}
 
-The methods described in the previous sections were used to determine the optimal supply air temperature for various air handling units at the NCTM building. 
-\figref{} \ref{fig:2016-11-30-1004-AHU23MixedAirTemp-TikzData} shows the results for AHU-2-3 during the work week from Monday November 7, 2016 through Friday November 11, 2016. 
-During that week, the actual \(\sat\) hovered between 58 and 60\(^\circ\)F. The optimal \(\sat\) was predicted using different parameters for the simple fan curve exponent and plenum temperature. 
-The optimization was completed using a fan exponent of 2 and 3, and the plenum temperature was assumed to be the room temperature or assumed to be the static median values shown in \tableref{} \ref{tab:plenumStatistics}. 
-Notice that even with the fan curve exponent varying from 2 to 3, the optimal \(\sat\) is approximately 66\(^\circ\)F, 7\(^\circ\)F higher than the current operation. 
+The methods described in the previous sections were used to determine
+the optimal supply air temperature for various air handling units at the
+NCTM building.  \figref{}
+\ref{fig:2016-11-30-1004-AHU23MixedAirTemp-TikzData} shows the results
+for AHU-2-3 during the work week from Monday November 7, 2016 through
+Friday November 11, 2016.  During that week, the actual \(\sat\) hovered
+between 58 and 60\(^\circ\)F. The optimal \(\sat\) was predicted using
+different parameters for the simple fan curve exponent and plenum
+temperature.  The optimization was completed using a fan exponent of 2
+and 3, and the plenum temperature was assumed to be the room temperature
+or assumed to be the static median values shown in \tableref{}
+\ref{tab:plenumStatistics}.  Notice that even with the fan curve
+exponent varying from 2 to 3, the optimal \(\sat\) is approximately
+66\(^\circ\)F, 7\(^\circ\)F higher than the current operation. 
 
-It is also apparent that for this case study that the optimal supply air temperature is near the maximum of the search range.
-The maximum possible \(\sat\) searched is the minimum between the \(\mat\) and the minimum calculated discharge temperature. The \(\sat\) cannot be above the \(\mat\) because that would require heating in the air handling unit, and cannot be above the minimum calculated discharge temperature because then that particular zone would be starved for cooling capacity.
-For the second floor air handling units, the minimum discharge temperature is always less than the mixed air temperature indicating that cooling will always be required.  
+It is also apparent that for this case study that the optimal supply air
+temperature is near the maximum of the search range.  The maximum
+possible \(\sat\) searched is the minimum between the \(\mat\) and the
+minimum calculated discharge temperature. The \(\sat\) cannot be above
+the \(\mat\) because that would require heating in the air handling
+unit, and cannot be above the minimum calculated discharge temperature
+because then that particular zone would be starved for cooling capacity.
+For the second floor air handling units, the minimum discharge
+temperature is always less than the mixed air temperature indicating
+that cooling will always be required.  
 
-\figref{} \ref{fig:2016-11-30-0943-AHU21MixedAirTemp-TikzData} shows the results for the same computations as \figref{} \ref{fig:2016-11-30-1004-AHU23MixedAirTemp-TikzData}, but for AHU-2-1.
-AHU-2-1 has 3 terminal units supporting a computer lab with higher measured loads than the rest of the second floor.
-The \(\mat\) is also shown in \figref{} \ref{fig:2016-11-30-0943-AHU21MixedAirTemp-TikzData} for reference. The optimal \(\sat\) appears to be higher than the current operation, although not as much as the difference seen in \figref{} \ref{fig:2016-11-30-1004-AHU23MixedAirTemp-TikzData}.
+\figref{} \ref{fig:2016-11-30-0943-AHU21MixedAirTemp-TikzData} shows the
+results for the same computations as \figref{}
+\ref{fig:2016-11-30-1004-AHU23MixedAirTemp-TikzData}, but for AHU-2-1.
+AHU-2-1 has 3 terminal units supporting a computer lab with higher
+measured loads than the rest of the second floor.  The \(\mat\) is also
+shown in \figref{} \ref{fig:2016-11-30-0943-AHU21MixedAirTemp-TikzData}
+for reference. The optimal \(\sat\) appears to be higher than the
+current operation, although not as much as the difference seen in
+\figref{} \ref{fig:2016-11-30-1004-AHU23MixedAirTemp-TikzData}.
 
 
-\figref{} \ref{fig:2016-11-16-1636-AHU22MixedAirTemp-TikzData} shows the results for AHU-2-2. 
-In this case, the actual operation is near the estimated optimal \(\sat\).
+\figref{} \ref{fig:2016-11-16-1636-AHU22MixedAirTemp-TikzData} shows the
+results for AHU-2-2.  In this case, the actual operation is near the
+estimated optimal \(\sat\).
 
 \begin{figure}
 \centering
@@ -889,13 +1034,24 @@ In this case, the actual operation is near the estimated optimal \(\sat\).
 
 \section{Discussion}
 
-Based on the previous results, several conclusions can be gathered that relate to the proposed work.
+Based on the previous results, several conclusions can be gathered that
+relate to the proposed work.
 
-The first is that it appears plausible that the ``zone load'' can be reasonably estimated to provide useful optimization.
-In fact, the general relationship in the size of the thermal loads of the different zones is more important than the precise value, of which the data available is not capable of estimating. 
+The first is that it appears plausible that the ``zone load'' can be
+reasonably estimated to provide useful optimization.  In fact, the
+general relationship in the size of the thermal loads of the different
+zones is more important than the precise value, of which the data
+available is not capable of estimating. 
 
-The second is that the design specifications from mechanical drawings can be used as the first approximation for flows and power.
-There was general agreement between the terminal unit design flows and the actual maximum realized flows at NCTM, as seen in \tableref{} \ref{tab:TerminalUnitDesignSpecCheck}. 
+The second is that the design specifications from mechanical drawings
+can be used as the first approximation for flows and power.  There was
+general agreement between the terminal unit design flows and the actual
+maximum realized flows at NCTM, as seen in \tableref{}
+\ref{tab:TerminalUnitDesignSpecCheck}. 
 
-A third conclusion is that the uncertainty in the optimal \(\sat\) is small enough that in most cases, the current operation at NCTM does not fall within the bounds.
-In the cases shown in \figref{} \ref{fig:2016-11-16-1354-AHU23SupplyAirTemp-TikzData} through \figref{} \ref{fig:2016-11-16-1636-AHU22MixedAirTemp-TikzData} the optimal \(\sat\) was higher than the current operation. 
+A third conclusion is that the uncertainty in the optimal \(\sat\) is
+small enough that in most cases, the current operation at NCTM does not
+fall within the bounds.  In the cases shown in \figref{}
+\ref{fig:2016-11-16-1354-AHU23SupplyAirTemp-TikzData} through \figref{}
+\ref{fig:2016-11-16-1636-AHU22MixedAirTemp-TikzData} the optimal
+\(\sat\) was higher than the current operation. 

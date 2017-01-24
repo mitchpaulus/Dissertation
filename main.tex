@@ -54,6 +54,8 @@ urlcolor=black}
 \usepackage{siunitxext}
 \usepackage{url}
 
+\usepackage{xcolor}
+\usepackage{listings}
 
 
 \sisetup{group-separator={,}, group-minimum-digits=4,per-mode=fraction}
@@ -128,6 +130,13 @@ urlcolor=black}
 \renewcommand{\tamugradyear}{2016}
 \renewcommand{\tamudepartment}{Mechanical Engineering}
 
+%% This is for formatting json.
+\lstdefinelanguage{json}{
+    string=[s]{"}{"},
+    stringstyle=\color{blue},
+    comment=[l]{:},
+    commentstyle=\color{black},
+}
 
 \include{titlepage} % This is simply a file that formats and adds your titlepage, please do not edit this unless you have a specific need. .
 \include{abstract}
@@ -142,6 +151,7 @@ urlcolor=black}
 \include{OptimizationMethodology}
 \include{TechnologySetup}
 \include{NCTMCaseStudy}
+\include{Conclusions}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

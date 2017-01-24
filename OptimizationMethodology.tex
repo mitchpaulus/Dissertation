@@ -487,83 +487,91 @@ In a live setting, if data does not exist for a particular static pressure setpo
 %\end{tikzpicture}
 %\end{sidewaysfigure}
 
-\section{Handling of the Ramp Function}
-
-In many cases related to steady state algorithms for determining the energy use of an air handling unit, ramp functions are found. These ramp functions are usually difficult to deal with in optimization problems because they are not continuously differentiable. In this sense, it is desired to have a replacement or approximation to the function that is smooth and can be differentiated. 
-
-Fourier series are a useful tool for approximating arbitrary functions and can be used in this task. We can begin by focusing on the basic ramp function that is defined by:
-
-\begin{equation}
-f(x)=\begin{cases}0  & x < 0 \\
-                  x  & x \geq 0
-\end{cases}
-\end{equation}
-
-If we define our Fourier series to be defined over the interval \(-L \leq x \leq L\) and be equal to 
-
-\begin{equation}
-    f(x) = a_0 + \sum_{n=1}^\infty a_n \cos{\frac{n \pi x }{L}} + \sum_{n=1}^\infty b_n \sin{\frac{n \pi x }{L}}
-\end{equation}
-
-The coefficients are equal to
-
-\begin{equation}
-    a_0 = \frac{1}{2 L } \int_{-L}^{L} f(x) \; dx 
-\end{equation}
-
-
-\begin{equation}
-    a_n = \frac{1}{L} \int_{-L}^{L} f(x) \cos{\frac{n \pi x}{L}} \; dx 
-\end{equation}
-
-\begin{equation}
-    b_n = \frac{1}{L} \int_{-L}^{L} f(x) \sin{\frac{n \pi x}{L}} \; dx 
-\end{equation}
-
-\(f(x)=0\) when \(x \leq 0\), so that portion of the integral is equal to 0. When \(x \geq 0\), \(f(x)=x\) and the coefficients can be evaluated over the range \(0 \leq x \leq L\).
-
-\begin{equation}
-    a_0 = \frac{1}{2 L } \int_{0}^{L} x \; dx 
-\end{equation}
-
-
-\begin{equation}
-    a_n = \frac{1}{L} \int_{0}^{L} x \cos{\frac{n \pi x}{L}} \; dx 
-\end{equation}
-
-\begin{equation}
-    b_n = \frac{1}{L} \int_{0}^{L} x \sin{\frac{n \pi x}{L}} \; dx 
-\end{equation}
-
-
-Solving for \(a_0\), 
-
-\begin{equation}
-    a_0 = \frac{1}{2 L } \int_{0}^{L} x \; dx = \frac{1}{2 L} \left[ \frac{x^2}{2} \right]^{L}_{0} = \frac{1}{2 L} \left(\frac{L^2}{2} \right) = \frac{L}{4}
-\end{equation}
-
-The coefficients for the cosine terms are 
-
-\begin{equation}
-    \begin{split} 
-        a_n &= \frac{1}{L} \int_{0}^{L} x \cos{\frac{n \pi x}{L}} \; dx \\ 
-            &=  \frac{1}{L} \left(\cancelto{0}{x \frac{L}{n \pi}   \sin{\frac{n \pi x}{L}}  \bigg|^{L}_0}  - \int_0^L \frac{L}{n \pi} \sin{\frac{n \pi}{L} x} \; dx  \right) \\
-            &= \frac{1}{L} \left( \left[ \frac{L^2}{n^2 \pi^2} \cos{\frac{n \pi x}{L}}  \right]^L_0 \right) \\
-            &= \frac{L}{n^2 \pi^2}\left( (-1)^n - 1 \right)
-    \end{split}
-\end{equation}
-
-
-and the coefficients for the sine terms are 
-
-
-\begin{equation}
-    \begin{split} 
-        b_n &= \frac{1}{L} \int_{0}^{L} x \sin{\frac{n \pi x}{L}} \; dx \\ 
-            &=  \frac{1}{L} \left(-x \frac{L}{n \pi}   \cos{\frac{n \pi x}{L}}  \bigg|^{L}_0  - \int_0^L -\frac{L}{n \pi}\cos{\frac{n \pi}{L} x} \; dx  \right) \\
-            &= \frac{1}{L} \left( \left[ \frac{-L^2}{n \pi} (-1)^n  +\frac{L^2}{n^2 \pi^2}   \left[ \sin{\frac{n \pi x}{L}} \right]_0^L  \right] \right) \\
-            &= \frac{1}{L} \left( \left[ \frac{-L^2}{n \pi} (-1)^n  + 0 \right] \right) \\
-            &= \frac{L}{n \pi}\left( (-1)^{n+1} \right)
-    \end{split}
-\end{equation}
+%% \section{Handling of the Ramp Function}
+%% 
+%% In many cases related to steady state algorithms for determining the
+%% energy use of an air handling unit, ramp functions are found. These ramp
+%% functions are usually difficult to deal with in optimization problems
+%% because they are not continuously differentiable. In this sense, it is
+%% desired to have a replacement or approximation to the function that is
+%% smooth and can be differentiated. 
+%% 
+%% Fourier series are a useful tool for approximating arbitrary functions
+%% and can be used in this task. We can begin by focusing on the basic ramp
+%% function that is defined by:
+%% 
+%% \begin{equation}
+%% f(x)=\begin{cases}0  & x < 0 \\
+                  %% x  & x \geq 0
+%% \end{cases}
+%% \end{equation}
+%% 
+%% If we define our Fourier series to be defined over the interval \(-L
+%% \leq x \leq L\) and be equal to 
+%% 
+%% \begin{equation}
+    %% f(x) = a_0 + \sum_{n=1}^\infty a_n \cos{\frac{n \pi x }{L}} + \sum_{n=1}^\infty b_n \sin{\frac{n \pi x }{L}}
+%% \end{equation}
+%% 
+%% The coefficients are equal to
+%% 
+%% \begin{equation}
+    %% a_0 = \frac{1}{2 L } \int_{-L}^{L} f(x) \; dx 
+%% \end{equation}
+%% 
+%% 
+%% \begin{equation}
+    %% a_n = \frac{1}{L} \int_{-L}^{L} f(x) \cos{\frac{n \pi x}{L}} \; dx 
+%% \end{equation}
+%% 
+%% \begin{equation}
+    %% b_n = \frac{1}{L} \int_{-L}^{L} f(x) \sin{\frac{n \pi x}{L}} \; dx 
+%% \end{equation}
+%% 
+%% \(f(x)=0\) when \(x \leq 0\), so that portion of the integral is equal to 0. When \(x \geq 0\), \(f(x)=x\) and the coefficients can be evaluated over the range \(0 \leq x \leq L\).
+%% 
+%% \begin{equation}
+    %% a_0 = \frac{1}{2 L } \int_{0}^{L} x \; dx 
+%% \end{equation}
+%% 
+%% 
+%% \begin{equation}
+    %% a_n = \frac{1}{L} \int_{0}^{L} x \cos{\frac{n \pi x}{L}} \; dx 
+%% \end{equation}
+%% 
+%% \begin{equation}
+    %% b_n = \frac{1}{L} \int_{0}^{L} x \sin{\frac{n \pi x}{L}} \; dx 
+%% \end{equation}
+%% 
+%% 
+%% Solving for \(a_0\), 
+%% 
+%% \begin{equation}
+    %% a_0 = \frac{1}{2 L } \int_{0}^{L} x \; dx = \frac{1}{2 L} \left[ \frac{x^2}{2} \right]^{L}_{0} = \frac{1}{2 L} \left(\frac{L^2}{2} \right) = \frac{L}{4}
+%% \end{equation}
+%% 
+%% The coefficients for the cosine terms are 
+%% 
+%% \begin{equation}
+    %% \begin{split} 
+        %% a_n &= \frac{1}{L} \int_{0}^{L} x \cos{\frac{n \pi x}{L}} \; dx \\ 
+            %% &=  \frac{1}{L} \left(\cancelto{0}{x \frac{L}{n \pi}   \sin{\frac{n \pi x}{L}}  \bigg|^{L}_0}  - \int_0^L \frac{L}{n \pi} \sin{\frac{n \pi}{L} x} \; dx  \right) \\
+            %% &= \frac{1}{L} \left( \left[ \frac{L^2}{n^2 \pi^2} \cos{\frac{n \pi x}{L}}  \right]^L_0 \right) \\
+            %% &= \frac{L}{n^2 \pi^2}\left( (-1)^n - 1 \right)
+    %% \end{split}
+%% \end{equation}
+%% 
+%% 
+%% and the coefficients for the sine terms are 
+%% 
+%% 
+%% \begin{equation}
+    %% \begin{split} 
+        %% b_n &= \frac{1}{L} \int_{0}^{L} x \sin{\frac{n \pi x}{L}} \; dx \\ 
+            %% &=  \frac{1}{L} \left(-x \frac{L}{n \pi}   \cos{\frac{n \pi x}{L}}  \bigg|^{L}_0  - \int_0^L -\frac{L}{n \pi}\cos{\frac{n \pi}{L} x} \; dx  \right) \\
+            %% &= \frac{1}{L} \left( \left[ \frac{-L^2}{n \pi} (-1)^n  +\frac{L^2}{n^2 \pi^2}   \left[ \sin{\frac{n \pi x}{L}} \right]_0^L  \right] \right) \\
+            %% &= \frac{1}{L} \left( \left[ \frac{-L^2}{n \pi} (-1)^n  + 0 \right] \right) \\
+            %% &= \frac{L}{n \pi}\left( (-1)^{n+1} \right)
+    %% \end{split}
+%% \end{equation}
 
