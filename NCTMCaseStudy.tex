@@ -280,38 +280,40 @@ Figures \ref{fig:2016-09-07-1335-MixedAirTempPredictionforContainerAHU12vsAHU12M
 
 %% 45 degree plots showing the adequacy of the model fit. 
 
+\newcommand{\mixAirCaptionTwo}[1]{Mixed air temperature prediction results for #1.}
+
 \begin{figure}
 \centering
 \includegraphics[]{Plots/2016-09-07-1335-MixedAirTempPredictionforContainerAHU12vsAHU12MixedAirTemp.pdf}
-\caption{SampleCaption}
+\caption{\mixAirCaptionTwo{AHU-1-2}}
 \label{fig:2016-09-07-1335-MixedAirTempPredictionforContainerAHU12vsAHU12MixedAirTemp}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[]{Plots/2016-09-07-1346-MixedAirTempPredictionforContainerAHU13vsAHU13MixedAirTemp.pdf}
-\caption{SampleCaption}
+\caption{\mixAirCaptionTwo{AHU-1-3}}
 \label{fig:2016-09-07-1346-MixedAirTempPredictionforContainerAHU13vsAHU13MixedAirTemp}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[]{Plots/2016-09-07-1357-MixedAirTempPredictionforContainerAHU21vsAHU21MixedAirTemp.pdf}
-\caption{SampleCaption}
+\caption{\mixAirCaptionTwo{AHU-2-1}}
 \label{fig:2016-09-07-1357-MixedAirTempPredictionforContainerAHU21vsAHU21MixedAirTemp}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[]{Plots/2016-09-07-1619-MixedAirTempPredictionforContainerAHU22vsAHU22MixedAirTemp.pdf}
-\caption{SampleCaption}
+\caption{\mixAirCaptionTwo{AHU-2-2}}
 \label{fig:2016-09-07-1619-MixedAirTempPredictionforContainerAHU22vsAHU22MixedAirTemp}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[]{Plots/2016-09-07-1623-MixedAirTempPredictionforContainerAHU23vsAHU23MixedAirTemp.pdf}
-\caption{SampleCaption}
+\caption{\mixAirCaptionTwo{AHU-2-3}}
 \label{fig:2016-09-07-1623-MixedAirTempPredictionforContainerAHU23vsAHU23MixedAirTemp}
 \end{figure}
 
@@ -435,7 +437,7 @@ The following plots show the reheat energy as determined by \eqreftext{}
 \toprule
 Project:         & Mitch Dissertation NCTM---2016-09-19 10:34           \\ \midrule
 Scope:           & NCTM                                                 \\
-Axis Parameters: & Plenum Temperature vs. OA Drybulb Temp (NOAA)        \\
+Axis Parameters: & Plenum Temperature vs. OA Dry-bulb Temp (NOAA)        \\
 Date Period:     & 10/6/2015 - 9/12/2016  (342 days)                    \\
 OAT range:       & 31 to 100\(^\circ\)F      \\
 Ignoring:        & When AHU is Off                                      \\
@@ -968,7 +970,7 @@ AHU-2-3          & FPVAV-2-4  & 2,000 & 1,944 \\ \cmidrule(r){2-4}
 \end{figure}
 
 
-\section{Optimal Supply Air Temperature Results}
+\section{Optimal Supply Air Temperature Results}\label{sec:OptimalSupplyAirTemperatureResults}
 
 The methods described in the previous sections were used to determine
 the optimal supply air temperature for various air handling units at the
@@ -1032,6 +1034,45 @@ estimated optimal \(\sat\).
 \label{fig:2016-11-16-1636-AHU22MixedAirTemp-TikzData}
 \end{figure}
 
+\section{Savings Potential}
+
+The potential for energy savings at the NCTM building was investigated
+for the second floor AHUs. 
+
+Energy savings were estimated for a period from June
+1\textsuperscript{st} , 2016 to January 1\textsuperscript{st}, 2017.
+Weekends, times when the AHUs were off, federal holidays, and times from
+5:00 PM to 9:00 AM were all ignored. 
+
+In addition, since the estimation of the amount of reheat in terminal
+units had a high uncertainty level, it was decided to ignore times in
+which at least one of the reheat valves in the children terminal units
+was open. In this sense, the only components to the AHU energy were the
+cooling energy at the cooling coil, and the fan energy. 
+
+To provide a sense of the sensitivity in the assumed parameters in the
+optimization, savings were determined using different exponents ranging
+from 2 to 3 for the PLR curve, along with the plenum temperature assumed
+to be the corresponding room temperature and the derived static
+temperature shown in \tableref{} \ref{tab:plenumStatistics}. 
+
+Based on the optimal supply air temperatures shown in Section
+\ref{sec:OptimalSupplyAirTemperatureResults}, the potential savings in
+AHU-2-1 and AHU-2-2 will be small since the systems are already
+operating near optimally. However, the savings potential in AHU-2-3
+appeared promising since there was approximately a \SI{5}{\degreeF}
+difference between the operating supply air temperature and the
+predicted optimal supply air temperature. This would turn out to be the
+case.
+
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2017-01-24-1607-VariableTotalPowervsOADryBulbTemperatureNOAA.pdf}
+\caption{Energy savings for AHU-2-3 assuming a fan PLR exponent of 2 and plenum temperatures equal to the room temperature.}
+\label{fig:2017-01-24-1607-VariableTotalPowervsOADryBulbTemperatureNOAA}
+\end{figure}
+
+
 \section{Discussion}
 
 Based on the previous results, several conclusions can be gathered that
@@ -1052,6 +1093,6 @@ maximum realized flows at NCTM, as seen in \tableref{}
 A third conclusion is that the uncertainty in the optimal \(\sat\) is
 small enough that in most cases, the current operation at NCTM does not
 fall within the bounds.  In the cases shown in \figref{}
-\ref{fig:2016-11-16-1354-AHU23SupplyAirTemp-TikzData} through \figref{}
+\ref{fig:2016-11-30-1004-AHU23MixedAirTemp-TikzData} through \figref{}
 \ref{fig:2016-11-16-1636-AHU22MixedAirTemp-TikzData} the optimal
 \(\sat\) was higher than the current operation. 

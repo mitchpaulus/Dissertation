@@ -104,33 +104,6 @@ similar to
 
 \url{https://domain/setpoints/?id={Equipment-Id}\&{time=Datetime}}
 
-\subsection{Web Input}
-
-In order to complete the optimization, the inputs and functions for the
-various trends needs to be input. It is proposed that the use of a
-container hierarchy, labels or tags, and custom equations be used to
-develop the system.
-
-Implementer uses something called container properties, and one of the
-properties can be set to a json object that contains all the necessary
-pointers to values or custom equations.
-
-The necessary inputs for the AHU container would be 
-\begin{enumerate}
-    \item Exponent for the fan curve, \(n\)
-    \item Prediction function for \(\mat{}\) 
-    \item Design fan power \(\dot{W}_{design}\)
-    \item Design AHU flow 
-\end{enumerate}
-For the children terminal unit containers, if a series fan powered box
-is assumed, the necessary inputs will be
-\begin{enumerate}
-    \item Zone temperature setpoint prediction
-    \item Zone load prediction
-    \item Plenum temperature prediction
-    \item Minimum damper position
-\end{enumerate}
-
 \section{Prototype Information}
 
 The proposed system was implemented in the software tool
@@ -204,6 +177,30 @@ shows a portion of the hierarchy for the NCTM project.
 are associated to the label \textit{DischargeTemps}. }
 \end{figure}
 
+In order to complete the optimization, the inputs and functions for the
+various trends needs to be input. It is proposed that the use of a
+container hierarchy, labels or tags, and custom equations be used to
+develop the system.
+
+Implementer uses something called container properties, and one of the
+properties can be set to a json object that contains all the necessary
+pointers to values or custom equations.
+
+The necessary inputs for the AHU container would be 
+\begin{enumerate}
+    \item Exponent for the fan curve, \(n\)
+    \item Prediction function for \(\mat{}\) 
+    \item Design fan power \(\dot{W}_{design}\)
+    \item Design AHU flow 
+\end{enumerate}
+For the children terminal unit containers, if a series fan powered box
+is assumed, the necessary inputs will be
+\begin{enumerate}
+    \item Zone temperature setpoint prediction
+    \item Zone load prediction
+    \item Plenum temperature prediction
+    \item Minimum damper position
+\end{enumerate}
 
 Parameters needed for the optimization are input for each container in
 the container details portion of Implementer. The settings are formatted
@@ -211,6 +208,10 @@ in JSON, as shown in \figref{} \ref{fig:JSONOptions}. The properties
 include options such as pointers to how the mixed air temperature
 should be calculated, the maximum supply humidity ratio, and the
 assumed part load ratio fan exponent. 
+
+These pointers can be a static value, another property, an actual
+trend from the building automation system, or a custom equation built up
+using the syntax and power that is designed in Implementer.
 
 \begin{figure}
 \centering
@@ -229,6 +230,9 @@ OptSATGenPoint =
 \caption{JSON options for the second floor air handling units. }
 \end{figure}
 
+Any calculation  from the optimization analysis can be output as a trend
+in Implementer and can be plotted and visualized using any of the tools
+available. 
 
 
 

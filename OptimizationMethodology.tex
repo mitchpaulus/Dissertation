@@ -306,11 +306,27 @@ At any time, the pressure drop in all the flow loops must be equal. In a case wh
                     &= C_1 \left(\flow{1}+\flow{2}+\flow{3} \right)^2 + C_3\left(\flow{2}+\flow{3} \right)^2 + C_5\flow{3}^2 + \frac{C_6}{\damp{3}^2}\flow{3}^2 
 \end{align}
 
-With historical data, for each timestep the terminal unit flows and the damper positions in the box is known. There are 3 equations with 6 unknowns however, and the problem becomes underconstrained. 
+With historical data, for each timestep the terminal unit flows and the
+damper positions in the box is known. There are 3 equations with 6
+unknowns however, and the problem becomes underconstrained. 
 
-A calibration for the pressure drop coefficients is possible. If the sum of the standard deviations between the three equations is used to determine the goodness of the calibration fit, then a trivial solution for a perfect fit arises. By setting all the coefficients besides the single shared major pressure loss coeffient \(C_1\) to zero, the three equations will always be equal, and the total absolute pressure drop can be arbitrarily set with the single coefficient. 
+A calibration for the pressure drop coefficients is possible. If the sum
+of the standard deviations between the three equations is used to
+determine the goodness of the calibration fit, then a trivial solution
+for a perfect fit arises. By setting all the coefficients besides the
+single shared major pressure loss coefficient \(C_1\) to zero, the three
+equations will always be equal, and the total absolute pressure drop can
+be arbitrarily set with the single coefficient. 
 
-Without further information regarding the actual terminal unit pressure drop relationships, this method loses the potential usefullness.  
+Without further information regarding the actual terminal unit pressure
+drop relationships, this method loses the potential usefulness. For this
+reason, a simple approach of using an exponential part load ratio (PLR)
+function was employed as shown in Eq. \ref{eq:PartLoadRatio}. The value
+of \(n\) was varied from 2 to 3. 
+
+\begin{equation}\label{eq:PartLoadRatio}
+    \dot{W}_{\text{fan}} = \dot{W}_{\text{design}} \left(\text{PLR}\right)^n
+\end{equation}
 
 
 \begin{figure}
@@ -357,51 +373,81 @@ Without further information regarding the actual terminal unit pressure drop rel
 
 \section{Predicting the Mixed Air Temperature}
 
-In order to predict the energy use at the cooling/reheat coils in the air handling unit, the mixed air temperature needs to be estimated. The mixed air temperature will be dependent on several variables including the outdoor air temperature, return air temperature, and the damper positions of the outdoor air and return air. The damper positions will fluctuate greatly during times of economizing.  
+In order to predict the energy use at the cooling/reheat coils in the
+air handling unit, the mixed air temperature needs to be estimated. The
+mixed air temperature will be dependent on several variables including
+the outdoor air temperature, return air temperature, and the damper
+positions of the outdoor air and return air. The damper positions will
+fluctuate greatly during times of economizing.  
 
-If the flow for both outside and return air are known, along with either estimates or measurements of \(\oat{}\) and \(\rat{}\), then \(\mat{}\) can be predicted directly using a straightforward energy balance. 
+If the flow for both outside and return air are known, along with either
+estimates or measurements of \(\oat{}\) and \(\rat{}\), then \(\mat{}\)
+can be predicted directly using a straightforward energy balance. 
 
 \begin{equation}
     \mat{} = \frac{\flow{oa} \oat{} + \flow{ra} \rat{}}{\flow{oa}+\flow{ra}}
 \end{equation}
 
-In many cases, the temperatures can be estimated, but the individual flows are not measured or are difficult to measure. In these cases, it makes sense to investigate \(\mat{}\) as a function of \(\oat{}\). If the system is constant volume, then the \(\mat\) will be linearly related to \(\oat\) and the coefficients in a linear regression will be equal to
+In many cases, the temperatures can be estimated, but the individual
+flows are not measured or are difficult to measure. In these cases, it
+makes sense to investigate \(\mat{}\) as a function of \(\oat{}\). If
+the system is constant volume, then the \(\mat\) will be linearly
+related to \(\oat\) and the coefficients in a linear regression will be
+equal to
 
 \begin{equation}
     \mat = \left(  \frac{\flow{oa}}{\flow{tot}}\right) \oat + \frac{\flow{ra}\rat}{\flow{tot}}
 \end{equation}
 
-If economizing is programmed, there should be a significant moderation that should be present in \(\mat{}\).
+If economizing is programmed, there should be a significant moderation
+that should be present in \(\mat{}\).
 
-In many cases, \(\mat\) will not vary significantly in operation and can be considered constant. The data can be investigated on a case-by-case basis and the best model of these can be used to estimate \(\mat\).
+In many cases, \(\mat\) will not vary significantly in operation and can
+be considered constant. The data can be investigated on a case-by-case
+basis and the best model of these can be used to estimate \(\mat\).
 
-A robust approach that will be investigated is the \textit{nearest neighbor} approach. It is known that \(\mat\) is related to outdoor air temperature, return air temperature, along with the available damper positions in the particular air handler. By searching through historical data for similar conditions and taking the median of the data, a robust and reliable estimate can be made. 
+A robust approach that will be investigated is the \textit{nearest
+neighbor} approach. It is known that \(\mat\) is related to outdoor air
+temperature, return air temperature, along with the available damper
+positions in the particular air handler. By searching through historical
+data for similar conditions and taking the median of the data, a robust
+and reliable estimate can be made. 
 
-Unfortunately, for a given request, only the outdoor air conditions and the time of day will be known. 
+Unfortunately, for a given request, only the outdoor air conditions and
+the time of day will be known. 
 
 
 \section{Searching for Energy Minimum}
 
-The fan power can be estimated using a fan curve as a function of the part load ratio (PLR) calculated using air flow rate. A fan curve suggested by Kimla that accounts for VSDs and constant static pressure setpoints is
+The fan power can be estimated using a fan curve as a function of the
+part load ratio (PLR) calculated using air flow rate. A fan curve
+suggested by Kimla that accounts for VSDs and constant static pressure
+setpoints is
 \begin{equation}\label{eq:KimlaFanPower}
 \frac{\dot{W}}{\dot{W}_{rated}} = 0.0013+0.147\left(PLR \right)+0.9506\left(PLR \right)^2-0.0998\left(PLR \right)^3
 \end{equation}
 where \(PLR\) is defined as \(\frac{\flow{}}{\flow{\text{design}}}\).
 
-Since we are going to be using the gradient of this function, it is desired to reduce the order to the polynomial from 3 to 2. The corresponding closest second order polynomial to \ref{eq:KimlaFanPower} is
+Since we are going to be using the gradient of this function, it is
+desired to reduce the order to the polynomial from 3 to 2. The
+corresponding closest second order polynomial to \ref{eq:KimlaFanPower}
+is
 \begin{equation}\label{eq:finalFanPower}
 \frac{\dot{W}}{\dot{W}_{rated}} = 0.21\left(PLR \right)+0.8\left(PLR \right)^2
 \end{equation}
 
-The total energy is the combination of fan, cooling, and reheat energy. If there are \(n\) terminal units, the total energy can be written as
+The total energy is the combination of fan, cooling, and reheat energy.
+If there are \(n\) terminal units, the total energy can be written as
 \begin{multline}\label{eq:totalEnergy}
     \energy=\dot{W}_{rated}\;0.8 \left(\frac{\flowsum}{\flow{\text{design}}} \right)^2 + \dot{W}_{rated}\;0.21 \left(\frac{\flowsum}{\dot{V}_{design}} \right)\\
 +1.08\left(\flowsum \right)\left(T_{ma}-T_{sa} \right)\\
 +1.08\left(\flow{1} \right)\left(T_{z,1}-\frac{\dot{Q}}{1.08\; \flow{1}} -T_{sa}\right) +1.08\left(\flow{2} \right)\left(T_{z,2}-\frac{\dot{Q}}{1.08\; \flow{2}} -T_{sa}\right)\\ 
 +\ldots+1.08\left(\flow{n} \right)\left(T_{z,n}-\frac{\dot{Q}}{1.08\; \flow{n}} -T_{sa}\right) 
 \end{multline}
-The first line is related to the fan energy, the second line is related to the cooling load at the air handling unit, and the last two lines relate to reheat energy use. 
-This function \ref{eq:totalEnergy} is minimized under the constraints
+The first line is related to the fan energy, the second line is related
+to the cooling load at the air handling unit, and the last two lines
+relate to reheat energy use.  This function \ref{eq:totalEnergy} is
+minimized under the constraints
 \begin{align}
     V_{min}&\leq \flow{1}, \flow{2}, \ldots \flow{n} \\
 T_{sa,min}&\leq T_{sa} \leq T_{sa,max} \\
@@ -420,26 +466,37 @@ The partial derivatives of \ref{eq:totalEnergy} are
 
 \subsection{Brute Force Approach}
 
-Since the system is not going to expected to determine semi-optimal control setpoints at small time intervals, say less than a second, it is plausible that a straightforward, brute force approach would be appropriate.
-The brute force approach has several advantages including
+Since the system is not going to expected to determine semi-optimal
+control setpoints at small time intervals, say less than a second, it is
+plausible that a straightforward, brute force approach would be
+appropriate.  The brute force approach has several advantages including
 \begin{enumerate}
         \item Straightforward to program and debug
-        \item Robust to small changes in energy prediciton algorithm 
+        \item Robust to small changes in energy prediction algorithm 
 \end{enumerate}
 
-The uncertainty in the estimation of the zone loads, plenum temperatures, mixed air temperature, and the like, also tend to support the decision to use step sizes on the order of  \SI{0.1}{\degreeF}. The typical search range for the supply air temperature will be on the order of \SI{20}{\degreeF}, making for a total number of calculations in the hundreds. 
-This is extremely feasible for modern computers to handle in the sub-second time range. 
+The uncertainty in the estimation of the zone loads, plenum
+temperatures, mixed air temperature, and the like, also tend to support
+the decision to use step sizes on the order of  \SI{0.1}{\degreeF}. The
+typical search range for the supply air temperature will be on the order
+of \SI{20}{\degreeF}, making for a total number of calculations in the
+hundreds.  This is extremely feasible for modern computers to handle in
+the sub-second time range. 
 
-The minimum value of \(\sat\) in the search range would be the lowest feasible \(\sat\) possible dependent on the chilled water system and capacity of the cooling coils. 
-This may be on the order of \SI{50}{\degreeF}.
+The minimum value of \(\sat\) in the search range would be the lowest
+feasible \(\sat\) possible dependent on the chilled water system and
+capacity of the cooling coils.  This may be on the order of
+\SI{50}{\degreeF}.
 
-The upper end of the search range will be the minimum of the \(\mat\) and the determined \(\dat\)'s.
+The upper end of the search range will be the minimum of the \(\mat\)
+and the determined \(\dat\)'s.
 
 \begin{equation}
     T_{sa,max} = \text{MIN}\left(\mat, \text{MIN}\left(T_{dis,1}, T_{dis,2}, \ldots, T_{dis,n} \right) \right)
 \end{equation}
 
-With a given zone load and constant flow, the \(\dat\) from the terminal unit can be calculated 
+With a given zone load and constant flow, the \(\dat\) from the terminal
+unit can be calculated 
 \begin{equation}
     \dat = T_{z} -  \frac{Q_{zone}}{1.08 \left( \text{CFM} \right)   }
 \end{equation}
@@ -454,13 +511,25 @@ The actual primary airflow is then
 
 \section{Determining the Supply Air Static Pressure Requirement}
 
-As shown in Section \ref{sec:FanModeling}, building up a complete air flow model is challenging. A different approach is to reduce the number of parameters by focusing on the \textit{critical zone}. 
+As shown in Section \ref{sec:FanModeling}, building up a complete air
+flow model is challenging. A different approach is to reduce the number
+of parameters by focusing on the \textit{critical zone}. 
 
-One method of determining the critical zone is to simply check the percentage of time that a particular damper is the most open. This check can occur over any period, for example, over the previous week, month, or 6 months.
+One method of determining the critical zone is to simply check the
+percentage of time that a particular damper is the most open. This check
+can occur over any period, for example, over the previous week, month,
+or 6 months.
 
-At a particular static pressure, there should exist some relationship between the damper position and the flow through the terminal unit. For a conservative estimate of the maximum flow at a given static pressure, the measured values of flow at the 90\% open damper position can be investigated. 
+At a particular static pressure, there should exist some relationship
+between the damper position and the flow through the terminal unit. For
+a conservative estimate of the maximum flow at a given static pressure,
+the measured values of flow at the 90\% open damper position can be
+investigated. 
 
-In a live setting, if data does not exist for a particular static pressure setpoint, then the system can slowly begin to explore until the desired number of data points are available. For example, the system could reduce the static pressure setpoint in increments of 0.1'' w.g. 
+In a live setting, if data does not exist for a particular static
+pressure setpoint, then the system can slowly begin to explore until the
+desired number of data points are available. For example, the system
+could reduce the static pressure setpoint in increments of 0.1'' w.g. 
 
 
 
