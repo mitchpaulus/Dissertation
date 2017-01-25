@@ -1,0 +1,42 @@
+\documentclass[12pt]{article}
+\usepackage[active, tightpage]{preview}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.3}
+\PreviewEnvironment{tikzpicture}
+\input{../tikz/tikzDefaults}
+\begin{document}
+% StartDate: 6/1/2016
+% EndDate: 1/1/2017
+% Ignoring:
+%    When AHU is Off
+%    Sunday
+%    Saturday
+%    Holidays
+%    From 17 to 9
+%    When Sum of FPVAV Valve Positions for AHU 2-3 <  or > 1
+\begin{tikzpicture}
+\begin{axis}[
+    xychart,
+    align=center,
+    xlabel={OA Dry Bulb Temperature (NOAA) [\(^\circ\)F]},
+    ylabel={Variable-Supply Air Temp  [\(^\circ\)F]},
+    ymin=50,
+    ymax=70,
+    xmin=40,
+    xmax=110,
+    ytick={50,55,...,70},
+    xtick={40,50,...,110},
+    ylabel style={align=center,text width=8cm},
+    xlabel style={align=center,text width=8cm},
+]
+\addplot[xymarker]
+table[x={OADryBulbTemperatureNOAA}, y={VariableSupplyAirTemp}, col sep=tab]{../Data/2017-01-25-1121-VariableSupplyAirTempvsOADryBulbTemperatureNOAA.dat};
+\addlegendentry{Optimal}
+\addplot[color=red, only marks]
+table[x={OADryBulbTemperatureNOAA}, y={AHU23SupplyAirTemp}, col sep=tab]{../Data/2017-01-25-1121-VariableSupplyAirTempvsOADryBulbTemperatureNOAA.dat};
+\addlegendentry{Actual}
+\end{axis}
+\end{tikzpicture}
+\end{document}

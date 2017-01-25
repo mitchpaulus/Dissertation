@@ -1065,13 +1065,32 @@ difference between the operating supply air temperature and the
 predicted optimal supply air temperature. This would turn out to be the
 case.
 
+\figref{}
+\ref{fig:2017-01-24-1607-VariableTotalPowervsOADryBulbTemperatureNOAA}
+shows the difference in the combined energy of the fan and cooling from
+actual to optimal. Periods in which reheat was occurring was ignored
+from the analysis. As expected, the energy use has a dependence on
+\(\oat\). The optimal profile has a 3-Parameter cooling shape, as
+described in \cite{AshraeGuideline2002}. 
+
+The energy savings is primarily caused by increasing the supply air
+temperature. There already was a reset programmed for AHU-2-3, but the
+optimal reset would in general have a higher \(\sat\). 
+
+
 \begin{figure}
 \centering
 \includegraphics[]{Plots/2017-01-24-1607-VariableTotalPowervsOADryBulbTemperatureNOAA.pdf}
-\caption{Energy savings for AHU-2-3 assuming a fan PLR exponent of 2 and plenum temperatures equal to the room temperature.}
+\caption{Energy savings for AHU-2-3 assuming a fan PLR exponent of 2 and plenum temperatures equal to the corresponding room temperature.}
 \label{fig:2017-01-24-1607-VariableTotalPowervsOADryBulbTemperatureNOAA}
 \end{figure}
 
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2017-01-25-1121-VariableSupplyAirTempvsOADryBulbTemperatureNOAA.pdf}
+\caption{Supply air temperature difference between actual and optimal.}
+\label{fig:2017-01-25-1121-VariableSupplyAirTempvsOADryBulbTemperatureNOAA}
+\end{figure}
 
 \section{Discussion}
 
