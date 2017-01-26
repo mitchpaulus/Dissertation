@@ -20,17 +20,17 @@ biopharmaceutical industry. The lecture halls seat up to 120 students
 and have large floor to ceiling windows. There is also an Apple Computer
 laboratory with 48 workstations on the second floor. 
 
-On the academic side there are three dedicated outdoor air handling
-units that serve seven child air handling units. Two of the air handling
-units are constant speed and the others are variable air volume. OAHU
-1-1 serves its own wet lab and also feeds into AHU 1-1 and AHU 1-2. OAHU
+On the academic side, three dedicated outdoor air handling
+units serve seven child air handling units. Two of the air handling
+units are constant speed, and the others are variable air volume. OAHU
+1-1 serves its wet lab and also feeds into AHU 1-1 and AHU 1-2. OAHU
 1-2 serves AHU 1-3 and 1-4 on the first floor. OAHU 2-1 serves three
 children air handlers on the second floor, AHU 2-1, 2-2, and 2-3. 
 
 This document focuses on the academic side of the building since
 Utilities and Energy services with Texas A\&M University are only
 allowed to make immediate changes to the HVAC system on this side. In
-summary, the important parameters concerning NCTM are that it houses
+summary, the relavent parameters concerning NCTM are that it houses
 several biopharmaceutical labs, it has an academic side that can be
 immediately changed and a manufacturing side that cannot be immediately
 changed, and relies on dedicated outdoor air handling units to pretreat
@@ -43,16 +43,16 @@ outdoor air.
 \label{tab:OnOffSched}
 \begin{tabular}{l c c c}
 \toprule
-Level 			& OAHU	 	& AHU \# 	& AHU Schedule 		 \\
+Level          & OAHU     & AHU \#  & AHU Schedule    \\
 \midrule
-Floor 1 Area B	& OAHU 1-1  & N/A		& 24/7 	 \\
-Floor 1 Area B 	& OAHU 1-1 	& AHU 1-1	& 24/7 	 \\
-Floor 1 Area B 	& OAHU 1-1	& AHU 1-2	& 6am - 6pm, M-F 	 \\
-Floor 1 Area A 	& OAHU 1-2 	& AHU 1-3	& 6am - 8pm, M-F	 \\
-Floor 1 Area A 	& OAHU 1-2	& AHU 1-4	& 6am - 8pm, M-F 	 \\
-Floor 2 		& OAHU 2-1	& AHU 2-1	& 6am - 10pm, M-F 	 \\
-Floor 2 		& OAHU 2-1 	& AHU 2-2	& 6am - 10pm, M-F	 \\
-Floor 2			& OAHU 2-1	& AHU 2-3	& 6am - 10pm, M-F 	 \\
+Floor 1 Area B & OAHU 1-1 & N/A     & 24/7            \\
+Floor 1 Area B & OAHU 1-1 & AHU 1-1 & 24/7            \\
+Floor 1 Area B & OAHU 1-1 & AHU 1-2 & 6am - 6pm, M-F  \\
+Floor 1 Area A & OAHU 1-2 & AHU 1-3 & 6am - 8pm, M-F  \\
+Floor 1 Area A & OAHU 1-2 & AHU 1-4 & 6am - 8pm, M-F  \\
+Floor 2        & OAHU 2-1 & AHU 2-1 & 6am - 10pm, M-F \\
+Floor 2        & OAHU 2-1 & AHU 2-2 & 6am - 10pm, M-F \\
+Floor 2        & OAHU 2-1 & AHU 2-3 & 6am - 10pm, M-F \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -60,20 +60,20 @@ Floor 2			& OAHU 2-1	& AHU 2-3	& 6am - 10pm, M-F 	 \\
 \begin{figure}
     \centering
 \includegraphics[]{Plots/TempRiseVsFlow-AHU-2-14.pdf}
-\caption{Temperature rise due to the mixing of plenum air at the terminal box for FPVAV-2-14. }
+\caption{Temperature rise due to the mixing of plenum air at the terminal unit for FPVAV-2-14. }
 \end{figure}
 
 \begin{table}
 \caption{Fan schedule information for the dedicated outdoor air handlers.}
 \label{tab:OAFanSched}
 \centering
-\begin{tabular}{l c c}
+\begin{tabular}{l S S}
 \toprule
-OAHU & Design OA CFM & HP \\
+OAHU & {Design OA CFM} & {HP} \\
 \midrule
 OAHU 1-1 & 12,800 & 20 \\
-OAHU 1-2 & 4,500 & 5 \\
-OAHU 2-1 & 2,200 & 2 \\
+OAHU 1-2 & 4,500  & 5  \\
+OAHU 2-1 & 2,200  & 2  \\
 \bottomrule
 \multicolumn{1}{r}{Total:} & 19,500 & 27 \\
 \end{tabular}
@@ -83,9 +83,9 @@ OAHU 2-1 & 2,200 & 2 \\
 \centering
 \caption{Fan schedule information for the AHUs.}
 \label{tab:FanSched}
-\begin{tabular}{l c c c c}
+\begin{tabular}{l c c S c}
 \toprule
-AHU 	& Type	 	& Total Airflow (CFM) 	& HP 	& OA Served By\\
+AHU 	& Type	 	& Total Airflow (CFM) 	& {HP} 	& OA Served By\\
 \midrule
 AHU 1-1 & Constant  & 3,000 			  	& 5 	& OAHU 1-1 \\
 AHU 1-2 & VAV 		& 4,800 				& 5 	& OAHU 1-1 \\
@@ -155,17 +155,16 @@ measured performance.
 The software \textit{Implementer} is a tool that can ease the difficulty
 in this analysis by producing certain plots en mass for terminal units.
 The Figures below show the results of temperature rise within the
-terminal unit, versus the part-load ratio of the box (assuming the
+terminal unit, versus the part-load ratio of the terminal unit (assuming the
 design specifications for the design flow). From these plots, the
 minimum primary air flow setpoint can be visually quickly.
 
-From the data, it appears that the majority of the terminal units in
-NCTM are operating with 30\% as the minimum flow rate. There are a few
-terminal units that are set to values less than this. \tableref{}
-\ref{tab:MinimumAirFlowRateSettings} shows the estimated minimum percent
-flows based on data from February 1, 2016 through May 1, 2016. There are
-several unique patterns and characteristics that were found in the data
-set.
+From the data, it appears that the majority of the terminal units in NCTM are
+operating with 30\% as the minimum flow rate. There are a few terminal units
+that are set to values less than this. \tableref{}
+\ref{tab:MinimumAirFlowRateSettings} shows the estimated minimum percent flows
+based on data from February 1, 2016, through May 1, 2016.  Several unique
+patterns and characteristics were found in the data set.
 
 
 
@@ -176,38 +175,38 @@ set.
 \centering
 \caption{Terminal unit minimum air flow rate settings.}
 \label{tab:MinimumAirFlowRateSettings}
-\begin{tabular}{ll}
+\begin{tabular}{lS}
     \toprule
-Container Hierarchy & Min Percent Flow \\ \midrule
-FPVAV-2-1           & 20               \\
-FPVAV-2-2           & 30               \\
-FPVAV-2-3           & 20               \\
-FPVAV-2-12          & 30               \\
-FPVAV-2-13          & 30               \\
-FPVAV-2-14          & 30               \\
-FPVAV-2-15          & 30               \\
-FPVAV-2-16          & 30               \\
-FPVAV-2-17          & 30               \\
-FPVAV-2-18          & 30               \\
-FPVAV-2-9           & 5                \\
-FPVAV-2-10          & 30               \\
-FPVAV-2-11          & 30               \\
-FPVAV-2-4           & 30               \\
-FPVAV-2-5           & 30               \\
-FPVAV-2-6           & 30               \\
-FPVAV-2-7           & 30               \\
-FPVAV-2-8           & 30               \\
-FPVAV-1-10          & 30               \\
-FPVAV-1-7           & 30               \\
-FPVAV-1-8           & NA               \\
-FPVAV-1-9           & NA               \\
-FPVAV-1-1           & 30               \\
-FPVAV-1-2           & 30               \\
-FPVAV-1-3           & 25               \\
-FPVAV-1-4           & 25               \\
-FPVAV-1-5           & NA               \\
-FPVAV-1-6           & 30               \\
-FPVAV-1-11          & 30               \\ \bottomrule
+Conntainer Hierarchy & {Min Percent Flow} \\ \midrule
+FPVAV-2-1            & 20                              \\
+FPVAV-2-2            & 30                              \\
+FPVAV-2-3            & 20                              \\
+FPVAV-2-12           & 30                              \\
+FPVAV-2-13           & 30                              \\
+FPVAV-2-14           & 30                              \\
+FPVAV-2-15           & 30                              \\
+FPVAV-2-16           & 30                              \\
+FPVAV-2-17           & 30                              \\
+FPVAV-2-18           & 30                              \\
+FPVAV-2-9            & 5                               \\
+FPVAV-2-10           & 30                              \\
+FPVAV-2-11           & 30                              \\
+FPVAV-2-4            & 30                              \\
+FPVAV-2-5            & 30                              \\
+FPVAV-2-6            & 30                              \\
+FPVAV-2-7            & 30                              \\
+FPVAV-2-8            & 30                              \\
+FPVAV-1-10           & 30                              \\
+FPVAV-1-7            & 30                              \\
+FPVAV-1-8            & {N/A}                           \\
+FPVAV-1-9            & {N/A}                           \\
+FPVAV-1-1            & 30                              \\
+FPVAV-1-2            & 30                              \\
+FPVAV-1-3            & 25                              \\
+FPVAV-1-4            & 25                              \\
+FPVAV-1-5            & {N/A}                           \\
+FPVAV-1-6            & 30                              \\
+FPVAV-1-11           & 30               \\ \bottomrule
 \end{tabular}
 \end{table}
 
@@ -216,13 +215,13 @@ FPVAV-1-11          & 30               \\ \bottomrule
 
 \section{Analysis of the Mixed Air Temperature at the AHU}
 
-This section investigates the feasibility of estimating \(\mat\) based
-on historical data. \figref{}
-\ref{fig:AHU21MixedAirTempvsOADryBulbTemperatureNOAA} shows an example
-of an AHU in which \(\mat\) does not change significantly throughout
-time. \figref{} \ref{fig:AHU21MixedAirTempvsOADryBulbTemperatureNOAA}
-and \ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA} both show 90
-days worth of data from March 14, 2016 to June 12, 2016. 
+This section investigates the feasibility of estimating \(\mat\) based on
+historical data. \figref{}
+\ref{fig:AHU21MixedAirTempvsOADryBulbTemperatureNOAA} shows an example of an
+AHU in which \(\mat\) does not change significantly throughout time. \figref{}
+\ref{fig:AHU21MixedAirTempvsOADryBulbTemperatureNOAA} and
+\ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA} both show 90 days worth
+of data from March 14, 2016 to June 12, 2016. 
 
 In the case of \figref{}
 \ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA}, \(\mat\) is less
@@ -256,11 +255,25 @@ The result of a \textit{nearest neighbor} approach is shown in \figref{} \ref{fi
     \item Searching backwards incrementally until 30 data points found
 \end{itemize}
 
-The median of the found data points is the resulting prediction. The following plots show the model fits for the different air handling units at NCTM. The data covers a period of 180 days. Figures \ref{fig:2016-09-07-1218-AHU12MixedAirTempvsOADryBulbTemperatureNOAA} and \ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA-2} show that the prediction algorithm can adequately handle the differences from when the air handling unit is on as well as off. The significant amount of spread in the mixed air temperature is due to data in which the air handler turns off and is allowed to drift, typically to higher temperature in the climate of College Station. 
+The median of the found data points is the resulting prediction. The following
+plots show the model fits for the different air handling units at NCTM. The
+data covers a period of 180 days. Figures
+\ref{fig:2016-09-07-1218-AHU12MixedAirTempvsOADryBulbTemperatureNOAA} and
+\ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA-2} show that the
+prediction algorithm can adequately handle the differences from when the air
+handling unit is on as well as off. The significant amount of spread in the
+mixed air temperature is due to data in which the air handler turns off and is
+allowed to drift, typically to a higher temperature in the climate of College
+Station. 
 
-Figures \ref{fig:2016-09-07-1335-MixedAirTempPredictionforContainerAHU12vsAHU12MixedAirTemp} through \ref{fig:2016-09-07-1623-MixedAirTempPredictionforContainerAHU23vsAHU23MixedAirTemp} show the model fits during times when the air handling units are off, ignoring weekends and holidays, and times between 6:00 PM and 8:00 AM.
+Figures
+\ref{fig:2016-09-07-1335-MixedAirTempPredictionforContainerAHU12vsAHU12MixedAirTemp}
+through
+\ref{fig:2016-09-07-1623-MixedAirTempPredictionforContainerAHU23vsAHU23MixedAirTemp}
+show the model fits during times when the air handling units are off, ignoring
+weekends and holidays, and times between 6:00 PM and 8:00 AM.
 
-\newcommand{\matcaption}[1]{#1 mixed air temperature prediction for data from Mar. 10, 2016 - Sept. 5, 2016, not ignoring any data.}
+\newcommand{\matcaption}[1]{#1 \(\mat\) prediction for data from Mar. 10, 2016 - Sept. 5, 2016, not ignoring any data.}
 
 \begin{figure}
 \centering
@@ -321,9 +334,8 @@ Figures \ref{fig:2016-09-07-1335-MixedAirTempPredictionforContainerAHU12vsAHU12M
 \section{Analysis of the Plenum Air Temperature}
 
 Under certain assumptions, the plenum air temperature for the series fan
-powered boxes is possible. If the terminal unit is modeled as a simple
+powered terminal units is possible. If the terminal unit is modeled as a simple
 mixing problem, the plenum air temperature will be 
-
 \begin{equation}
     T_{plenum}=\frac{\flow{tot}T_{dis}-\flow{pri}T_{sa}}{\flow{tot} -\flow{pri}}
 \end{equation}
@@ -377,7 +389,7 @@ shows the calculation for FPVAV-1-9 over the period from February 1,
 in a time series plots of the flows related to the terminal unit. As
 shown in \figref{} \ref{fig:2016-09-16-1639-FPVAV19AIRVOLUME-TikzData},
 for this particular terminal unit, the primary flow is either near zero
-or near design. At times, the measured flow is also above the design
+or design. At times, the measured flow is also above the design
 spec, making the plenum flow calculation zero. When the plenum flow is
 calculated to be zero, the plenum temperature calculation becomes
 undefined.
@@ -404,7 +416,7 @@ the terminal unit when the reheat valve is closed.  Ideally, the amount
 of reheat would be at or near zero. 
 
 If the plenum temperature is assumed to be equal to the zone temperature
-than an estimate of the mixed air temperature in the terminal unit would
+then an estimate of the mixed air temperature in the terminal unit would
 be
 \begin{equation}
     \mat = \frac{\priflow \sat + T_{zone} \left( \totflow - \priflow \right) }{ \totflow}
@@ -435,20 +447,20 @@ The following plots show the reheat energy as determined by \eqreftext{}
 \label{tab:PlenumTemperatureEstimation}
 \begin{tabular}{@{}rl@{}}
 \toprule
-Project:         & Mitch Dissertation NCTM---2016-09-19 10:34           \\ \midrule
-Scope:           & NCTM                                                 \\
-Axis Parameters: & Plenum Temperature vs. OA Dry-bulb Temp (NOAA)        \\
-Date Period:     & 10/6/2015 - 9/12/2016  (342 days)                    \\
-OAT range:       & 31 to 100\(^\circ\)F      \\
-Ignoring:        & When AHU is Off                                      \\
-                 & First 1.0 hours of operation                         \\
-                 & Last 1.0 hours of operation                          \\
-                 & Sundays                                              \\
-                 & Saturdays                                            \\
-                 & Federal Holidays                                     \\
-                 & Hours from 17:00 to 9:00                             \\
-                 & When label Plenum Temp Uncertainty is greater than 2 \\
-                 & When label Valve Positions is greater than 1         \\ \bottomrule
+Project:          & Mitch Dissertation NCTM---2016-09-19 10:34           \\ \midrule
+Scope:            & NCTM                                                                \\
+Axis Parameters:  & Plenum Temperature vs. OA Dry-bulb Temp (NOAA)                      \\
+Date Period:      & 10/6/2015 - 9/12/2016  (342 days)                                   \\
+OAT range:        & 31 to 100\(^\circ\)F                                                \\
+Ignoring:         & When AHU is Off                                                     \\
+                  & First 1.0 hours of operation                                        \\
+                  & Last 1.0 hours of operation                                         \\
+                  & Sundays                                                             \\
+                  & Saturdays                                                           \\
+                  & Federal Holidays                                                    \\
+                  & Hours from 17:00 to 9:00                                            \\
+                  & When label Plenum Temp Uncertainty is greater than 2                \\
+                  & When label Valve Positions is greater than 1         \\ \bottomrule
 \end{tabular}
 \end{table}
 
@@ -474,35 +486,35 @@ Ignoring:        & When AHU is Off                                      \\
 \label{tab:plenumStatistics}
 \begin{tabular}{@{}llllllllll@{}}
     \toprule
-    Unit     & Min  & \parbox{1cm}{5th \\ Perc.} & Mean & Median & \parbox{1cm}{95th \\ Perc.} & Max   & \parbox{1cm}{St. \\ Dev. }      & \parbox{1cm}{Original \\ Count} & \parbox{1 cm}{\% \\ Ignored } \\ \midrule
-1-8          & 56.5 & 56.5             &  60.6   & 58.8 & 71.8   & 71.8              &  4.25   & 29199 & 99.911\%         \\
-2-12         & 52.8 & 55.7             &  60.8   & 61.8 & 62.5   & 75.0              &  2.23   & 29319 & 88.062\%         \\
-2-15         & 52.1 & 57.4             &  61.3   & 61.8 & 62.6   & 78.5              &  1.84   & 29324 & 78.645\%         \\
-1-9          & 57.0 & 57.0             &  63.6   & 65.0 & 73.5   & 73.8              &  5.34   & 27961 & 99.939\%         \\
-2-6          & 65.0 & 65.0             &  65.0   & 65.0 & 65.0   & 65.0              &  0.00   & 29311 & 99.997\%         \\
-2-18         & 61.5 & 62.7             &  69.6   & 67.0 & 80.2   & 80.5              &  5.60   & 29312 & 99.846\%         \\
-2-16         & 67.0 & 67.0             &  67.3   & 67.5 & 67.5   & 67.5              &  0.29   & 29325 & 99.990\%         \\
-2-10         & 66.5 & 66.5             &  67.8   & 67.8 & 69.0   & 69.0              &  1.44   & 29236 & 99.986\%         \\
-2-14         & 60.0 & 61.0             &  68.8   & 68.5 & 79.0   & 79.8              &  6.28   & 29318 & 99.860\%         \\
-2-11         & 66.5 & 66.5             &  68.0   & 68.5 & 69.5   & 69.5              &  1.01   & 28557 & 99.958\%         \\
-2-5          & 68.5 & 68.5             &  69.1   & 69.0 & 70.0   & 70.0              &  0.65   & 29309 & 99.983\%         \\
-2-8          & 68.2 & 69.1             &  70.0   & 70.0 & 70.7   & 72.5              &  0.55   & 29304 & 98.601\%         \\
-2-13         & 68.0 & 68.5             &  70.0   & 70.0 & 71.5   & 72.6              &  1.34   & 29312 & 99.887\%         \\
-1-5          & 55.0 & 63.8             &  71.1   & 70.1 & 78.0   & 79.0              &  4.62   & 30170 & 99.450\%         \\
-2-17         & 61.5 & 68.5             &  70.3   & 70.4 & 71.5   & 72.5              &  1.23   & 29287 & 99.126\%         \\
-2-2          & 52.5 & 67.3             &  70.7   & 70.8 & 73.6   & 75.6              &  2.69   & 29363 & 98.685\%         \\
-1-7          & 60.0 & 64.5             &  71.8   & 71.8 & 75.1   & 75.7              &  3.11   & 29955 & 99.222\%         \\
-2-3          & 64.5 & 71.0             &  73.0   & 72.8 & 75.3   & 76.2              &  1.49   & 29367 & 96.391\%         \\
-1-2          & 67.0 & 70.8             &  73.9   & 72.9 & 77.8   & 78.5              &  2.60   & 30166 & 99.589\%         \\
-2-1          & 67.5 & 70.8             &  73.6   & 73.8 & 75.5   & 81.7              &  1.44   & 29366 & 96.016\%         \\
-1-3          & 71.4 & 72.6             &  74.2   & 74.4 & 75.4   & 76.9              &  0.94   & 30145 & 98.202\%         \\
-2-9          & 69.0 & 70.7             &  73.9   & 74.5 & 76.5   & 78.4              &  1.88   & 29272 & 76.356\%         \\
-1-1          & 57.0 & 71.8             &  74.6   & 74.8 & 79.0   & 82.5              &  2.64   & 30152 & 97.652\%         \\
-1-10         & 58.5 & 62.0             &  73.8   & 74.9 & 76.0   & 78.2              &  3.61   & 29941 & 99.008\%         \\
-1-4          & 54.0 & 72.4             &  74.9   & 75.1 & 77.2   & 81.7              &  2.51   & 30086 & 98.488\%         \\
-2-4          & 69.5 & 73.7             &  75.3   & 75.2 & 76.7   & 77.6              &  0.96   & 29304 & 86.916\%         \\
-1-6          & 56.5 & 66.2             &  74.1   & 75.6 & 81.3   & 81.6              &  5.43   & 30170 & 99.738\%         \\
-2-7          & N/A  & N/A              &  N/A    & N/A  & N/A    & N/A               &  N/A    & 28906 & 100.000\%        \\ \bottomrule
+Unit     & Min  & \parbox{1cm}{5th \\ Perc.} & Mean & Median & \parbox{1cm}{95th \\ Perc.} & Max   & \parbox{1cm}{St. \\ Dev. }      & \parbox{1cm}{Original \\ Count} & \parbox{1 cm}{\% \\ Ignored } \\ \midrule
+1-8  & 56.5 & 56.5 & 60.6 & 58.8 & 71.8 & 71.8 & 4.25 & \num{29199} & 99.911\%         \\
+2-12 & 52.8 & 55.7 & 60.8 & 61.8 & 62.5 & 75.0 & 2.23 & \num{29319} & 88.062\%         \\
+2-15 & 52.1 & 57.4 & 61.3 & 61.8 & 62.6 & 78.5 & 1.84 & \num{29324} & 78.645\%         \\
+1-9  & 57.0 & 57.0 & 63.6 & 65.0 & 73.5 & 73.8 & 5.34 & \num{27961} & 99.939\%         \\
+2-6  & 65.0 & 65.0 & 65.0 & 65.0 & 65.0 & 65.0 & 0.00 & \num{29311} & 99.997\%         \\
+2-18 & 61.5 & 62.7 & 69.6 & 67.0 & 80.2 & 80.5 & 5.60 & \num{29312} & 99.846\%         \\
+2-16 & 67.0 & 67.0 & 67.3 & 67.5 & 67.5 & 67.5 & 0.29 & \num{29325} & 99.990\%         \\
+2-10 & 66.5 & 66.5 & 67.8 & 67.8 & 69.0 & 69.0 & 1.44 & \num{29236} & 99.986\%         \\
+2-14 & 60.0 & 61.0 & 68.8 & 68.5 & 79.0 & 79.8 & 6.28 & \num{29318} & 99.860\%         \\
+2-11 & 66.5 & 66.5 & 68.0 & 68.5 & 69.5 & 69.5 & 1.01 & \num{28557} & 99.958\%         \\
+2-5  & 68.5 & 68.5 & 69.1 & 69.0 & 70.0 & 70.0 & 0.65 & \num{29309} & 99.983\%         \\
+2-8  & 68.2 & 69.1 & 70.0 & 70.0 & 70.7 & 72.5 & 0.55 & \num{29304} & 98.601\%         \\
+2-13 & 68.0 & 68.5 & 70.0 & 70.0 & 71.5 & 72.6 & 1.34 & \num{29312} & 99.887\%         \\
+1-5  & 55.0 & 63.8 & 71.1 & 70.1 & 78.0 & 79.0 & 4.62 & \num{30170} & 99.450\%         \\
+2-17 & 61.5 & 68.5 & 70.3 & 70.4 & 71.5 & 72.5 & 1.23 & \num{29287} & 99.126\%         \\
+2-2  & 52.5 & 67.3 & 70.7 & 70.8 & 73.6 & 75.6 & 2.69 & \num{29363} & 98.685\%         \\
+1-7  & 60.0 & 64.5 & 71.8 & 71.8 & 75.1 & 75.7 & 3.11 & \num{29955} & 99.222\%         \\
+2-3  & 64.5 & 71.0 & 73.0 & 72.8 & 75.3 & 76.2 & 1.49 & \num{29367} & 96.391\%         \\
+1-2  & 67.0 & 70.8 & 73.9 & 72.9 & 77.8 & 78.5 & 2.60 & \num{30166} & 99.589\%         \\
+2-1  & 67.5 & 70.8 & 73.6 & 73.8 & 75.5 & 81.7 & 1.44 & \num{29366} & 96.016\%         \\
+1-3  & 71.4 & 72.6 & 74.2 & 74.4 & 75.4 & 76.9 & 0.94 & \num{30145} & 98.202\%         \\
+2-9  & 69.0 & 70.7 & 73.9 & 74.5 & 76.5 & 78.4 & 1.88 & \num{29272} & 76.356\%         \\
+1-1  & 57.0 & 71.8 & 74.6 & 74.8 & 79.0 & 82.5 & 2.64 & \num{30152} & 97.652\%         \\
+1-10 & 58.5 & 62.0 & 73.8 & 74.9 & 76.0 & 78.2 & 3.61 & \num{29941} & 99.008\%         \\
+1-4  & 54.0 & 72.4 & 74.9 & 75.1 & 77.2 & 81.7 & 2.51 & \num{30086} & 98.488\%         \\
+2-4  & 69.5 & 73.7 & 75.3 & 75.2 & 76.7 & 77.6 & 0.96 & \num{29304} & 86.916\%         \\
+1-6  & 56.5 & 66.2 & 74.1 & 75.6 & 81.3 & 81.6 & 5.43 & \num{30170} & 99.738\%         \\
+2-7  & N/A  & N/A  & N/A  & N/A  & N/A  & N/A  & N/A  & \num{28906} & 100.000\%        \\ \bottomrule
 \end{tabular}
 \end{table}
 
@@ -510,7 +522,7 @@ Another way to view the accuracy and importance of the plenum
 temperature on the amount of reheat necessary is to look at the
 difference between the discharge temperature and the predicted mixed air
 temperature in the terminal unit under conditions when the reheat valve
-is closed.  During these times the values should be nearly equal and the
+is closed.  During these times the values should be nearly equal, and the
 difference should be near zero. 
 
 Under the assumption that the plenum temperature is equal to the
@@ -533,11 +545,11 @@ air temperature using the zone temperature assumption for TU-2-7.}
 
 The opposite case can be seen with TU-2-15, as shown in \figref{}
 \ref{fig:2017-01-09-1434-TboxDischargeMixedAirTempfromRoomTempforFPVAV215vsTboxPLRforFPVAV215}
-In this case the values are all negative, indicating that the plenum
+In this case, the values are all negative, indicating that the plenum
 temperature is lower than the zone temperature. The plots are from the
-same time period and cover a wide range of outdoor air temperatures from
+same period and cover a wide range of outdoor air temperatures from
 \SI{36}{\degreeF} to \SI{96}{\degreeF}. Both plots do appear linear with
-regards to the PLR of the terminal unit. This indicates that there is
+regards to the PLR of the terminal unit. This linearity indicates that there is
 some relationship with the plenum temperature and the amount of
 conditioned air coming from the parent air handling unit.
 
@@ -582,14 +594,14 @@ the sensible zone load will be
     Q_{zone}=\flow{z} \rhocp{} \left(T_{dis}-T_{z} \right) \approx 1.08 \cdot \flow{z}\left(T_{dis}-T_{z} \right)
 \end{equation}
 
-As a result of the dynamics of how  terminal units are actually
-controlled, the estimated zone load can vary back and forth, while the
-true zone load is a more smooth function. \figref{}
-\ref{fig:2016-06-22-1654-ZoneLoadforContainerFPVAV17-TikzData} shows how
-the estimated zone load can change directionality several times over the
-course of a day. The zone load for terminal unit FPVAV-1-7 typically
-varied from 6,000 BTU/hr to 20,000 BTU/hr over the course of the week
-from June 6, 2016 to June 11, 2016.
+As a result of the dynamics of how terminal units are controlled in reality,
+the estimated zone load can vary back and forth, while the true zone load is a
+more smooth function. \figref{}
+\ref{fig:2016-06-22-1654-ZoneLoadforContainerFPVAV17-TikzData} shows how the
+estimated zone load can change directionality several times over the course of
+a day. The zone load for terminal unit FPVAV-1-7 typically varied from 6,000
+BTU/hr to 20,000 BTU/hr over the course of the week from June 6, 2016, to June
+11, 2016.
 
 \figref{} \ref{fig:2016-06-22-1643-ZoneLoadforContainerFPVAV22-TikzData}
 shows another example of how the estimated zone load may vary throughout
@@ -626,7 +638,7 @@ system.
 \figref{}
 \ref{fig:ZoneLoadforContainerFPVAV214vsOADryBulbTemperatureNOAA} shows
 an example of the zone load plotted against outdoor air dry-bulb
-temperature. Notice that the load is not a well defined function of
+temperature. Notice that the load is not a well-defined function of
 \(\oat\). This turns out to be the case for many of the internal zones,
 which will be related more to the time of day parameters. 
 
@@ -666,35 +678,35 @@ The statistics related to the predictions of the zone loads for data ranging fro
     \toprule
     Terminal Unit & \parbox{2.3cm}{Med. Abs. \\ \(\epsilon\) (BTU/hr)} & \parbox{2.3cm}{Mean Abs. \\ \(\epsilon\)  (BTU/hr)} &  \parbox{2cm}{RMSE \\ (BTU/hr)} & \parbox{2cm}{MBE \\ (BTU/hr)} \\
     \midrule
-FPVAV-2-7         & 108                      &  171                    & 298                      &  -41                     \\
-FPVAV-2-16        & 135                      &  385                    & 704                      &  59                      \\
-FPVAV-2-5         & 162                      &  221                    & 328                      &  -22                     \\
-FPVAV-2-12        & 203                      &  1,058                  & 1,885                    &  -896                    \\
-FPVAV-2-6         & 216                      &  488                    & 836                      &  24                      \\
-FPVAV-2-13        & 270                      &  784                    & 1,841                    &  68                      \\
-FPVAV-2-10        & 292                      &  631                    & 1,000                    &  -87                     \\
-FPVAV-2-11        & 302                      &  708                    & 1,062                    &  -68                     \\
-FPVAV-2-18        & 324                      &  914                    & 1,614                    &  77                      \\
-FPVAV-1-11        & 324                      &  703                    & 1,585                    &  115                     \\
-FPVAV-2-14        & 459                      &  1,004                  & 1,780                    &  -9                      \\
-FPVAV-2-4         & 540                      &  1,036                  & 2,012                    &  84                      \\
-FPVAV-1-2         & 626                      &  1,201                  & 2,056                    &  -385                    \\
-FPVAV-2-8         & 648                      &  991                    & 1,519                    &  -43                     \\
-FPVAV-2-9         & 648                      &  1,236                  & 1,763                    &  635                     \\
-FPVAV-2-17        & 691                      &  1,386                  & 2,327                    &  122                     \\
-FPVAV-2-15        & 756                      &  3,852                  & 12,353                   &  552                     \\
-FPVAV-1-8         & 945                      &  1,371                  & 1,978                    &  336                     \\
-FPVAV-2-3         & 972                      &  1,789                  & 3,587                    &  -171                    \\
-FPVAV-2-1         & 1,080                    &  1,609                  & 2,871                    &  -559                    \\
-FPVAV-1-9         & 1,296                    &  1,850                  & 2,805                    &  209                     \\
-FPVAV-1-5         & 1,404                    &  2,463                  & 4,105                    &  -17                     \\
-FPVAV-1-10        & 1,512                    &  2,819                  & 4,634                    &  1,054                   \\
-FPVAV-1-1         & 1,598                    &  3,783                  & 6,267                    &  -1,359                  \\
-FPVAV-1-3         & 1,755                    &  3,164                  & 4,868                    &  -237                    \\
-FPVAV-1-6         & 1,814                    &  3,186                  & 4,861                    &  261                     \\
-FPVAV-1-7         & 2,268                    &  2,827                  & 3,942                    &  -326                    \\
-FPVAV-2-2         & 2,376                    &  4,422                  & 7,184                    &  1,773                   \\
-FPVAV-1-4         & 3,024                    &  5,569                  & 8,502                    &  19                      \\
+FPVAV-2-7  & 108   & 171   & 298    & -41    \\
+FPVAV-2-16 & 135   & 385   & 704    & 59     \\
+FPVAV-2-5  & 162   & 221   & 328    & -22    \\
+FPVAV-2-12 & 203   & 1,058 & 1,885  & -896   \\
+FPVAV-2-6  & 216   & 488   & 836    & 24     \\
+FPVAV-2-13 & 270   & 784   & 1,841  & 68     \\
+FPVAV-2-10 & 292   & 631   & 1,000  & -87    \\
+FPVAV-2-11 & 302   & 708   & 1,062  & -68    \\
+FPVAV-2-18 & 324   & 914   & 1,614  & 77     \\
+FPVAV-1-11 & 324   & 703   & 1,585  & 115    \\
+FPVAV-2-14 & 459   & 1,004 & 1,780  & -9     \\
+FPVAV-2-4  & 540   & 1,036 & 2,012  & 84     \\
+FPVAV-1-2  & 626   & 1,201 & 2,056  & -385   \\
+FPVAV-2-8  & 648   & 991   & 1,519  & -43    \\
+FPVAV-2-9  & 648   & 1,236 & 1,763  & 635    \\
+FPVAV-2-17 & 691   & 1,386 & 2,327  & 122    \\
+FPVAV-2-15 & 756   & 3,852 & 12,353 & 552    \\
+FPVAV-1-8  & 945   & 1,371 & 1,978  & 336    \\
+FPVAV-2-3  & 972   & 1,789 & 3,587  & -171   \\
+FPVAV-2-1  & 1,080 & 1,609 & 2,871  & -559   \\
+FPVAV-1-9  & 1,296 & 1,850 & 2,805  & 209    \\
+FPVAV-1-5  & 1,404 & 2,463 & 4,105  & -17    \\
+FPVAV-1-10 & 1,512 & 2,819 & 4,634  & 1,054  \\
+FPVAV-1-1  & 1,598 & 3,783 & 6,267  & -1,359 \\
+FPVAV-1-3  & 1,755 & 3,164 & 4,868  & -237   \\
+FPVAV-1-6  & 1,814 & 3,186 & 4,861  & 261    \\
+FPVAV-1-7  & 2,268 & 2,827 & 3,942  & -326   \\
+FPVAV-2-2  & 2,376 & 4,422 & 7,184  & 1,773  \\
+FPVAV-1-4  & 3,024 & 5,569 & 8,502  & 19     \\
     \bottomrule
 \end{tabular}
 \end{table}
@@ -707,16 +719,16 @@ margin. It has estimated loads near 50,000 BTU/hr.
 %% These items come from the analysis done with plus minus 15 min and 3 degree F OAT bounds in file Batch Plots -- Mitch Dissertation N -- 2016-09-14 0952
 
 An interesting pattern that was that the initial prediction routine
-overpredicted the zone load when the zone load was closer to the heating
-range and underpredicted the zone load during times of high cooling
-load. This bias was seen in every terminal unit in the building and this
-bias occured with both the largest and smallest terminal units. Figures
+overpredicted the zone load when the zone load was closer to the heating range
+and underpredicted the zone load during times of high cooling load. This bias
+was seen in every terminal unit in the building and this bias occured with both
+the largest and smallest terminal units. Figures
 \ref{fig:2016-09-14-1028-ZoneLoadResidualforContainerFPVAV22vsZoneLoadforContainerFPVAV22}
 through
 \ref{fig:2016-09-14-1020-ZoneLoadResidualforContainerFPVAV27vsZoneLoadforContainerFPVAV27}
-show examples of this phenomenon. The date period analyzed was from
-March 1, 2016 to August 1, 2016, ignoring when the AHUs were off,
-federal holidays and weekends, and hours from 5 PM to 9 AM. 
+show examples of this phenomenon. The date period analyzed was from March 1,
+2016 to August 1, 2016, ignoring when the AHUs were off, federal holidays and
+weekends, and hours from 5 PM to 9 AM. 
 
 \newcommand{\zoneLoadCaption}[1]{Bias in zone load prediction for #1.}
 
@@ -753,9 +765,9 @@ temperature.
 
 \section{Analysis of the Mixed Air Temperature in Series Terminal Unit and Reheat Assumption}
 
-For series fan powered boxes, the assumption was made that the total
+For series fan powered terminal units, the assumption was made that the total
 flow remains constant and that the mixed air temperature at the
-individual box can be predicted based on the primary flow value that is
+individual terminal unit can be predicted based on the primary flow value that is
 measured. 
 
 One possible assumption for the plenum temperature is that it is equal
@@ -871,33 +883,33 @@ is a damper that is critical at least 59\% of the time.
 %% Assumes that the AHU is on. 
 \begin{table}
 \centering
-\caption{Percentage of time that different boxes for various AHUs were the most open during the period of Jan. 1, 2016 - Jun. 1, 2016.}
+\caption{Percentage of time that different terminal units for various AHUs were the most open during the period of Jan. 1, 2016 - Jun. 1, 2016.}
 \label{tab:AHU12CriticalZone}
 \begin{tabular}{@{}llll@{}}
 \toprule
-AHU                        & Tbox       & Count of Max & Percent as Critical \\ \midrule
-\multirow{3}{*}{AHU-1-2}   & FPVAV-1-8  & 3,518        & 68\%                \\
-                           & FPVAV-1-9  & 1,281        & 25\%                \\
-                           & 2 others   & 354          & 7\%                 \\ \midrule
-\multirow{3}{*}{AHU-1-3}   & FPVAV-1-5  & 2,331        & 59\%                \\
-                           & FPVAV-1-4  & 1,006        & 25\%                \\
-                           & 4 others   & 622          & 15\%                 \\ \midrule
-\multirow{3}{*}{AHU-2-1}   & FPVAV-2-1  & 10,965       & 79\%  \\
-                           & FPVAV-2-2  & 2,648        & 19\%  \\
-                           & FPVAV-2-3  & 258          & 2\% \\ \midrule
-\multirow{3}{*}{AHU-2-2}   & FPVAV-2-18 & 10,003       & 72\%  \\
-                           & FPVAV-2-14 & 3,171        & 23\%  \\
-                           & 6 others   & 648          & 5\%  \\ \midrule
-\multirow{3}{*}{AHU-2-3}   & FPVAV-2-6  & 9,883        & 72\%  \\
-                           & FPVAV-2-11 & 3,743        & 27\%  \\
-                           & FPVAV-2-10 & 184          & 1\%  \\ \midrule
+AHU                          & Unit       & Count of Max & Percent as Critical \\ \midrule
+\multirow{3}{*}{AHU-1-2}     & FPVAV-1-8  & 3,518        & 68\%                             \\
+                             & FPVAV-1-9  & 1,281        & 25\%                             \\
+                             & 2 others   & 354          & 7\%                 \\ \midrule
+\multirow{3}{*}{AHU-1-3}     & FPVAV-1-5  & 2,331        & 59\%                             \\
+                             & FPVAV-1-4  & 1,006        & 25\%                             \\
+                             & 4 others   & 622          & 15\%                 \\ \midrule
+\multirow{3}{*}{AHU-2-1}     & FPVAV-2-1  & 10,965       & 79\%                             \\
+                             & FPVAV-2-2  & 2,648        & 19\%                             \\
+                             & FPVAV-2-3  & 258          & 2\% \\ \midrule
+\multirow{3}{*}{AHU-2-2}     & FPVAV-2-18 & 10,003       & 72\%                             \\
+                             & FPVAV-2-14 & 3,171        & 23\%                             \\
+                             & 6 others   & 648          & 5\%  \\ \midrule
+\multirow{3}{*}{AHU-2-3}     & FPVAV-2-6  & 9,883        & 72\%                             \\
+                             & FPVAV-2-11 & 3,743        & 27\%                             \\
+                             & FPVAV-2-10 & 184          & 1\%  \\ \midrule
 \end{tabular}
 \end{table}
 
 
 \subsection{Accuracy of Mechanical Specifications}
 
-In simplified analysis and modeling such as being proposed, it would be
+In the simplified analysis and modeling such as being proposed, it would be
 ideal if the specifications in the mechanical drawings can be used
 directly.  One important parameter is the design flow rate for the
 terminal unit.  \tableref \ref{tab:TerminalUnitInformation} shows the
@@ -929,16 +941,16 @@ majority of the data, as seen in \figref{}
 \toprule
 AHU &  Terminal Unit & \parbox{1.5cm}{\centering  Flow\\(CFM)}  & \parbox{2.7cm}{Maximum Meas. \\  Flow (CFM)}  \\ \midrule
 %%\parbox{2cm}{AHU-1-1 \\ (5 hp)} & \multicolumn{3}{l}{No boxes - Serves Teaching Module alone, Constant Fan} \\ \midrule
-AHU-1-2          & FPVAV-1-7  & 1,400 & 1,496 \\ \cmidrule(r){2-4}
-(5 hp)           & FPVAV-1-8  & 700   & 840   \\ \cmidrule(r){2-4}
-                 & FPVAV-1-9  & 1,200 & 1,688 \\ \cmidrule(r){2-4}
-                 & FPVAV-1-10 & 1,600 & 1,712 \\ \midrule
-AHU-1-3          & FPVAV-1-1  & 1,480 & 1,676 \\ \cmidrule(r){2-4}
-(7.5 hp)         & FPVAV-1-2  & 1,160 & 1,240 \\ \cmidrule(r){2-4}
-                 & FPVAV-1-3  & 1,300 & 1,364 \\ \cmidrule(r){2-4}
-                 & FPVAV-1-4  & 1,400 & 1,760 \\ \cmidrule(r){2-4}
-                 & FPVAV-1-5  & 1,040 & 612   \\ \cmidrule(r){2-4}
-                 & FPVAV-1-6  & 1,120 & 1,288 \\ \midrule
+AHU-1-2           & FPVAV-1-7  & 1,400 & 1,496 \\ \cmidrule(r){2-4}
+(5 hp)            & FPVAV-1-8  & 700   & 840   \\ \cmidrule(r){2-4}
+                  & FPVAV-1-9  & 1,200 & 1,688 \\ \cmidrule(r){2-4}
+                  & FPVAV-1-10 & 1,600 & 1,712 \\ \midrule
+AHU-1-3           & FPVAV-1-1  & 1,480 & 1,676 \\ \cmidrule(r){2-4}
+(7.5 hp)          & FPVAV-1-2  & 1,160 & 1,240 \\ \cmidrule(r){2-4}
+                  & FPVAV-1-3  & 1,300 & 1,364 \\ \cmidrule(r){2-4}
+                  & FPVAV-1-4  & 1,400 & 1,760 \\ \cmidrule(r){2-4}
+                  & FPVAV-1-5  & 1,040 & 612   \\ \cmidrule(r){2-4}
+                  & FPVAV-1-6  & 1,120 & 1,288 \\ \midrule
 %%\parbox{2cm}{AHU-1-4 \\ (7.5 hp)} & \multicolumn{3}{l}{No boxes - Serves open atrium outside lecture halls, constant fan}  \\\midrule
 AHU-2-1          & FPVAV-2-1  & 2,000 & 2,016 \\ \cmidrule(r){2-4}
    (7.5 hp)      & FPVAV-2-2  & 2,200 & 2,060 \\ \cmidrule(r){2-4}
@@ -976,8 +988,8 @@ The methods described in the previous sections were used to determine
 the optimal supply air temperature for various air handling units at the
 NCTM building.  \figref{}
 \ref{fig:2016-11-30-1004-AHU23MixedAirTemp-TikzData} shows the results
-for AHU-2-3 during the work week from Monday November 7, 2016 through
-Friday November 11, 2016.  During that week, the actual \(\sat\) hovered
+for AHU-2-3 during the work week from Monday, November 7, 2016 through
+Friday, November 11, 2016.  During that week, the actual \(\sat\) hovered
 between 58 and 60\(^\circ\)F. The optimal \(\sat\) was predicted using
 different parameters for the simple fan curve exponent and plenum
 temperature.  The optimization was completed using a fan exponent of 2
@@ -1044,13 +1056,13 @@ Energy savings were estimated for a period from June
 Weekends, times when the AHUs were off, federal holidays, and times from
 5:00 PM to 9:00 AM were all ignored. 
 
-In addition, since the estimation of the amount of reheat in terminal
+Also, since the estimation of the amount of reheat in terminal
 units had a high uncertainty level, it was decided to ignore times in
 which at least one of the reheat valves in the children terminal units
 was open. In this sense, the only components to the AHU energy were the
-cooling energy at the cooling coil, and the fan energy. 
+cooling energy at the cooling coil and the fan energy. 
 
-To provide a sense of the sensitivity in the assumed parameters in the
+To provide a sense of the sensitivity to the assumed parameters in the
 optimization, savings were determined using different exponents ranging
 from 2 to 3 for the PLR curve, along with the plenum temperature assumed
 to be the corresponding room temperature and the derived static
@@ -1062,8 +1074,7 @@ AHU-2-1 and AHU-2-2 will be small since the systems are already
 operating near optimally. However, the savings potential in AHU-2-3
 appeared promising since there was approximately a \SI{5}{\degreeF}
 difference between the operating supply air temperature and the
-predicted optimal supply air temperature. This would turn out to be the
-case.
+predicted optimal supply air temperature. 
 
 \figref{}
 \ref{fig:2017-01-24-1607-VariableTotalPowervsOADryBulbTemperatureNOAA}
@@ -1071,11 +1082,11 @@ shows the difference in the combined energy of the fan and cooling from
 actual to optimal. Periods in which reheat was occurring was ignored
 from the analysis. As expected, the energy use has a dependence on
 \(\oat\). The optimal profile has a 3-Parameter cooling shape, as
-described in \cite{AshraeGuideline2002}. 
+described in \cite{ASHRAE2014}. 
 
 The energy savings is primarily caused by increasing the supply air
 temperature. There already was a reset programmed for AHU-2-3, but the
-optimal reset would in general have a higher \(\sat\). 
+optimal reset would, in general, have a higher \(\sat\). 
 
 
 \begin{figure}
@@ -1091,6 +1102,24 @@ optimal reset would in general have a higher \(\sat\).
 \caption{Supply air temperature difference between actual and optimal.}
 \label{fig:2017-01-25-1121-VariableSupplyAirTempvsOADryBulbTemperatureNOAA}
 \end{figure}
+
+% Table generated by Excel2LaTeX from sheet 'Sheet1'
+\begin{table}[htbp]
+  \centering
+  \caption{Savings results, depending on model assumptions.}
+  \begin{tabular}{C{2cm}C{4cm}R{2cm}R{2cm}r}
+        \toprule
+        Fan Exponent & Plenum Temperature Assumption & Actual (MMBTU) & Savings (MMBTU) & \% Savings \\
+    \midrule
+    2 & Room Temperatures  & 53.43 & 13.98 & 26\% \\
+    3 & Room Temperatures  & 51.46 & 12.01 & 23\% \\
+    2 & Static Temperature & 53.71 & 15.51 & 29\% \\
+    3 & Static Temperature & 51.73 & 13.53 & 26\% \\
+\bottomrule
+    \end{tabular}%
+  \label{tab:addlabel}%
+\end{table}%
+
 
 \section{Discussion}
 
