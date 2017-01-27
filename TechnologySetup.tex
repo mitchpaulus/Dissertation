@@ -9,24 +9,23 @@ initial investment can also be cost prohibitive.
 In more complex schemes, it may be necessary to install additional
 sensors that are typically not available in commercial HVAC systems.
 Along with the sensor cost, there is the cost to tie the sensors into the
-BAS. The updated logic will need to be coded by a controls vendor,
+BAS. The updated logic will likely be coded by a controls contractor,
 adding more cost. On a large campus, this reprogramming can also take a
 significant amount of time to complete. 
 
 Another issue is that of risk. There is the risk that if the controls do
 not function properly and are too complex for the current building
-operator, the controls cannot be easily removed and set back to default. 
+operator, the controls cannot be easily removed and set back to the 
+previous state. 
 
 \section{Proposed Setup}
 
 In the proposed setup, the amount of change to the existing BAS is
 minimal. The control logic remains exactly the same. A small executable
 script can be installed on the BAS computer that can host code that will
-send HTTP request to a remote server holding the historical data and
+send an HTTP request to a remote server holding the historical data and
 the optimization methods. 
 
-Before this process can begin, the sensors will need to be mapped in a
-way that the server can understand. 
 
 \figref{} \ref{fig:NetworkFlow} shows potential information flow. Over
 any period, historical trend data representing the system is stored
@@ -136,12 +135,15 @@ The current systems supported by Implementer include:
     \item Tridium Niagara 
 \end{itemize}
 
+Before this process can begin, the sensors will need to be mapped in a
+way that the server can understand. 
+
 In Implementer, trends are given meaning through the use of
 \textit{Labels}. Labels are similar to the concept of tagging that is used
 in other systems, such as a system that implement Project Haystack. 
 
 Trends can receive labels in several ways. For trends in air handling
-units, the label can automatically be derived from the sensors type and
+units, the label can automatically be derived from the type of sensor and
 location on a schematic. A sample schematic from the NCTM project is
 shown in \figref{} \ref{fig:AHUSchematic}. For example, a temperature
 sensor that is at the outlet of the air handling unit, unaffected by any
@@ -158,30 +160,26 @@ handling unit containers, and air handling unit containers are parents
 to terminal unit containers. \figref{} \ref{fig:ContainerHierarchy}
 shows a portion of the hierarchy for the NCTM project.
 
-
-
-
 \begin{figure}
 \centering
 \includegraphics[scale=0.5]{Images/SampleAHUSchematic.PNG}
-\label{fig:AHUSchematic}
 \caption{Sample AHU schematic for AHU-2-2 in the NCTM building.}
+\label{fig:AHUSchematic}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.75]{Images/CustomLabels.PNG}
+\caption{Custom labels setup, showing how all \textit{AUX TEMP} trends
+are associated to the label \textit{DischargeTemps}. }
+\label{fig:CustomLabels}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics{Images/ContainerHierarchy.PNG}
-\label{fig:ContainerHierarchy}
 \caption{Container Hierarchy for NCTM.}
-\end{figure}
-
-
-\begin{figure}
-\centering
-\includegraphics[scale=0.75]{Images/CustomLabels.PNG}
-\label{fig:CustomLabels}
-\caption{Custom labels setup, showing how all \textit{AUX TEMP} trends
-are associated to the label \textit{DischargeTemps}. }
+\label{fig:ContainerHierarchy}
 \end{figure}
 
 In order to complete the optimization, the inputs and functions for the

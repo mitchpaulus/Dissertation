@@ -263,15 +263,17 @@ terminal unit leaving temperature and zone temperature. Note that using
 assumes that the space is well-mixed and at steady-state. If the controls
 oscillate, then the zone load estimation will have some periodicity. In one
 sense, there is no ``single'' zone load coming from a point source, and as such
-we will have to use only an estimation.
+we will have to rely on this estimation.
 
 The independent variables available for prediction are the current time and
 outdoor air conditions. The current time can be separated into time of day, day
 of week, weekdays/weekends and such. Outdoor air temperature correlates with
-the external load. 
+the external load. As a reminder, this approach does not have access to live values
+of sensors and only relies on historical data.
 
-The approach used is a related to the concept of a \textit{nearest neighbor}.
-The nearest neighbors are defined by any previous data that:
+The approach used to estimate parameters is a related to the concept of
+a \textit{nearest neighbor}. The nearest neighbors are defined by any 
+previous data that:
 
 \begin{enumerate}
 \item Was within 1 hour of the time of day 
@@ -285,6 +287,10 @@ statistic in comparison to the mean, having a breakdown point of 50\%, meaning
 that up to 50\% of the data can be contaminated before the median statistic
 will no longer be reliable. For the mean, one arbitrarily large data point can
 turn the mean statistic unreliable. 
+
+This work used the most recent 30 data points in the median calculation. 30 points 
+was chosen since this is the threshold in which the sample median should approximate
+the actual median, if the population is assumed to have a normal distribution. 
 
 It is advised that in this approach, that the initial historical data be sorted
 in order of temperature, followed by the date time.  The lookup for the
@@ -333,6 +339,44 @@ The following assumptions were made:
     \item Reference pressure of 0 at each zone
     \item Linear flow response from the damper position
 \end{itemize}
+
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+        xmin=0,
+        xmax=1,
+        ymax=1,
+        ymin=0,
+        legend pos=outer north east,
+        xlabel={Damper Position (0-1), \(\damp{}\)},
+        ylabel={Percentage of full flow (0-1)},
+    ] \addplot[
+        domain=0:1,
+        black,
+    ]
+    {x};
+
+    \addlegendentry{Linear}
+
+    \addplot[
+        domain=0:1,
+        red,
+    ]{x*x};
+    \addlegendentry{Equal Percentage}
+\addplot[
+        domain=0:1,
+        blue,
+    ]{sqrt(x)};
+    \addlegendentry{Quick Opening}
+\end{axis}
+\end{tikzpicture}
+\caption{Terminal unit flow response as a function of damper position.}
+\label{fig:flowVersusDamperPos}
+\end{figure}
+
+
 
 With the assumption of the constant friction factor, the pressure drop
 in each duct section will be proportional to a constant and the flow
@@ -383,102 +427,69 @@ equations will always be equal, and the total absolute pressure drop can
 be arbitrarily set with the single coefficient. 
 
 Without further information regarding the actual terminal unit pressure
-drop relationships, this method loses the potential usefulness. For this
+drop relationships, this method loses its potential usefulness. For this
 reason, a simple approach of using an exponential part load ratio (PLR)
 function was employed as shown in Eq. \ref{eq:PartLoadRatio}. The value
-of \(n\) was varied from 2 to 3. 
+of \(n\) was varied from 2 to 3 and the sensitivity to this parameter was 
+examined. 
 
 \begin{equation}\label{eq:PartLoadRatio}
     \dot{W}_{\text{fan}} = \dot{W}_{\text{design}} \left(\text{PLR}\right)^n
 \end{equation}
 
-
-\begin{figure}
-\centering
-\begin{tikzpicture}
-
-\begin{axis}[
-        xmin=0,
-        xmax=1,
-        ymax=1,
-        ymin=0,
-        legend pos=outer north east,
-        xlabel={Damper Position (0-1), \(\damp{}\)},
-        ylabel={Percentage of full flow (0-1)},
-    ] \addplot[
-        domain=0:1,
-        black,
-    ]
-    {x};
-
-    \addlegendentry{Linear}
-
-    \addplot[
-        domain=0:1,
-        red,
-    ]{x*x};
-    \addlegendentry{Equal Percentage}
-\addplot[
-        domain=0:1,
-        blue,
-    ]{sqrt(x)};
-    \addlegendentry{Quick Opening}
-
-
-\end{axis}
-
-
-
-\end{tikzpicture}
-\caption{Terminal unit flow response as a function of damper position.}
-\label{fig:flowVersusDamperPos}
-\end{figure}
-
-
 \section{Predicting the Mixed Air Temperature}
 
-To predict the energy use of the cooling/reheat coils in the
-air handling unit, the mixed air temperature needs to be estimated. The
-mixed air temperature will be dependent on several variables including
-the outdoor air temperature, return air temperature, and the damper
-positions of the outdoor air and return air. The damper positions will
-fluctuate greatly during times of economizing.  
+The mixed air temperature is the third most common temperature sensor in
+air handling units based on the data available in Implementer 
+(see \tableref{} \ref{tab:PointBreakdown}). In most cases, the nearest-neighbor 
+approach can be applied directly to the mixed air temperature trend. 
 
-If the flow for both outside and return air are known, along with either
-estimates or measurements of \(\oat{}\) and \(\rat{}\), then \(\mat{}\)
-can be predicted directly using a straightforward energy balance. 
+If a sensor is not available, it is possible to estimate the mixed air 
+temperature using an energy balance approach with the outdoor air temperature,
+return air temperature, and either measurements or estimation of the relative
+outdoor and return air flows. 
+% To predict the energy use of the cooling/reheat coils in the
+% air handling unit, the mixed air temperature needs to be estimated. The
+% mixed air temperature will be dependent on several variables including
+% the outdoor air temperature, return air temperature, and the damper
+% positions of the outdoor air and return air. The damper positions will
+% fluctuate greatly during times of economizing.  
 
-\begin{equation}
-    \mat{} = \frac{\flow{oa} \oat{} + \flow{ra} \rat{}}{\flow{oa}+\flow{ra}}
-\end{equation}
+% If the flow for both outside and return air are known, along with either
+% estimates or measurements of \(\oat{}\) and \(\rat{}\), then \(\mat{}\)
+% can be predicted directly using a straightforward energy balance. 
 
-In many cases, the temperatures can be estimated, but the individual
-flows are not measured or are difficult to measure. In these cases, it
-makes sense to investigate \(\mat{}\) as a function of \(\oat{}\). If
-the system is constant volume, then the \(\mat\) will be linearly
-related to \(\oat\), and the coefficients in a linear regression will be
-equal to
+% \begin{equation}
+%     \mat{} = \frac{\flow{oa} \oat{} + \flow{ra} \rat{}}{\flow{oa}+\flow{ra}}
+% \end{equation}
 
-\begin{equation}
-    \mat = \left(  \frac{\flow{oa}}{\flow{tot}}\right) \oat + \frac{\flow{ra}\rat}{\flow{tot}}
-\end{equation}
+% In many cases, the temperatures can be estimated, but the individual
+% flows are not measured or are difficult to measure. In these cases, it
+% makes sense to investigate \(\mat{}\) as a function of \(\oat{}\). If
+% the system is constant volume, then the \(\mat\) will be linearly
+% related to \(\oat\), and the coefficients in a linear regression will be
+% equal to
 
-If economizing is programmed, there should be a significant moderation
-that should be present in \(\mat{}\).
+% \begin{equation}
+%     \mat = \left(  \frac{\flow{oa}}{\flow{tot}}\right) \oat + \frac{\flow{ra}\rat}{\flow{tot}}
+% \end{equation}
 
-In many cases, \(\mat\) will not vary significantly in operation and can
-be considered constant. The data can be investigated on a case-by-case
-basis and the best model of these can be used to estimate \(\mat\).
+% If economizing is programmed, there should be a significant moderation
+% that should be present in \(\mat{}\).
 
-A robust approach that will be investigated is the \textit{nearest
-neighbor} approach. It is known that \(\mat\) is related to outdoor air
-temperature, return air temperature, along with the available damper
-positions in the particular air handler. By searching through historical
-data for similar conditions and taking the median of the data, a robust
-and reliable estimate can be made. 
+% In many cases, \(\mat\) will not vary significantly in operation and can
+% be considered constant. The data can be investigated on a case-by-case
+% basis and the best model of these can be used to estimate \(\mat\).
 
-Unfortunately, for a given request, only the outdoor air conditions and
-the time of day will be known. 
+% A robust approach that will be investigated is the \textit{nearest
+% neighbor} approach. It is known that \(\mat\) is related to outdoor air
+% temperature, return air temperature, along with the available damper
+% positions in the particular air handler. By searching through historical
+% data for similar conditions and taking the median of the data, a robust
+% and reliable estimate can be made. 
+
+% Unfortunately, for a given request, only the outdoor air conditions and
+% the time of day will be known. 
 
 
 %% \section{Searching for Energy Minimum}
@@ -530,7 +541,7 @@ the time of day will be known.
 
 \subsection{Brute Force Approach}
 
-Since the system is not going to expected to determine semi-optimal
+Since the system is not expected to determine semi-optimal
 control setpoints at small time intervals, say less than a second, it is
 plausible that a straightforward, brute force approach would be
 appropriate.  The brute force approach has several advantages including
@@ -572,6 +583,10 @@ The actual primary airflow is then
 \begin{equation}
     \flow{pri} = \text{MAX}\left(\flow{pri, req}, \flow{pri, min}  \right)
 \end{equation}
+
+The brute force approach was taken in the prototype code. In future implementations,
+improvements could be made to the optimization approach for improved 
+performance. 
 
 \section{Determining the Supply Air Static Pressure Requirement}
 
