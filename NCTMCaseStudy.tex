@@ -21,7 +21,7 @@ and have large floor to ceiling windows. There is also an Apple Computer
 laboratory with 48 workstations on the second floor. 
 
 On the academic side, three dedicated outdoor air handling
-units serve seven child air handling units. Two of the air handling
+units (OAHU) serve seven child air handling units. Two of the air handling
 units are constant speed, and the others are variable air volume. OAHU
 1-1 serves its wet lab and also feeds into AHU 1-1 and AHU 1-2. OAHU
 1-2 serves AHU 1-3 and 1-4 on the first floor. OAHU 2-1 serves three
@@ -61,6 +61,7 @@ Floor 2        & OAHU 2-1 & AHU 2-3 & 6am - 10pm, M-F \\
     \centering
 \includegraphics[]{Plots/TempRiseVsFlow-AHU-2-14.pdf}
 \caption{Temperature rise due to the mixing of plenum air at the terminal unit for FPVAV-2-14. }
+\label{fig:TempRise-2-14}
 \end{figure}
 
 \begin{table}
@@ -147,24 +148,24 @@ AHU-2-3           & FPVAV-2-4  & 2,000 & Open Corridor                          
 \end{tabular}
 \end{table}
 
-It is critical to have an understanding of what the actual controls in
-the building are at current. In practice, this will normally require
-that an engineer verifies both the control code along with the real
-measured performance.
+It is critical to have an understanding of what the current actual controls in
+the building are. In practice, this will normally require that an engineer
+verifies both the control code along with the real measured performance.
 
-The software \textit{Implementer} is a tool that can ease the difficulty
-in this analysis by producing certain plots en mass for terminal units.
-The Figures below show the results of temperature rise within the
-terminal unit, versus the part-load ratio of the terminal unit (assuming the
-design specifications for the design flow). From these plots, the
-minimum primary air flow setpoint can be visually quickly.
+\textit{Implementer} can ease the difficulty in this analysis by producing
+certain plots en mass for terminal units.  \figref{} \ref{fig:TempRise-2-14}
+shows the results of temperature rise within the terminal unit, versus the
+part-load ratio of the terminal unit (assuming the design specifications for
+the design flow). From these types of plots, the minimum primary air flow
+setpoint can quickly be visually determined.
 
 From the data, it appears that the majority of the terminal units in NCTM are
 operating with 30\% as the minimum flow rate. There are a few terminal units
 that are set to values less than this. \tableref{}
 \ref{tab:MinimumAirFlowRateSettings} shows the estimated minimum percent flows
-based on data from February 1, 2016, through May 1, 2016.  Several unique
-patterns and characteristics were found in the data set.
+based on data from February 1, 2016, through May 1, 2016.  
+
+%% Several unique patterns and characteristics were found in the data set.
 
 
 
@@ -428,17 +429,16 @@ and the reheat energy could be estimated by
     \label{eq:TerminalUnitReheatEnergy}
 \end{equation}
 
-The following plots show the reheat energy as determined by \eqreftext{}
+\figref{}s
+\ref{fig:2016-10-19-1424-ZoneReheatEnergyforContainerFPVAV216vsOADryBulbTemperatureNOAA}
+through
+\ref{fig:2016-10-19-1521-ZoneReheatEnergyforContainerFPVAV213vsOADryBulbTemperatureNOAA}
+show the reheat energy as determined by \eqreftext{}
 \ref{eq:TerminalUnitReheatEnergy}. They are from the period of February
 1, 2016 through May 1, 2016.  Timestamps during weekends, times between
 5:00 PM and 9:00 AM, and when the corresponding reheat valve command is
-\( < 1 \) were ignored.
-
-\begin{equation}
-    1+2 = \priflow
-    \label{eq:fakelabel}
-\end{equation}
-
+\( < 1 \) were ignored. Again, ideally, the reheat value would be
+exactly zero.
 
 
 \begin{table}[]
@@ -447,20 +447,20 @@ The following plots show the reheat energy as determined by \eqreftext{}
 \label{tab:PlenumTemperatureEstimation}
 \begin{tabular}{@{}rl@{}}
 \toprule
-Project:          & Mitch Dissertation NCTM---2016-09-19 10:34           \\ \midrule
-Scope:            & NCTM                                                                \\
-Axis Parameters:  & Plenum Temperature vs. OA Dry-bulb Temp (NOAA)                      \\
-Date Period:      & 10/6/2015 - 9/12/2016  (342 days)                                   \\
-OAT range:        & 31 to 100\(^\circ\)F                                                \\
-Ignoring:         & When AHU is Off                                                     \\
-                  & First 1.0 hours of operation                                        \\
-                  & Last 1.0 hours of operation                                         \\
-                  & Sundays                                                             \\
-                  & Saturdays                                                           \\
-                  & Federal Holidays                                                    \\
-                  & Hours from 17:00 to 9:00                                            \\
-                  & When label Plenum Temp Uncertainty is greater than 2                \\
-                  & When label Valve Positions is greater than 1         \\ \bottomrule
+Project:            & Mitch Dissertation NCTM---2016-09-19 10:34           \\ \midrule
+Scope:              & NCTM                                                 \\
+Axis Parameters:    & Plenum Temperature vs. OA Dry-bulb Temp (NOAA)       \\
+Date Period:        & 10/6/2015 - 9/12/2016  (342 days)                    \\
+OAT range:          & 31 to 100\(^\circ\)F                                 \\
+Ignoring:           & When AHU is Off                                      \\
+                    & First 1.0 hours of operation                         \\
+                    & Last 1.0 hours of operation                          \\
+                    & Sundays                                              \\
+                    & Saturdays                                            \\
+                    & Federal Holidays                                     \\
+                    & Hours from 17:00 to 9:00                             \\
+                    & When label Plenum Temp Uncertainty is greater than 2 \\
+                    & When label Valve Positions is greater than 1         \\ \bottomrule
 \end{tabular}
 \end{table}
 
@@ -517,6 +517,57 @@ Unit     & Min  & \parbox{1cm}{5th \\ Perc.} & Mean & Median & \parbox{1cm}{95th
 2-7  & N/A  & N/A  & N/A  & N/A  & N/A  & N/A  & N/A  & \num{28906} & 100.000\%        \\ \bottomrule
 \end{tabular}
 \end{table}
+
+% For series fan powered terminal units, the assumption was made that the total
+% flow remains constant and that the mixed air temperature at the
+% individual terminal unit can be predicted based on the primary flow value that is
+% measured. 
+
+% One possible assumption for the plenum temperature is that it is equal to the
+% corresponding zone temperature. An interesting analysis is then to calculate
+% the mixed air temperature based on this assumption and then look at times when
+% the reheat valve is commanded to zero. It would be expected that the calculated
+% reheat would be near zero, if not slightly above zero due to leakage in the
+% reheat valve.  The next series of plots look at data from February 1, 2016 to
+% May 1, 2016, ignoring when the unit is off, weekends and holidays, and when the
+% commanded reheat coil position is greater than 1\%. 
+
+\figref{}
+\ref{fig:2016-10-19-1424-ZoneReheatEnergyforContainerFPVAV216vsOADryBulbTemperatureNOAA}
+shows an example of where the assumption appears to hold properly.  The
+vast majority of the points are greater than \SI{0}{\BTU\per\hour}.
+
+\figref{}
+\ref{fig:2016-10-19-1438-ZoneReheatEnergyforContainerFPVAV24vsOADryBulbTemperatureNOAA}
+shows a case in which there is either constant reheat or the actual
+plenum temperature is lower than the zone temperature that was assumed.
+
+\figref{}
+\ref{fig:2016-10-19-1521-ZoneReheatEnergyforContainerFPVAV213vsOADryBulbTemperatureNOAA}
+shows a case in which the reheat is estimated to be a negative value,
+which likely means that the actual plenum temperature is greater than
+the assumed plenum temperature equal to the zone temperature. 
+
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2016-10-19-1424-ZoneReheatEnergyforContainerFPVAV216vsOADryBulbTemperatureNOAA.pdf}
+\caption{Zone reheat energy for terminal unit 2-16.}
+\label{fig:2016-10-19-1424-ZoneReheatEnergyforContainerFPVAV216vsOADryBulbTemperatureNOAA}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2016-10-19-1438-ZoneReheatEnergyforContainerFPVAV24vsOADryBulbTemperatureNOAA.pdf}
+\caption{Zone reheat energy for terminal unit 2-4.}
+\label{fig:2016-10-19-1438-ZoneReheatEnergyforContainerFPVAV24vsOADryBulbTemperatureNOAA}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2016-10-19-1521-ZoneReheatEnergyforContainerFPVAV213vsOADryBulbTemperatureNOAA.pdf}
+\caption{Zone reheat energy for terminal unit 2-13.}
+\label{fig:2016-10-19-1521-ZoneReheatEnergyforContainerFPVAV213vsOADryBulbTemperatureNOAA}
+\end{figure}
 
 Another way to view the accuracy and importance of the plenum
 temperature on the amount of reheat necessary is to look at the
@@ -640,7 +691,7 @@ system.
 an example of the zone load plotted against outdoor air dry-bulb
 temperature. Notice that the load is not a well-defined function of
 \(\oat\). This turns out to be the case for many of the internal zones,
-which will be related more to the time of day parameters. 
+which have a higher dependence on the time of day parameters. 
 
 \figref{}
 \ref{fig:ZoneLoadforContainerFPVAV29vsOADryBulbTemperatureNOAA} shows
@@ -719,16 +770,19 @@ margin. It has estimated loads near 50,000 BTU/hr.
 %% These items come from the analysis done with plus minus 15 min and 3 degree F OAT bounds in file Batch Plots -- Mitch Dissertation N -- 2016-09-14 0952
 
 An interesting pattern that was that the initial prediction routine
-overpredicted the zone load when the zone load was closer to the heating range
-and underpredicted the zone load during times of high cooling load. This bias
-was seen in every terminal unit in the building and this bias occured with both
-the largest and smallest terminal units. Figures
+overpredicted the zone load when the zone load was closer to the heating
+range and underpredicted the zone load during times of high cooling
+load. This bias was seen in every terminal unit in the building and this
+bias occured with both the largest and smallest terminal units. Figures
 \ref{fig:2016-09-14-1028-ZoneLoadResidualforContainerFPVAV22vsZoneLoadforContainerFPVAV22}
 through
 \ref{fig:2016-09-14-1020-ZoneLoadResidualforContainerFPVAV27vsZoneLoadforContainerFPVAV27}
-show examples of this phenomenon. The date period analyzed was from March 1,
-2016 to August 1, 2016, ignoring when the AHUs were off, federal holidays and
-weekends, and hours from 5 PM to 9 AM. 
+show examples of this phenomenon. This is due to the fact that the
+median of sub-sets of data was used for the prediction. The method will
+always underpredict the highest value and overpredict the lowest value.
+The date period analyzed was from March 1, 2016 to August 1, 2016,
+ignoring when the AHUs were off, federal holidays and weekends, and
+hours from 5 PM to 9 AM. 
 
 \newcommand{\zoneLoadCaption}[1]{Bias in zone load prediction for #1.}
 
@@ -755,68 +809,18 @@ weekends, and hours from 5 PM to 9 AM.
 
 
 
-\section{Analysis of the Zone Temperature Prediction} 
-
-The same prediction algorithm for the zone load can be used for
-predicting the zone temperatures. The zone temperatures will be a
-function of the time of day, day of week, and the outdoor air
-temperature. 
-
-
-\section{Analysis of the Mixed Air Temperature in Series Terminal Unit and Reheat Assumption}
-
-For series fan powered terminal units, the assumption was made that the total
-flow remains constant and that the mixed air temperature at the
-individual terminal unit can be predicted based on the primary flow value that is
-measured. 
-
-One possible assumption for the plenum temperature is that it is equal
-to the corresponding zone temperature. An interesting analysis is then
-to calculate the mixed air temperature based on this assumption and then
-look at times when the reheat valve is commanded to zero. It would be
-expected that the calculated reheat would be near zero, if not slightly
-above zero due to leakage in the reheat valve.
-The next series of plots look at data from February 1, 2016 to May 1, 2016, ignoring when the unit is off, weekends and holidays, and when the commanded reheat coil position is greater than 1\%. 
-
-\figref{}
-\ref{fig:2016-10-19-1424-ZoneReheatEnergyforContainerFPVAV216vsOADryBulbTemperatureNOAA}
-shows an example of where the assumption appears to hold properly.  The
-vast majority of the points are greater than \SI{0}{\BTU\per\hour}.
-
-\figref{}
-\ref{fig:2016-10-19-1438-ZoneReheatEnergyforContainerFPVAV24vsOADryBulbTemperatureNOAA}
-shows a case in which there is either constant reheat or the actual
-plenum temperature is lower than the zone temperature that was assumed.
-
-\figref{}
-\ref{fig:2016-10-19-1521-ZoneReheatEnergyforContainerFPVAV213vsOADryBulbTemperatureNOAA}
-shows a case in which the reheat is estimated to be a negative value,
-which likely means that the actual plenum temperature is greater than
-the assumed plenum temperature equal to the zone temperature. 
-
-\begin{figure}
-\centering
-\includegraphics[]{Plots/2016-10-19-1424-ZoneReheatEnergyforContainerFPVAV216vsOADryBulbTemperatureNOAA.pdf}
-\caption{Zone reheat energy for terminal unit 2-16.}
-\label{fig:2016-10-19-1424-ZoneReheatEnergyforContainerFPVAV216vsOADryBulbTemperatureNOAA}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[]{Plots/2016-10-19-1438-ZoneReheatEnergyforContainerFPVAV24vsOADryBulbTemperatureNOAA.pdf}
-\caption{Zone reheat energy for terminal unit 2-4.}
-\label{fig:2016-10-19-1438-ZoneReheatEnergyforContainerFPVAV24vsOADryBulbTemperatureNOAA}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[]{Plots/2016-10-19-1521-ZoneReheatEnergyforContainerFPVAV213vsOADryBulbTemperatureNOAA.pdf}
-\caption{Zone reheat energy for terminal unit 2-13.}
-\label{fig:2016-10-19-1521-ZoneReheatEnergyforContainerFPVAV213vsOADryBulbTemperatureNOAA}
-\end{figure}
+% \section{Analysis of the Zone Temperature Prediction} 
+% 
+% The same prediction algorithm for the zone load can be used for
+% predicting the zone temperatures. The zone temperatures will be a
+% function of the time of day, day of week, and the outdoor air
+% temperature. 
 
 
-\section{Analysis of the Critical Zone Assumption}
+% \section{Analysis of the Mixed Air Temperature in Series Terminal Unit and Reheat Assumption}
+
+
+\section{Analysis of the Critical Zones}
 
 The critical zone/damper is to be used to determine the static pressure
 setpoint that can be used to supply the desired flows found from the
@@ -912,7 +916,7 @@ AHU                          & Unit       & Count of Max & Percent as Critical \
 In the simplified analysis and modeling such as being proposed, it would be
 ideal if the specifications in the mechanical drawings can be used
 directly.  One important parameter is the design flow rate for the
-terminal unit.  \tableref \ref{tab:TerminalUnitInformation} shows the
+terminal unit.  \tableref{} \ref{tab:TerminalUnitInformation} shows the
 design flow rates for all the series fan powered terminal units in the
 NCTM building.  The results show that the design specifications were
 sufficiently accurate.  All data that were available at the time
