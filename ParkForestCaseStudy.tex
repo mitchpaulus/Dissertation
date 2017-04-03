@@ -1,0 +1,41 @@
+\chapter{Park Forest Case Study}
+
+Park Forest Branch Library is a one-story building with
+\SI{10894}{\feet\squared} of gross floor area. The Park Forest Branch
+Library consists of an open-space reading room and circulation, staff
+area, and a meeting room.
+
+The following description comes from a Continuous Commissioning report
+done on the Park Forest building. The air-handling unit (AHU) consists
+of a supply fan equipped with variable speed drive (VSD), cooling coil,
+and outside air damper. The VSD for the supply air fan is controlled to
+maintain the duct static pressure at the setpoint. The schematic of this AHU can
+be seen in the BAS graphics as in \figref{}
+\ref{fig:ParkForestAHUGraphic}, but actual installation is
+quite different. There is no return air duct directly connected to the
+AHU, possibly due to the space limitation. Instead, a mixed air chamber
+for the AHU is installed on the rooftop as shown in \figref{}
+\ref{fig:ParkForestMixedAirChamber}. The return
+air is taken from a building exhaust chimney, and the outside air damper
+is installed on this rooftop assembly. There is no return air (RA)
+damper installed, although control drawings and the sequence of show a
+BAS controlled RA damper. The outside air (OA) damper is commanded to be
+a minimum position of 25\% during normal operation. The sequence of
+operation states that the OA damper is controlled for economizer
+operation when outside air conditions allows free cooling, but without
+RA damper, the controllability of the OA flow is questionable.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Images/ParkForestAHUGraphic.PNG}
+\caption{Park Forest AHU BAS graphics.}
+\label{fig:ParkForestAHUGraphic}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Images/ParkForestMixedAirChamber.PNG}
+\caption{Park Forest mixed air chamber.}
+\label{fig:ParkForestMixedAirChamber}
+\end{figure}
+
