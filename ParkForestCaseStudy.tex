@@ -25,6 +25,23 @@ operation states that the OA damper is controlled for economizer
 operation when outside air conditions allows free cooling, but without
 RA damper, the controllability of the OA flow is questionable.
 
+\tableref{} \ref{tab:ParkForestTerminalUnitSpecs} shows the
+mechanical specifications that were available for the terminal units at
+Park Forest. By the specification the minimum flow rates were set to
+30\% for every terminal unit. 
+
+However, based on the actual data for the building, the 30\% minimum
+flow rates do not appear to holding. The measurements for the terminal
+box flow were aggregated over a period from 10/23/2015 - 10/22/2016
+(365 days). 
+
+None of the terminal units reached the specified design value. The
+5\textsuperscript{th} percentile was less than the specified minimum for
+all 6 terminal units. The statistics for terminal unit flow can be found in 
+\tableref{} \ref{tab:ParkForestMeasuredTerminalUnitFlow}. 
+
+
+
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{Images/ParkForestAHUGraphic.PNG}
@@ -39,3 +56,54 @@ RA damper, the controllability of the OA flow is questionable.
 \label{fig:ParkForestMixedAirChamber}
 \end{figure}
 
+\begin{table}
+    \centering
+    \caption{Terminal unit specifications for Park Forest.}
+    \label{tab:ParkForestTerminalUnitSpecs}
+    \begin{tabular}{@{}cccccl@{}}
+        \toprule
+        \multirow{2}{*}{Tag} & \multirow{2}{*}{Model} & \multicolumn{2}{c}{Size} & \multicolumn{2}{c}{CFM} \\
+                             &                        & Unit       & Outlet      & Max        & Min        \\ \midrule
+        VAV-01               & LMHS                   & 22         & 38x18       &  \num{5040}      &  \num{1512}      \\
+        VAV-02               & LMHS                   & 22         & 38x18       &  \num{3780}      &  \num{1134}      \\
+        VAV-03               & LMHS                   & 16         & 24x18       &  \num{3300}      &  \num{990}       \\
+        VAV-04               & LMHS                   & 08         & 12x10       &  \num{670}       &  \num{201}       \\
+        VAV-05               & LMHS                   & 14         & 20x18       &  \num{1720}      &  \num{516}       \\
+        VAV-06               & LMHS                   & 12         & 16x15       &  \num{1634}      &  \num{490}       \\ \bottomrule
+    \end{tabular}
+\end{table}
+
+
+%% Data for table from:
+% Project:    City of Dallas 2017-03-03 (Copy)---2017-04-21 10:08
+% Scope:  Park Forest Library
+% Axis Parameters:    Tbox Airflow vs. OA Drybulb Temp (NOAA)
+% Date Period:    10/23/2015 - 10/22/2016  (365 days)
+% Time Interval Length    15 minutes
+% OAT range:  29 to 105 °F
+% Ignoring:   When AHU is Off
+    % First 1.0 hours of operation
+        % Last 1.0 hours of operation
+            % Sundays
+                % Federal Holidays
+                    % Hours from 18:00 to 9:00
+                    % Distinguish By: None
+
+
+
+\begin{table}
+    \centering
+    \caption{Measured terminal unit airflows for Park Forest.}
+    \label{tab:ParkForestMeasuredTerminalUnitFlow}
+    \begin{tabular}{@{}llllllllll@{}}
+        \toprule
+        \multicolumn{3}{l}{Tbox Airflow (CFM)}               &       &        &                 &       &          &                &            \\ 
+        Unit & Min & \parbox[b]{1cm}{5th \\ Perc} & Mean  & Median & \parbox[b]{1cm}{95th \\ Perc}& Max   & \parbox[b]{1cm}{St. Dev.} & \parbox[b]{1.5cm}{Original \\ Count} & \parbox[b]{1cm}{\% \\ Ignored}\\ \midrule
+        VAV\_1 & 722 & 824            & 1,104 & 1,183  & 1,244           & 1,312 & 151      &  \num{20897}         & 69\%       \\
+        VAV\_2 & 557 & 631            & 661   & 662    & 683             & 720   & 16       &  \num{20801}         & 68\%       \\
+        VAV\_3 & 550 & 590            & 975   & 1,144  & 1,234           & 2,453 & 262      &  \num{19937}         & 69\%       \\
+        VAV\_4 & 451 & 497            & 516   & 513    & 550             & 579   & 16       &  \num{19169}         & 69\%       \\
+        VAV\_5 & 350 & 391            & 713   & 813    & 932             & 987   & 211      &  \num{19169}         & 69\%       \\
+        VAV\_6 & 137 & 147            & 331   & 211    & 610             & 707   & 205      &  \num{18785}         & 69\%       \\ \bottomrule
+    \end{tabular}
+\end{table}

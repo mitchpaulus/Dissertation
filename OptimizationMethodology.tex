@@ -15,7 +15,7 @@
 
 
 
-\chapter{\uppercase{Optimization Methodology}}
+\chapter{\MakeUppercase{Optimization Methodology}}
 
 In order to optimize the system, the energy use from each of the components
 comprising the air-side equipment needs to be estimated. This includes fan
@@ -301,6 +301,34 @@ The advantage of the nearest neighbor approach is that the resulting ``function'
 is not limited to being linear, quadratic, or any particular form. It just
 simply matches the data as best it can during external conditions that are
 expected to be similar.
+
+\subsection{Zone Load Uncertainty}
+
+The Kline-McClintock form of uncertainty analysis can be applied to the
+zone loads. 
+
+If the zone load is described as an open system with a constant specific
+heat, then 
+\begin{equation}
+    \dot{Q}_{zone} = 60 \frac{\flow{zone}}{\nu} c_{air} \left(T_{room} -
+    T_{sup}\right)
+\end{equation}
+where \(\flow{zone}\) is in units of CFM, \(\nu\) is in
+\si{\feet\cubed\per\pound}, \(c_{air}\) is in
+\si{\btu\per\pound\per\degreeF}, and the temperatures are in
+\si{\degreeF}.
+
+The total uncertainty in the prediction will be
+\begin{equation}
+    \delta \dot{Q}_{zone} = \sqrt{\frac{3600 c^2 {\delta \nu}^2 V^2
+    (T_{room}-T_{zone})^2}{\nu ^4}+\frac{3600 c^2
+    {\delta T_{room}}^2 V^2}{\nu ^2}+\frac{3600 c^2 {\delta T_{sup}}^2
+       V^2}{\nu ^2}+\frac{3600 c^2
+       {\delta \flow{}}^2 (T_{room}-T_{zone})^2}{\nu ^2}+\frac{3600
+       {\delta c}^2 V^2
+             (T_{room}-T_{zone})^2}{\nu ^2}}
+\end{equation}
+
 
 \section{Setup Employing Historical Trend Data}
 
