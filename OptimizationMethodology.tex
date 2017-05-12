@@ -330,6 +330,57 @@ The total uncertainty in the prediction will be
 \end{equation}
 
 
+\subsection{Analysis of Fraction of Full Load Power Uncertainty}
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2017-05-12-Fcurve.pdf}
+\caption{Fraction of full load power for a fan.}
+\label{fig:FCurve}
+\end{figure}
+
+In simplified air handling unit analysis, the fraction of full load
+power, \(F\), can often be represented with the function shown in
+\figref{} \ref{fig:FCurve}
+\begin{equation}
+    F = A + (1-A)( \text{PLR} )^{n}
+\end{equation}
+where \(A\) is the fraction of power at zero load, \(n\) is an exponent
+ranging from 1 to 3, and PLR is the part load
+ratio defined to be 
+\begin{equation}
+    \text{PLR} = \frac{\flow{act}}{\flow{design}}
+\end{equation}
+The actual fan power at any point is then 
+\begin{equation}
+    \power{act}  = F \power{design}
+\end{equation}
+
+
+The uncertainty of \(F\) can be explored with the Kline-McClintock
+formulation. 
+
+The first term related to the uncertainty in \(A\) is 
+\begin{equation}
+A \text{ term} = \pdv{F}{A} \delta A = \left(1-\text{PLR}^n\right) \delta A
+\end{equation}
+The uncertainty term related to \(n\) is
+\begin{equation}
+    n \text{ term} = \pdv{F}{n} \delta n = \left((1-A) \text{PLR}^n \ln (\text{PLR})\right) \delta n
+\end{equation}
+and the uncertainty related to PLR is
+\begin{equation}
+    \text{PLR term} = \pdv{F}{ \text{PLR}} \delta \text{PLR} = \left((1-A) n \text{PLR}^{n-1}\right) \delta \text{PLR}
+\end{equation}
+The total uncertainty in \(F\) is 
+\begin{equation}
+    \delta F = \sqrt{ \left(A \text{ term}\right)^{2} + \left(n \text{ term}\right)^{2} + \left( \text{PLR term}\right)^{2} }
+\end{equation}
+The uncertainty is a function of 6 variables: \(A\), \(n\), PLR, \(\delta A\), \(\delta n\), and \(\delta\)PLR.
+
+
+
+
+
 \section{Setup Employing Historical Trend Data}
 
 Before the system can be run, some of first principles models need to be
@@ -349,6 +400,8 @@ the speed of the fan, \(\dot N\), and the damper positions,
 \(\damp{i,damper}\). 
 
 \subsection{Air Distribution Modeling: First Method}
+This section is a bit of an aside and is presented to show the dead end
+that resulted given the following setup. 
 
 Estimating the system pressure loss for particular conditions is
 necessary for determining the potential fan energy at different speeds.
