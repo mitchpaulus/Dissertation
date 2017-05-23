@@ -332,6 +332,95 @@ weekends and holidays, and times between 6:00 PM and 8:00 AM.
 \end{figure}
 
 
+The sensitivity to the ``nearest neighbor'' parameters was tested. The
+parameter values were varied as shown in \tableref{}
+\ref{tab:NearestNeighborVariations}.
+
+\begin{table}
+\centering
+\caption{Variations in the parameters for the nearest neighbor algorithm.}
+\label{tab:NearestNeighborVariations}
+\begin{tabular}{rl}
+    Threshold & Variations \\ \midrule
+    Time stamp threshold & 15, 30, and 60 minutes \\
+    \(T_{oa} \) threshold & \SI{1}{\degF}, \SI{3}{\degF}, \SI{5}{\degF} \\
+    Data points threshold & 15, 30, and 45 data points. 
+\end{tabular}
+\end{table}
+
+
+With three parameters and 3 different variations for each, this resulted
+in 27 test cases. The results from this testing are shown in \tableref{}
+\ref{tab:MATTestingResults}. TS stands for time stamps, and is the
+number of timestamps threshold. Since the data was on 15 minute
+intervals, a 1 timestamp threshold implies a threshold of \(\pm\)15
+minutes and a 4 timestamp threshold implies a threshold of \(\pm\)60
+minutes. The best model fit used a time stamp threshold of \(\pm\)60
+minutes, \(\pm\SI{3}{\degF}\) for \(T_{oa}\), and 15 data points. The
+worst case was using \(\pm\)15 minutes, \(\pm \SI{1}{\degF}\), and 30
+data points. 
+
+The model was not sensitive to the parameters. The CVs ranged from
+1.76\% to 2.16\%. The models with the lowest CVs had the largest range
+in the time stamp and \(T_{oa}\) threshold. This is an indication that
+using more recent data was more valuable than using data from conditions
+matching more closely. 
+
+\begin{table}
+    \centering
+    \caption{Results from testing different nearest neighbor model
+    parameters for predicted \(T_{ma}\).}
+    \label{tab:MATTestingResults}
+    \begin{tabular}{@{}lllll@{}}
+        \toprule
+        Run & TS & \(T_{oa}\) & DP & Average CV \\ \midrule
+        1   & 1  & 1          & 15 & 2.02\%     \\
+        2   & 2  & 1          & 15 & 1.91\%     \\
+        3   & 4  & 1          & 15 & 1.80\%     \\
+        4   & 1  & 3          & 15 & 1.90\%     \\
+        5   & 2  & 3          & 15 & 1.84\%     \\
+        6   & 4  & 3          & 15 & 1.76\%     \\
+        7   & 1  & 5          & 15 & 1.82\%     \\
+        8   & 2  & 5          & 15 & 1.80\%     \\
+        9   & 4  & 5          & 15 & 1.77\%     \\
+        10  & 1  & 1          & 30 & 2.13\%     \\
+        11  & 2  & 1          & 30 & 2.01\%     \\
+        12  & 4  & 1          & 30 & 1.85\%     \\
+        13  & 1  & 3          & 30 & 1.98\%     \\
+        14  & 2  & 3          & 30 & 1.90\%     \\
+        15  & 4  & 3          & 30 & 1.79\%     \\
+        16  & 1  & 5          & 30 & 1.90\%     \\
+        17  & 2  & 5          & 30 & 1.82\%     \\
+        18  & 4  & 5          & 30 & 1.77\%     \\
+        19  & 1  & 1          & 45 & 2.16\%     \\
+        20  & 2  & 1          & 45 & 2.10\%     \\
+        21  & 4  & 1          & 45 & 1.93\%     \\
+        22  & 1  & 3          & 45 & 2.00\%     \\
+        23  & 2  & 3          & 45 & 1.99\%     \\
+        24  & 4  & 3          & 45 & 1.83\%     \\
+        25  & 1  & 5          & 45 & 1.92\%     \\
+        26  & 2  & 5          & 45 & 1.88\%     \\
+        27  & 4  & 5          & 45 & 1.78\%     \\ \bottomrule
+    \end{tabular}
+\end{table}
+
+\sisetup{round-mode=figures, round-precision=3}
+
+\begin{table}
+\centering
+\caption{\(T_{ma}\) prediction results using the parameters in Run 6.}
+\label{tab:MATPredictionResultsForRun6}
+\begin{tabular}{lS} \toprule
+    AHU     & {RMSE (\si{\degF})  } \\ \midrule
+    AHU 1-2 & \num{1.686834982}   \\
+    AHU 1-3 & \num{2.41776849}    \\
+    AHU 1-4 & \num{1.251856851}   \\
+    AHU 2-1 & \num{0.744179046}   \\
+    AHU 2-2 & \num{0.619408965}   \\
+    AHU 2-3 & \num{0.495786538}   \\ \bottomrule
+\end{tabular}
+\end{table}
+
 \section{Analysis of the Plenum Air Temperature}
 
 Under certain assumptions, the plenum air temperature for the series fan
@@ -786,6 +875,7 @@ hours from 5 PM to 9 AM.
 
 \newcommand{\zoneLoadCaption}[1]{Bias in zone load prediction for #1.}
 
+
 \begin{figure}
 \centering
 \includegraphics[]{Plots/2016-09-14-1028-ZoneLoadResidualforContainerFPVAV22vsZoneLoadforContainerFPVAV22.pdf}
@@ -806,6 +896,83 @@ hours from 5 PM to 9 AM.
 \caption{ \zoneLoadCaption{FPVAV-2-7} }
 \label{fig:2016-09-14-1020-ZoneLoadResidualforContainerFPVAV27vsZoneLoadforContainerFPVAV27}
 \end{figure}
+
+
+An analysis was also completed regarding the optimal parameters for the
+``nearest neighbor'' approach. The three parameters for the function are
+the time of day threshold, the outdoor air temperature threshold, and the
+number of data points to use.
+
+Three different tests cases for each variable was used. The time of day
+threshold was adjusted from 1 timestamp away, 2 timestamps away, and 4
+timestamps away. For 15 minute interval data, this means that the
+threshold was 15 minutes, 30 minutes, and 1 hour. 
+
+The outdoor air temperature threshold was tested at 1, 3, and
+\SI{5}{\degF}. The number of data points used in the median was 15, 30,
+and 45. 
+
+The objective function for these tests was the average coefficient of
+variation for all the terminal units in NCTM. The coefficient of
+variation is a normalized root mean squared error (RMSE), where the
+normalization value is the mean of the data set that is predicted. Do note that
+for data sets such as zone load which can be both above and below zero,
+that the coefficient of variation can be arbitrarily high because
+the mean can be close to zero (implying that the zone load is both
+positive and negative). Therefore, the absolute value of the CVs listed
+is not as important as the relative ranking and range. 
+
+The tests were done for data from January 1\textsuperscript{st}, 2016
+through January 1\textsuperscript{st}, 2017. Times when the air handling
+units were off and the first and last hour of operation, weekends,  and
+federal holidays were all ignored. 
+
+The results show that looser thresholds, which results in more recent
+data being used, gave the best model fits. The best average CV at 44.3\%
+was under the conditions of thresholds of plus or minus one hour,
+\SI{5}{\degF}, and using 45 data points. The worst models had an average
+CV of 51.1\%, for the thresholds of plus or minus 15 minutes,
+\SI{1}{\degF}, and 30 data points. The rest of the tests are also shown
+in \tableref{} \ref{tab:ZoneLoadTestingResults}.
+
+
+\begin{table}[]
+\centering
+\caption{Testing results for zone load prediction.}
+\label{tab:ZoneLoadTestingResults}
+\begin{tabular}{@{}lllcl@{}}
+\toprule
+Run & TS & \(T_{oa} \) & \# of Data Points & Average CV (\%) \\ \midrule
+1   & 1  & 1           & 15                & 50.5\%          \\
+2   & 2  & 1           & 15                & 49.4\%          \\
+3   & 4  & 1           & 15                & 48.0\%          \\
+4   & 1  & 3           & 15                & 46.5\%          \\
+5   & 2  & 3           & 15                & 45.8\%          \\
+6   & 4  & 3           & 15                & 45.7\%          \\
+7   & 1  & 5           & 15                & 45.0\%          \\
+8   & 2  & 5           & 15                & 44.7\%          \\
+9   & 4  & 5           & 15                & 45.4\%          \\
+10  & 1  & 1           & 30                & 51.1\%          \\
+11  & 2  & 1           & 30                & 49.5\%          \\
+12  & 4  & 1           & 30                & 48.2\%          \\
+13  & 1  & 3           & 30                & 47.2\%          \\
+14  & 2  & 3           & 30                & 46.1\%          \\
+15  & 4  & 3           & 30                & 45.2\%          \\
+16  & 1  & 5           & 30                & 46.0\%          \\
+17  & 2  & 5           & 30                & 44.8\%          \\
+18  & 4  & 5           & 30                & 44.3\%          \\
+19  & 1  & 1           & 45                & 50.3\%          \\
+20  & 2  & 1           & 45                & 50.1\%          \\
+21  & 4  & 1           & 45                & 48.1\%          \\
+22  & 1  & 3           & 45                & 46.7\%          \\
+23  & 2  & 3           & 45                & 48.2\%          \\
+24  & 4  & 3           & 45                & 45.4\%          \\
+25  & 1  & 5           & 45                & 45.7\%          \\
+26  & 2  & 5           & 45                & 45.6\%          \\
+27  & 4  & 5           & 45                & 44.3\%          \\ \bottomrule
+\end{tabular}
+\end{table}
+
 
 
 
@@ -891,22 +1058,22 @@ is a damper that is critical at least 59\% of the time.
 \label{tab:AHU12CriticalZone}
 \begin{tabular}{@{}llll@{}}
 \toprule
-AHU                       & Unit       & Count of Max & Percent as Critical \\ \midrule
-\multirow{3}{*}{AHU-1-2}  & FPVAV-1-8  & 3,518        & 68\%                             \\
-                          & FPVAV-1-9  & 1,281        & 25\%                             \\
-                          & 2 others   & 354          & 7\%                 \\ \midrule
-\multirow{3}{*}{AHU-1-3}  & FPVAV-1-5  & 2,331        & 59\%                             \\
-                          & FPVAV-1-4  & 1,006        & 25\%                             \\
-                          & 4 others   & 622          & 15\%                 \\ \midrule
-\multirow{3}{*}{AHU-2-1}  & FPVAV-2-1  & 10,965       & 79\%                             \\
-                          & FPVAV-2-2  & 2,648        & 19\%                             \\
-                          & FPVAV-2-3  & 258          & 2\% \\ \midrule
-\multirow{3}{*}{AHU-2-2}  & FPVAV-2-18 & 10,003       & 72\%                             \\
-                          & FPVAV-2-14 & 3,171        & 23\%                             \\
-                          & 6 others   & 648          & 5\%  \\ \midrule
-\multirow{3}{*}{AHU-2-3}  & FPVAV-2-6  & 9,883        & 72\%                             \\
-                          & FPVAV-2-11 & 3,743        & 27\%                             \\
-                          & FPVAV-2-10 & 184          & 1\%  \\ \midrule
+AHU                        & Unit       & Count of Max & Percent as Critical \\ \midrule
+\multirow{3}{*}{AHU-1-2}   & FPVAV-1-8  & 3,518        & 68\%                \\
+                           & FPVAV-1-9  & 1,281        & 25\%                \\
+                           & 2 others   & 354          & 7\%                 \\ \midrule
+\multirow{3}{*}{AHU-1-3}   & FPVAV-1-5  & 2,331        & 59\%                \\
+                           & FPVAV-1-4  & 1,006        & 25\%                \\
+                           & 4 others   & 622          & 15\%                \\ \midrule
+\multirow{3}{*}{AHU-2-1}   & FPVAV-2-1  & 10,965       & 79\%                \\
+                           & FPVAV-2-2  & 2,648        & 19\%                \\
+                           & FPVAV-2-3  & 258          & 2\%                 \\ \midrule
+\multirow{3}{*}{AHU-2-2}   & FPVAV-2-18 & 10,003       & 72\%                \\
+                           & FPVAV-2-14 & 3,171        & 23\%                \\
+                           & 6 others   & 648          & 5\%                 \\ \midrule
+\multirow{3}{*}{AHU-2-3}   & FPVAV-2-6  & 9,883        & 72\%                \\
+                           & FPVAV-2-11 & 3,743        & 27\%                \\
+                           & FPVAV-2-10 & 184          & 1\%                 \\ \midrule
 \end{tabular}
 \end{table}
 

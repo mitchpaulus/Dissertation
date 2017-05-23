@@ -22,14 +22,14 @@
     xychart,
     align=center,
     xlabel={Zone Load for Container FPVAV-2-2 [Btu/hr]},
-    ylabel={Zone Load Residual for Container FPVAV-2-2 [Btu/hr]},
-    xmin=5000,
+    ylabel={Zone Load Residual for \\ Container FPVAV-2-2 [Btu/hr]},
+    xmin=0,
     xmax=60000,
     ymin=-40000,
     ymax=60000,
 ]
 \addplot[xymarker]
-table[x={ZoneLoadforContainerFPVAV22}, y={ZoneLoadResidualforContainerFPVAV22}, col sep=tab]{../Data/2016-09-14-1028-ZoneLoadResidualforContainerFPVAV22vsZoneLoadforContainerFPVAV22.dat};
+table[x={ZoneLoadforContainerFPVAV22}, y={ZoneLoadResidualforContainerFPVAV22}, col sep=tab]{"../Data/2016-09-14-1028-ZoneLoadResidualforContainerFPVAV22vsZoneLoadforContainerFPVAV22.dat"};
 \end{axis}
 \end{tikzpicture}
 \end{document}
