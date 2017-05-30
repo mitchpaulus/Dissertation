@@ -457,12 +457,12 @@ This would put the maximum uncertainty in \(F\) to about 0.04.
 
 
 
-\section{Setup Employing Historical Trend Data}
+%\section{Setup Employing Historical Trend Data}
 
-Before the system can be run, some of first principles models need to be
-calibrated. The calibration will employ historical measured data.
+%Before the system can be run, some of first principles models need to be
+%calibrated. The calibration will employ historical measured data.
 
-\subsection{Fan Modeling}\label{sec:FanModeling}
+\section{Fan Modeling}\label{sec:FanModeling}
 
 Fan energy is a significant component to the air side energy use for air
 conditioning. Fan static pressure, flow, speed, and power will all be
@@ -471,19 +471,19 @@ measured.  The total primary air flow can either be measured directly
 this information, a complete set of fan curves can be created.
 
 Without all the sensors it's hard to create a first-principle based model
-of the air-side equipment. Statistical techniques will be necessary to relate
+of the air-side equipment. Statistical techniques would be necessary to relate
 the speed of the fan, \(\dot N\), and the damper positions,
 \(\damp{i,damper}\).
 
 \subsection{Air Distribution Modeling: First Method}
-This section is a bit of an aside and is presented to show the dead end
-that resulted given the following setup.
+This section is a bit of an aside and is presented to show the negative
+result given the following setup.
 
 Estimating the system pressure loss for particular conditions is
 necessary for determining the potential fan energy at different speeds.
-The node layout of the terminal units will be created. If the air flow
-through each terminal unit is measured the flow through each portion of
-the duct work can be estimated.
+The node layout of the terminal units will need be created. If the air
+flow through each terminal unit is measured the flow through each
+portion of the duct work can be estimated.
 
 The first methodology developed attempted to break the air side pressure
 drops into parts for the major losses within the duct work and the minor
@@ -592,6 +592,12 @@ examined.
 
 \begin{equation}\label{eq:PartLoadRatio}
     \dot{W}_{\text{fan}} = \dot{W}_{\text{design}} \left(\text{PLR}\right)^n
+\end{equation}
+
+Later work also included a constant bias at zero load, having the form
+\begin{equation}
+    \dot{W}_{\text{fan}} = \dot{W}_{\text{design}} \left(A +
+    \left(1-A\right)\text{PLR}^{n}\right)
 \end{equation}
 
 \section{Predicting the Mixed Air Temperature}
