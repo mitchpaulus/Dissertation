@@ -1,16 +1,15 @@
-\chapter{\MakeUppercase{NCTM Case Study}}
+\chapter{\texorpdfstring{\MakeUppercase{NCTM Case Study}}{NCTM Case Study}}
 The National Center for Therapeutic Medicine (NCTM) was used as a test
 bed for the original methodology. NCTM is a building located on the
 campus of Texas A\&M University, in College Station, Texas. 
 
 The National Center for Therapeutics Manufacturing (NCTM) combines the
-educational and manufacturing focuses of the biopharmaceutical industry.
-The NCTM building is approximately 150,000 ft\textsuperscript{2} with
-nearly 50,000 ft\textsuperscript{2} of educational facilities that
-include wet labs, culture facilities, large lecture halls, and a mock
-current Good Manufacturing Practice (cGMP) training suite. Around
-120,000 ft\textsuperscript{2} is on the first level and 30,000
-ft\textsuperscript{2} is on the second level. 
+educational and manufacturing focuses of the biopharmaceutical industry.  The
+NCTM building is approximately \SI{150000}{\feet\squared} with nearly
+\SI{50000}{\feet\squared} of educational facilities that include wet labs,
+culture facilities, large lecture halls, and a mock current Good Manufacturing
+Practice (cGMP) training suite. Around \SI{120000}{\feet\squared} is on the
+first level and \SI{30000}{\feet\squared} is on the second level. 
 
 The cGMP Suite contains modern biopharmaceutical manufacturing equipment
 that students can use to learn industry practices. The wet labs are
@@ -72,11 +71,11 @@ Floor 2        & OAHU 2-1 & AHU 2-3 & 6am - 10pm, M-F \\
 \toprule
 OAHU & {Design OA CFM} & {HP} \\
 \midrule
-OAHU 1-1 & 12,800 & 20 \\
-OAHU 1-2 & 4,500  & 5  \\
-OAHU 2-1 & 2,200  & 2  \\
+OAHU 1-1 & \num{12800} & 20 \\
+OAHU 1-2 & \num{4500}  & 5  \\
+OAHU 2-1 & \num{2200}  & 2  \\
 \bottomrule
-\multicolumn{1}{r}{Total:} & 19,500 & 27 \\
+\multicolumn{1}{r}{Total:} & \num{19500} & 27 \\
 \end{tabular}
 \end{table}
 
@@ -88,13 +87,13 @@ OAHU 2-1 & 2,200  & 2  \\
 \toprule
 AHU 	& Type	 	& Total Airflow (CFM) 	& {HP} 	& OA Served By\\
 \midrule
-AHU 1-1 & Constant  & 3,000 			  	& 5 	& OAHU 1-1 \\
-AHU 1-2 & VAV 		& 4,800 				& 5 	& OAHU 1-1 \\
-AHU 1-3 & VAV 		& 7,500 				& 7.5 	& OAHU 1-2 \\
-AHU 1-4 & Constant 	& 5,000 				& 7.5 	& OAHU 1-2 \\
-AHU 2-1 & VAV 		& 6,000 				& 7.5 	& OAHU 2-1 \\
-AHU 2-2 & VAV		& 8.500					& 10 	& OAHU 2-1 \\
-AHU 2-3 & VAV 		& 6,000					& 7.5	& OAHU 2-1 \\
+AHU 1-1 & Constant & \num{3000} & 5   & OAHU 1-1 \\
+AHU 1-2 & VAV      & \num{4800} & 5   & OAHU 1-1 \\
+AHU 1-3 & VAV      & \num{7500} & 7.5 & OAHU 1-2 \\
+AHU 1-4 & Constant & \num{5000} & 7.5 & OAHU 1-2 \\
+AHU 2-1 & VAV      & \num{6000} & 7.5 & OAHU 2-1 \\
+AHU 2-2 & VAV      & \num{8500} & 10  & OAHU 2-1 \\
+AHU 2-3 & VAV      & \num{6000} & 7.5 & OAHU 2-1 \\
 \bottomrule
 \multicolumn{2}{r}{Total:} & 40,800 & 50 &  \\
 \end{tabular}
@@ -368,8 +367,7 @@ matching more closely.
 
 \begin{table}
     \centering
-    \caption{Results from testing different nearest neighbor model
-    parameters for predicted \(T_{ma}\).}
+    \caption{Results from testing different nearest neighbor model parameters for predicted \(T_{ma}\).}
     \label{tab:MATTestingResults}
     \begin{tabular}{@{}lllll@{}}
         \toprule
@@ -412,12 +410,12 @@ matching more closely.
 \label{tab:MATPredictionResultsForRun6}
 \begin{tabular}{lS} \toprule
     AHU     & {RMSE (\si{\degF})  } \\ \midrule
-    AHU 1-2 & \num{1.686834982}   \\
-    AHU 1-3 & \num{2.41776849}    \\
-    AHU 1-4 & \num{1.251856851}   \\
-    AHU 2-1 & \num{0.744179046}   \\
-    AHU 2-2 & \num{0.619408965}   \\
-    AHU 2-3 & \num{0.495786538}   \\ \bottomrule
+    AHU 1-2 & 1.686834982  \\
+    AHU 1-3 & 2.41776849   \\
+    AHU 1-4 & 1.251856851   \\
+    AHU 2-1 & 0.744179046   \\
+    AHU 2-2 & 0.619408965   \\
+    AHU 2-3 & 0.495786538   \\ \bottomrule
 \end{tabular}
 \end{table}
 
@@ -936,7 +934,7 @@ CV of 51.1\%, for the thresholds of plus or minus 15 minutes,
 in \tableref{} \ref{tab:ZoneLoadTestingResults}.
 
 
-\begin{table}[]
+\begin{table}
 \centering
 \caption{Testing results for zone load prediction.}
 \label{tab:ZoneLoadTestingResults}
