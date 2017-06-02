@@ -18,9 +18,10 @@ not function properly and are too complex for the current building
 operator, the controls cannot be easily removed and set back to the 
 previous state. 
 
+
 \section{Proposed Setup}
 
-In the proposed setup, the amount of change to the existing BAS is
+In the proposed setup, the change to the existing BAS is
 minimal. The control logic remains exactly the same. A small executable
 script can be installed on the BAS computer that can host code that will
 send an HTTP request to a remote server holding the historical data and
@@ -105,6 +106,8 @@ The equipment can be separated by project, and a call such as
 
 \url{https://domain/GetEquipmentForProject/?ProjectId={Project-Id}}
 
+could return all the possible set up equipment.
+
 The interface for receiving the optimal setpoints could have a url
 similar to 
 
@@ -154,7 +157,7 @@ Labels can also be created manually. \figref{} \ref{fig:CustomLabels}
 shows how all \textit{AUX TEMP} trends from the different fan powered
 VAV (FPVAV) units are labeled as \textit{DischargeTemps}.
 
-An entire site or building is organized into Containers and a
+An entire site or building is organized into containers and a
 hierarchy of components. A building container is a parent to air
 handling unit containers, and air handling unit containers are parents
 to terminal unit containers. \figref{} \ref{fig:ContainerHierarchy}

@@ -1,12 +1,18 @@
 \chapter{\texorpdfstring{\MakeUppercase{Park Forest Case Study}}{Park Forest Case Study}}
 
+The last two cases studies were two other buildings that had data
+available in Implementer and had discharge air temperature sensors for
+the terminal units. The last two case studies were not studied in a much
+detail as the NCTM building. 
+
 Park Forest Branch Library is a one-story building with
 \SI{10894}{\feet\squared} of gross floor area. The Park Forest Branch
 Library consists of an open-space reading room and circulation, staff
 area, and a meeting room.
 
-The following description comes from a Continuous Commissioning report
-done on the Park Forest building. The air-handling unit (AHU) consists
+The following description comes from a Continuous
+Commissioning\textsuperscript{\textregistered{}} report
+done on the Park Forest building \cite{ParkForestReport}. The air-handling unit (AHU) consists
 of a supply fan equipped with variable speed drive (VSD), cooling coil,
 and outside air damper. The VSD for the supply air fan is controlled to
 maintain the duct static pressure at the setpoint. The schematic of this AHU can
@@ -40,7 +46,9 @@ None of the terminal units reached the specified design value. The
 all 6 terminal units. The statistics for terminal unit flow can be found in 
 \tableref{} \ref{tab:ParkForestMeasuredTerminalUnitFlow}. 
 
-
+Overall, this building was an example of one in which the quality of the
+information related to the equipment and the quality of the data was
+too poor to confidently make models.
 
 \begin{figure}
 \centering
@@ -99,11 +107,11 @@ all 6 terminal units. The statistics for terminal unit flow can be found in
         \toprule
         \multicolumn{3}{l}{Tbox Airflow (CFM)} &           &                              &            &            &                               &            &                           \\
         Unit                                   & {Min}     & \parbox[b]{1cm}{5th \\ Perc} & { Mean }   & { Median } & \parbox[b]{1cm}{95th \\ Perc} & { Max }    & \parbox[b]{1cm}{St. Dev.} &  \parbox[b]{1.5cm}{Original \\ Count} & \parbox[b]{1cm}{\% \\ Ignored} \\ \midrule
-        VAV\_1                                 & \num{722} & \num{824}                    & \num{1104} & \num{1183} & \num{1244}                    & \num{1312} & \num{151}                 &  \num{20897}                          & 69\%                           \\
-        VAV\_2                                 & \num{557} & \num{631}                    & \num{661}  & \num{662}  & \num{683}                     & \num{720}  & \num{16}                  &  \num{20801}                          & 68\%                           \\
-        VAV\_3                                 & \num{550} & \num{590}                    & \num{975}  & \num{1144} & \num{1234}                    & \num{2453} & \num{262}                 &  \num{19937}                          & 69\%                           \\
-        VAV\_4                                 & \num{451} & \num{497}                    & \num{516}  & \num{513}  & \num{550}                     & \num{579}  & \num{16}                  &  \num{19169}                          & 69\%                           \\
-        VAV\_5                                 & \num{350} & \num{391}                    & \num{713}  & \num{813}  & \num{932}                     & \num{987}  & \num{211}                 &  \num{19169}                          & 69\%                           \\
-        VAV\_6                                 & \num{137} & \num{147}                    & \num{331}  & \num{211}  & \num{610}                     & \num{707}  & \num{205}                 &  \num{18785}                          & 69\%                           \\ \bottomrule
+        VAV-1                                 & \num{722} & \num{824}                    & \num{1104} & \num{1183} & \num{1244}                    & \num{1312} & \num{151}                 &  \num{20897}                          & 69\%                           \\
+        VAV-2                                 & \num{557} & \num{631}                    & \num{661}  & \num{662}  & \num{683}                     & \num{720}  & \num{16}                  &  \num{20801}                          & 68\%                           \\
+        VAV-3                                 & \num{550} & \num{590}                    & \num{975}  & \num{1144} & \num{1234}                    & \num{2453} & \num{262}                 &  \num{19937}                          & 69\%                           \\
+        VAV-4                                 & \num{451} & \num{497}                    & \num{516}  & \num{513}  & \num{550}                     & \num{579}  & \num{16}                  &  \num{19169}                          & 69\%                           \\
+        VAV-5                                 & \num{350} & \num{391}                    & \num{713}  & \num{813}  & \num{932}                     & \num{987}  & \num{211}                 &  \num{19169}                          & 69\%                           \\
+        VAV-6                                 & \num{137} & \num{147}                    & \num{331}  & \num{211}  & \num{610}                     & \num{707}  & \num{205}                 &  \num{18785}                          & 69\%                           \\ \bottomrule
     \end{tabular}
 \end{table}

@@ -547,26 +547,44 @@ in each duct section will be proportional to a constant and the flow
 through the section squared. Figure \ref{fig:flowVersusDamperPos} shows
 the typical types of responses for a damper or valve.
 
+At a given pressure drop, if the damper is fully open, ``full flow''
+will result. 
 \begin{equation}\label{eq:PressureDrop}
-    \Delta P_{\text{fan}} = C\left(\flow{t}\right)^2
+    \Delta P_{\text{fan}} = C_{\text{full flow}}\left(\flow{\text{full flow}}\right)^2
 \end{equation}
-
-If \(\flow{t}\) is reduced to some percentage of full flow, then
-\eqreftext{} \ref{eq:PressureDrop} will result in
- \begin{equation}
-     C = \frac{\Delta P_{\text{fan}}}{\left( \flow{t} \cdot \%_{\text{full flow}} \right)^2}
- \end{equation}
-
+%
+If \(\flow{}\) is reduced to some percentage of full flow, while keeping
+the same pressure drop then
+\begin{equation}\label{eq:ReducedFlowPressureDrop}
+    \Delta P_{\text{fan}} = C_{2}\left(\flow{\text{full flow}} \cdot \%_{\text{full flow}} \right)^2
+\end{equation}
+%
 For a linear response
-
-\begin{equation}
+%
+\begin{equation}\label{eq:LinearResponseSub}
     \%_{\text{full flow}} = \damp{}
 \end{equation}
-and therefore the local loss coefficient \(C\) equals
+If \eqreftext{} \ref{eq:LinearResponseSub} is substituted into
+\eqreftext{} \ref{eq:ReducedFlowPressureDrop}, and \eqreftext{}
+\ref{eq:PressureDrop} and \ref{eq:ReducedFlowPressureDrop} are set
+equal, then
 \begin{equation}
-C = \frac{\Delta P_{\text{fan}}}{\left( \flow{t} \cdot \damp{}  \right)^2}
+    C_{\text{full flow}}\left(\flow{\text{full flow}}\right)^2 = C_{2}\left(\flow{\text{full flow}} \cdot \damp{} \right)^2
 \end{equation}
-and grows as a function of \(1/x^2\).
+%\eqreftext{} \ref{eq:PressureDrop} will result in
+%\begin{equation}
+     %C = \frac{\Delta P_{\text{fan}}}{\left( \flow{t} \cdot \%_{\text{full flow}} \right)^2}
+%\end{equation}
+%and therefore the local loss coefficient \(C\) equals
+The new loss coefficient is then 
+\begin{equation}
+    C_{2} = \frac{C_{\text{full flow}}}{\damp{}^{2}}
+\end{equation}
+%\begin{equation}
+%C = \frac{\Delta P_{\text{fan}}}{\left( \flow{t} \cdot \damp{}  \right)^2}
+%\end{equation}
+and therefore has relationship to \(1/X^2\). At \(X=0\), meaning the
+damper is closed, \(C\to \infty\), as expected. 
 
 At any time, the pressure drop in all the flow loops must be equal. In a
 case where there are three terminal units, you would end up with
@@ -743,7 +761,7 @@ and the determined \(\dat\)'s.
 With a given zone load and constant flow, the \(\dat\) from the terminal
 unit can be calculated
 \begin{equation}
-    \dat = T_{z} -  \frac{Q_{zone}}{1.08 \left( \text{CFM} \right)   }
+    \dat = T_{z} -  \frac{Q_{z}}{1.08 \left( \text{CFM} \right)   }
 \end{equation}
 The primary airflow is then calculated from
 \begin{equation}

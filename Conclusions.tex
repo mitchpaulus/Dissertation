@@ -7,13 +7,18 @@ The following conclusions can be derived from this work.
         reduces the potential effectiveness of an approach described. 
         Additional sensors, especially those related to duct air flow,
         would improve the capabilities of the methodology. 
+    \item The nearest neighbor method for predicted zone loads and the
+        mixed air temperature was relatively stable with regards to the chosen
+        thresholds. The models tended to have better results with looser
+        thresholds, meaning more recent data was a better predictor than
+        data under closer conditions. 
     \item The mixed air temperature was able to be predicted within
         \SI{2}{\degF} for 5 of the 6 AHUs at NCTM (See \tableref{}
         \ref{tab:MATPredictionResultsForRun6}). This provides evidence
         that the nearest neighbor approach is viable for predicting the
         mixed air temperature. 
     \item With no plenum temperature sensor, for terminal units that
-        bring in plenum air, it was not possible to predict the plenum
+        bring in plenum air, it was difficult to predict the plenum
         temperature in a useful manner. Assuming a constant value for the
         temperature of the corresponding space was not acceptable for
         this work with regards to estimating the reheat at the terminal units.
@@ -43,6 +48,8 @@ There are also areas for future work on this topic.
 \begin{enumerate}
     \item Development of a prototype script to implement the logic on an
         existing BAS. 
-
+    \item Application to more potential case study buildings. 
+    \item Development of the Application Programming Interface (API)
+        that would be used to interact with the different BAS systems. 
 \end{enumerate}
 
