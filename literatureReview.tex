@@ -27,7 +27,7 @@ When discussing optimization, it is important to be clear on what is
 meant by \textit{Controls Optimization}. When discussing the subject
 with a controls engineer, they will likely be analyzing parameters such
 as the settling time, overshoot, and rise time --- dynamic parameters.
-This research is focused more on the optimization of the
+In contrast, this research focused more on the optimization of the
 \textit{steady-state} behavior of the system. 
 
 
@@ -282,25 +282,27 @@ many and varied air handling units.
 \section{Typical Trends Available from Commissioning Projects}
 
 Unfortunately, at the current time, it is uncommon to have all the
-explicit sensors available for system identification of HVAC equipment.
-It is rare to have the capability to sub-meter the energy use of all the
+explicit sensors available for all portions of the HVAC system.  It is
+rare to have the capability to sub-meter the energy use of all the
 individual components including the fans, cooling coils, and heating
 coils. 
 
 \subsection{Common Case}
 
-The following suggestions are based on the data for over \num{150,000} trends
-stored in Implementer along with personal experience. The statistical
-results presented are from until April 13, 2016. The total
-number of configured single duct AHUs at this time was 846. The number
-of trends that existed in these 846 containers was 11,806, or
-approximately 14 trends per AHU. Table \ref{tab:PointBreakdown} gives
-the percentage breakdown of the types of points that we have seen in
-current Implementer projects. Note that due to particular Implementer
-considerations, the occurrence percentage should not be evaluated
-directly (due to some projects not being properly set up all), The
-relative relationship between trend types is the more significant
-result.  
+The following suggestions are based on the data for over \num{150000}
+trends stored in Implementer along with personal experience. Implementer
+is a web application developed by the Energy Systems Laboratory that
+aids engineers in the collection and analysis of trend data from
+buildings.  The statistical results presented use data til April 13,
+2016. The total number of configured single duct AHUs at this time was
+846. The number of trends that existed in these 846 containers was
+11,806, or approximately 14 trends per AHU. Table
+\ref{tab:PointBreakdown} gives the percentage breakdown of the types of
+points that we have seen in current Implementer projects. Note that due
+to special Implementer considerations, the occurrence percentage
+should not be evaluated directly (due to some projects not being
+properly set up at all). The relative relationship between trend types is
+the more significant result.  
 
 
 \begin{table}
@@ -386,13 +388,13 @@ use is then left to lights and equipment, along with the fan energy.
 
 However, if natural gas and electricity are the only energy supply types
 for the building, additional information coming from trend data becomes
-more important to disaggregate the end uses. 
+more important for disaggregating the energy end uses. 
 
-It is mentioned in the problem that it can be assumed that monthly
-utility bills are available. Having a smaller time interval on the
-utility data can also aid significantly in the calibration. Daily data
-can help aid in discriminating weekday/weekend profiles, while hourly
-data can aid in exposing the diurnal cycle of the building. 
+It can normally be assumed that monthly utility bills are available.
+Having a smaller time interval on the utility data can also aid
+significantly in the calibration. Daily data can help aid in
+discriminating weekday/weekend profiles, while hourly data can aid in
+exposing the diurnal cycle of the building. 
 
 
 \subsubsection{Fan Power}
@@ -413,36 +415,36 @@ The cooling energy that results from the chiller/HVAC equipment can be
 estimated from the air-side energy balance across the cooling coils
 (assuming that this building is not using individual fan coil units or
 rooftop units). The cooling energy is related to the supply air flow,
-\(T_{ma}\), and supply air temperature. It is also related to the mixed
+mixed air temperature, and supply air temperature. It is also related to the mixed
 air humidity. 
 
 
 \subsubsection{Cooling Energy}
 At the air handler level, the sensible cooling energy is related to the
-supply flow, and the difference between the mixed air temperature, \(T_{ma}\),
-and the supply air temperature, \(T_{sa}\). The supply flows can vary
+supply flow, and the difference between the mixed air temperature, mixed
+air temperature, and the supply air temperature. The supply flows can vary
 significantly from one air handler to another, and also under different
 loadings. 
 
-\(T_{ma}\) is the lowest priority of the three air-side parameters for
+The mixed air temperature is the lowest priority of the three air-side parameters for
 estimating the sensible cooling energy in the AHU. A reasonable estimate
 of the outdoor air temperature is available from local weather stations,
 in addition to commonly trended outdoor air temperatures at the site
 itself. The return air temperature in air handling uints are near the space
-temperature setpoints. It is known that the \(T_{ma}\) must be between
+temperature setpoints. It is known that the mixed air temperature must be between
 the return and outdoor air temperature (if the airstreams are indeed
-being mixed). The most robust estimate for the \(T_{ma}\) would be
+being mixed). The most robust estimate for the mixed air temperature would be
 halfway between these two measurements. 
 
-As an argument for the claim that \(T_{ma}\) is the lowest priority of
+As an argument for the claim that mixed air temperature is the lowest priority of
 the 3 parameters, the difference between \(T_{oa}\) and 72\(^\circ\)F
 for the hourly outdoor air dry-bulb temperature weather data for College
 Station during the year of 2015 was calculated. 1/2 of this
 difference would be the worst case error estimation. The median of these
 half-differences was 4.9\(^\circ\)F, and the mean was 6.4\(^\circ\)F.
 These are robust estimates of the upper bounds on the error of the
-estimation of \(T_{ma}\), with no guidance other than the assumption
-that the \(T_{ma}\) is between the outdoor air temperature and return
+estimation of mixed air temperature with no guidance other than the assumption
+that the mixed air temperature is between the outdoor air temperature and return
 air temperature. With any additional information regarding the outdoor
 air fraction, the estimate would be even better. 
 
@@ -497,11 +499,17 @@ Sensors that may be of medium usefulness:
 
 \begin{itemize}
 \item Fan Status or occupied/unoccupied status -- Can give indication about the runtimes and schedules of the building.
-\item Supply air static pressure -- Unless the precise location of the sensor and the overall duct layout is known, it is of little use in calculating the fan power. Does provide an indication of whether the fan is on or off which is useful for determining AHU schedules.
-\item Various Setpoints -- In a well-controlled building, ideally, the value of the controlled sensor will be equivalent to the setpoint. However, the setpoint trends may not represent reality, especially under conditions of control overrides. 
+\item Supply air static pressure -- Unless the precise location of the
+    sensor and the overall duct layout is known, it is of little use in
+    calculating the fan power. It does provide an indication of whether the
+    fan is on or off which is useful for determining AHU schedules.
+\item Various Setpoints -- In a well-controlled building, ideally, the
+    value of the controlled sensor will be equivalent to the setpoint.
+    However, the setpoint trends may not represent reality, especially
+    under conditions of control overrides or other faults.
 \item Return air relative humidity -- May be an indicator of the level of latent load in the building. If the return air absolute humidity levels are relatively dry, the latent load may be zero or negligible. 
 \item Outdoor air temperatures -- In some circumstances, the temperature
-    of the fresh air may differ from the bulk air temperature in the
+    of the fresh air may differ from the outdoor air temperature in the
     local community, in which the local measurement will be a better
     indicator of the temperature of the air that is entering the AHU
     from the outdoors. However, the local weather station measurements

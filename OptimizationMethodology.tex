@@ -19,12 +19,14 @@ In order to optimize the system, the energy use from each of the components
 comprising the air-side equipment needs to be estimated. This includes fan
 energy, cooling energy, and reheat energy.
 
-Fan Energy:
+Fan power will have some relationship between the volumetric flow, \(\flow{}\), and the
+pressure rise, \(\Delta P\). 
+Fan Power:
 \begin{equation} \label{eq:FanEqnergy}
 \dot E_{fan} = fct\left( {\flow{supply},\Delta {P_{s,{\rm{fan}}}}} \right)
 \end{equation}
-
-Cooling Energy:
+Cooling power at the AHU has two components, sensible and latent. 
+Cooling Power:
 \begin{equation} \label{eq:CoolingEnergy}
     {\dot E_{cooling}} = {\flow{supply}}\rho_a c_{p,a}\:\left( {{T_{ma}} - {\sat}} \right) + h_v\rho_a{\flow{supply}}\:\left( {{\omega _{ma}} - {\omega _{sa}}} \right)
 \end{equation}
@@ -132,11 +134,11 @@ table[x=RoomTemp,y=Tdischarge,col sep=tab]{SeriesFanPlot.dat};
 estimated from the flow information and an assumption or measurement of plenum
 air.
 
-\begin{equation} \label{eq:MixedAirTemperature}
-\mat = \frac{{{\priflow}\left( {\sat} \right) + \plenflow \left( {{T_{plen}}} \right)}}{\totflow}
+\begin{equation} \label{eq:TermUnitMixedAirTemperature}
+T_{mix} = \frac{{{\priflow}\left( {\sat} \right) + \plenflow \left( {{T_{plen}}} \right)}}{\totflow}
 \end{equation}
 
-Another rearrangement of \ref{eq:MixedAirTemperature} that is important is
+Another rearrangement of \ref{eq:TermUnitMixedAirTemperature} that is important is
 solving for \(\flow{pri}\). Under conditions when there is no reheat and the
 primary flow is not at the minimum setting, the energy balance across the
 terminal unit is
@@ -172,10 +174,12 @@ The temperature rise from the fan, \(\Delta T_{fan}\), can be estimated from
 historical data when the supplementary heating is off, either when the heating
 coil is completely closed or all stages of electrical reheat are inactive. If
 there is no other heating, the temperature increase from the fan is
-
+%
 \begin{equation}
 \Delta {T_{fan}} = {T_{dis}} - {T_{mix}}.
 \end{equation}
+where \(T_{mix}\) is the temperature described by \eqreftext{}
+\ref{eq:TermUnitMixedAirTemperature}.
 %
 For other times, the temperature increase due to reheat will be
 %
@@ -197,7 +201,7 @@ total flow is equal to the primary flow.
 The fan volume flow will be known from manufacturers specifications and the
 total flow can be calculated using Eq. \eqref{eq:TotalFlow}. The temperature
 from mixing the plenum air and primary can be estimated from Eq.
-\eqref{eq:MixedAirTemperature} or from historical data when the primary flow is
+\eqref{eq:TermUnitMixedAirTemperature} or from historical data when the primary flow is
 at the minimum and there is no activated reheat components.
 
 \subsection{Other Terminal Unit Types}
@@ -252,29 +256,31 @@ Level & Sensor \\
 The zone loads can be estimated from terminal unit data of airflow rate,
 terminal unit leaving temperature and zone temperature. Note that using
 %
-\begin{equation}
-\dot Q_{zone} = \dot V_{zone} C_{air} \left(T_{zone}-T_{leaving} \right)
-\end{equation}
+\begin{equation} \dot Q_{z} = \dot V_{z} C_{air} \left(T_{z}-T_{dis} \right) \end{equation}
 %
-assumes that the space is well-mixed and at steady-state. If the controls
-oscillate, then the zone load estimation will have some periodicity. In one
-sense, there is no ``single'' zone load coming from a point source, and as such
-we will have to rely on this estimation.
+assumes that the space is well-mixed and at steady-state. If the
+controls oscillate, then the zone load estimation will have some
+periodicity. In some sense, there is no ``single'' zone load coming from
+a point source, and as such we will have to rely on this estimation.
 
-The independent variables available for prediction are the current time and
-outdoor air conditions. The current time can be separated into time of day, day
-of week, weekdays/weekends and such. Outdoor air temperature correlates with
-the external load. As a reminder, this approach does not have access to live values
-of sensors and only relies on historical data.
+The independent variables available for prediction are the current time
+and outdoor air conditions. The current time can be separated into a
+time of day, the day of the week, weekdays/weekends and such. Outdoor air
+temperature correlates with the external load. As a reminder, this
+approach does not have access to live values of sensors and only relies
+on historical data.
 
 The approach used to estimate parameters is a related to the concept of
 a \textit{nearest neighbor}. The nearest neighbors are defined by any
 previous data that:
 
 \begin{enumerate}
-    \item Was within \(n\) hours of the time of day, normally taken as plus or minus one time step.
+    \item Was within \(n\) hours of the time of day, normally taken as
+        plus or minus a certain number of integer time steps relating to
+        the time interval between the data points.
 \item Was the same day of the week
-\item Had a corresponding \(T_{db}\) that is within \(\pm 2.5^\circ\)F of the the current \(T_{db}\).
+\item Had a corresponding \(T_{db}\) that is within a specified
+    threshold (say \SI{1}{\degreeF} of the current \(T_{db}\)).
 \end{enumerate}
 
 The median value of the nearest neighbors can be used to estimate the
@@ -284,7 +290,7 @@ that up to 50\% of the data can be contaminated before the median statistic
 will no longer be reliable. For the mean, one arbitrarily large data point can
 turn the mean statistic unreliable.
 
-This work used the most recent 30 data points in the median calculation. 30 points
+This work initially used the most recent 30 data points in the median calculation. 30 points
 was chosen since this is the threshold in which the sample median should approximate
 the actual median, if the population is assumed to have a normal distribution.
 
@@ -323,7 +329,7 @@ The total uncertainty in the prediction will be
 + \left(\frac{-\flow{}}{\nu} \delta T_{sup}\right)^{2}
 }
 \end{equation}
-For the sake of analysis, the following parameters were assumed:
+For the sake of analysis, the following reasonable parameters were assumed:
 \begin{enumerate}
     \item \(T_{room} = \SI{72}{\degF} \)
     \item \(T_{sup} = \SI{55}{\degF} \)
@@ -377,7 +383,7 @@ power, \(F\), can often be represented with the function shown in
     F = A + (1-A)( \text{PLR} )^{n}
 \end{equation}
 where \(A\) is the fraction of power at zero load, \(n\) is an exponent
-ranging from 1 to 3, and PLR is the part load
+typically ranging from 1 to 3, and PLR is the part load
 ratio defined to be
 \begin{equation}
     \text{PLR} = \frac{\flow{act}}{\flow{design}}
@@ -389,7 +395,7 @@ The actual fan power at any point is then
 The uncertainty of \(F\) can be explored with the Kline-McClintock
 formulation.
 
-The first term related to the uncertainty in \(A\) is
+The first uncertainty term, which is related to \(A\) is
 \begin{equation}
 A \text{ term} = \pdv{F}{A} \delta A = \left(1-\text{PLR}^n\right) \delta A
 \end{equation}
@@ -464,13 +470,14 @@ This would put the maximum uncertainty in \(F\) to about 0.04.
 
 \section{Fan Modeling}\label{sec:FanModeling}
 
-Fan energy is a significant component to the air side energy use for air
-conditioning. Fan static pressure, flow, speed, and power will all be
-measured.  The total primary air flow can either be measured directly
-(ideal) or estimated from the sum of the children terminal units. With
-this information, a complete set of fan curves can be created.
+Fan energy is a significant component of the air side energy use for air
+conditioning. Fan static pressure, flow, speed, and power would ideally
+all be measured.  The total primary air flow can either be measured
+directly (ideal) or estimated from the sum of the children terminal
+units. With this information, a complete set of fan curves can be
+created.
 
-Without all the sensors it's hard to create a first-principle based model
+Without all the sensors it is difficult to create a first-principle based model
 of the air-side equipment. Statistical techniques would be necessary to relate
 the speed of the fan, \(\dot N\), and the damper positions,
 \(\damp{i,damper}\).
@@ -481,7 +488,7 @@ result given the following setup.
 
 Estimating the system pressure loss for particular conditions is
 necessary for determining the potential fan energy at different speeds.
-The node layout of the terminal units will need be created. If the air
+The node layout of the terminal units will need to be created. If the air
 flow through each terminal unit is measured the flow through each
 portion of the duct work can be estimated.
 
@@ -572,7 +579,7 @@ relationships like the following
 \end{align}
 
 With historical data, the terminal unit flows and the
-damper positions in the unit is known at each timestep. There are 3 equations with 6
+damper positions in the unit are known at each timestep. There are 3 equations with 6
 unknowns, however, and the problem becomes underconstrained.
 
 A calibration for the pressure drop coefficients is possible. If the sum
@@ -587,7 +594,7 @@ Without further information regarding the actual terminal unit pressure
 drop relationships, this method loses its potential usefulness. For this
 reason, a simple approach of using an exponential part load ratio (PLR)
 function was employed as shown in Eq. \ref{eq:PartLoadRatio}. The value
-of \(n\) was varied from 2 to 3 and the sensitivity to this parameter was
+of \(n\) was varied from 2 to 3, and the sensitivity to this parameter was
 examined.
 
 \begin{equation}\label{eq:PartLoadRatio}

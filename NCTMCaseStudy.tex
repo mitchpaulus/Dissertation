@@ -29,7 +29,7 @@ children air handlers on the second floor, AHU 2-1, 2-2, and 2-3.
 This document focuses on the academic side of the building since
 Utilities and Energy services with Texas A\&M University are only
 allowed to make immediate changes to the HVAC system on this side. In
-summary, the relavent parameters concerning NCTM are that it houses
+summary, the relevant parameters concerning NCTM are that it houses
 several biopharmaceutical labs, it has an academic side that can be
 immediately changed and a manufacturing side that cannot be immediately
 changed, and relies on dedicated outdoor air handling units to pretreat
@@ -252,7 +252,7 @@ The result of a \textit{nearest neighbor} approach is shown in \figref{} \ref{fi
     \item The same day of the week
     \item Same hour of day \(\pm\)1 hr.
     \item Same \(\oat{}\) \(\pm\)3\(^\circ\)F
-    \item Searching backwards incrementally until 30 data points found
+    \item Searching backward incrementally until 30 data points found
 \end{itemize}
 
 The median of the found data points is the resulting prediction. The following
@@ -349,7 +349,7 @@ parameter values were varied as shown in \tableref{}
 
 
 With three parameters and 3 different variations for each, this resulted
-in 27 test cases. The results from this testing are shown in \tableref{}
+in 27 test cases. The results of this testing are shown in \tableref{}
 \ref{tab:MATTestingResults}. TS stands for time stamps, and is the
 number of timestamps threshold. Since the data was on 15 minute
 intervals, a 1 timestamp threshold implies a threshold of \(\pm\)15
@@ -361,7 +361,7 @@ data points.
 
 The model was not sensitive to the parameters. The CVs ranged from
 1.76\% to 2.16\%. The models with the lowest CVs had the largest range
-in the time stamp and \(T_{oa}\) threshold. This is an indication that
+in the time stamp and \(T_{oa}\) threshold. This observation is an indication that
 using more recent data was more valuable than using data from conditions
 matching more closely. 
 
@@ -421,9 +421,9 @@ matching more closely.
 
 \section{Analysis of the Plenum Air Temperature}
 
-Under certain assumptions, the plenum air temperature for the series fan
-powered terminal units is possible. If the terminal unit is modeled as a simple
-mixing problem, the plenum air temperature will be 
+Under certain assumptions, an estimation for the plenum air temperature for the
+series fan powered terminal units is possible. If the terminal unit is modeled
+as a simple mixing problem, the plenum air temperature will be 
 \begin{equation}
     T_{plenum}=\frac{\flow{tot}T_{dis}-\flow{pri}T_{sa}}{\flow{tot} -\flow{pri}}
 \end{equation}
@@ -431,7 +431,7 @@ mixing problem, the plenum air temperature will be
 Since \(T_{plenum}\) is a function of 4 variables, it is important to
 consider the uncertainty in the estimation. Clearly, when
 \(\flow{plenum}\) is low, assumed to be equivalent to \(\flow{tot} -
-\flow{pri}\), the uncertainty in  \(T_{plenum}\) grows significantly and
+\flow{pri}\), the uncertainty in  \(T_{plenum}\) grows significantly, and
 when the flow is equal to zero \(T_{plenum}\) is undefined. 
 
 Using the Kline-McKlintock formulation of uncertainty, the uncertainty
@@ -485,7 +485,7 @@ undefined.
 Using the assumptions that the uncertainty in the flow was 100 CFM and
 the uncertainty in the temperature measurements was 1\(^\circ\)F, the
 plenum temperature was recorded and plotted versus \(\oat\) from October
-6, 2015 to September 12, 2016, ignoring items that appear in \tableref{}
+6, 2015, to September 12, 2016, ignoring items that appear in \tableref{}
 \ref{tab:PlenumTemperatureEstimation}. The distribution statistics for
 each terminal unit is found in \tableref{} \ref{tab:plenumStatistics}.
 The table is listed in ascending order by the median of the plenum
@@ -522,7 +522,7 @@ through
 \ref{fig:2016-10-19-1521-ZoneReheatEnergyforContainerFPVAV213vsOADryBulbTemperatureNOAA}
 show the reheat energy as determined by \eqreftext{}
 \ref{eq:TerminalUnitReheatEnergy}. They are from the period of February
-1, 2016 through May 1, 2016.  Timestamps during weekends, times between
+1, 2016, through May 1, 2016.  Timestamps during weekends, times between
 5:00 PM and 9:00 AM, and when the corresponding reheat valve command is
 \( < 1 \) were ignored. Again, ideally, the reheat value would be
 exactly zero.
@@ -665,7 +665,7 @@ difference should be near zero.
 
 Under the assumption that the plenum temperature is equal to the
 corresponding zone temperature, it does not appear as if this assumption
-is valid for corresponding energy calculations. \figref{}
+is valid for the corresponding energy calculations. \figref{}
 \ref{fig:2017-01-09-1412-TboxDischargeMixedAirTempfromRoomTempforFPVAV27vsTboxPLRforFPVAV27}
 shows as much as an \SI{8}{\degreeF} difference. Because the value is
 positive, this means that the plenum temperature is likely higher than
@@ -685,7 +685,7 @@ The opposite case can be seen with TU-2-15, as shown in \figref{}
 \ref{fig:2017-01-09-1434-TboxDischargeMixedAirTempfromRoomTempforFPVAV215vsTboxPLRforFPVAV215}
 In this case, the values are all negative, indicating that the plenum
 temperature is lower than the zone temperature. The plots are from the
-same period and cover a wide range of outdoor air temperatures from
+same period and cover a broad range of outdoor air temperatures from
 \SI{36}{\degreeF} to \SI{96}{\degreeF}. Both plots do appear linear with
 regards to the PLR of the terminal unit. This linearity indicates that there is
 some relationship with the plenum temperature and the amount of
@@ -729,8 +729,9 @@ that is proposed to be used as the surrogate for zone load.
 If the zone loads are being met and steady-state conditions are assumed,
 the sensible zone load will be
 \begin{equation}
-    Q_{zone}=\flow{z} \rhocp{} \left(T_{dis}-T_{z} \right) \approx 1.08 \cdot \flow{z}\left(T_{dis}-T_{z} \right)
+    \dot{Q}_{zone}=\flow{z} \rhocp{} \left(T_{dis}-T_{z} \right) \approx 1.08 \cdot \flow{z}\left(T_{dis}-T_{z} \right)
 \end{equation}
+where \(\dot{Q}\) is in units of \si{\btu\per\hour}, \(\flow{z}\) is in CFM, and the temperatures are in \si{\degreeF}.
 
 As a result of the dynamics of how terminal units are controlled in reality,
 the estimated zone load can vary back and forth, while the true zone load is a
@@ -803,7 +804,9 @@ to 4,000 BTU/hr.
 \end{figure}
 
 
-The statistics related to the predictions of the zone loads for data ranging from October 6, 2015 to June 1, 2016 is given in \tableref{} \ref{tab:zoneLoadStats}.
+The statistics related to the predictions of the zone loads for data ranging
+from October 6, 2015, to June 1, 2016, is given in \tableref{}
+\ref{tab:zoneLoadStats}.
 
 
 %%Data from NCTM Report 2016-06-20 T 12-16.xlsx.
@@ -859,15 +862,15 @@ margin. It has estimated loads near 50,000 BTU/hr.
 An interesting pattern that was that the initial prediction routine
 overpredicted the zone load when the zone load was closer to the heating
 range and underpredicted the zone load during times of high cooling
-load. This bias was seen in every terminal unit in the building and this
-bias occured with both the largest and smallest terminal units. Figures
+load. This bias was seen in every terminal unit in the building, and this
+bias occurred with both the largest and smallest terminal units. Figures
 \ref{fig:2016-09-14-1028-ZoneLoadResidualforContainerFPVAV22vsZoneLoadforContainerFPVAV22}
 through
 \ref{fig:2016-09-14-1020-ZoneLoadResidualforContainerFPVAV27vsZoneLoadforContainerFPVAV27}
-show examples of this phenomenon. This is due to the fact that the
+show examples of this phenomenon. This is because the
 median of sub-sets of data was used for the prediction. The method will
 always underpredict the highest value and overpredict the lowest value.
-The date period analyzed was from March 1, 2016 to August 1, 2016,
+The date period analyzed was from March 1, 2016, to August 1, 2016,
 ignoring when the AHUs were off, federal holidays and weekends, and
 hours from 5 PM to 9 AM. 
 
@@ -990,7 +993,7 @@ Run & TS & \(T_{oa} \) & \# of Data Points & Average CV (\%) \\ \midrule
 The critical zone/damper is to be used to determine the static pressure
 setpoint that can be used to supply the desired flows found from the
 optimization. An important consideration in the methodology is checking
-how how this assumption holds. Data from NCTM can be used to test the
+how well this assumption holds. Data from NCTM can be used to test the
 validity of the approach.
 
 The following figures show the maximum damper position of the children
@@ -1041,8 +1044,8 @@ is potential for the supply air static pressure setpoint to be reduced.
 \subsection{Critical Zones for NCTM}
 
 An investigation into the critical zones based on historical data was
-completed. 15 minute interval data from Jan. 1, 2016 through Jun. 1,
-2016 was used to check which damper positions were most open at a given
+completed. 15 minute interval data from Jan. 1, 2016, through Jun. 1,
+2016, was used to check which damper positions were most open at a given
 timestamp. \tableref{} \ref{tab:AHU12CriticalZone} shows the results of
 this analysis. In all five of the applicable air handling units, there
 is a damper that is critical at least 59\% of the time. 
@@ -1085,7 +1088,7 @@ terminal unit.  \tableref{} \ref{tab:TerminalUnitInformation} shows the
 design flow rates for all the series fan powered terminal units in the
 NCTM building.  The results show that the design specifications were
 sufficiently accurate.  All data that were available at the time
-(October 6, 2015 through June 7, 2016) were analyzed to capture a large
+(October 6, 2015, through June 7, 2016) were analyzed to capture a large
 number of timestamps (over 22,000 timestamps).  There are several
 reasons for potential differences between the maximum measured flow and
 the design flow rates in the mechanical drawings.  It may be the case
@@ -1157,7 +1160,7 @@ The methods described in the previous sections were used to determine
 the optimal supply air temperature for various air handling units at the
 NCTM building.  \figref{}
 \ref{fig:2016-11-30-1004-AHU23MixedAirTemp-TikzData} shows the results
-for AHU-2-3 during the work week from Monday, November 7, 2016 through
+for AHU-2-3 during the work week from Monday, November 7, 2016, through
 Friday, November 11, 2016.  During that week, the actual \(\sat\) hovered
 between 58 and 60\(^\circ\)F. The optimal \(\sat\) was predicted using
 different parameters for the simple fan curve exponent and plenum
@@ -1311,5 +1314,5 @@ A third conclusion is that the uncertainty in the optimal \(\sat\) is
 small enough that in most cases, the current operation at NCTM does not
 fall within the bounds.  In the cases shown in \figref{}
 \ref{fig:2016-11-30-1004-AHU23MixedAirTemp-TikzData} through \figref{}
-\ref{fig:2016-11-16-1636-AHU22MixedAirTemp-TikzData} the optimal
+\ref{fig:2016-11-16-1636-AHU22MixedAirTemp-TikzData}, the optimal
 \(\sat\) was higher than the current operation. 
