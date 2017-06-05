@@ -1,3 +1,4 @@
+\RequirePackage{luatex85}
 \documentclass[12pt]{article}
 \usepackage[active, tightpage]{preview}
 \usepackage{tikz}
@@ -9,11 +10,11 @@
 
 \begin{document}
 
-\newcommand{\A}{0.2};
-\newcommand{\delPLR}{0.05};
-\newcommand{\deln}{0.4};
-\newcommand{\delA}{0.05};
-\newcommand{\n}{2};
+\newcommand{\A}{0.2}
+\newcommand{\delPLR}{0.05}
+\newcommand{\deln}{0.4}
+\newcommand{\delA}{0.05}
+\newcommand{\n}{2}
 
 
 \begin{tikzpicture}
@@ -36,6 +37,11 @@
 \addplot[no marks, domain=0:1, samples=50] 
 {((1+(-1)*\A)^2*\delPLR^2*\n^2*x^((-2)+2*\n)+\delA^2*(1+(-1)*x^\n)^2+(1+(-1)*\A)^2*\deln^2*x^(2*\n)*ln(x)^2)^(1/2)};
 
+\renewcommand{\n}{2.4}
+\addplot[no marks, domain=0:1, samples=50, color=blue, dashed] 
+{((1+(-1)*\A)^2*\delPLR^2*\n^2*x^((-2)+2*\n)+\delA^2*(1+(-1)*x^\n)^2+(1+(-1)*\A)^2*\deln^2*x^(2*\n)*ln(x)^2)^(1/2)};
+\addlegendentry{\(n=2\)};
+\addlegendentry{\(n=2.4\)};
 \end{axis}
 \end{tikzpicture}
 \end{document}

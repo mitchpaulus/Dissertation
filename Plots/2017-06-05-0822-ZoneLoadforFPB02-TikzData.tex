@@ -1,0 +1,99 @@
+\RequirePackage{luatex85}
+\documentclass[12pt]{article}
+\usepackage[active, tightpage]{preview}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+\PreviewEnvironment{tikzpicture}
+\input{../tikz/tikzDefaults}
+% StartDate: 10/19/2016
+% EndDate: 10/22/2016
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+tschart,
+xmin=42662,
+xmax=42665,
+ymin=-20000,
+ymax=50000,
+ytick={-20000,-10000,0,10000,20000,30000,40000,50000},
+ylabel={Zone Load \\ {[Btu/hr]}},
+ylabel style={align=center},
+xtick={42662, 42663, 42664, 42665},
+xticklabels={Wed 10/19, Thu 10/20, Fri 10/21, Sat 10/22},
+%legend entries={{Zone Load for FPB-02},{Zone Load for FPB-03},{Zone Load for FPB-04},{Zone Load for FPB-05},{Zone Load for FPB-06},{Zone Load for FPB-07},{Zone Load for FPB-08},{Zone Load for FPB-09},{Zone Load for FPB-11},{Zone Load for FPB-12},{Zone Load for FPB-13},{Zone Load for FPB-14},{Zone Load for FPB-15}},
+legend pos=outer north east,
+%cycle list name=color,
+]
+
+\addplot[
+no markers,forget plot,
+]
+table[x=Date,y=ZoneLoadforFPB02,col sep=tab]{../Data/2017-06-05-0822-ZoneLoadforFPB02-TikzData.dat};
+
+\addplot[
+no markers,forget plot,
+]
+table[x=Date,y=ZoneLoadforFPB03,col sep=tab]{../Data/2017-06-05-0822-ZoneLoadforFPB02-TikzData.dat};
+
+\addplot[
+no markers,forget plot,
+]
+table[x=Date,y=ZoneLoadforFPB04,col sep=tab]{../Data/2017-06-05-0822-ZoneLoadforFPB02-TikzData.dat};
+
+\addplot[
+no markers,forget plot,
+]
+table[x=Date,y=ZoneLoadforFPB05,col sep=tab]{../Data/2017-06-05-0822-ZoneLoadforFPB02-TikzData.dat};
+
+\addplot[
+no markers,forget plot,
+]
+table[x=Date,y=ZoneLoadforFPB06,col sep=tab]{../Data/2017-06-05-0822-ZoneLoadforFPB02-TikzData.dat};
+
+\addplot[
+no markers,forget plot,
+]
+table[x=Date,y=ZoneLoadforFPB07,col sep=tab]{../Data/2017-06-05-0822-ZoneLoadforFPB02-TikzData.dat};
+
+\addplot[
+no markers,red,
+]
+table[x=Date,y=ZoneLoadforFPB08,col sep=tab]{../Data/2017-06-05-0822-ZoneLoadforFPB02-TikzData.dat};
+\addlegendentry{FPB-08}
+
+\addplot[
+no markers,forget plot,
+]
+table[x=Date,y=ZoneLoadforFPB09,col sep=tab]{../Data/2017-06-05-0822-ZoneLoadforFPB02-TikzData.dat};
+
+\addplot[
+no markers,color=blue,
+]
+table[x=Date,y=ZoneLoadforFPB11,col sep=tab]{../Data/2017-06-05-0822-ZoneLoadforFPB02-TikzData.dat};
+\addlegendentry{FPB-11}
+
+\addplot[
+no markers,forget plot,
+]
+table[x=Date,y=ZoneLoadforFPB12,col sep=tab]{../Data/2017-06-05-0822-ZoneLoadforFPB02-TikzData.dat};
+
+\addplot[
+no markers,forget plot,
+]
+table[x=Date,y=ZoneLoadforFPB13,col sep=tab]{../Data/2017-06-05-0822-ZoneLoadforFPB02-TikzData.dat};
+
+\addplot[
+no markers,forget plot,
+]
+table[x=Date,y=ZoneLoadforFPB14,col sep=tab]{../Data/2017-06-05-0822-ZoneLoadforFPB02-TikzData.dat};
+
+\addplot[
+no markers,
+]
+table[x=Date,y=ZoneLoadforFPB15,col sep=tab]{../Data/2017-06-05-0822-ZoneLoadforFPB02-TikzData.dat};
+\addlegendentry{All others}
+\end{axis}
+\end{tikzpicture}
+\end{document}

@@ -423,29 +423,58 @@ If the values of
 \end{enumerate}
 are used, a plot can be created showing the relative importance in the
 uncertainty as a function of PLR. This plot is shown in \figref{}
-\ref{fig:FFLRUncertainty}.
+\ref{fig:FFLRUncertainty}. The series are the squared values of the
+uncertainty terms, for example, the \(A\) series is 
+
 
 Over the input range of PLR, there are three different regimes in which
-each input variable contributes the most to the uncertainty. At high
+each input variable contributes the most to the uncertainty. The
+different regimes where specific terms are the largest are denoted in
+\figref{} \ref{fig:FFLRUncertainty} and \ref{fig:FFLRUncertaintyN24}. At high
 part load ratios, the uncertainty in the part load ratio itself is the
 most important factor. At part load ratios near 0.5, the exponent \(n\),
 which determines the curvature is the most important. At low part load
 ratios, the uncertainty in the value of \(A\), the limiting fraction of
 part load power at 0 load, is the most important.
 
+At the extreme values of PLR, 0 and 1, the uncertainty from two the
+components is 0. At a PLR of 0, there is no uncertainty contribution
+from the exponent and PLR terms. At a PLR of 1, there is no uncertainty
+contribution from the exponent and the constant \(A\) terms. 
+
 So to reduce the total uncertainty across all ranges of part load ratios
 will require better knowledge of all the input variables.
 
+If the value of \(n\) is increased to 2.4, the uncertainty values
+change, and the results are shown in \figref{}
+\ref{fig:FFLRUncertaintyN24}. The maximum contribution for the \(n\)
+term is decreased, and the PLR at which the maximum occurs shifts to the
+right. The contribution from the PLR term increases at the larger values
+of PLR, however.
+
+% Plots/2017-05-15-FFLPUncertainty.tex
 \begin{figure}
 \centering
 \includegraphics[]{Plots/2017-05-15-FFLPUncertainty.pdf}
 \caption{Relative uncertainty contributions for fraction of full load
-fan power.}
+fan power when \(n=2\). (\(A=0.2\), \(\delta A = 0.05\), \(n=2\), \(\delta n =0.04\), \(\delta \text{PLR}=0.05\))}
 \label{fig:FFLRUncertainty}
 \end{figure}
 
+\begin{figure}
+\centering
+\includegraphics{Plots/2017-06-05-FFLPUncN24.pdf}
+\caption{Relative uncertainty contributions for fraction of full load
+fan power when \(n=2.4\). (\(A=0.2\), \(\delta A = 0.05\), \(n=2.4\),
+\(\delta n =0.04\), \(\delta \text{PLR}=0.05\))}
+\label{fig:FFLRUncertaintyN24}
+\end{figure}
+
+
+
 \figref{} \ref{fig:TotalFFLRUncertainty} shows the total uncertainty in
-\(F\), given the assumed inputs listed. At all levels of part load, the
+\(F\), given the assumed inputs listed. The total uncertainty using
+\(n=2\) and \(n=2.4\) are both plotted. At all levels of part load, the
 estimated uncertainty in the fraction of full load power is less than
 0.1.
 
@@ -454,6 +483,7 @@ uncertainty will also be reduced by half. The would be feasible with
 trend data regarding the individual fan powers, flow, and pressures.
 This would put the maximum uncertainty in \(F\) to about 0.04.
 
+% Plots/2017-05-15-totalFFLPUncertainty.tex
 \begin{figure}
 \centering
 \includegraphics{Plots/2017-05-15-totalFFLPUncertainty.pdf}

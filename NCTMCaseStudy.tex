@@ -164,6 +164,25 @@ that are set to values less than this. \tableref{}
 \ref{tab:MinimumAirFlowRateSettings} shows the estimated minimum percent flows
 based on data from February 1, 2016, through May 1, 2016.  
 
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Images/FanPoweredBoxSnip.PNG}
+\caption{Typical graphic of the terminal units at NCTM.}
+\label{fig:NCTMTerminalUnitGraphic}
+\end{figure}
+
+\figref{} \ref{fig:NCTMTerminalUnitGraphic} shows the available points
+for the series fan powered terminal units at NCTM from a BAS graphic.
+
+The points include
+\begin{itemize}
+    \item Primary air flow
+    \item Damper command
+    \item Discharge air temperature 
+    \item Heating coil valve command
+\end{itemize}
+
+
 %% Several unique patterns and characteristics were found in the data set.
 
 
@@ -177,7 +196,7 @@ based on data from February 1, 2016, through May 1, 2016.
 \label{tab:MinimumAirFlowRateSettings}
 \begin{tabular}{lS}
     \toprule
-Conntainer Hierarchy & {Min Percent Flow} \\ \midrule
+Container Hierarchy & {Min Percent Flow} \\ \midrule
 FPVAV-2-1            & 20                              \\
 FPVAV-2-2            & 30                              \\
 FPVAV-2-3            & 20                              \\
@@ -209,6 +228,7 @@ FPVAV-1-6            & 30                              \\
 FPVAV-1-11           & 30               \\ \bottomrule
 \end{tabular}
 \end{table}
+
 
 
 
@@ -421,7 +441,7 @@ matching more closely.
 \end{tabular}
 \end{table}
 
-\sectio{Analysis of the Plenum Air Temperature}
+\section{Analysis of the Plenum Air Temperature}
 
 Under certain assumptions, an estimation for the plenum air temperature for the
 series fan powered terminal units is possible. If the terminal unit is modeled
@@ -512,7 +532,7 @@ If the plenum temperature is assumed to be equal to the zone temperature
 then an estimate of the mixed air temperature in the terminal unit would
 be
 \begin{equation}
-    \mat = \frac{\priflow \sat + T_{zone} \left( \totflow - \priflow \right) }{ \totflow}
+    \mat = \frac{\priflow \sat + T_{z} \left( \totflow - \priflow \right) }{ \totflow}
     \label{eq:TerminalUnitMixedAirTemp}
 \end{equation}
 and the reheat energy could be estimated by
@@ -627,7 +647,11 @@ Unit     & Min  & \parbox{1cm}{5th \\ Perc.} & Mean & Median & \parbox{1cm}{95th
 \figref{}
 \ref{fig:2016-10-19-1424-ZoneReheatEnergyforContainerFPVAV216vsOADryBulbTemperatureNOAA}
 shows an example of where the assumption appears to hold reasonably well.  
-The median of the data set is near \SI{500}{\btu\per\hour}. 
+The median of the data set is near \SI{500}{\btu\per\hour}. Is should be
+noted that \eqreftext{} \ref{eq:TerminalUnitReheatEnergy} does not make a
+distinction between heating from the heating coils and heating from fan.
+So the \SI{500}{\btu\per\hour} could be due to the fan in the air
+stream. 
 
 \figref{}
 \ref{fig:2016-10-19-1438-ZoneReheatEnergyforContainerFPVAV24vsOADryBulbTemperatureNOAA}
@@ -734,7 +758,7 @@ that is proposed to be used as the surrogate for zone load.
 If the zone loads are being met and steady-state conditions are assumed,
 the sensible zone load will be
 \begin{equation}\label{eq:ApproximateZoneLoad}
-    \dot{Q}_{zone}=\flow{z} \rhocp{} \left(T_{dis}-T_{z} \right) \approx 1.08 \cdot \flow{z}\left(T_{dis}-T_{z} \right)
+    \dot{Q}_{z}=\flow{z} \rhocp{} \left(T_{dis}-T_{z} \right) \approx 1.08 \cdot \flow{z}\left(T_{dis}-T_{z} \right)
 \end{equation}
 where \(\dot{Q}\) is in units of \si{\btu\per\hour}, \(\flow{z}\) is in CFM, and the temperatures are in \si{\degreeF}.
 
@@ -897,6 +921,7 @@ hours from 5 PM to 9 AM.
 \label{fig:2016-09-14-1007-ZoneLoadResidualforContainerFPVAV14vsZoneLoadforContainerFPVAV14}
 \end{figure}
 
+% Plots/2016-09-14-1020-ZoneLoadResidualforContainerFPVAV27vsZoneLoadforContainerFPVAV27.tex
 \begin{figure}
 \centering
 \includegraphics[]{Plots/2016-09-14-1020-ZoneLoadResidualforContainerFPVAV27vsZoneLoadforContainerFPVAV27.pdf}

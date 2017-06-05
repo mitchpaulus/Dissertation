@@ -1,8 +1,9 @@
 \chapter{\texorpdfstring{\MakeUppercase{Preston Royal Case Study}}{Preston Royal Case Study}}
 
-Preston Royal Branch Library is a one-story building with \SI{12400}{\feet\squared} of gross floor area. The
-library opened in 1954. The facility consists of an open-space reading room and circulation, staff
-area, and an auditorium.
+Preston Royal Branch Library is a one-story building with
+\SI{12400}{\feet\squared} of gross floor area. The library opened in 1954. The
+facility consists of an open-space reading room and circulation, staff area,
+and an auditorium.
 
 The library is served by a single air handling unit. A BAS graphic of
 the AHU is shown in \figref{} \ref{fig:PrestonRoyalAHUGraphic}. 
@@ -54,3 +55,27 @@ the space is fluctuating, but that the HVAC controls are oscillating.
 \caption{Zone load for FPB02 at Preston Royal Library.}
 \label{fig:2017-04-03-1250-ZoneLoadforFPB02-TikzData}
 \end{figure}
+
+
+\figref{} \ref{fig:2017-06-05-0822-ZoneLoadforFPB02-TikzData} shows the
+zone load for all the terminal units at Preston Royal Library for a
+period of 3 days from October 19\textsuperscript{th}, 2016 through
+October 21\textsuperscript{st}, 2016. Of interest to note is that within
+the same space, one terminal unit can be experiencing a large cooling
+load (FPB-11) while another terminal unit is calling for heating
+(FPB-08). 
+
+
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2017-06-05-0822-ZoneLoadforFPB02-TikzData.pdf}
+\caption{Zone load for all terminal units at Preston Royal Library.}
+\label{fig:2017-06-05-0822-ZoneLoadforFPB02-TikzData}
+\end{figure}
+
+The optimization could not be completed for Preston Royal Library
+because of data quality issues. The data was not produced consistently
+and had long gaps during many days. In addition, a flow sensor for
+FPB-05 was constant at 0, and this issue was not resolved. 
+
+

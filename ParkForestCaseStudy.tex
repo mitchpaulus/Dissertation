@@ -3,7 +3,7 @@
 The last two cases studies were two other buildings that had data
 available in Implementer and had discharge air temperature sensors for
 the terminal units. The last two case studies were not studied in a much
-detail as the NCTM building. 
+detail as the NCTM building because of issues regarding data quality.
 
 Park Forest Branch Library is a one-story building with
 \SI{10894}{\feet\squared} of gross floor area. The Park Forest Branch
@@ -64,20 +64,21 @@ too poor to confidently make models.
 \label{fig:ParkForestMixedAirChamber}
 \end{figure}
 
+\sisetup{table-number-alignment=right, table-figures-decimal=0}
 \begin{table}
     \centering
     \caption{Terminal unit specifications for Park Forest.}
     \label{tab:ParkForestTerminalUnitSpecs}
-    \begin{tabular}{@{}cccccl@{}}
+    \begin{tabular}{@{}ccccSS@{}}
         \toprule
-        \multirow{2}{*}{Tag} & \multirow{2}{*}{Model} & \multicolumn{2}{c}{Size} & \multicolumn{2}{c}{CFM} \\
-                             &                        & Unit       & Outlet      & Max        & Min        \\ \midrule
-        VAV-01               & LMHS                   & 22         & 38x18       &  \num{5040}      &  \num{1512}      \\
-        VAV-02               & LMHS                   & 22         & 38x18       &  \num{3780}      &  \num{1134}      \\
-        VAV-03               & LMHS                   & 16         & 24x18       &  \num{3300}      &  \num{990}       \\
-        VAV-04               & LMHS                   & 08         & 12x10       &  \num{670}       &  \num{201}       \\
-        VAV-05               & LMHS                   & 14         & 20x18       &  \num{1720}      &  \num{516}       \\
-        VAV-06               & LMHS                   & 12         & 16x15       &  \num{1634}      &  \num{490}       \\ \bottomrule
+        \multirow{2}{*}{Tag}  & \multirow{2}{*}{Model} & \multicolumn{2}{c}{Size} & \multicolumn{2}{c}{CFM} \\
+                              &                        & Unit                     & Outlet                  &  {Max} & {Min} \\ \midrule
+        VAV-01                & LMHS                   & 22                       & 38x18                   &  5040  & 1512  \\
+        VAV-02                & LMHS                   & 22                       & 38x18                   &  3780  & 1134  \\
+        VAV-03                & LMHS                   & 16                       & 24x18                   &  3300  & 990   \\
+        VAV-04                & LMHS                   & 08                       & 12x10                   &  670   & 201   \\
+        VAV-05                & LMHS                   & 14                       & 20x18                   &  1720  & 516   \\
+        VAV-06                & LMHS                   & 12                       & 16x15                   &  1634  & 490   \\ \bottomrule
     \end{tabular}
 \end{table}
 
@@ -106,12 +107,12 @@ too poor to confidently make models.
     \begin{tabular}{@{}lSlSSSSSSl@{}}
         \toprule
         \multicolumn{3}{l}{Tbox Airflow (CFM)} &           &                              &            &            &                               &            &                           \\
-        Unit                                   & {Min}     & \parbox[b]{1cm}{5th \\ Perc} & { Mean }   & { Median } & \parbox[b]{1cm}{95th \\ Perc} & { Max }    & \parbox[b]{1cm}{St. Dev.} &  \parbox[b]{1.5cm}{Original \\ Count} & \parbox[b]{1cm}{\% \\ Ignored} \\ \midrule
-        VAV-1                                 & \num{722} & \num{824}                    & \num{1104} & \num{1183} & \num{1244}                    & \num{1312} & \num{151}                 &  \num{20897}                          & 69\%                           \\
-        VAV-2                                 & \num{557} & \num{631}                    & \num{661}  & \num{662}  & \num{683}                     & \num{720}  & \num{16}                  &  \num{20801}                          & 68\%                           \\
-        VAV-3                                 & \num{550} & \num{590}                    & \num{975}  & \num{1144} & \num{1234}                    & \num{2453} & \num{262}                 &  \num{19937}                          & 69\%                           \\
-        VAV-4                                 & \num{451} & \num{497}                    & \num{516}  & \num{513}  & \num{550}                     & \num{579}  & \num{16}                  &  \num{19169}                          & 69\%                           \\
-        VAV-5                                 & \num{350} & \num{391}                    & \num{713}  & \num{813}  & \num{932}                     & \num{987}  & \num{211}                 &  \num{19169}                          & 69\%                           \\
-        VAV-6                                 & \num{137} & \num{147}                    & \num{331}  & \num{211}  & \num{610}                     & \num{707}  & \num{205}                 &  \num{18785}                          & 69\%                           \\ \bottomrule
+        Unit                                   & {Min}     & \parbox[b]{0.75cm}{5th \\ Perc} & { Mean }   & { Median } & \parbox[b]{1cm}{95th \\ Perc} & { Max }    & \parbox[b]{1cm}{St. Dev.} &  \parbox[b]{1.5cm}{Original \\ Count} & \parbox[b]{1cm}{\% \\ Ignored} \\ \midrule
+        VAV-1                                 & 722 & 824                    & 1104 & 1183 & 1244                    & 1312 & 151                 &  20897                          & 69\%                           \\
+        VAV-2                                 & 557 & 631                    & 661  & 662  & 683                     & 720  & 16                  &  20801                          & 68\%                           \\
+        VAV-3                                 & 550 & 590                    & 975  & 1144 & 1234                    & 2453 & 262                 &  19937                          & 69\%                           \\
+        VAV-4                                 & 451 & 497                    & 516  & 513  & 550                     & 579  & 16                  &  19169                          & 69\%                           \\
+        VAV-5                                 & 350 & 391                    & 713  & 813  & 932                     & 987  & 211                 &  19169                          & 69\%                           \\
+        VAV-6                                 & 137 & 147                    & 331  & 211  & 610                     & 707  & 205                 &  18785                          & 69\%                           \\ \bottomrule
     \end{tabular}
 \end{table}
