@@ -1,3 +1,6 @@
+%! TEX program = xelatex
+%! TEX root = main.tex
+
 \chapter{\texorpdfstring{\MakeUppercase{NCTM Case Study}}{NCTM Case Study}}
 The National Center for Therapeutic Medicine (NCTM) was used as a test
 bed for the methodology. NCTM is a building located on the
@@ -71,11 +74,11 @@ Floor 2        & OAHU 2-1 & AHU 2-3 & 6am - 10pm, M-F \\
 \toprule
 OAHU & {Design OA CFM} & {HP} \\
 \midrule
-OAHU 1-1 & \num{12800} & 20 \\
-OAHU 1-2 & \num{4500}  & 5  \\
-OAHU 2-1 & \num{2200}  & 2  \\
+OAHU 1-1 & 12800 & 20 \\
+OAHU 1-2 & 4500  & 5  \\
+OAHU 2-1 & 2200  & 2  \\
 \bottomrule
-\multicolumn{1}{r}{Total:} & \num{19500} & 27 \\
+\multicolumn{1}{r}{Total:} & 19500 & 27 \\
 \end{tabular}
 \end{table}
 
@@ -83,19 +86,19 @@ OAHU 2-1 & \num{2200}  & 2  \\
 \centering
 \caption{Fan schedule information for the AHUs.}
 \label{tab:FanSched}
-\begin{tabular}{l c c S c}
+\begin{tabular}{l c S S c}
 \toprule
-AHU 	& Type	 	& Total Airflow (CFM) 	& {HP} 	& OA Served By\\
+AHU 	& Type	 	& { Total Airflow (CFM) } 	& {HP} 	& OA Served By\\
 \midrule
-AHU 1-1 & Constant & \num{3000} & 5   & OAHU 1-1 \\
-AHU 1-2 & VAV      & \num{4800} & 5   & OAHU 1-1 \\
-AHU 1-3 & VAV      & \num{7500} & 7.5 & OAHU 1-2 \\
-AHU 1-4 & Constant & \num{5000} & 7.5 & OAHU 1-2 \\
-AHU 2-1 & VAV      & \num{6000} & 7.5 & OAHU 2-1 \\
-AHU 2-2 & VAV      & \num{8500} & 10  & OAHU 2-1 \\
-AHU 2-3 & VAV      & \num{6000} & 7.5 & OAHU 2-1 \\
+AHU 1-1 & Constant & 3000 & 5   & OAHU 1-1 \\
+AHU 1-2 & VAV      & 4800 & 5   & OAHU 1-1 \\
+AHU 1-3 & VAV      & 7500 & 7.5 & OAHU 1-2 \\
+AHU 1-4 & Constant & 5000 & 7.5 & OAHU 1-2 \\
+AHU 2-1 & VAV      & 6000 & 7.5 & OAHU 2-1 \\
+AHU 2-2 & VAV      & 8500 & 10  & OAHU 2-1 \\
+AHU 2-3 & VAV      & 6000 & 7.5 & OAHU 2-1 \\
 \bottomrule
-\multicolumn{2}{r}{Total:} & 40,800 & 50 &  \\
+\multicolumn{2}{r}{Total:} & 40800 & 50 &  \\
 \end{tabular}
 \end{table}
 
@@ -116,7 +119,7 @@ served for each of the terminal units.
 AHU &  Terminal Unit & \parbox{1.5cm}{Flow\\(CFM) }& Space Served \\ \midrule
 %%\parbox{2cm}{AHU-1-1 \\ (5 hp)} & \multicolumn{3}{l}{No boxes - Serves Teaching Module alone, Constant Fan} \\ \midrule
 AHU-1-2  & FPVAV-1-7  & 1,400 & Difficult to tell                   \\ \cmidrule(r){2-4}
-(5 hp)   & FPVAV-1-8  & 700   & Vestible/Men's \&  Women's bathroom \\ \cmidrule(r){2-4}
+(5 hp)   & FPVAV-1-8  & 700   & Vestibule/Men's \&  Women's bathroom \\ \cmidrule(r){2-4}
          & FPVAV-1-9  & 1,200 & Stairs/Front Corridor               \\ \cmidrule(r){2-4}
          & FPVAV-1-10 & 1,600 & Hallway                             \\ \midrule
 AHU-1-3  & FPVAV-1-1  & 1,480 & Large Auditorium Lecture Hall       \\ \cmidrule(r){2-4}
@@ -373,17 +376,17 @@ parameter values were varied as shown in \tableref{}
 
 With three parameters and 3 different variations for each, this resulted in 27
 test cases. The results of this testing are shown in \tableref{}
-\ref{tab:MATTestingResults}. TS stands for time stamps, and is related to time
+\ref{tab:MATTestingResults}. TS stands for timestamps, and is related to time
 of day threshold. Since the data was on 15 minute intervals, a 1 timestamp
 threshold implies a threshold of \(\pm\)15 minutes and a 4 timestamp threshold
-implies a threshold of \(\pm\)60 minutes. The best model fit used a time stamp
+implies a threshold of \(\pm\)60 minutes. The best model fit used a timestamp
 threshold of \(\pm\)60 minutes, \(\pm\SI{3}{\degF}\) for \(T_{oa}\), and 15
 data points. The worst case was using \(\pm\)15 minutes, \(\pm \SI{1}{\degF}\),
 and 30 data points. 
 
 The model was not sensitive to the parameters. The CVs ranged from
 1.76\% to 2.16\%. The models with the lowest CVs had the largest range
-in the time stamp and \(T_{oa}\) threshold. This observation is an indication that
+in the timestamp and \(T_{oa}\) threshold. This observation is an indication that
 using more recent data was more valuable than using data from conditions
 matching more closely. 
 
@@ -476,8 +479,8 @@ So for an example, if the following arbitrary but reasonable parameters are used
 %
 \begin{itemize}
     \item \(\totflow{}=\flowtotvalue\)
-    \item \(\plenflow{}=\plenflowvalue\)
-    \item \(\priflow=\flowtotvalue - \plenflowvalue = \SI{1200}{\CFM} \)
+    \item \(\priflow{}=\plenflowvalue\)
+    \item \(\plenflow=\flowtotvalue - \plenflowvalue = \SI{1200}{\CFM} \)
     \item \(\sat = 55^{\circ}\text{F} \)
     \item \(\dat = 75^{\circ}\text{F} \)
     \item \(\delta\priflow{}=\delta\plenflow=\delta\totflow=100 \text{ CFM}\)
@@ -492,6 +495,69 @@ which results in a final uncertainty of \SI{3.91}{\degreeF}, which is
 nearly four times larger than the initially assumed uncertainties for
 the temperatures (\SI{1}{\degreeF}). When \(T_{plen}\) is reduced even
 further, this uncertainty grows substantially.  
+
+For further analysis, \eqreftext{} \ref{eq:plenumUncertainty} can be manipulated into a simpler form.
+The first substitution assumes the uncertainty for \(T_{dis}\) and
+\(T_{pri}\) are taken to be the same and constant at a value of \(\delta
+T\). The uncertainty for the flows can be done on a percent basis,
+(\(\pm 10\%\) for example, and that percentage, a value from 0 to 1 can
+be denoted as \(\delta \flow{perc}\)).  The difference between
+\(T_{dis}\) and \(T_{pri}\) can be replaced by \(\Delta T\).  The final substitution is that
+the flows for \(\flow{pri}\) and \(\flow{plen}\) are taken to be be a
+fraction of the total flow.  \(F_{pri}\) is defined to be the fraction
+of the total flow that comes from the primary stream, a value between 0
+and 1. Therefore,
+\begin{equation}
+    \flow{pri} = F_{pri} \flow{tot}
+\end{equation} 
+and
+\begin{equation}
+    \flow{plen} = \left(1- F_{pri}\right) \flow{tot}.
+\end{equation}
+With these substitutions, the total uncertainty for \(T_{plen}\) is 
+\begin{equation}
+    \sqrt{\left(\frac{\delta T}{1-F_{pri}}\right)^2 +
+        \left(\frac{\delta T F_{pri}}{1-F_{pri}}\right)^2 + 
+        2 \left(\frac{\Delta T\, F_{pri}\,\delta\flow{perc} }
+            {(1-F_{pri})^2}\right)^2}
+\end{equation}
+
+Various combinations of values and the resulting uncertainty in
+\(T_{plen}\) are shown in \figref{}
+\ref{fig:TPlenUncertaintyAcrossDeltaT} through
+\ref{fig:TPlenUncertaintyAcrossVUnc}. The y-axis is normalized to the
+static uncertainty in the other temperatures, \(\delta T\), which is the
+uncertainty for both \(T_{dis} \) and \(T_{pri}\). 
+
+What the plots show is that the fraction of primary flow, \(F\), has to
+be less than 40\% is most cases in order to have an uncertainty in
+\(T_{plen}\) that is less than double the uncertainty in \(T_{dis}\) and
+\(T_{pri}\) (2 on the normalized y-axis). 
+
+
+% Plots/2017-06-07-TplenUncertainty.tex
+\begin{figure}
+\centering
+\includegraphics{Plots/2017-06-07-TplenUncertainty.pdf}
+\caption{Uncertainty in \(T_{plen}\), \(\delta T_{plen}\), at different levels of \(\Delta T\). }
+\label{fig:TPlenUncertaintyAcrossDeltaT}
+\end{figure}
+
+% Plots/2017-06-07-TPlenumUncVaryDelT.tex
+\begin{figure}
+\centering
+\includegraphics{Plots/2017-06-07-TPlenumUncVaryDelT.pdf}
+\caption{Uncertainty in \(T_{plen}\), \(\delta T_{plen}\), at different levels of \(\delta T\). }
+\label{fig:TPlenUncertaintyAcrossdelT}
+\end{figure}
+
+% Plots/2017-06-07-TPlenumUncVaryVUnc.tex
+\begin{figure}
+\centering
+\includegraphics{Plots/2017-06-07-TPlenumUncVaryVUnc.pdf}
+\caption{Uncertainty in \(T_{plen}\), \(\delta T_{plen}\), at different levels of \(\delta \flow{unc}\). }
+\label{fig:TPlenUncertaintyAcrossVUnc}
+\end{figure}
 
 As an example as to how unstable the calculation for the plenum
 temperature is, \figref{}
@@ -592,41 +658,59 @@ Ignoring:           & When AHU is Off                                      \\
 \label{fig:2016-09-16-1639-FPVAV19AIRVOLUME-TikzData}
 \end{figure}
 
+
+
+
+%Project:	Mitch Dissertation NCTM---2016-09-19 10:34
+%Scope:	NCTM
+%Axis Parameters:	Plenum Temperature vs. OA Drybulb Temp (NOAA)
+%Date Period:	10/6/2015 - 9/12/2016  (342 days)
+%OAT range:	31 to 100 °F
+%Ignoring:	When AHU is Off
+	%First 1.0 hours of operation
+	%Last 1.0 hours of operation
+	%Sundays
+	%Saturdays
+	%Federal Holidays
+	%Hours from 17:00 to 9:00
+	%When label Plenum Temp Uncertainty is greater than 2
+	%When label Valve Positions is greater than 1
+
 \begin{table}
 \centering
 \caption{Calculated plenum temperature statistics for NCTM.}
 \label{tab:plenumStatistics}
-\begin{tabular}{@{}llllllllll@{}}
+\begin{tabular}{@{}llllllllS[round-mode=off,table-format=5.0]lS[round-mode=off,table-format=4.0]@{}}
     \toprule
-Unit     & Min  & \parbox{1cm}{5th \\ Perc.} & Mean & Median & \parbox{1cm}{95th \\ Perc.} & Max   & \parbox{1cm}{St. \\ Dev. }      & \parbox{1cm}{Original \\ Count} & \parbox{1 cm}{\% \\ Ignored } \\ \midrule
-1-8  & 56.5 & 56.5 & 60.6 & 58.8 & 71.8 & 71.8 & 4.25 & \num{29199} & 99.911\%         \\
-2-12 & 52.8 & 55.7 & 60.8 & 61.8 & 62.5 & 75.0 & 2.23 & \num{29319} & 88.062\%         \\
-2-15 & 52.1 & 57.4 & 61.3 & 61.8 & 62.6 & 78.5 & 1.84 & \num{29324} & 78.645\%         \\
-1-9  & 57.0 & 57.0 & 63.6 & 65.0 & 73.5 & 73.8 & 5.34 & \num{27961} & 99.939\%         \\
-2-6  & 65.0 & 65.0 & 65.0 & 65.0 & 65.0 & 65.0 & 0.00 & \num{29311} & 99.997\%         \\
-2-18 & 61.5 & 62.7 & 69.6 & 67.0 & 80.2 & 80.5 & 5.60 & \num{29312} & 99.846\%         \\
-2-16 & 67.0 & 67.0 & 67.3 & 67.5 & 67.5 & 67.5 & 0.29 & \num{29325} & 99.990\%         \\
-2-10 & 66.5 & 66.5 & 67.8 & 67.8 & 69.0 & 69.0 & 1.44 & \num{29236} & 99.986\%         \\
-2-14 & 60.0 & 61.0 & 68.8 & 68.5 & 79.0 & 79.8 & 6.28 & \num{29318} & 99.860\%         \\
-2-11 & 66.5 & 66.5 & 68.0 & 68.5 & 69.5 & 69.5 & 1.01 & \num{28557} & 99.958\%         \\
-2-5  & 68.5 & 68.5 & 69.1 & 69.0 & 70.0 & 70.0 & 0.65 & \num{29309} & 99.983\%         \\
-2-8  & 68.2 & 69.1 & 70.0 & 70.0 & 70.7 & 72.5 & 0.55 & \num{29304} & 98.601\%         \\
-2-13 & 68.0 & 68.5 & 70.0 & 70.0 & 71.5 & 72.6 & 1.34 & \num{29312} & 99.887\%         \\
-1-5  & 55.0 & 63.8 & 71.1 & 70.1 & 78.0 & 79.0 & 4.62 & \num{30170} & 99.450\%         \\
-2-17 & 61.5 & 68.5 & 70.3 & 70.4 & 71.5 & 72.5 & 1.23 & \num{29287} & 99.126\%         \\
-2-2  & 52.5 & 67.3 & 70.7 & 70.8 & 73.6 & 75.6 & 2.69 & \num{29363} & 98.685\%         \\
-1-7  & 60.0 & 64.5 & 71.8 & 71.8 & 75.1 & 75.7 & 3.11 & \num{29955} & 99.222\%         \\
-2-3  & 64.5 & 71.0 & 73.0 & 72.8 & 75.3 & 76.2 & 1.49 & \num{29367} & 96.391\%         \\
-1-2  & 67.0 & 70.8 & 73.9 & 72.9 & 77.8 & 78.5 & 2.60 & \num{30166} & 99.589\%         \\
-2-1  & 67.5 & 70.8 & 73.6 & 73.8 & 75.5 & 81.7 & 1.44 & \num{29366} & 96.016\%         \\
-1-3  & 71.4 & 72.6 & 74.2 & 74.4 & 75.4 & 76.9 & 0.94 & \num{30145} & 98.202\%         \\
-2-9  & 69.0 & 70.7 & 73.9 & 74.5 & 76.5 & 78.4 & 1.88 & \num{29272} & 76.356\%         \\
-1-1  & 57.0 & 71.8 & 74.6 & 74.8 & 79.0 & 82.5 & 2.64 & \num{30152} & 97.652\%         \\
-1-10 & 58.5 & 62.0 & 73.8 & 74.9 & 76.0 & 78.2 & 3.61 & \num{29941} & 99.008\%         \\
-1-4  & 54.0 & 72.4 & 74.9 & 75.1 & 77.2 & 81.7 & 2.51 & \num{30086} & 98.488\%         \\
-2-4  & 69.5 & 73.7 & 75.3 & 75.2 & 76.7 & 77.6 & 0.96 & \num{29304} & 86.916\%         \\
-1-6  & 56.5 & 66.2 & 74.1 & 75.6 & 81.3 & 81.6 & 5.43 & \num{30170} & 99.738\%         \\
-2-7  & N/A  & N/A  & N/A  & N/A  & N/A  & N/A  & N/A  & \num{28906} & 100.000\%        \\ \bottomrule
+    Unit     & Min  & \parbox{1cm}{5th \\ Perc.} & Mean & Median & \parbox{1cm}{95th \\ Perc.} & Max   & \parbox{1cm}{St. \\ Dev. }      & { \parbox{1cm}{Original \\ Count} } & \parbox{1 cm}{\% \\ Ignored } & { \parbox{1cm}{Final \\ Count} }   \\ \midrule
+1-8  & 56.5 & 56.5 & 60.6 & 58.8 & 71.8 & 71.8 & 4.25 & 29199 & 99.911\%  &  26         \\
+2-12 & 52.8 & 55.7 & 60.8 & 61.8 & 62.5 & 75.0 & 2.23 & 29319 & 88.062\%  &  3500       \\
+2-15 & 52.1 & 57.4 & 61.3 & 61.8 & 62.6 & 78.5 & 1.84 & 29324 & 78.645\%  &  6262       \\
+1-9  & 57.0 & 57.0 & 63.6 & 65.0 & 73.5 & 73.8 & 5.34 & 27961 & 99.939\%  &  17         \\
+2-6  & 65.0 & 65.0 & 65.0 & 65.0 & 65.0 & 65.0 & 0.00 & 29311 & 99.997\%  &  1          \\
+2-18 & 61.5 & 62.7 & 69.6 & 67.0 & 80.2 & 80.5 & 5.60 & 29312 & 99.846\%  &  45         \\
+2-16 & 67.0 & 67.0 & 67.3 & 67.5 & 67.5 & 67.5 & 0.29 & 29325 & 99.990\%  &  3          \\
+2-10 & 66.5 & 66.5 & 67.8 & 67.8 & 69.0 & 69.0 & 1.44 & 29236 & 99.986\%  &  4          \\
+2-14 & 60.0 & 61.0 & 68.8 & 68.5 & 79.0 & 79.8 & 6.28 & 29318 & 99.860\%  &  41         \\
+2-11 & 66.5 & 66.5 & 68.0 & 68.5 & 69.5 & 69.5 & 1.01 & 28557 & 99.958\%  &  12         \\
+2-5  & 68.5 & 68.5 & 69.1 & 69.0 & 70.0 & 70.0 & 0.65 & 29309 & 99.983\%  &  5          \\
+2-8  & 68.2 & 69.1 & 70.0 & 70.0 & 70.7 & 72.5 & 0.55 & 29304 & 98.601\%  &  410        \\
+2-13 & 68.0 & 68.5 & 70.0 & 70.0 & 71.5 & 72.6 & 1.34 & 29312 & 99.887\%  &  33         \\
+1-5  & 55.0 & 63.8 & 71.1 & 70.1 & 78.0 & 79.0 & 4.62 & 30170 & 99.450\%  &  166        \\
+2-17 & 61.5 & 68.5 & 70.3 & 70.4 & 71.5 & 72.5 & 1.23 & 29287 & 99.126\%  &  256        \\
+2-2  & 52.5 & 67.3 & 70.7 & 70.8 & 73.6 & 75.6 & 2.69 & 29363 & 98.685\%  &  386        \\
+1-7  & 60.0 & 64.5 & 71.8 & 71.8 & 75.1 & 75.7 & 3.11 & 29955 & 99.222\%  &  233        \\
+2-3  & 64.5 & 71.0 & 73.0 & 72.8 & 75.3 & 76.2 & 1.49 & 29367 & 96.391\%  &  1060       \\
+1-2  & 67.0 & 70.8 & 73.9 & 72.9 & 77.8 & 78.5 & 2.60 & 30166 & 99.589\%  &  124        \\
+2-1  & 67.5 & 70.8 & 73.6 & 73.8 & 75.5 & 81.7 & 1.44 & 29366 & 96.016\%  &  1170       \\
+1-3  & 71.4 & 72.6 & 74.2 & 74.4 & 75.4 & 76.9 & 0.94 & 30145 & 98.202\%  &  542        \\
+2-9  & 69.0 & 70.7 & 73.9 & 74.5 & 76.5 & 78.4 & 1.88 & 29272 & 76.356\%  &  6921       \\
+1-1  & 57.0 & 71.8 & 74.6 & 74.8 & 79.0 & 82.5 & 2.64 & 30152 & 97.652\%  &  708        \\
+1-10 & 58.5 & 62.0 & 73.8 & 74.9 & 76.0 & 78.2 & 3.61 & 29941 & 99.008\%  &  297        \\
+1-4  & 54.0 & 72.4 & 74.9 & 75.1 & 77.2 & 81.7 & 2.51 & 30086 & 98.488\%  &  455        \\
+2-4  & 69.5 & 73.7 & 75.3 & 75.2 & 76.7 & 77.6 & 0.96 & 29304 & 86.916\%  &  3834       \\
+1-6  & 56.5 & 66.2 & 74.1 & 75.6 & 81.3 & 81.6 & 5.43 & 30170 & 99.738\%  &  79         \\
+2-7  & N/A  & N/A  & N/A  & N/A  & N/A  & N/A  & N/A  & 28906 & 100.000\% &  0          \\ \bottomrule
 \end{tabular}
 \end{table}
 
@@ -944,28 +1028,33 @@ The outdoor air temperature threshold was tested at \SI{1}{\degreeF},
 \SI{3}{\degreeF}, and \SI{5}{\degF}. The number of data points used in
 the median was 15, 30, and 45. 
 
-The objective function for these tests was the average coefficient of
-variation for all the terminal units in NCTM. The coefficient of
-variation is a normalized root mean squared error (RMSE), where the
-normalization value is the mean of the data set that is predicted. Do note that
-for data sets such as zone load which can be both above and below zero,
-that the coefficient of variation can be arbitrarily high because
-the mean can be close to zero (implying that the zone load is both
-positive and negative). Therefore, the absolute value of the CVs listed
-is not as important as the relative ranking and range. 
+The objective function for these tests was the average coefficient of variation
+for all the terminal units in NCTM. The coefficient of variation is a
+normalized root mean squared error (RMSE), where the normalization value is the
+max of the data set that is predicted. Do note that for data sets such as zone
+load which can be both above and below zero, that the coefficient of variation
+using the mean as the normalization factor can be arbitrarily high because the
+mean can be close to zero (implying that the zone load is both positive and
+negative). 
 
 The tests were done for data from January 1\textsuperscript{st}, 2016
 through January 1\textsuperscript{st}, 2017. Times when the air handling
 units were off and the first and last hour of operation, weekends,  and
 federal holidays were all ignored. 
 
-The results show that looser thresholds, which results in more recent
-data being used, gave the best model fits. The best average CV at 44.3\%
-was under the conditions of thresholds of plus or minus one hour,
-\SI{5}{\degF}, and using 45 data points. The worst models had an average
-CV of 51.1\%, for the thresholds of plus or minus 15 minutes,
-\SI{1}{\degF}, and 30 data points. The rest of the tests are also shown
-in \tableref{} \ref{tab:ZoneLoadTestingResults}.
+The results show that looser thresholds, which results in more recent data
+being used, gave the best model fits. The best average CV (using the max value
+of the data set as the normalization parameter) at 15.6\% was under the
+conditions of thresholds of plus or minus one hour, \SI{5}{\degF}, and using 45
+data points. The worst models had an average CV of 18.1\%, for the thresholds
+of plus or minus 15 minutes, \SI{1}{\degF}, and 30 data points. The rest of the
+tests are also shown in \tableref{} \ref{tab:ZoneLoadTestingResults}.
+
+A main takeaway of the tests, however, was that result were insensitive
+to the parameters. This means that the parameters may be adjusted for
+benefits in other areas such as performance. By having large thresholds
+and less data points, less historical data needs to be searched, and the
+time to complete the algorithm is reduced.
 
 
 \begin{table}
@@ -975,35 +1064,67 @@ in \tableref{} \ref{tab:ZoneLoadTestingResults}.
 \begin{tabular}{@{}lllcl@{}}
 \toprule
 Run & TS & \(T_{oa} \) & \# of Data Points & Average CV (\%) \\ \midrule
-1   & 1  & 1           & 15                & 50.5\%          \\
-2   & 2  & 1           & 15                & 49.4\%          \\
-3   & 4  & 1           & 15                & 48.0\%          \\
-4   & 1  & 3           & 15                & 46.5\%          \\
-5   & 2  & 3           & 15                & 45.8\%          \\
-6   & 4  & 3           & 15                & 45.7\%          \\
-7   & 1  & 5           & 15                & 45.0\%          \\
-8   & 2  & 5           & 15                & 44.7\%          \\
-9   & 4  & 5           & 15                & 45.4\%          \\
-10  & 1  & 1           & 30                & 51.1\%          \\
-11  & 2  & 1           & 30                & 49.5\%          \\
-12  & 4  & 1           & 30                & 48.2\%          \\
-13  & 1  & 3           & 30                & 47.2\%          \\
-14  & 2  & 3           & 30                & 46.1\%          \\
-15  & 4  & 3           & 30                & 45.2\%          \\
-16  & 1  & 5           & 30                & 46.0\%          \\
-17  & 2  & 5           & 30                & 44.8\%          \\
-18  & 4  & 5           & 30                & 44.3\%          \\
-19  & 1  & 1           & 45                & 50.3\%          \\
-20  & 2  & 1           & 45                & 50.1\%          \\
-21  & 4  & 1           & 45                & 48.1\%          \\
-22  & 1  & 3           & 45                & 46.7\%          \\
-23  & 2  & 3           & 45                & 48.2\%          \\
-24  & 4  & 3           & 45                & 45.4\%          \\
-25  & 1  & 5           & 45                & 45.7\%          \\
-26  & 2  & 5           & 45                & 45.6\%          \\
-27  & 4  & 5           & 45                & 44.3\%          \\ \bottomrule
+1   & 1  & 1           & 15                & 17.9\%          \\
+2   & 2  & 1           & 15                & 17.5\%          \\
+3   & 4  & 1           & 15                & 17.0\%          \\
+4   & 1  & 3           & 15                & 16.5\%          \\
+5   & 2  & 3           & 15                & 16.2\%          \\
+6   & 4  & 3           & 15                & 16.1\%          \\
+7   & 1  & 5           & 15                & 15.9\%          \\
+8   & 2  & 5           & 15                & 15.8\%          \\
+9   & 4  & 5           & 15                & 16.0\%          \\
+10  & 1  & 1           & 30                & 18.1\%          \\
+11  & 2  & 1           & 30                & 17.5\%          \\
+12  & 4  & 1           & 30                & 17.1\%          \\
+13  & 1  & 3           & 30                & 16.8\%          \\
+14  & 2  & 3           & 30                & 16.4\%          \\
+15  & 4  & 3           & 30                & 16.0\%          \\
+16  & 1  & 5           & 30                & 16.3\%          \\
+17  & 2  & 5           & 30                & 15.8\%          \\
+18  & 4  & 5           & 30                & 15.7\%          \\
+19  & 1  & 1           & 45                & 17.9\%          \\
+20  & 2  & 1           & 45                & 17.7\%          \\
+21  & 4  & 1           & 45                & 17.1\%          \\
+22  & 1  & 3           & 45                & 16.6\%          \\
+23  & 2  & 3           & 45                & 16.5\%          \\
+24  & 4  & 3           & 45                & 16.1\%          \\
+25  & 1  & 5           & 45                & 16.3\%          \\
+26  & 2  & 5           & 45                & 16.2\%          \\
+27  & 4  & 5           & 45                & 15.6\%          \\ \bottomrule
 \end{tabular}
 \end{table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1142,7 +1263,7 @@ majority of the data, as seen in \figref{}
 \label{tab:TerminalUnitDesignSpecCheck}
 \begin{tabular}{@{}llrl@{}}
 \toprule
-AHU &  Terminal Unit & \parbox{1.5cm}{\centering  Flow\\(CFM)}  & \parbox{2.7cm}{Maximum Meas. \\  Flow (CFM)}  \\ \midrule
+AHU &  Terminal Unit & { \parbox{1.5cm}{\centering  Flow\\(CFM)} }  & { \parbox{2.7cm}{Maximum Meas. \\  Flow (CFM)} }  \\ \midrule
 %%\parbox{2cm}{AHU-1-1 \\ (5 hp)} & \multicolumn{3}{l}{No boxes - Serves Teaching Module alone, Constant Fan} \\ \midrule
 AHU-1-2           & FPVAV-1-7  & 1,400 & 1,496 \\ \cmidrule(r){2-4}
 (5 hp)            & FPVAV-1-8  & 700   & 840   \\ \cmidrule(r){2-4}
@@ -1299,6 +1420,7 @@ optimal reset would, in general, have a higher \(\sat\).
 \label{fig:2017-01-24-1607-VariableTotalPowervsOADryBulbTemperatureNOAA}
 \end{figure}
 
+%  Plots/2017-01-25-1121-VariableSupplyAirTempvsOADryBulbTemperatureNOAA.tex
 \begin{figure}
 \centering
 \includegraphics[]{Plots/2017-01-25-1121-VariableSupplyAirTempvsOADryBulbTemperatureNOAA.pdf}
@@ -1307,6 +1429,24 @@ optimal reset would, in general, have a higher \(\sat\).
 \end{figure}
 
 % Table generated by Excel2LaTeX from sheet 'Sheet1'
+% This comes from files located with filenames like:
+% 2017-01-18 11-06 AHU-2-3 No Reheat 6-1through1-1-RoomTemps.xlsx
+
+%Project:	Mitch Dissertation NCTM	
+%Scope:	NCTM/2ndFloorAHUs/AHU 2-3	
+%Y Axis Parameters:	Fan plus Cooling Energy AHU Actual - Exponent 2 for AHU 2-3	Y Axis 1
+	%Variable-TotalPower	Y Axis 2
+%Date Period:	6/1/2016 - 1/1/2017	
+%Time Alignment Interval	15 minutes	
+%Ignoring:	When AHU is Off	
+	%Sundays	
+	%Saturdays	
+	%Federal Holidays	
+	%Hours from 17:00 to 9:00	
+	%When Sum of FPVAV Valve Positions for AHU 2-3 is greater than 1	
+
+
+
 \begin{table}[htbp]
   \centering
   \caption{Savings results, depending on model assumptions.}
@@ -1347,3 +1487,4 @@ fall within the bounds.  In the cases shown in \figref{}
 \ref{fig:2016-11-30-1004-AHU23MixedAirTemp-TikzData} through \figref{}
 \ref{fig:2016-11-16-1636-AHU22MixedAirTemp-TikzData}, the optimal
 \(\sat\) was higher than the current operation. 
+

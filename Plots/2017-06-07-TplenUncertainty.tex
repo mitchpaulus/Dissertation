@@ -1,0 +1,62 @@
+\RequirePackage{luatex85}
+\documentclass[12pt]{article}
+\usepackage[active, tightpage]{preview}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\pgfplotsset{compat=1.14}
+\PreviewEnvironment{tikzpicture}
+
+\begin{document}
+
+\begin{tikzpicture}
+\begin{axis}
+[
+xlabel={Fraction of Primary Flow, \(F_{pri}\)}, 
+ylabel={\(\delta T_{plen}\)/\(\delta T\) },
+xmin=0,
+xmax=1,
+ymin=0,
+ymax=10,
+grid,
+restrict y to domain=0:10,
+cycle list name=color list,
+legend pos=outer north east,
+clip=false,
+y label style={rotate=-90},
+]
+\addplot+[no marks, smooth, solid] table[col sep=comma,x=Fpri,y=DeltaT_0]{../Data/2017-06-07-TplenUnc.csv};
+\addplot+[no marks, smooth, solid] table[col sep=comma,x=Fpri,y=DeltaT_10]{../Data/2017-06-07-TplenUnc.csv};
+\addplot+[no marks, smooth, solid] table[col sep=comma,x=Fpri,y=DeltaT_20]{../Data/2017-06-07-TplenUnc.csv};
+\addplot+[no marks, smooth, solid] table[col sep=comma,x=Fpri,y=DeltaT_30]{../Data/2017-06-07-TplenUnc.csv};
+\addplot+[no marks, smooth, solid] table[col sep=comma,x=Fpri,y=DeltaT_40]{../Data/2017-06-07-TplenUnc.csv};
+\addlegendentry{\(\Delta T = 0^{\circ}\text{F}\)}
+\addlegendentry{\(\Delta T = 10^{\circ}\text{F}\)}
+\addlegendentry{\(\Delta T = 20^{\circ}\text{F}\)}
+\addlegendentry{\(\Delta T = 30^{\circ}\text{F}\)}
+\addlegendentry{\(\Delta T = 40^{\circ}\text{F}\)}
+
+\node at (axis cs:1.3,3) {
+    \(\begin{aligned}
+        \delta T &= 1^{\circ}\text{F}  \\
+        \delta \dot{V}_{unc} &= 10\% \\
+\end{aligned}\)  
+};
+
+%\legend{ ,
+    %\(\Delta T = 10^{circ}\text{F}\),
+    %\(\Delta T = 20^{circ}\text{F}\),
+    %\(\Delta T = 30^{circ}\text{F}\),
+%\(\Delta T = 40^{circ}\text{F}\)  }
+
+\end{axis}
+\end{tikzpicture}
+
+
+\end{document}
+
+
+
+
+

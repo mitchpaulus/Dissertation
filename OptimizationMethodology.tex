@@ -1,3 +1,6 @@
+%! TEX program = xelatex
+%! TEX root = main.tex
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %  New template code for TAMU Theses and Dissertations starting Fall 2012.
@@ -322,7 +325,6 @@ where \(\flow{zone}\) is in units of CFM, \(\nu\) is in
 
 The total uncertainty in the prediction will be
 \begin{equation}
-\small
     \delta \dot{Q}_{zone} = 60\,c_{air} \sqrt{ \left( \frac{\left(T_{room} - T_{sup}\right)}{\nu} \delta \flow{} \right)^2 
     + \left( \frac{- \left(T_{room} - T_{sup}\right) \flow{}}{\nu^{2}} \delta \nu \right)^{2}  
 + \left( \frac{\flow{}}{\nu} \delta T_{room}\right)^{2}
@@ -620,8 +622,8 @@ At any time, the pressure drop in all the flow loops must be equal. In a
 case where there are three terminal units, you would end up with
 relationships like the following
 
-\begin{align}
-    \Delta P_{fan}  &= C_1 \left(\flow{1}+\flow{2}+\flow{3} \right)^2 + \frac{C_2}{\damp{1}^2}\flow{1}^2 \\
+\begin{align}\label{eq:FanLoopPressureDrop}
+    \Delta P_{fan}  &= C_1 \left(\flow{1}+\flow{2}+\flow{3} \right)^2 + \frac{C_2}{\damp{1}^2}\flow{1}^2 \\ 
                     &= C_1 \left(\flow{1}+\flow{2}+\flow{3} \right)^2 + C_3\left(\flow{2}+\flow{3} \right)^2 + \frac{C_4}{\damp{2}^2}\flow{2}^2 \\
                     &= C_1 \left(\flow{1}+\flow{2}+\flow{3} \right)^2 + C_3\left(\flow{2}+\flow{3} \right)^2 + C_5\flow{3}^2 + \frac{C_6}{\damp{3}^2}\flow{3}^2
 \end{align}
@@ -638,12 +640,19 @@ single shared major pressure loss coefficient \(C_1\) to zero, the three
 equations will always be equal, and the total absolute pressure drop can
 be arbitrarily set with the single coefficient.
 
+This method does have potential if the manufacturers fan curves are
+available. While the loop pressure drop is normally not trended, the fan
+speed and flow is. Given the fan curves, the fan speed, and the total
+flow, the static pressure rise can be estimated, and used for all the
+\(\Delta P_{fan} \) terms in \eqreftext{} \ref{eq:FanLoopPressureDrop}.
+
 Without further information regarding the actual terminal unit pressure
 drop relationships, this method loses its potential usefulness. For this
 reason, a simple approach of using an exponential part load ratio (PLR)
 function was employed as shown in Eq. \ref{eq:PartLoadRatio}. The value
 of \(n\) was varied from 2 to 3, and the sensitivity to this parameter was
 examined.
+
 
 \begin{equation}\label{eq:PartLoadRatio}
     \dot{W}_{\text{fan}} = \dot{W}_{\text{design}} \left(\text{PLR}\right)^n
