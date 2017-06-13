@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %  New template code for TAMU Theses and Dissertations starting Fall 2012.  
 %  For more info about this template or the 
@@ -399,10 +399,11 @@ exposing the diurnal cycle of the building.
 
 \subsubsection{Fan Power}
 
-In all cases, having the fan power trended will aid in the electricity
-use breakdown, as this directly supplies this particular energy end use.
-In many cases, it is acceptable to combine lighting energy and the
-non-HVAC related internal electricity use together. 
+In all cases, having the fan power trended will aid in the energy use
+breakdown, as this immediately provides information regarding this
+portion of the electricity use.  In many cases, it is acceptable to
+combine lighting energy and the non-HVAC related internal electricity
+use together. 
 
 The fan power is trended directly on less than 10\% of systems in
 Implementer. The next best option in 15\% of the cases is using the
@@ -419,22 +420,22 @@ mixed air temperature, and supply air temperature. It is also related to the mix
 air humidity. 
 
 
-\subsubsection{Cooling Energy}
-At the air handler level, the sensible cooling energy is related to the
-supply flow, and the difference between the mixed air temperature, mixed
-air temperature, and the supply air temperature. The supply flows can vary
-significantly from one air handler to another, and also under different
-loadings. 
+\subsubsection{Cooling Energy} At the air handler level, the sensible
+cooling energy is related to the supply flow, and the difference between
+the mixed air temperature, and the supply air temperature. The supply
+flows can vary significantly from one air handler to another, and also
+under different loadings. 
 
-The mixed air temperature is the lowest priority of the three air-side parameters for
-estimating the sensible cooling energy in the AHU. A reasonable estimate
-of the outdoor air temperature is available from local weather stations,
-in addition to commonly trended outdoor air temperatures at the site
-itself. The return air temperature in air handling uints are near the space
-temperature setpoints. It is known that the mixed air temperature must be between
-the return and outdoor air temperature (if the airstreams are indeed
-being mixed). The most robust estimate for the mixed air temperature would be
-halfway between these two measurements. 
+The mixed air temperature is the lowest priority of the three air-side
+parameters for estimating the sensible cooling energy in the AHU. A
+reasonable estimate of the outdoor air temperature is available from
+local weather stations, in addition to commonly trended outdoor air
+temperatures at the site itself. The return air temperature in air
+handling units are near the space temperature setpoints. It is known
+that the mixed air temperature must be between the return and outdoor
+air temperature (if the airstreams are indeed being mixed). Without any
+other information, the most safe estimate for the mixed air temperature
+would be halfway between these two measurements. 
 
 As an argument for the claim that mixed air temperature is the lowest priority of
 the 3 parameters, the difference between \(T_{oa}\) and 72\(^\circ\)F
@@ -455,7 +456,7 @@ difference.
 
 In this sense, metering the water-side parameters would be a more
 reliable estimator of the total cooling load, including the latent
-effect. However, trended water-side sensors has not been seen in the 4
+effect. However, trended water-side sensors have not been seen in the 5
 years of Implementer projects.
 
 \subsubsection{Reheat Energy}
@@ -468,7 +469,9 @@ fans, along with chiller/HVAC equipment.
 If the building is heated using natural gas, the natural gas consumption
 can be an adequate indicator of the level of reheat use in the building.
 At the current time, trending all the data from terminal units is
-uncommon. 
+uncommon. The sensors are typically available, however, the number of
+terminal units and large amount of data to be handled are issues that
+cause projects to decline to pursue the collection of the terminal unit data.
 
 Having the supply air temperature and supply air flow is important
 because it not only helps fix the parameters for the cooling energy end
@@ -489,7 +492,8 @@ the discharge temperature to the zones.
     zone reheat. Although this trend may not be as useful if the
     terminal units bring in plenum air for mixing. 
 \item Space temperature -- Defines the zone temperatures. 
-\item Mixed air temperature -- Aids in the determination of the sensible cooling load and estimation of the outdoor air fraction
+\item Mixed air temperature -- Aids in the determination of the sensible
+    and latent cooling load and estimation of the outdoor air fraction
 \item Return air temperature -- Aids in the estimation of the outdoor air fraction or ventilation load.
 \item VSD speed, VFD frequency, etc. -- Indicator of the part-load ratio for the equipment, which may be used in the estimation of fan energy. 
 \item Preheat Temperature -- Sets this parameter in the model, aiding the estimation of the heating end uses.
@@ -518,7 +522,7 @@ Sensors that may be of medium usefulness:
     consideration.
 \end{itemize}
 
-Sensors that are commonly trended are not useful in estimating the energy use breakdown of a building:
+Sensors that are commonly trended and are not useful in estimating the energy use breakdown of a building:
 \begin{itemize}
 \item Return air CO\(_2\) -- Not directly related to measuring the energy use.
 \item Damper commands -- Since duct layout and fluid flow models are not feasible, the damper commands do not provide information towards the calculation of the energy use. 

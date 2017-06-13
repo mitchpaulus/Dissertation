@@ -1,22 +1,22 @@
-\chapter{\texorpdfstring{\MakeUppercase{Conclusions and Future Work}}{Conclusions and Future Work}} 
+\chapter{\texorpdfstring{\MakeUppercase{Conclusions and Future Work}}{Conclusions and Future Work}}
 
 The following conclusions can be derived from this work.
 
 \begin{enumerate}
-    \item At the current time, missing sensors and sensor uncertainty 
-        reduces the potential effectiveness of an approach described. 
+    \item At the current time, missing sensors and sensor uncertainty
+        reduces the potential effectiveness of an approach described.
         Additional sensors, especially those related to duct air flow,
-        would improve the capabilities of the methodology. 
-    \item The nearest neighbor method for predicted zone loads and the
-        mixed air temperature was relatively stable with regards to the chosen
+        would improve the capabilities of the methodology.
+    \item The nearest neighbor method for predicting zone loads and the
+        mixed air temperature was stable with regards to the chosen
         thresholds. The models tended to have better results with looser
         thresholds, meaning more recent data was a better predictor than
-        data under closer conditions. 
+        data under closer conditions.
     \item The mixed air temperature was able to be predicted within
         \SI{2}{\degF} for 5 of the 6 AHUs at NCTM (See \tableref{}
         \ref{tab:MATPredictionResultsForRun6}). This provides evidence
         that the nearest neighbor approach is viable for predicting the
-        mixed air temperature. 
+        mixed air temperature.
     \item With no plenum temperature sensor, for terminal units that
         bring in plenum air, it was difficult to predict the plenum
         temperature in a useful manner. Assuming a constant value for the
@@ -25,31 +25,39 @@ The following conclusions can be derived from this work.
     \item The estimated zone load based on terminal unit flow and
         discharge temperature will depend on the sensitivity of the
         controls at the terminal unit. Hunting is present, which makes
-        it difficult to gauge what the true zone load in the space is. 
+        it difficult to gauge what the true zone load in the space is.
     \item Setup in the prototype approach is fast and extensible to
         future buildings and system types and has been implemented into
-        the software tool \textit{Implementer}. 
+        the software tool \textit{Implementer}.
     \item Certain sensors should be prioritized for trending over
         others. Suggestions for commissioning agents are given in
-        Section \ref{sec:Prioritization}. 
+        Section \ref{sec:Prioritization}.
     \item The difference between the maximum measured flow and the design flow
         from the terminal units was under \SI{200}{\CFM} for all but one
         terminal unit at NCTM. This provided confidence in the
         possibility of using manufacturers specification in setting up
-        the system. 
+        the system.
     \item Savings are highly dependent on the current operation. For two
         of the second floor air handlers in the NCTM building, no
         savings were to be found. However, in AHU-2-3, over 20\% energy
-        savings were possible. 
+        savings were possible.
 \end{enumerate}
 
 There are also areas for future work on this topic.
 
 \begin{enumerate}
+    \item With additional sensors related to the fans and air flow, in
+        particular, fan power and pressure rise across the fan,
+        modification of the supply air static pressure setpoint can be
+        included in the optimization.
     \item Development of a prototype script to implement the logic on an
-        existing BAS. 
-    \item Application to more potential case study buildings. 
+        existing BAS.
+    \item Application to more potential case study buildings. There are
+        numerous different styles of terminal units (single duct with
+        and without reheat, parallel fan powered, dual-duct, bypass,
+        induction, and underfloor) which all need
+        further investigation. 
     \item Development of the Application Programming Interface (API)
-        that would be used to interact with the different BAS systems. 
+        that would be used to interact with the different BAS systems.
 \end{enumerate}
 

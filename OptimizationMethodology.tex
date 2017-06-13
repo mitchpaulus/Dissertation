@@ -22,6 +22,28 @@ In order to optimize the system, the energy use from each of the components
 comprising the air-side equipment needs to be estimated. This includes fan
 energy, cooling energy, and reheat energy.
 
+The optimization problem to be solved in standard form is
+\begin{equation}
+    \begin{aligned}
+        & \underset{T_{sa}}{\text{minimize}} & & \dot{E}_{fan} + \dot{E}_{cooling} + \dot{E}_{reheat} \\
+        & \text{subject to} & & T_{sa} \geq T_{sa,min} \\
+        &&& T_{sa} \leq \text{MIN}\left(\mat, \text{MIN}\left(T_{dis,1}, T_{dis,2}, \ldots, T_{dis,n} \right) \right) \\
+        &&& \text{IF } \omega_{oa} > \omega_{max},\,T_{sa} \leq T_{sa,\omega}
+    \end{aligned}
+\end{equation}
+
+In other words, minimize the total power of the AHU and terminal unit
+system as a function of the supply air temperature, with the constraints
+that the supply air temperature is above a preset minimum, and less than
+both the mixed air temperature and the minimum of the discharge air
+temperatures from the terminal units. If the outdoor air humidity ratio
+is above a preset humidity ratio threshold, \(\omega_{max}\), then the
+supply air temperature must stay below a different minimum
+\(T_{sa,\omega}\), likely near \SI{55}{\degF}.
+
+If energy prices are available, the objective function can be modified
+to be to total cost, rather than the total power.
+
 Fan power will have some relationship between the volumetric flow, \(\flow{}\), and the
 pressure rise, \(\Delta P\). 
 Fan Power:
@@ -170,8 +192,8 @@ flow, there will be resulting reheat.
 \end{equation}
 
 
-The increase in temperature to the discharge temperature is due to heat gain
-from the fan and from any supplementary heating.
+The increase in temperature is due to heat gain from the fan and from
+any supplementary heating.
 
 The temperature rise from the fan, \(\Delta T_{fan}\), can be estimated from
 historical data when the supplementary heating is off, either when the heating
@@ -312,7 +334,7 @@ expected to be similar.
 The Kline-McClintock form of uncertainty analysis can be applied to the
 zone loads.
 
-If the zone load is described as an open system with a constant specific
+If the sensible zone load is described as an open system with a constant specific
 heat, then
 \begin{equation}
     \dot{Q}_{zone} = 60 \frac{\flow{zone}}{\nu} c_{air} \left(T_{room} -
@@ -342,7 +364,7 @@ For the sake of analysis, the following reasonable parameters were assumed:
 
 The resulting percent uncertainty in the zone load versus the
 uncertainty in the flow measurement is shown in \figref{}
-\ref{fig:ZoneLoadUncVsFlowUnc}. To note is that with no flow
+\ref{fig:ZoneLoadUncVsFlowUnc}. Note that with no flow
 uncertainty, there is approximately 11\% percent uncertainty
 contribution from the air density and temperatures. After about 20\%
 uncertainty in the flow, it becomes the dominant source of uncertainty. 
@@ -481,7 +503,7 @@ estimated uncertainty in the fraction of full load power is less than
 0.1.
 
 If all the individual uncertainties are reduced by half, the total
-uncertainty will also be reduced by half. The would be feasible with
+uncertainty will also be reduced by half. This would be feasible with
 trend data regarding the individual fan powers, flow, and pressures.
 This would put the maximum uncertainty in \(F\) to about 0.04.
 

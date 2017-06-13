@@ -29,13 +29,13 @@ the optimization methods.
 
 
 \figref{} \ref{fig:NetworkFlow} shows potential information flow. Over
-any period, historical trend data representing the system is stored
-in a server. This data may come in one large sync or potentially occur
-daily or sub-daily. Once enough data has been stored on the server, a
-client BAS computer (potentially one of many) can make an HTTP request
-that will essentially carry information related to the current time and
-what equipment the request is for. Each AHU will have a unique
-identifier that the main web server understands. 
+any period, historical trend data representing the system is stored in a
+server.  This data dump may come all at once, weekly, daily or even
+sub-daily.  Once enough data has been stored on the server, a client BAS
+computer (potentially one of many) can make an HTTP request that will
+essentially carry information related to the current time and what
+equipment the request corresponds to. Each AHU will have a unique identifier
+that the main web server understands. 
 
 The web server will implement the methods described in this document and
 will send a response back to the client with the setpoints for the
@@ -143,7 +143,7 @@ way that the server can understand.
 
 In Implementer, trends are given meaning through the use of
 \textit{Labels}. Labels are similar to the concept of tagging that is used
-in other systems, such as a system that implement Project Haystack. 
+in other systems, such as a system that implements Project Haystack. 
 
 Trends can receive labels in several ways. For trends in air handling
 units, the label can automatically be derived from the type of sensor and

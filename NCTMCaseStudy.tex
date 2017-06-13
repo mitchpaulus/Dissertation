@@ -2,17 +2,19 @@
 %! TEX root = main.tex
 
 \chapter{\texorpdfstring{\MakeUppercase{NCTM Case Study}}{NCTM Case Study}}
-The National Center for Therapeutic Medicine (NCTM) was used as a test
-bed for the methodology. NCTM is a building located on the
-campus of Texas A\&M University, in College Station, Texas. 
+
+The National Center for Therapeutics Manufacturing (NCTM)
+building was used as a test bed for the methodology. NCTM is a building
+located on the campus of Texas A\&M University, in College Station,
+Texas. 
 
 The National Center for Therapeutics Manufacturing (NCTM) combines the
 educational and manufacturing focuses of the biopharmaceutical industry.  The
 NCTM building is approximately \SI{150000}{\feet\squared} with nearly
 \SI{50000}{\feet\squared} of educational facilities that include wet labs,
 culture facilities, large lecture halls, and a mock current Good Manufacturing
-Practice (cGMP) training suite. Around \SI{120000}{\feet\squared} is on the
-first level and \SI{30000}{\feet\squared} is on the second level. 
+Practice (cGMP) training suite. Around \SI{120000}{\feet\squared} are on the
+first level and \SI{30000}{\feet\squared} are on the second level. 
 
 The cGMP Suite contains modern biopharmaceutical manufacturing equipment
 that students can use to learn industry practices. The wet labs are
@@ -28,6 +30,9 @@ units are constant speed, and the others are variable air volume. OAHU
 1-1 serves its wet lab and also feeds into AHU 1-1 and AHU 1-2. OAHU
 1-2 serves AHU 1-3 and 1-4 on the first floor. OAHU 2-1 serves three
 children air handlers on the second floor, AHU 2-1, 2-2, and 2-3. 
+
+Various specifications for the air handling units are shown in Tables
+\ref{tab:OnOffSched} through \ref{tab:FanSched}.
 
 This document focuses on the academic side of the building since
 Utilities and Energy services with Texas A\&M University are only
@@ -59,12 +64,6 @@ Floor 2        & OAHU 2-1 & AHU 2-3 & 6am - 10pm, M-F \\
 \end{tabular}
 \end{table}
 
-\begin{figure}
-    \centering
-\includegraphics[]{Plots/TempRiseVsFlow-AHU-2-14.pdf}
-\caption{Temperature rise due to the mixing of plenum air at the terminal unit for FPVAV-2-14. Plots like this were used to estimate the current minimum flow rate settings. }
-\label{fig:TempRise-2-14}
-\end{figure}
 
 \begin{table}
 \caption{Fan schedule information for the dedicated outdoor air handlers.}
@@ -102,12 +101,17 @@ AHU 2-3 & VAV      & 6000 & 7.5 & OAHU 2-1 \\
 \end{tabular}
 \end{table}
 
+\figref{} \ref{fig:FirstFloorPlanAreaA} through \figref{}
+\ref{fig:SecondFloorPlan} show the respective areas that the air
+handling units serve. 
+
 \section{Terminal Unit Information}
 
 On the academic side, there are a total of 10 series fan powered terminal units
 on the first floor and 18 on the second floor.  \tableref{}
 \ref{tab:TerminalUnitInformation} shows the design flowrates and type of space
 served for each of the terminal units. 
+
 
 \begin{table}
 \centering
@@ -150,9 +154,41 @@ AHU-2-3  & FPVAV-2-4  & 2,000 & Open Corridor                                   
 \end{tabular}
 \end{table}
 
-It is critical to have an understanding of what the current actual controls in
-the building are. In practice, this will normally require that an engineer
-verifies both the control code along with the real measured performance.
+
+\begin{landscape}
+    \begin{figure}
+        \centering
+        \includegraphics[height=\textwidth]{Images/FirstFloorPlanAreaA.PNG}
+        \caption{First floor plan for Area A.}
+        \label{fig:FirstFloorPlanAreaA}
+    \end{figure}
+
+\end{landscape}
+\begin{landscape}
+    \begin{figure}
+        \centering
+        \includegraphics[height=\textwidth]{Images/FirstFloorPlanAreaB.PNG}
+        \caption{First floor plan for Area B.}
+        \label{fig:FirstFloorPlanAreaB}
+    \end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}
+\centering
+\includegraphics[height=\textwidth]{Images/SecondFloorPlan.PNG}
+\caption{Second floor plan.}
+\label{fig:SecondFloorPlan}
+\end{figure}
+\end{landscape}
+
+
+
+
+It is critical to have an understanding of how the current controls are
+operating using data, relying on more than just control code. In
+practice, this will normally require that an engineer verifies both the
+control code along with the real measured performance.
 
 \textit{Implementer} can ease the difficulty in this analysis by producing
 certain plots en mass for terminal units.  \figref{} \ref{fig:TempRise-2-14}
@@ -166,6 +202,13 @@ operating with 30\% as the minimum flow rate. There are a few terminal units
 that are set to values less than this. \tableref{}
 \ref{tab:MinimumAirFlowRateSettings} shows the estimated minimum percent flows
 based on data from February 1, 2016, through May 1, 2016.  
+
+\begin{figure}
+    \centering
+\includegraphics[]{Plots/TempRiseVsFlow-AHU-2-14.pdf}
+\caption{Temperature rise due to the mixing of plenum air at the terminal unit for FPVAV-2-14. Plots like this were used to estimate the current minimum flow rate settings. }
+\label{fig:TempRise-2-14}
+\end{figure}
 
 \begin{figure}
 \centering
@@ -243,7 +286,7 @@ historical data. \figref{}
 \ref{fig:AHU21MixedAirTempvsOADryBulbTemperatureNOAA} shows an example of an
 AHU in which \(\mat\) does not change significantly throughout time. \figref{}
 \ref{fig:AHU21MixedAirTempvsOADryBulbTemperatureNOAA} and
-\ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA} both show 90 days worth
+\ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA} both show 90 days
 of data from March 14, 2016 to June 12, 2016. 
 
 In the case of \figref{}
@@ -384,7 +427,7 @@ threshold of \(\pm\)60 minutes, \(\pm\SI{3}{\degF}\) for \(T_{oa}\), and 15
 data points. The worst case was using \(\pm\)15 minutes, \(\pm \SI{1}{\degF}\),
 and 30 data points. 
 
-The model was not sensitive to the parameters. The CVs ranged from
+The model was insensitive to the parameters. The CVs ranged from
 1.76\% to 2.16\%. The models with the lowest CVs had the largest range
 in the timestamp and \(T_{oa}\) threshold. This observation is an indication that
 using more recent data was more valuable than using data from conditions
@@ -565,7 +608,7 @@ temperature is, \figref{}
 shows the calculation for FPVAV-1-9 over the period from February 1,
 2016 - May 1, 2016. The calculated values are unrealistic ranging from
 -1,500\(^\circ\)F to 1,500\(^\circ\)F. The reason for this is made clear
-in a time series plots of the flows related to the terminal unit. As
+in a time series plot of the flows related to the terminal unit. As
 shown in \figref{} \ref{fig:2016-09-16-1639-FPVAV19AIRVOLUME-TikzData},
 for this particular terminal unit, the primary flow is either near zero
 or design. At times, the measured flow is also above the design
@@ -582,7 +625,7 @@ each terminal unit is found in \tableref{} \ref{tab:plenumStatistics}.
 The table is listed in ascending order by the median of the plenum
 temperature calculated.
 
-To notice is that percentage of ignored points is below 96\% for only 4
+Note that the percentage of ignored points is below 96\% for only 4
 terminal units.  The majority of the points are ignored because the
 uncertainty in the calculation is above the 2\(^\circ\)F threshold that
 was arbitrarily chosen.  In fact, at no point was the uncertainty below
@@ -919,7 +962,7 @@ internal zones, and the load only ranges from approximately
 
 
 The statistics related to the predictions of the zone loads for data ranging
-from October 6, 2015, to June 1, 2016, is given in \tableref{}
+from October 6, 2015, to June 1, 2016, are given in \tableref{}
 \ref{tab:zoneLoadStats}.
 
 
@@ -1047,7 +1090,7 @@ being used, gave the best model fits. The best average CV (using the max value
 of the data set as the normalization parameter) at 15.6\% was under the
 conditions of thresholds of plus or minus one hour, \SI{5}{\degF}, and using 45
 data points. The worst models had an average CV of 18.1\%, for the thresholds
-of plus or minus 15 minutes, \SI{1}{\degF}, and 30 data points. The rest of the
+of plus or minus 15 minutes, \SI{1}{\degF}, and 45 data points. The rest of the
 tests are also shown in \tableref{} \ref{tab:ZoneLoadTestingResults}.
 
 A main takeaway of the tests, however, was that result were insensitive
