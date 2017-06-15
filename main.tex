@@ -11,15 +11,15 @@
 \documentclass[12pt]{report}
 \usepackage[letterpaper]{geometry}
 \geometry{verbose,tmargin=1.25in,bmargin=1.25in,lmargin=1.4in,rmargin=1.15in}
- \usepackage[doublespacing]{setspace}
- \usepackage{tocloft}
- \usepackage[rm, tiny,center, compact]{titlesec}
- \usepackage{indentfirst}
- \usepackage{etoolbox}
+\usepackage[doublespacing]{setspace}
+\usepackage{tocloft}
+\usepackage[rm, tiny,center, compact]{titlesec}
+\usepackage{indentfirst}
+\usepackage{etoolbox}
 \usepackage{tocvsec2}
- \usepackage[titletoc]{appendix}
- \usepackage{appendix}
- \usepackage{tamuconfig}
+\usepackage[titletoc]{appendix}
+\usepackage{appendix}
+\usepackage{tamuconfig}
 \usepackage{rotating}
 \usepackage{amsmath}
 \usepackage{booktabs}
@@ -50,15 +50,18 @@
 urlcolor=black}
 \usepackage{cancel}
 \usepackage{gensymb}
-\usepackage{textcomp}
-\usepackage{siunitxext}
-\usepackage{url}
+\usepackage{textcomp} % For extra symbols.
+\usepackage{siunitxext}  %% My personal sytle file which adds english units to sinunitx
+\usepackage{url}  %% For sample url endpoints for the script.
 
 \usepackage{notoccite}
 
 \usepackage{xcolor}
 \usepackage{listings}
-\usepackage{lscape}
+\usepackage{lscape}  %% For landscape figures.
+\usepackage{algorithm2e}  %% For displaying the algorithm deterimining optimal supply air temperature. 
+\usepackage{pdfpages} % Used for inserting pdf images of NCTM.
+\usepackage{adjustbox}
 
 \sisetup{group-separator={,}, group-minimum-digits=4,per-mode=fraction}
 
@@ -97,7 +100,7 @@ urlcolor=black}
 \newcommand{\flow}[1]{\dot{V}_{#1}}
 \newcommand{\flowsum}{\flow{1}+\flow{2}+\ldots+\flow{n}}
 \newcommand{\energy}[1][]{\dot{E}_{#1}}
-\newcommand{\heatenergy}[1][]{\dot{Q}_{#1}}
+\newcommand{\heatenergy}[1]{\dot{Q}_{#1}}
 \newcommand{\damp}[1]{X_{#1}}
 \newcommand{\rhocp}{\rho_a c_{p,a}}
 \newcommand{\sat}{T_{sa}}
@@ -114,6 +117,8 @@ urlcolor=black}
 \newcommand{\plenflow}{\flow{\plenum}}
 \newcommand{\totflow}{\flow{tot}}
 \newcommand{\power}[1]{\dot{W}_{#1}}
+\newcommand{\heatCapacity}{C_{air}}
+\newcommand{\zoneTotalFlow}{\flow{z,tot}}
 
 
 \begin{document}

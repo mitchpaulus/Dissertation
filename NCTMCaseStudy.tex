@@ -183,6 +183,37 @@ AHU-2-3  & FPVAV-2-4  & 2,000 & Open Corridor                                   
 \end{landscape}
 
 
+\newcommand{\FloorPlanCaption}[1]{Floor plan for first floor Area #1 with terminal units.}
+\begin{landscape}
+    \begin{figure}
+    \centering
+% left, bottom, right, top 
+    \includegraphics[totalheight=\textwidth]{Images/FirstFloorAreaA.pdf}
+    \caption{\FloorPlanCaption{A}}
+    \label{fig:TerminalUnitLayoutAreaA}
+    \end{figure}
+    
+\end{landscape}
+
+
+\begin{landscape}
+\begin{figure}
+\centering
+\includegraphics[totalheight=\textwidth]{Images/FirstFloorAreaB.pdf}
+\caption{\FloorPlanCaption{B}}
+\label{fig:TerminalUnitLayoutAreaB}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}
+\centering
+\includegraphics[totalheight=\textwidth]{Images/SecondFloorNCTM.pdf}
+\caption{Floor plan for the second floor with terminal units.}
+\label{fig:TerminalUnitLayoutSecondFloor}
+\end{figure}
+\end{landscape}
+
 
 
 It is critical to have an understanding of how the current controls are
@@ -646,7 +677,7 @@ be
 \end{equation}
 and the reheat energy could be estimated by
 \begin{equation}
-    \heatenergy = 1.08 \left( CFM \right) \left( \mat - \dat  \right)
+    \heatenergy{} = 1.08 \left( CFM \right) \left( \mat - \dat  \right)
     \label{eq:TerminalUnitReheatEnergy}
 \end{equation}
 

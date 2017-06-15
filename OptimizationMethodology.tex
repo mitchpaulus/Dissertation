@@ -46,12 +46,10 @@ to be to total cost, rather than the total power.
 
 Fan power will have some relationship between the volumetric flow, \(\flow{}\), and the
 pressure rise, \(\Delta P\). 
-Fan Power:
 \begin{equation} \label{eq:FanEqnergy}
 \dot E_{fan} = fct\left( {\flow{supply},\Delta {P_{s,{\rm{fan}}}}} \right)
 \end{equation}
 Cooling power at the AHU has two components, sensible and latent. 
-Cooling Power:
 \begin{equation} \label{eq:CoolingEnergy}
     {\dot E_{cooling}} = {\flow{supply}}\rho_a c_{p,a}\:\left( {{T_{ma}} - {\sat}} \right) + h_v\rho_a{\flow{supply}}\:\left( {{\omega _{ma}} - {\omega _{sa}}} \right)
 \end{equation}
@@ -337,17 +335,17 @@ zone loads.
 If the sensible zone load is described as an open system with a constant specific
 heat, then
 \begin{equation}
-    \dot{Q}_{zone} = 60 \frac{\flow{zone}}{\nu} c_{air} \left(T_{room} -
+    \dot{Q}_{zone} =  \frac{\flow{zone}}{\nu} c_{air} \left(T_{room} -
     T_{sup}\right)
 \end{equation}
-where \(\flow{zone}\) is in units of CFM, \(\nu\) is in
-\si{\feet\cubed\per\pound}, \(c_{air}\) is in
-\si{\btu\per\pound\per\degreeF}, the temperatures are in
-\si{\degreeF}, and the zone load is in \si{\btu\per\hour}.
+%where \(\flow{zone}\) is in units of CFM, \(\nu\) is in
+%\si{\feet\cubed\per\pound}, \(c_{air}\) is in
+%\si{\btu\per\pound\per\degreeF}, the temperatures are in
+%\si{\degreeF}, and the zone load is in \si{\btu\per\hour}.
 
 The total uncertainty in the prediction will be
 \begin{equation}
-    \delta \dot{Q}_{zone} = 60\,c_{air} \sqrt{ \left( \frac{\left(T_{room} - T_{sup}\right)}{\nu} \delta \flow{} \right)^2 
+    \delta \dot{Q}_{zone} = c_{air} \sqrt{ \left( \frac{\left(T_{room} - T_{sup}\right)}{\nu} \delta \flow{} \right)^2 
     + \left( \frac{- \left(T_{room} - T_{sup}\right) \flow{}}{\nu^{2}} \delta \nu \right)^{2}  
 + \left( \frac{\flow{}}{\nu} \delta T_{room}\right)^{2}
 + \left(\frac{-\flow{}}{\nu} \delta T_{sup}\right)^{2}
@@ -788,7 +786,7 @@ outdoor and return air flows.
     %% \pdv{\dot{E}}{\sat}=-2.16\left(\flowsum \right)
 %% \end{equation}
 
-\subsection{Brute Force Approach}
+\section{Brute Force Approach}
 
 Since the system is not expected to determine semi-optimal
 control setpoints at small time intervals, say less than a second, it is
@@ -806,6 +804,113 @@ typical search range for the supply air temperature will be on the order
 of \SI{20}{\degreeF}, making for a total number of calculations in the
 hundreds.  This level of computation is feasible for modern
 computers to handle in the sub-second time range.
+
+A number of inputs for air handling units and terminal units need to be
+specified before determining the optimal supply air temperature. These
+inputs are listed in \tableref{} \ref{tab:RequiredInputsForAHUs} and
+\ref{tab:RequiredInputsForTerminalUnits}.
+
+\begin{table}
+\centering
+\caption{Required inputs for air handling units.}
+\label{tab:RequiredInputsForAHUs}
+\begin{tabular}{lcl}\toprule
+    Inputs for Air Handling Unit   & Symbol            & Coming From      \\ \midrule
+    Mixed Air Temperature          & \(T_{ma}\)        & Nearest Neighbor \\
+    Fan Exponent                   & \(n\)             & Constant         \\
+    Design Fan Power               & \(\dot{W}_{fan}\) & Specifications   \\
+    Design Fan Flow                & \(\flow{design}\) & Specifications   \\
+    Fan Curve Constant             & \(A\)             & Constant         \\
+    Minimum Supply Air Temperature & \(T_{sa,min}\)    & Constant         \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}
+\centering
+\caption{Required inputs for terminal units.}
+\label{tab:RequiredInputsForTerminalUnits}
+\begin{tabular}{lcl}\toprule
+    Inputs for Terminal Units & Symbol             & Coming From      \\ \midrule
+    Total Flow                & \(\zoneTotalFlow\) & Specifications   \\
+     Minimum Flow             & \(\flow{pri,min}\) & Constant         \\
+     Zone Temperature         & \(T_{z}\)          & Nearest Neighbor \\
+     Plenum Temperature       & \(T_{plen}\)       & Constant         \\
+     Zone Load                & \(\dot{Q}_{z}\)    & Nearest Neighbor \\ \bottomrule
+\end{tabular}
+\end{table}
+
+
+The algorithm described assumes a series fan powered terminal unit. For
+other types of terminal units, the method follows similarly. 
+
+\begin{enumerate}
+    \item Calculate discharge temperature for each terminal unit from 
+        \begin{equation}
+            T_{dis}=T_{z} - \frac{\dot{Q}_{z}}{\heatCapacity \; \zoneTotalFlow  }   
+        \end{equation}
+    \item Calculate the maximum \(T_{sa,max}\) for the search range as 
+        \begin{equation}
+            T_{sa,max}  = \text{MIN}\left(T_{ma}, \text{MIN}(T_{dis}) \right)
+        \end{equation}
+        The \(T_{sa,max}\) cannot be larger than \(T_{ma}\) since it is
+        assumed that only cooling is happening in the supply air duct
+        after the mixing chamber. \(T_{sa,max}\) cannot be larger than
+        the minimum calculated discharge temperature because then that
+        particular zone would not have sufficient cooling capacity. 
+    \item For each \(T_{sa}\) ranging from \(T_{sa,min}\) (which is
+        chosen prior by the user) to the maximum \(T_{sa,max}\) just
+        calculated, using 1/8\(^{\circ}\)F step size, calculate total
+        power
+    \item For each terminal unit, calculate the primary air flow required
+    \begin{equation} \flow{pri, req} = \zoneTotalFlow \left( \frac{T_{plen} - \dat }{T_{plen} - \sat} \right) \end{equation}
+    \item Calculate actual primary airflow
+        \begin{equation}\label{eq:PrimaryFlowRequired}
+            \flow{pri} = \text{MAX}\left(\flow{pri,req}, \flow{pri,min}  \right)
+        \end{equation}
+    \item Calculate reheat for each terminal unit using energy balance
+        \begin{equation}\label{eq:reheatPerZone}
+            \dot{Q}_{reheat} = \heatCapacity \left(\flow{tot} T_{dis} - \flow{pri} T_{sa} - \flow{plen} T_{plen}\right)  
+        \end{equation}
+    \item Calculate cooling power using cooling coil energy balance
+        \begin{equation}\label{eq:TotalCoolingPower}
+            {\dot Q_{cooling}} = {\flow{supply}}\,\heatCapacity\:\left( {{T_{ma}} - {\sat}} \right) + h_v\rho_a{\flow{supply}}\:\left( {{\omega _{ma}} - {\omega _{sa}}} \right)
+        \end{equation}
+    \item Calculate fan power using part load ratio curve
+        \begin{equation}\label{eq:TotalFanPower}
+            \dot{W}_{fan} = \left[A + \left(1-A\right)\left(\frac{\flow{pri,tot}}{\flow{design}}\right)^{n}\right] \dot{W}_{fan,design} 
+        \end{equation}
+    \item Calculate total power 
+        \begin{equation}\label{eq:TotalPowerSystem}
+            \dot{E}_{tot} = \dot{W}_{fan} + \dot{Q}_{cooling} + \dot{Q}_{reheat}
+        \end{equation}
+\end{enumerate}
+
+\begin{algorithm}
+\SetAlgoLined
+Need the following information for the AHU\par
+\KwData{\(T_{ma}\), \(n\), \(\power{fan,design}\), \(\flow{design}\), \(A\)}
+For each terminal unit, will need the following information \par
+\KwData{\(\flow{z,tot}\), \(\flow{pri,min}\), \(T_{z}\), \(T_{plen}\), \(\heatenergy{z}\) }
+\KwResult{Optimal \(T_{sa}\)}
+
+\For{\(T_{sa} \leftarrow T_{sa,min}\) \KwTo \(T_{sa,max}\) }{
+
+    \For{\(i \leftarrow 1 \) \KwTo number of terminal units}{
+        Calculate \(V_{pri,i}\) using \eqreftext{} \ref{eq:PrimaryFlowRequired}\;
+        Calculate \(\heatenergy{reheat,i}\) using \eqreftext{} \ref{eq:reheatPerZone}\;
+    }
+    Calculate total reheat power by summing all \(\heatenergy{reheat,i}\)\;
+    Calculate total primary flow, \(\flow{supply}\) by summing all \(\flow{pri,i}\)\;
+    Calculate total cooling power from \eqreftext{} \ref{eq:TotalCoolingPower}\;
+    Calculate total fan power using \eqreftext{} \ref{eq:TotalFanPower}\;
+    Calculate total power using \eqreftext{} \ref{eq:TotalPowerSystem}\;
+}
+
+
+\caption{Algorithm to determine optimal \(T_{sa}\)}
+\end{algorithm}
+
+
 
 The minimum value of \(\sat\) in the search range would be the lowest
 feasible \(\sat\) possible dependent on the chilled water system and
