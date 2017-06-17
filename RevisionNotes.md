@@ -22,7 +22,12 @@ Page 66, I don't really have any explanation for that plot.
 Page 67, Figure 5.21, which shows FPVAV-2-14, it is difficult to
 determine whether this zone should be considered interior or exterior. 
 
+Page 71, the "crossover" points are going to be different because the
+absolute zone load is going to be very different for the different
+units. 
 
+Removed all uses of the term "children" terminal units, etc. Would
+rather not have to define it. 
 
 The reason that Park Forest and Preston Royal cannot be used is that the
 data is coming in repeated as a constant the majority of the time. 

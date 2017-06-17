@@ -1,0 +1,87 @@
+%! TEX program = lualatex
+
+\RequirePackage{luatex85}
+\documentclass[12pt]{article}
+\usepackage[active, tightpage]{preview}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri,arrows.meta}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.3}
+\usetikzlibrary{graphdrawing}
+\usetikzlibrary{graphs}
+\usegdlibrary{trees}
+\usepackage{forest}
+\PreviewEnvironment{forest}
+
+\begin{document}
+
+
+%\begin{forest}
+ %[VP
+ %[DP]
+ %[V'
+ %[V]
+ %[DP]
+ %]
+ %]
+%\end{forest}
+\begin{forest}for tree={edge={->},grow=east, child anchor=west, draw}
+    [OAHU-1-1  [AHU-1-1] [AHU-1-2  
+    [FPVAV-1-7]    
+    [FPVAV-1-8]    
+    [FPVAV-1-9]    
+    [FPVAV-1-10]    
+    ]    ] 
+\end{forest}
+    %\node {r}
+    %child { node {a}
+    %child [missing]
+    %child { node {b} }
+    %}
+    %child[missing];
+\begin{tikzpicture}[grow=east, tree layout, parent anchor=east, child anchor=west,nodes={draw},every edge from parent/.style={draw,dashed,thick,red}]
+
+
+    \node {OAHU-1-1} 
+        child { node {AHU-1-z} }
+        child { node {AHU-1-2} 
+            child { node {FPVAV-1-7} }
+            child { node {FPVAV-1-8} }
+            child { node {FPVAV-1-9} }
+            child { node {FPVAV-1-10} }
+        };
+
+
+
+
+
+
+
+
+    %\node[draw] (OAHU) {OAHU-1-1};
+    %\node[draw, right=of OAHU] (AHU-1-1) {AHU-1-1};
+    %\node[draw, below=of AHU-1-1] (AHU-1-1) {AHU-1-2};
+
+    %\node[draw, right=of AHU-1-1]   {FPVAV-1-7};
+    %\node[draw, right=of AHU-1-1]   {FPVAV-1-8};
+    %\node[draw, right=of AHU-1-1]   {FPVAV-1-9};
+    %\node[draw, right=of AHU-1-1]   {FPVAV-1-10};
+
+
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    [tree layout, parent anchor=east,child anchor=west,grow=east,
+    %sibling distance=15mm, level distance=15mm,
+    %every node/.style={ball color=red,circle,text=white},
+    edge from parent/.style={->,draw,dashed,thick,red}]
+    \node {OAHU-1-1}
+        child {node {AHU-1-1}}
+        child {node {AHU-2-2}
+            child {node {FPVAV-1-7}}
+            child {node {FPVAV-1-8}}
+        };
+    \end{tikzpicture}
+
+\end{document}
+

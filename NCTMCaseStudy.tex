@@ -1,4 +1,4 @@
-%! TEX program = xelatex
+%! TEX program = pdflatex
 %! TEX root = main.tex
 
 \chapter{\texorpdfstring{\MakeUppercase{NCTM Case Study}}{NCTM Case Study}}
@@ -29,7 +29,7 @@ units (OAHU) serve seven child air handling units. Two of the air handling
 units are constant speed, and the others are variable air volume. OAHU
 1-1 serves its wet lab and also feeds into AHU 1-1 and AHU 1-2. OAHU
 1-2 serves AHU 1-3 and 1-4 on the first floor. OAHU 2-1 serves three
-children air handlers on the second floor, AHU 2-1, 2-2, and 2-3. 
+air handlers on the second floor, AHU 2-1, 2-2, and 2-3. 
 
 Various specifications for the air handling units are shown in Tables
 \ref{tab:OnOffSched} through \ref{tab:FanSched}.
@@ -273,36 +273,36 @@ The points include
 \label{tab:MinimumAirFlowRateSettings}
 \begin{tabular}{lS}
     \toprule
-Container Hierarchy & {Min Percent Flow} \\ \midrule
-FPVAV-2-1            & 20                              \\
-FPVAV-2-2            & 30                              \\
-FPVAV-2-3            & 20                              \\
-FPVAV-2-12           & 30                              \\
-FPVAV-2-13           & 30                              \\
-FPVAV-2-14           & 30                              \\
-FPVAV-2-15           & 30                              \\
-FPVAV-2-16           & 30                              \\
-FPVAV-2-17           & 30                              \\
-FPVAV-2-18           & 30                              \\
-FPVAV-2-9            & 5                               \\
-FPVAV-2-10           & 30                              \\
-FPVAV-2-11           & 30                              \\
-FPVAV-2-4            & 30                              \\
-FPVAV-2-5            & 30                              \\
-FPVAV-2-6            & 30                              \\
-FPVAV-2-7            & 30                              \\
-FPVAV-2-8            & 30                              \\
-FPVAV-1-10           & 30                              \\
-FPVAV-1-7            & 30                              \\
-FPVAV-1-8            & {N/A}                           \\
-FPVAV-1-9            & {N/A}                           \\
-FPVAV-1-1            & 30                              \\
-FPVAV-1-2            & 30                              \\
-FPVAV-1-3            & 25                              \\
-FPVAV-1-4            & 25                              \\
-FPVAV-1-5            & {N/A}                           \\
-FPVAV-1-6            & 30                              \\
-FPVAV-1-11           & 30               \\ \bottomrule
+Terminal Unit & {Min Percent Flow} \\ \midrule
+FPVAV-2-1     & 20                 \\
+FPVAV-2-2     & 30                 \\
+FPVAV-2-3     & 20                 \\
+FPVAV-2-12    & 30                 \\
+FPVAV-2-13    & 30                 \\
+FPVAV-2-14    & 30                 \\
+FPVAV-2-15    & 30                 \\
+FPVAV-2-16    & 30                 \\
+FPVAV-2-17    & 30                 \\
+FPVAV-2-18    & 30                 \\
+FPVAV-2-9     & 5                  \\
+FPVAV-2-10    & 30                 \\
+FPVAV-2-11    & 30                 \\
+FPVAV-2-4     & 30                 \\
+FPVAV-2-5     & 30                 \\
+FPVAV-2-6     & 30                 \\
+FPVAV-2-7     & 30                 \\
+FPVAV-2-8     & 30                 \\
+FPVAV-1-10    & 30                 \\
+FPVAV-1-7     & 30                 \\
+FPVAV-1-8     & {N/A}              \\
+FPVAV-1-9     & {N/A}              \\
+FPVAV-1-1     & 30                 \\
+FPVAV-1-2     & 30                 \\
+FPVAV-1-3     & 25                 \\
+FPVAV-1-4     & 25                 \\
+FPVAV-1-5     & {N/A}              \\
+FPVAV-1-6     & 30                 \\
+FPVAV-1-11    & 30                 \\ \bottomrule
 \end{tabular}
 \end{table}
 
@@ -1047,20 +1047,19 @@ margin. It has estimated loads near 50,000 BTU/hr.
 
 %% These items come from the analysis done with plus minus 15 min and 3 degree F OAT bounds in file Batch Plots -- Mitch Dissertation N -- 2016-09-14 0952
 
-An interesting pattern that was that the initial prediction routine
-overpredicted the zone load when the zone load was closer to the heating
-range and underpredicted the zone load during times of high cooling
-load. This bias was seen in every terminal unit in the building, and this
-bias occurred with both the largest and smallest terminal units. Figures
+An interesting pattern was that the initial prediction routine overpredicted
+the zone load when the zone load was closer to the heating range and
+underpredicted the zone load during times of high cooling load. This bias was
+seen in every terminal unit in the building, and this bias occurred with both
+the largest and smallest terminal units. Figures
 \ref{fig:2016-09-14-1028-ZoneLoadResidualforContainerFPVAV22vsZoneLoadforContainerFPVAV22}
 through
 \ref{fig:2016-09-14-1020-ZoneLoadResidualforContainerFPVAV27vsZoneLoadforContainerFPVAV27}
-show examples of this phenomenon. This is because the
-median of sub-sets of data was used for the prediction. The method will
-always underpredict the highest value and overpredict the lowest value.
-The date period analyzed was from March 1, 2016, to August 1, 2016,
-ignoring when the AHUs were off, federal holidays and weekends, and
-hours from 5 PM to 9 AM. 
+show examples of this phenomenon. This is because the median of sub-sets of
+data was used for the prediction. The method will always underpredict the
+highest value and overpredict the lowest value.  The date period analyzed was
+from March 1, 2016, to August 1, 2016, ignoring when the AHUs were off, federal
+holidays and weekends, and hours from 5 PM to 9 AM. 
 
 \newcommand{\zoneLoadCaption}[1]{Bias in zone load prediction for #1.}
 
@@ -1093,7 +1092,7 @@ An analysis was also completed regarding the optimal parameters for the
 the time of day threshold, the outdoor air temperature threshold, and the
 number of data points to use.
 
-Three different tests cases for each variable was used. The time of day
+Three different tests cases for each variable were used. The time of day
 threshold was adjusted from 1 timestamp away, 2 timestamps away, and 4
 timestamps away. For 15 minute interval data, this means that the
 threshold was 15 minutes, 30 minutes, and 1 hour. 
@@ -1116,13 +1115,15 @@ through January 1\textsuperscript{st}, 2017. Times when the air handling
 units were off and the first and last hour of operation, weekends,  and
 federal holidays were all ignored. 
 
-The results show that looser thresholds, which results in more recent data
-being used, gave the best model fits. The best average CV (using the max value
-of the data set as the normalization parameter) at 15.6\% was under the
-conditions of thresholds of plus or minus one hour, \SI{5}{\degF}, and using 45
-data points. The worst models had an average CV of 18.1\%, for the thresholds
-of plus or minus 15 minutes, \SI{1}{\degF}, and 45 data points. The rest of the
-tests are also shown in \tableref{} \ref{tab:ZoneLoadTestingResults}.
+The results show that the goodness-of-fit metrics were insensitive to the
+various parameters. In addition, the results show that looser thresholds, which
+results in more recent data being used, gave the best model fits. The best
+average CV (using the max value of the data set as the normalization parameter)
+at 15.6\% was under the conditions of thresholds of plus or minus one hour,
+\SI{5}{\degF}, and using 45 data points.  The worst models had an average CV of
+18.1\%, for the thresholds of plus or minus 15 minutes, \SI{1}{\degF}, and 45
+data points. The rest of the tests are also shown in \tableref{}
+\ref{tab:ZoneLoadTestingResults}.
 
 A main takeaway of the tests, however, was that result were insensitive
 to the parameters. This means that the parameters may be adjusted for
@@ -1222,13 +1223,13 @@ optimization. An important consideration in the methodology is checking
 how well this assumption holds. Data from NCTM can be used to test the
 validity of the approach.
 
-The following figures show the maximum damper position of the children
-terminal units for each of the air handlers during the month of April
-2016. During this time, for AHU-2-1 and AHU-2-2, there was no time in
-which a terminal unit damper was fully open which indicates that there
-is potential for the supply air static pressure setpoint to be reduced.  
+The following figures show the maximum damper position of the terminal units
+for each of the air handlers during the month of April 2016. During this time,
+for AHU-2-1 and AHU-2-2, there was no time in which a terminal unit damper was
+fully open which indicates that there is potential for the supply air static
+pressure setpoint to be reduced.  
 
-\newcommand{\MaxDampCaption}[1]{Maximum damper position of all children terminal units versus \(\oat{}\) for #1 during the month of April 2016.}
+\newcommand{\MaxDampCaption}[1]{Maximum damper position of all terminal units versus \(\oat{}\) for #1 during the month of April 2016.}
 
 \begin{figure}
 \centering
@@ -1454,11 +1455,11 @@ Energy savings were estimated for a period from June
 Weekends, times when the AHUs were off, federal holidays, and times from
 5:00 PM to 9:00 AM were all ignored. 
 
-Also, since the estimation of the amount of reheat in terminal
-units had a high uncertainty level, it was decided to ignore times in
-which at least one of the reheat valves in the children terminal units
-was open. In this sense, the only components to the AHU energy were the
-cooling energy at the cooling coil and the fan energy. 
+Also, since the estimation of the amount of reheat in terminal units had a high
+uncertainty level, it was decided to ignore times in which at least one of the
+reheat valves in the terminal units was open. In this sense, the only
+components to the AHU energy were the cooling energy at the cooling coil and
+the fan energy. 
 
 To provide a sense of the sensitivity to the assumed parameters in the
 optimization, savings were determined using different exponents ranging
