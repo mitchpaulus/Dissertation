@@ -25,6 +25,8 @@ many different kinds of systems, including variable air volume and
 variable refrigerant volume
 \cite{Fong2006HVACProgramming,Jin2005Prediction-basedSystems,Parameshwaran2010EnergyAlgorithm,Congradac2009HVACAlgorithms}
 
+\subsection{Model Predictive Control}
+
 Model predictive (or receding-horizon) control (MPC) has been a popular
 research field in control theory and has been successfully implemented
 in practice. Li et. al \cite{Li2015} recently showed the
@@ -36,6 +38,22 @@ of over 20\%. They also used a centralized architecture where BAS data
 was passed through a middleware with a historical database to Matlab and
 an AMPL optimization system, with results of that dynamically changing
 the building HVAC system.
+
+% The citations here are coming directly from Afram 2017.
+Afram et al. also studied the combination of ANNs and MPC
+\cite{Afram2017}. As described in \cite{Afram2017}, the combination of
+these two techniques has been used for the following different control
+objectives:
+
+\begin{enumerate}
+    \item Minimize energy consumption \cite{Ferreira2012, Huang2015a, Kusiak2011OptimizationOfAnHVACSystemWithAStrength, Kusiak2014MinimizationOfEnergyConsumptionInHVAC,WeiXiupeng2015, Garnier2015, Kim2016, LuLu2005HVACSystemOptimization, Ning2010Neuro-optimalSystem}
+    \item Maintain thermal comfort \cite{Ferreira2012, Kusiak2011OptimizationOfAnHVACSystemWithAStrength, Kusiak2014MinimizationOfEnergyConsumptionInHVAC, WeiXiupeng2015, Garnier2015, Kim2016}
+    \item maintain indoor air quality (IAQ) at an acceptable level \cite{Kusiak2011MultiObjective}
+    \item Minimize operating cost \cite{Garnier2015, Lee2015, Huang2015a, Ruano2015, Ruano2016}
+    \item Maintain visual comfort at an acceptable level \cite{Kim2016}
+    \item Minimize retrofit cost \cite{Asadi2014a}
+    \item Minimize thermal discomfort hours \cite{Asadi2014a}
+\end{enumerate}
 
 This proposal has a focus on steady state behavior, but the dynamic
 behavior of buildings and its controls are also important. Seem has

@@ -2,34 +2,35 @@
 
 The last two cases studies were two other buildings that had data
 available in Implementer and had discharge air temperature sensors for
-the terminal units. The last two case studies were not studied in a much
-detail as the NCTM building because of issues regarding data quality.
+the terminal units. The last two case studies were not studied in as
+much detail as the NCTM building because of issues regarding data
+quality.
 
 Park Forest Branch Library is a one-story building with
 \SI{10894}{\feet\squared} of gross floor area. The Park Forest Branch
 Library consists of an open-space reading room and circulation, staff
-area, and a meeting room.
+area, and a meeting room. 
 
 The following description comes from a Continuous
-Commissioning\textsuperscript{\textregistered{}} report
-done on the Park Forest building \cite{ParkForestReport}. The air-handling unit (AHU) consists
-of a supply fan equipped with variable speed drive (VSD), cooling coil,
-and outside air damper. The VSD for the supply air fan is controlled to
-maintain the duct static pressure at the setpoint. The schematic of this AHU can
-be seen in the BAS graphics as in \figref{}
-\ref{fig:ParkForestAHUGraphic}, but actual installation is
-quite different. There is no return air duct directly connected to the
-AHU, possibly due to the space limitation. Instead, a mixed air chamber
-for the AHU is installed on the rooftop as shown in \figref{}
-\ref{fig:ParkForestMixedAirChamber}. The return
-air is taken from a building exhaust chimney, and the outside air damper
-is installed on this rooftop assembly. There is no return air (RA)
-damper installed, although control drawings and the sequence show a
-BAS controlled RA damper. The outside air (OA) damper is commanded to be
-a minimum position of 25\% during normal operation. The sequence of
-operation states that the OA damper is controlled for economizer
-operation when outside air conditions allow free cooling, but without
-RA damper, the controllability of the OA flow is questionable.
+Commissioning\textsuperscript{\textregistered{}} report done on the Park
+Forest building \cite{ParkForestReport}. The air-handling unit (AHU)
+consists of a supply fan equipped with variable speed drive (VSD),
+cooling coil, and outside air damper. The VSD for the supply air fan is
+controlled to maintain the duct static pressure at the setpoint. The
+schematic of this AHU can be seen in the BAS graphics as in \figref{}
+\ref{fig:ParkForestAHUGraphic}, but actual installation is quite
+different. There is no return air duct directly connected to the AHU,
+possibly due to the space limitation. Instead, a mixed air chamber for
+the AHU is installed on the rooftop as shown in \figref{}
+\ref{fig:ParkForestMixedAirChamber}. The return air is taken from a
+building exhaust chimney, and the outside air damper is installed on
+this rooftop assembly. There is no return air damper installed,
+although control drawings and the sequence show a BAS controlled RA
+damper. The outside air  damper is commanded to be at a minimum
+position of 25\% during normal operation. The sequence of operation
+states that the outdoor air damper is controlled for economizer operation when
+outside air conditions allow free cooling, but without a return air
+damper, the controllability of the outdoor air flow is questionable.
 
 \tableref{} \ref{tab:ParkForestTerminalUnitSpecs} shows the
 mechanical specifications that were available for the terminal units at
@@ -39,12 +40,13 @@ Park Forest. By the specification, the minimum flow rates were set to
 However, based on the actual data for the building, the 30\% minimum
 flow rates do not appear to hold. The measurements of the terminal
 box flow were aggregated over a period from 10/23/2015 - 10/22/2016
-(365 days). 
+(365 days) as shown in \tableref{}
+\ref{tab:ParkForestMeasuredTerminalUnitFlow}. 
 
 None of the terminal units reached the specified design value. The
 5\textsuperscript{th} percentile was less than the specified minimum for
-all 6 terminal units. The statistics for terminal unit flow can be found in 
-\tableref{} \ref{tab:ParkForestMeasuredTerminalUnitFlow}. 
+all 6 terminal units. This leads one to question the validity of the
+air flow measurements.
 
 Overall, this building was an example of one in which the quality of the
 information related to the equipment and the quality of the data was
@@ -106,13 +108,13 @@ too poor to confidently make models.
     \label{tab:ParkForestMeasuredTerminalUnitFlow}
     \begin{tabular}{@{}lSlSSSSSSl@{}}
         \toprule
-        \multicolumn{3}{l}{Tbox Airflow (CFM)} &           &                              &            &            &                               &            &                           \\
-        Unit                                   & {Min}     & \parbox[b]{0.75cm}{5th \\ Perc} & { Mean }   & { Median } & \parbox[b]{1cm}{95th \\ Perc} & { Max }    & \parbox[b]{1cm}{St. Dev.} &  \parbox[b]{1.5cm}{Original \\ Count} & \parbox[b]{1cm}{\% \\ Ignored} \\ \midrule
-        VAV-1                                 & 722 & 824                    & 1104 & 1183 & 1244                    & 1312 & 151                 &  20897                          & 69\%                           \\
-        VAV-2                                 & 557 & 631                    & 661  & 662  & 683                     & 720  & 16                  &  20801                          & 68\%                           \\
-        VAV-3                                 & 550 & 590                    & 975  & 1144 & 1234                    & 2453 & 262                 &  19937                          & 69\%                           \\
-        VAV-4                                 & 451 & 497                    & 516  & 513  & 550                     & 579  & 16                  &  19169                          & 69\%                           \\
-        VAV-5                                 & 350 & 391                    & 713  & 813  & 932                     & 987  & 211                 &  19169                          & 69\%                           \\
-        VAV-6                                 & 137 & 147                    & 331  & 211  & 610                     & 707  & 205                 &  18785                          & 69\%                           \\ \bottomrule
+        \multicolumn{3}{l}{Tbox Airflow (CFM)} &       &                                 &          &            &                               &         &                           \\
+        Unit                                   & {Min} & \parbox[b]{0.75cm}{5th \\ Perc} & { Mean } & { Median } & \parbox[b]{1cm}{95th \\ Perc} & { Max } & \parbox[b]{1cm}{St. Dev.} &  \parbox[b]{1.5cm}{Original \\ Count} & \parbox[b]{1cm}{\% \\ Ignored} \\ \midrule
+        VAV-1                                  & 722   & 824                             & 1104     & 1183       & 1244                          & 1312    & 151                       &  20897                                & 69\%                           \\
+        VAV-2                                  & 557   & 631                             & 661      & 662        & 683                           & 720     & 16                        &  20801                                & 68\%                           \\
+        VAV-3                                  & 550   & 590                             & 975      & 1144       & 1234                          & 2453    & 262                       &  19937                                & 69\%                           \\
+        VAV-4                                  & 451   & 497                             & 516      & 513        & 550                           & 579     & 16                        &  19169                                & 69\%                           \\
+        VAV-5                                  & 350   & 391                             & 713      & 813        & 932                           & 987     & 211                       &  19169                                & 69\%                           \\
+        VAV-6                                  & 137   & 147                             & 331      & 211        & 610                           & 707     & 205                       &  18785                                & 69\%                           \\ \bottomrule
     \end{tabular}
 \end{table}

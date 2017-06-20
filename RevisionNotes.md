@@ -32,9 +32,8 @@ rather not have to define it.
 The reason that Park Forest and Preston Royal cannot be used is that the
 data is coming in repeated as a constant the majority of the time. 
 
-
-
-## Preston Royal 
+Preston Royal
+-------------
 
 Analyzing from 4/29/2017 through 5/6/2017.
 
