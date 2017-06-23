@@ -1101,12 +1101,18 @@ The outdoor air temperature threshold was tested at \SI{1}{\degreeF},
 \SI{3}{\degreeF}, and \SI{5}{\degF}. The number of data points used in
 the median was 15, 30, and 45. 
 
-The objective function for these tests was the average coefficient of variation
-for all the terminal units in NCTM. The coefficient of variation is a
-normalized root mean squared error (RMSE), where the normalization value is the
-max of the data set that is predicted. Do note that for data sets such as zone
+The objective function for these tests was the average root mean squared
+error (RMSE) divided by the range of the calculated zone loads
+for all the terminal units in NCTM, which will be defined as CV-RMSE*.
+
+\begin{equation}
+    \text{CV-RMSE*} = \frac{\text{RMSE}}{y_{max}-y_{min}}
+\end{equation}
+
+Note that for data sets such as zone
 load which can be both above and below zero, that the coefficient of variation
-using the mean as the normalization factor can be arbitrarily high because the
+using the mean as the normalization factor, a commonly used metric in
+evaluating model fits, can be arbitrarily high because the
 mean can be close to zero (implying that the zone load is both positive and
 negative). 
 
@@ -1115,14 +1121,14 @@ through January 1\textsuperscript{st}, 2017. Times when the air handling
 units were off and the first and last hour of operation, weekends,  and
 federal holidays were all ignored. 
 
-The results show that the goodness-of-fit metrics were insensitive to the
-various parameters. In addition, the results show that looser thresholds, which
-results in more recent data being used, gave the best model fits. The best
-average CV (using the max value of the data set as the normalization parameter)
-at 15.6\% was under the conditions of thresholds of plus or minus one hour,
-\SI{5}{\degF}, and using 45 data points.  The worst models had an average CV of
-18.1\%, for the thresholds of plus or minus 15 minutes, \SI{1}{\degF}, and 45
-data points. The rest of the tests are also shown in \tableref{}
+The results show that the goodness-of-fit metrics were insensitive to
+the various parameters. In addition, the results show that looser
+thresholds, which results in more recent data being used, gave the best
+model fits. The best average CV-RMSE* was 11.6\% was under the
+conditions of thresholds of plus or minus one hour, \SI{5}{\degF}, and
+using 45 data points.  The worst models had an average CV of 13.5\%, for
+the thresholds of plus or minus 15 minutes, \SI{1}{\degF}, and 45 data
+points. The rest of the tests are also shown in \tableref{}
 \ref{tab:ZoneLoadTestingResults}.
 
 A main takeaway of the tests, however, was that result were insensitive
@@ -1131,76 +1137,54 @@ benefits in other areas such as performance. By having large thresholds
 and less data points, less historical data needs to be searched, and the
 time to complete the algorithm is reduced.
 
+A plot of these results in order of predictive ability is shown in
+\figref{} \ref{fig:ZoneLoadInOrder}. 
+
 
 \begin{table}
 \centering
 \caption{Testing results for zone load prediction.}
 \label{tab:ZoneLoadTestingResults}
-\begin{tabular}{@{}lllcl@{}}
+\begin{tabular}{@{}lllcS[table-format=2.2,round-mode=off]@{}}
 \toprule
-Run & TS & \(T_{oa} \) & \# of Data Points & Average CV (\%) \\ \midrule
-1   & 1  & 1           & 15                & 17.9\%          \\
-2   & 2  & 1           & 15                & 17.5\%          \\
-3   & 4  & 1           & 15                & 17.0\%          \\
-4   & 1  & 3           & 15                & 16.5\%          \\
-5   & 2  & 3           & 15                & 16.2\%          \\
-6   & 4  & 3           & 15                & 16.1\%          \\
-7   & 1  & 5           & 15                & 15.9\%          \\
-8   & 2  & 5           & 15                & 15.8\%          \\
-9   & 4  & 5           & 15                & 16.0\%          \\
-10  & 1  & 1           & 30                & 18.1\%          \\
-11  & 2  & 1           & 30                & 17.5\%          \\
-12  & 4  & 1           & 30                & 17.1\%          \\
-13  & 1  & 3           & 30                & 16.8\%          \\
-14  & 2  & 3           & 30                & 16.4\%          \\
-15  & 4  & 3           & 30                & 16.0\%          \\
-16  & 1  & 5           & 30                & 16.3\%          \\
-17  & 2  & 5           & 30                & 15.8\%          \\
-18  & 4  & 5           & 30                & 15.7\%          \\
-19  & 1  & 1           & 45                & 17.9\%          \\
-20  & 2  & 1           & 45                & 17.7\%          \\
-21  & 4  & 1           & 45                & 17.1\%          \\
-22  & 1  & 3           & 45                & 16.6\%          \\
-23  & 2  & 3           & 45                & 16.5\%          \\
-24  & 4  & 3           & 45                & 16.1\%          \\
-25  & 1  & 5           & 45                & 16.3\%          \\
-26  & 2  & 5           & 45                & 16.2\%          \\
-27  & 4  & 5           & 45                & 15.6\%          \\ \bottomrule
+Run & TS & \(T_{oa} \) & \# of Data Points & {Average \(\left(\frac{\text{RMSE}}{\heatenergy{z,max}-\heatenergy{z,min}}\right)\) (\%)} \\ \midrule
+1   & 1  & 1           & 15                & 10.12          \\
+2   & 2  & 1           & 15                & 9.68           \\
+3   & 4  & 1           & 15                & 9.80           \\
+4   & 1  & 3           & 15                & 9.61           \\
+5   & 2  & 3           & 15                & 9.41           \\
+6   & 4  & 3           & 15                & 8.97           \\
+7   & 1  & 5           & 15                & 9.28           \\
+8   & 2  & 5           & 15                & 9.18           \\
+9   & 4  & 5           & 15                & 8.98           \\
+10  & 1  & 1           & 30                & 10.58          \\
+11  & 2  & 1           & 30                & 10.07          \\
+12  & 4  & 1           & 30                & 9.39           \\
+13  & 1  & 3           & 30                & 9.95           \\
+14  & 2  & 3           & 30                & 9.63           \\
+15  & 4  & 3           & 30                & 9.16           \\
+16  & 1  & 5           & 30                & 9.61           \\
+17  & 2  & 5           & 30                & 9.25           \\
+18  & 4  & 5           & 30                & 9.00           \\
+19  & 1  & 1           & 45                & 10.75          \\
+20  & 2  & 1           & 45                & 10.47          \\
+21  & 4  & 1           & 45                & 9.80           \\
+22  & 1  & 3           & 45                & 10.08          \\
+23  & 2  & 3           & 45                & 9.58           \\
+24  & 4  & 3           & 45                & 9.32           \\
+25  & 1  & 5           & 45                & 9.74           \\
+26  & 2  & 5           & 45                & 9.52           \\
+27  & 4  & 5           & 45                & 9.08           \\ \bottomrule
 \end{tabular}
 \end{table}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\begin{figure}
+\centering
+\includegraphics{Plots/02/2017-06-09-ZoneLoadPredOrder.pdf}
+\caption{Zone load prediction results using the Nearest Neighbor approach.}
+\label{fig:ZoneLoadInOrder}
+\end{figure}
 
 
 

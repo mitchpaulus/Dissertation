@@ -44,15 +44,15 @@ supply air temperature must stay below a different minimum
 If energy prices are available, the objective function can be modified
 to be to total cost, rather than the total power.
 
-Fan power will have some relationship between the volumetric flow, \(\flow{}\), and the
-pressure rise, \(\Delta P\). 
-\begin{equation} \label{eq:FanEqnergy}
-\dot E_{fan} = fct\left( {\flow{supply},\Delta {P_{s,{\rm{fan}}}}} \right)
-\end{equation}
-Cooling power at the AHU has two components, sensible and latent. 
-\begin{equation} \label{eq:CoolingEnergy}
-    {\dot E_{cooling}} = {\flow{supply}}\rho_a c_{p,a}\:\left( {{T_{ma}} - {\sat}} \right) + h_v\rho_a{\flow{supply}}\:\left( {{\omega _{ma}} - {\omega _{sa}}} \right)
-\end{equation}
+%Fan power will have some relationship between the volumetric flow, \(\flow{}\), and the
+%pressure rise, \(\Delta P\). 
+%\begin{equation} \label{eq:FanEqnergy}
+%\dot E_{fan} = fct\left( {\flow{supply},\Delta {P_{s,{\rm{fan}}}}} \right)
+%\end{equation}
+%Cooling power at the AHU has two components, sensible and latent. 
+%\begin{equation} \label{eq:CoolingEnergy}
+    %{\dot E_{cooling}} = {\flow{supply}}\rho_a c_{p,a}\:\left( {{T_{ma}} - {\sat}} \right) + h_v\rho_a{\flow{supply}}\:\left( {{\omega _{ma}} - {\omega _{sa}}} \right)
+%\end{equation}
 
 \section{Reheat in Terminal Units}
 
@@ -236,13 +236,13 @@ conditions, and appropriate assumptions.
 
 \section{Required Sensors}
 
-In order to fulfill the proposed methodology, there are several sensors that
-are not common that would need to be installed.
+The discharge air temperature from terminal units is a required sensor
+that currently is unavailable in many buildings.  \tableref{}
+\ref{tab:NecessarySensors} lists the minimum set of sensors required.
 
-\tableref{} \ref{tab:NecessarySensors} lists the minimum set of sensors
-required. The sensors that are least likely to be available are the static
-pressure at the fan and the discharge air temperature from each terminal
-unit.
+%The sensors that are least likely to be available are the static
+%pressure at the fan and the discharge air temperature from each terminal
+%unit.
 
 \begin{table}
 \centering
@@ -910,33 +910,6 @@ For each terminal unit, will need the following information \par
 \caption{Algorithm to determine optimal \(T_{sa}\)}
 \end{algorithm}
 
-
-
-The minimum value of \(\sat\) in the search range would be the lowest
-feasible \(\sat\) possible dependent on the chilled water system and
-capacity of the cooling coils.  This minimum value may be on the order of
-\SI{50}{\degreeF}.
-
-The upper end of the search range will be the minimum of the \(\mat\)
-and the determined \(\dat\)'s.
-
-\begin{equation}
-    T_{sa,max} = \text{MIN}\left(\mat, \text{MIN}\left(T_{dis,1}, T_{dis,2}, \ldots, T_{dis,n} \right) \right)
-\end{equation}
-
-With a given zone load and constant flow, the \(\dat\) from the terminal
-unit can be calculated
-\begin{equation}
-    \dat = T_{z} -  \frac{Q_{z}}{1.08 \left( \text{CFM} \right)   }
-\end{equation}
-The primary airflow is then calculated from
-\begin{equation}
-    \flow{pri, req} = \totflow \left( \frac{T_{plen} - \dat }{T_{plen} - \sat} \right)
-\end{equation}
-The actual primary airflow is then
-\begin{equation}
-    \flow{pri} = \text{MAX}\left(\flow{pri, req}, \flow{pri, min}  \right)
-\end{equation}
 
 The brute force approach was taken in the prototype code. In future implementations,
 improvements could be made to the optimization approach for improved
