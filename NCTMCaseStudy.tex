@@ -458,48 +458,73 @@ threshold of \(\pm\)60 minutes, \(\pm\SI{3}{\degF}\) for \(T_{oa}\), and 15
 data points. The worst case was using \(\pm\)15 minutes, \(\pm \SI{1}{\degF}\),
 and 30 data points. 
 
-The model was insensitive to the parameters. The CVs ranged from
-1.76\% to 2.16\%. The models with the lowest CVs had the largest range
-in the timestamp and \(T_{oa}\) threshold. This observation is an indication that
-using more recent data was more valuable than using data from conditions
-matching more closely. 
+The model was insensitive to the parameters. Because Fahrenheit is not on
+a ratio scale, that is, having a meaningful zero, the typical
+goodness-of-fit parameter coefficient of variation of the root mean
+squared error (RMSE) has less meaning.  Therefore, instead of using the
+mean as the normalization parameter in the CV-RMSE metric, the range or
+the spread of the original data was used. It is denoted as CV-RMSE* for
+the remainder of this document. 
+
+\begin{equation}\label{eq:CVRMSEStar}
+\text{CV-RMSE*} = \frac{\text{RMSE}}{y_{max}-y_{min}}}
+\end{equation}
+
+
+The average CV-RMSE* ranged from 8.97\% to 10.75\%. The models with the
+lowest CVs had the largest range in the timestamp and \(T_{oa}\)
+threshold. This observation is an indication that using more recent data
+was more valuable than using data from conditions matching more closely. 
+
+A graphical view of the results in order of the best set parameters to
+the worst set of parameters is shown in \figref{}
+\ref{fig:MATPredictionOrderedResults}. 
 
 \begin{table}
     \centering
     \caption{Results from testing different nearest neighbor model parameters for predicted \(T_{ma}\).}
     \label{tab:MATTestingResults}
-    \begin{tabular}{@{}lllll@{}}
+    \begin{tabular}{@{}llllS[round-mode=off,table-format=2.2]@{}}
         \toprule
-        Run & TS & \(T_{oa}\) & DP & Average CV \\ \midrule
-        1   & 1  & 1          & 15 & 2.02\%     \\
-        2   & 2  & 1          & 15 & 1.91\%     \\
-        3   & 4  & 1          & 15 & 1.80\%     \\
-        4   & 1  & 3          & 15 & 1.90\%     \\
-        5   & 2  & 3          & 15 & 1.84\%     \\
-        6   & 4  & 3          & 15 & 1.76\%     \\
-        7   & 1  & 5          & 15 & 1.82\%     \\
-        8   & 2  & 5          & 15 & 1.80\%     \\
-        9   & 4  & 5          & 15 & 1.77\%     \\
-        10  & 1  & 1          & 30 & 2.13\%     \\
-        11  & 2  & 1          & 30 & 2.01\%     \\
-        12  & 4  & 1          & 30 & 1.85\%     \\
-        13  & 1  & 3          & 30 & 1.98\%     \\
-        14  & 2  & 3          & 30 & 1.90\%     \\
-        15  & 4  & 3          & 30 & 1.79\%     \\
-        16  & 1  & 5          & 30 & 1.90\%     \\
-        17  & 2  & 5          & 30 & 1.82\%     \\
-        18  & 4  & 5          & 30 & 1.77\%     \\
-        19  & 1  & 1          & 45 & 2.16\%     \\
-        20  & 2  & 1          & 45 & 2.10\%     \\
-        21  & 4  & 1          & 45 & 1.93\%     \\
-        22  & 1  & 3          & 45 & 2.00\%     \\
-        23  & 2  & 3          & 45 & 1.99\%     \\
-        24  & 4  & 3          & 45 & 1.83\%     \\
-        25  & 1  & 5          & 45 & 1.92\%     \\
-        26  & 2  & 5          & 45 & 1.88\%     \\
-        27  & 4  & 5          & 45 & 1.78\%     \\ \bottomrule
+        Run & TS & \(T_{oa}\) & DP & { Average CV-RMSE* }\\ \midrule
+        1   & 1  & 1          & 15 & 10.12      \\
+        2   & 2  & 1          & 15 & 9.68       \\
+        3   & 4  & 1          & 15 & 9.80       \\
+        4   & 1  & 3          & 15 & 9.61       \\
+        5   & 2  & 3          & 15 & 9.41       \\
+        6   & 4  & 3          & 15 & 8.97       \\
+        7   & 1  & 5          & 15 & 9.28       \\
+        8   & 2  & 5          & 15 & 9.18       \\
+        9   & 4  & 5          & 15 & 8.98       \\
+        10  & 1  & 1          & 30 & 10.58      \\
+        11  & 2  & 1          & 30 & 10.07      \\
+        12  & 4  & 1          & 30 & 9.39       \\
+        13  & 1  & 3          & 30 & 9.95       \\
+        14  & 2  & 3          & 30 & 9.63       \\
+        15  & 4  & 3          & 30 & 9.16       \\
+        16  & 1  & 5          & 30 & 9.61       \\
+        17  & 2  & 5          & 30 & 9.25       \\
+        18  & 4  & 5          & 30 & 9.00       \\
+        19  & 1  & 1          & 45 & 10.75      \\
+        20  & 2  & 1          & 45 & 10.47      \\
+        21  & 4  & 1          & 45 & 9.80       \\
+        22  & 1  & 3          & 45 & 10.08      \\
+        23  & 2  & 3          & 45 & 9.58       \\
+        24  & 4  & 3          & 45 & 9.32       \\
+        25  & 1  & 5          & 45 & 9.74       \\
+        26  & 2  & 5          & 45 & 9.52       \\
+        27  & 4  & 5          & 45 & 9.08       \\ \bottomrule
     \end{tabular}
 \end{table}
+
+\begin{figure}
+\centering
+\includegraphics{Plots/03/2017-06-08-MATPredOrder.pdf}
+\caption{Results from testing different nearest neighbor model
+parameters used in predicting mixed air temperature. }
+\label{fig:MATPredictionOrderedResults}
+\end{figure}
+
 
 \sisetup{round-mode=figures, round-precision=3}
 
@@ -1103,18 +1128,17 @@ the median was 15, 30, and 45.
 
 The objective function for these tests was the average root mean squared
 error (RMSE) divided by the range of the calculated zone loads
-for all the terminal units in NCTM, which will be defined as CV-RMSE*.
+for all the terminal units in NCTM, which is defined as CV-RMSE*.
 
 \begin{equation}
     \text{CV-RMSE*} = \frac{\text{RMSE}}{y_{max}-y_{min}}
 \end{equation}
 
-Note that for data sets such as zone
-load which can be both above and below zero, that the coefficient of variation
-using the mean as the normalization factor, a commonly used metric in
-evaluating model fits, can be arbitrarily high because the
-mean can be close to zero (implying that the zone load is both positive and
-negative). 
+Note that for data sets such as zone load which can be both above and
+below zero, that the coefficient of variation using the mean as the
+normalization factor, a commonly used metric in evaluating model fits,
+can be arbitrarily high because the mean can be close to zero (implying
+that the zone load is both positive and negative). 
 
 The tests were done for data from January 1\textsuperscript{st}, 2016
 through January 1\textsuperscript{st}, 2017. Times when the air handling
@@ -1126,7 +1150,7 @@ the various parameters. In addition, the results show that looser
 thresholds, which results in more recent data being used, gave the best
 model fits. The best average CV-RMSE* was 11.6\% was under the
 conditions of thresholds of plus or minus one hour, \SI{5}{\degF}, and
-using 45 data points.  The worst models had an average CV of 13.5\%, for
+using 45 data points.  The worst models had an average CV-RMSE* of 13.5\%, for
 the thresholds of plus or minus 15 minutes, \SI{1}{\degF}, and 45 data
 points. The rest of the tests are also shown in \tableref{}
 \ref{tab:ZoneLoadTestingResults}.
