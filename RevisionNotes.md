@@ -32,27 +32,39 @@ rather not have to define it.
 The reason that Park Forest and Preston Royal cannot be used is that the
 data is coming in repeated as a constant the majority of the time. 
 
+2017-06-23 Had a discussion with Hiroko regarding Preston Royal. She
+confirmed that there is an override on the fan at the library that is
+causing the AHU to run 24/7. Also received all the current minimum
+airflow setpoints. 
+
+The data for Preston Royal exists from 2015-12-01 to 2016-10-21, so less
+than a year. 
+
+
 Preston Royal
 -------------
 
 Analyzing from 4/29/2017 through 5/6/2017.
 
 ### Flow data
-FPB-01 -- Does not have data. 
-FPB-02 -- Data seems to be working. 
-FPB-03 -- Is constant or zero.
-FPB-04 -- Working
-FPB-05 -- Constant at 0
-FPB-06 -- Working 
-FPB-07 -- Working
-FPB-08 -- Working
-FPB-09 -- Working
-FPB-10 -- Not available. 
-FPB-11 -- Is constant or zero
-FPB-12 -- Working
-FPB-13 -- Stretches of constant data
-FPB-14 -- Stretches of constant data
-FPB-15 -- Stretches of constant data
+
+Unit |  Details
+-----------------------------------------
+FPB-01 | Does not have data. 
+FPB-02 | Data seems to be working. 
+FPB-03 | Is constant or zero.
+FPB-04 | Working
+FPB-05 | Constant at 0
+FPB-06 | Working 
+FPB-07 | Working
+FPB-08 | Working
+FPB-09 | Working
+FPB-10 | Not available. 
+FPB-11 | Is constant or zero
+FPB-12 | Working
+FPB-13 | Stretches of constant data
+FPB-14 | Stretches of constant data
+FPB-15 | Stretches of constant data
 
 Less than half the boxes appear to be trending correctly. 
 

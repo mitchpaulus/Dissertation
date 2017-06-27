@@ -1,0 +1,45 @@
+\RequirePackage{luatex85}
+\documentclass[12pt]{article}
+\usepackage[active, tightpage]{preview}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.3}
+\PreviewEnvironment{tikzpicture}
+\input{../../tikz/tikzDefaults}
+\begin{document}
+% StartDate: 1/1/2016
+% EndDate: 1/1/2017
+% Ignoring:
+%    When AHU is Off
+%    First 1 hrs
+%    Last 1 hrs
+%    Friday
+%    Holidays
+% Alignment period = 60 mins
+\begin{tikzpicture}
+\begin{axis}[
+    xychart,
+    align=center,
+    xlabel={OA Dry Bulb Temperature (NOAA) [\(^\circ\)F]},
+    ylabel={Zone Load [Btu/hr]},
+    ymin=-20000,
+    ymax=80000,
+    xmin=20,
+    xmax=110,
+    ytick={-20000,0,20000,40000,60000,80000},
+    xtick={20,30,40,50,60,70,80,90,100,110},
+    ylabel style={align=center,text width=8cm},
+    xlabel style={align=center,text width=8cm},
+]
+\addplot[only marks, mark=o,blue]
+table[x={OADryBulbTemperatureNOAA_F}, y={ZoneLoadforFPVAV29_BTU_hr}, col sep=comma]{2017-06-27-1026-BtuhrvsOADryBulbTemperatureNOAAF.dat};
+\addlegendentry{Zone Load for FPVAV-2-9}
+
+\addplot[only marks, mark=square,red]
+table[x={OADryBulbTemperatureNOAA_F}, y={ZoneLoadPredictionforFPVAV29_BTU_hr}, col sep=comma]{2017-06-27-1026-BtuhrvsOADryBulbTemperatureNOAAF.dat};
+\addlegendentry{Zone Load Prediction for FPVAV-2-9}
+
+\end{axis}
+\end{tikzpicture}
+\end{document}
