@@ -236,7 +236,7 @@ based on data from February 1, 2016, through May 1, 2016.
 
 \begin{figure}
     \centering
-\includegraphics[]{Plots/TempRiseVsFlow-AHU-2-14.pdf}
+\includegraphics{Plots/TempRiseVsFlow-AHU-2-14.pdf}
 \caption{Temperature rise due to the mixing of plenum air at the terminal unit for FPVAV-2-14. Plots like this were used to estimate the current minimum flow rate settings. }
 \label{fig:TempRise-2-14}
 \end{figure}
@@ -322,7 +322,7 @@ of data from March 14, 2016 to June 12, 2016.
 
 In the case of \figref{}
 \ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA}, \(\mat\) is less
-constant, but still appears to be a function of \(\oat\) as a first
+constant but still appears to be a function of \(\oat\) as a first
 order approximation. 
 
 
@@ -343,7 +343,7 @@ order approximation.
 \end{figure}
 
 
-The result of a \textit{nearest neighbor} approach is shown in \figref{}
+The result of the \textit{nearest neighbor} approach is shown in \figref{}
 \ref{fig:2016-09-07-1218-AHU12MixedAirTempvsOADryBulbTemperatureNOAA} and
 \ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA-2}. The algorithm looked
 back in history (at least a day before) under the following parameters:
@@ -448,15 +448,16 @@ parameter values were varied as shown in \tableref{}
 \end{table}
 
 
-With three parameters and 3 different variations for each, this resulted in 27
-test cases. The results of this testing are shown in \tableref{}
-\ref{tab:MATTestingResults}. TS stands for timestamps, and is related to time
-of day threshold. Since the data was on 15 minute intervals, a 1 timestamp
-threshold implies a threshold of \(\pm\)15 minutes and a 4 timestamp threshold
-implies a threshold of \(\pm\)60 minutes. The best model fit used a timestamp
-threshold of \(\pm\)60 minutes, \(\pm\SI{3}{\degF}\) for \(T_{oa}\), and 15
-data points. The worst case was using \(\pm\)15 minutes, \(\pm \SI{1}{\degF}\),
-and 30 data points. 
+With three parameters and 3 different variations for each, this resulted
+in 27 test cases. The results of this testing are shown in \tableref{}
+\ref{tab:MATTestingResults}. TS stands for timestamps and is related to
+the time of day threshold. Since the data was aligned to 15 minute
+intervals, a 1 timestamp threshold implies a threshold of \(\pm\)15
+minutes and a 4 timestamp threshold implies a threshold of \(\pm\)60
+minutes. The best model fit used a timestamp threshold of \(\pm\)60
+minutes, \(\pm\SI{3}{\degF}\) for \(T_{oa}\), and 15 data points. The
+worst case was using \(\pm\)15 minutes, \(\pm \SI{1}{\degF}\), and 30
+data points. 
 
 The model was insensitive to the parameters. Because Fahrenheit is not on
 a ratio scale, that is, having a meaningful zero, the typical
@@ -598,7 +599,7 @@ further, this uncertainty grows substantially.
 For further analysis, \eqreftext{} \ref{eq:plenumUncertainty} can be manipulated into a simpler form.
 The first substitution assumes the uncertainty for \(T_{dis}\) and
 \(T_{pri}\) are taken to be the same and constant at a value of \(\delta
-T\). The uncertainty for the flows can be done on a percent basis,
+T\). The uncertainty of the flows can be done on a percent basis,
 (\(\pm 10\%\) for example, and that percentage, a value from 0 to 1 can
 be denoted as \(\delta \flow{perc}\)).  The difference between
 \(T_{dis}\) and \(T_{pri}\) can be replaced by \(\Delta T\).  The final substitution is that
@@ -629,7 +630,7 @@ static uncertainty in the other temperatures, \(\delta T\), which is the
 uncertainty for both \(T_{dis} \) and \(T_{pri}\). 
 
 What the plots show is that the fraction of primary flow, \(F\), has to
-be less than 40\% is most cases in order to have an uncertainty in
+be less than 40\% in most cases to have an uncertainty in
 \(T_{plen}\) that is less than double the uncertainty in \(T_{dis}\) and
 \(T_{pri}\) (2 on the normalized y-axis). 
 
@@ -693,9 +694,9 @@ temperature and the zone temperature is to plot the estimated reheat in
 the terminal unit when the reheat valve is closed.  Ideally, the amount
 of reheat would be at or near zero. 
 
-If the plenum temperature is assumed to be equal to the zone temperature
-then an estimate of the mixed air temperature in the terminal unit would
-be
+If the plenum temperature is assumed to be equal to the zone
+temperature, then an estimate of the mixed air temperature in the
+terminal unit would be
 \begin{equation}
     \mat = \frac{\priflow \sat + T_{z} \left( \totflow - \priflow \right) }{ \totflow}
     \label{eq:TerminalUnitMixedAirTemp}
@@ -832,7 +833,7 @@ Ignoring:           & When AHU is Off                                      \\
 shows an example of where the assumption appears to hold reasonably well.  
 The median of the data set is near \SI{500}{\btu\per\hour}. Is should be
 noted that \eqreftext{} \ref{eq:TerminalUnitReheatEnergy} does not make a
-distinction between heating from the heating coils and heating from fan.
+distinction between heating from the heating coils and heating from the fan.
 So the \SI{500}{\btu\per\hour} could be due to the fan in the air
 stream. 
 
@@ -1146,7 +1147,7 @@ units were off and the first and last hour of operation, weekends,  and
 federal holidays were all ignored. 
 
 The results show that the goodness-of-fit metrics were insensitive to
-the various parameters. In addition, the results show that looser
+the various parameters. In addition, the results indicate that looser
 thresholds, which results in more recent data being used, gave the best
 model fits. The best average CV-RMSE* was 11.6\% was under the
 conditions of thresholds of plus or minus one hour, \SI{5}{\degF}, and
@@ -1155,11 +1156,11 @@ the thresholds of plus or minus 15 minutes, \SI{1}{\degF}, and 45 data
 points. The rest of the tests are also shown in \tableref{}
 \ref{tab:ZoneLoadTestingResults}.
 
-A main takeaway of the tests, however, was that result were insensitive
-to the parameters. This means that the parameters may be adjusted for
-benefits in other areas such as performance. By having large thresholds
-and less data points, less historical data needs to be searched, and the
-time to complete the algorithm is reduced.
+A main takeaway of the tests, however, was that the results were
+insensitive to the parameters. This means that the parameters may be
+adjusted for benefits in other areas such as performance. By having
+large thresholds and less data points, less historical data needs to be
+searched, and the time to complete the algorithm is reduced.
 
 A plot of these results in order of predictive ability is shown in
 \figref{} \ref{fig:ZoneLoadInOrder}. 

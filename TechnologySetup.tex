@@ -22,7 +22,7 @@ previous state.
 \section{Proposed Setup}
 
 In the proposed setup, the change to the existing BAS is
-minimal. The control logic remains exactly the same. A small executable
+minimal. The control logic remains the same. A small executable
 script can be installed on the BAS computer that can host code that will
 send an HTTP request to a remote server holding the historical data and
 the optimization methods. 
@@ -49,10 +49,10 @@ adoption. An Application  Program Interface (API) is the public
 interface of methods and routines that allow third-party programmers to
 develop programs from the base building blocks. 
 
-Another important point of consideration is the format of the data
-actually being transferred. In the software industry, there are several
-types of data exchange formats, two popular ones being JavaScript Object
-Notation (JSON) and Extensible Markup Language (XML). 
+Another important point of consideration is the format of the data being
+transferred. In the software industry, there are several types of data
+exchange formats, two popular ones being JavaScript Object Notation
+(JSON) and Extensible Markup Language (XML). 
 
 The advantage of JSON over XML is that JSON requires fewer characters to
 describe simple objects. Unlike XML, it does not support explicit schema
@@ -108,7 +108,7 @@ The equipment can be separated by project, and a call such as
 
 could return all the possible set up equipment.
 
-The interface for receiving the optimal setpoints could have a url
+The interface for receiving the optimal setpoints could have a URL
 similar to 
 
 \url{https://domain/setpoints/?id={Equipment-Id}\&{time=Datetime}}
@@ -185,7 +185,7 @@ are associated to the label \textit{DischargeTemps}. }
 \label{fig:ContainerHierarchy}
 \end{figure}
 
-In order to complete the optimization, the inputs and functions for the
+To complete the optimization, the inputs and functions for the
 various trends need to be input. It is proposed that the use of a
 container hierarchy, labels or tags, and custom equations be used to
 develop the system.
@@ -238,7 +238,7 @@ OptSATGenPoint =
 \label{fig:JSONOptions}
 \end{figure}
 
-Any calculation  from the optimization analysis can be output as a trend
+Any calculation from the optimization analysis can be output as a trend
 in Implementer and can be plotted and visualized using any of the tools
 available. 
 

@@ -120,7 +120,7 @@ and the coefficients for the sine terms are
 
 The threshold function is the derivative of the ramp function. The
 threshold function can be approximated arbitrarily well using the
-logistic function. The logistic function has the from
+logistic function. The logistic function has the form
 \begin{equation}\label{eq:ThresholdFunction}
     y=\frac{1}{1-e^{k\left(x-x_{0}\right)}}  
 \end{equation}
@@ -133,6 +133,12 @@ Eq. \ref{eq:ThresholdFunction} results in
 This function approximates the ramp function arbitrarily well as
 \(k\to\infty\). 
 
+The function is usually applied to flow for terminal units with a
+minimum flow setting. In this case, the function becomes
 
+\begin{equation}
+    \flow{} = \frac{\ln \left(1+e^{k\left( \flow{req} - \flow{min}
+    \right)\right)}  }{k} + \flow{min}
+\end{equation}
 
 

@@ -1,0 +1,48 @@
+%! TEX program = pdflatex
+%! TEX root = simplifiedExampleData.tex
+
+\RequirePackage{luatex85}
+\documentclass[12pt]{article}
+\usepackage[active, tightpage]{preview}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.3}
+\PreviewEnvironment{tikzpicture}
+
+\begin{document}
+
+\begin{tikzpicture}
+\begin{axis}
+[
+xlabel={Supply air temperature, \(T_{sa}\) [\(^\circ\)F]  },
+ylabel={Power [kBTU/h]},
+xmin=45,
+xmax=65,
+ymin=0,
+ymax=30,
+legend pos=outer north east,
+]
+\addplot+[black, no marks, smooth, dashed] table[col sep=comma,x=SAT,y expr=\thisrow{TotalPower}/1000]{simplifiedExampleDataLowerMAT.csv};
+\addlegendentry{Total Power}
+\addplot+[blue, no marks, smooth, solid] table[col sep=comma,x=SAT,y expr=\thisrow{CoolingPower}/1000]{simplifiedExampleDataLowerMAT.csv};
+\addlegendentry{Cooling Power}
+\addplot+[orange, no marks, smooth, solid] table[col sep=comma,x=SAT,y expr=\thisrow{FanPower}/1000]{simplifiedExampleDataLowerMAT.csv};
+\addlegendentry{Fan Power}
+\addplot+[red, no marks, smooth, solid] table[col sep=comma,x=SAT,y expr=\thisrow{Reheat}/1000]{simplifiedExampleDataLowerMAT.csv};
+\addlegendentry{Reheat Power}
+
+    %\addplot[dotted] coordinates {
+            %(57, 0)
+            %( 57, 70 )
+        %};
+
+    %\node[anchor=east] (MinPower) at (axis cs:55,60) {Min Power};
+    %\draw[->] (MinPower.south east) -- (axis cs:57,42);
+
+
+\end{axis}
+\end{tikzpicture}
+
+\end{document}
+

@@ -18,7 +18,7 @@
 
 \chapter{\texorpdfstring{\MakeUppercase{Optimization Methodology}}{Optimization Methodology}}
 
-In order to optimize the system, the energy use from each of the components
+To optimize the system, the energy use from each of the components
 comprising the air-side equipment needs to be estimated. This includes fan
 energy, cooling energy, and reheat energy.
 
@@ -71,7 +71,7 @@ energy use is
 \subsection{Series Flow Configuration}
 
 For a series flow terminal unit, the total flow is ideally constant.
-\(\flow{tot}\) is known from specification of the terminal unit and
+\(\flow{tot}\) is known from the specification of the terminal unit and
 \(\flow{pri}\) is a measured variable. \(\flow{plen}\) can be calculated from
 Eq. (\ref{eq:TotalFlow}).
 
@@ -221,11 +221,12 @@ and the reheat energy will be
 During periods of cooling, the fan in a parallel arrangement is off and the
 total flow is equal to the primary flow.
 
-The fan volume flow will be known from manufacturers specifications and the
-total flow can be calculated using Eq. \eqref{eq:TotalFlow}. The temperature
-from mixing the plenum air and primary can be estimated from Eq.
-\eqref{eq:TermUnitMixedAirTemperature} or from historical data when the primary flow is
-at the minimum and there is no activated reheat components.
+The fan volume flow will be known from manufacturers specifications and
+the total flow can be calculated using \eqreftext{} \ref{eq:TotalFlow}.
+The temperature from mixing the plenum air and primary can be estimated
+from \eqreftext{} \ref{eq:TermUnitMixedAirTemperature} or from
+historical data when the primary flow is at the minimum and there are no
+activated reheat components.
 
 \subsection{Other Terminal Unit Types}
 
@@ -281,7 +282,7 @@ terminal unit leaving temperature and zone temperature. Note that using
 %
 \begin{equation} \dot Q_{z} = \dot V_{z} C_{air} \left(T_{z}-T_{dis} \right) \end{equation}
 %
-assumes that the space is well-mixed and at steady-state. If the
+assumes that the zone is well-mixed and at steady-state. If the
 controls oscillate, then the zone load estimation will have some
 periodicity. In some sense, there is no ``single'' zone load coming from
 a point source, and as such we will have to rely on this estimation.
@@ -298,7 +299,7 @@ a \textit{nearest neighbor}. The nearest neighbors are defined by any
 previous data that:
 
 \begin{enumerate}
-    \item Was within \(n\) hours of the time of day, normally taken as
+    \item Was within \(n\) hours of the time of day, specified as
         plus or minus a certain number of integer time steps relating to
         the time interval between the data points.
 \item Was the same day of the week
@@ -313,9 +314,10 @@ that up to 50\% of the data can be contaminated before the median statistic
 will no longer be reliable. For the mean, one arbitrarily large data point can
 turn the mean statistic unreliable.
 
-This work initially used the most recent 30 data points in the median calculation. 30 points
-was chosen since this is the threshold in which the sample median should approximate
-the actual median, if the population is assumed to have a normal distribution.
+This work initially used the most recent 30 data points in the median
+calculation. A threshold of 30 points was chosen since this is the
+threshold in which the sample median should approximate the actual
+median if the population is assumed to have a normal distribution.
 
 It is advised that in this approach, that the initial historical data be sorted
 in order of temperature, followed by the date time.  The lookup for the
@@ -660,7 +662,7 @@ single shared major pressure loss coefficient \(C_1\) to zero, the three
 equations will always be equal, and the total absolute pressure drop can
 be arbitrarily set with the single coefficient.
 
-This method does have potential if the manufacturers fan curves are
+This method does have potential if the manufacturer's fan curves are
 available. While the loop pressure drop is normally not trended, the fan
 speed and flow is. Given the fan curves, the fan speed, and the total
 flow, the static pressure rise can be estimated, and used for all the
@@ -790,8 +792,8 @@ outdoor and return air flows.
 
 Since the system is not expected to determine semi-optimal
 control setpoints at small time intervals, say less than a second, it is
-plausible that a straightforward, brute force approach would be
-appropriate.  The brute force approach has several advantages including
+plausible that a straightforward, brute-force approach would be
+appropriate.  The brute-force approach has several advantages including
 \begin{enumerate}
         \item Straightforward to program and debug
         \item Robust to small changes in energy prediction algorithm
@@ -805,7 +807,7 @@ of \SI{20}{\degreeF}, making for a total number of calculations in the
 hundreds.  This level of computation is feasible for modern
 computers to handle in the sub-second time range.
 
-A number of inputs for air handling units and terminal units need to be
+Some inputs for air handling units and terminal units need to be
 specified before determining the optimal supply air temperature. These
 inputs are listed in \tableref{} \ref{tab:RequiredInputsForAHUs} and
 \ref{tab:RequiredInputsForTerminalUnits}.
@@ -852,9 +854,9 @@ other types of terminal units, the method follows similarly.
         \begin{equation}
             T_{sa,max}  = \text{MIN}\left(T_{ma}, \text{MIN}(T_{dis}) \right)
         \end{equation}
-        The \(T_{sa,max}\) cannot be larger than \(T_{ma}\) since it is
+        The \(T_{sa,max}\) cannot be greater than \(T_{ma}\) since it is
         assumed that only cooling is happening in the supply air duct
-        after the mixing chamber. \(T_{sa,max}\) cannot be larger than
+        after the mixing chamber. \(T_{sa,max}\) cannot be greater than
         the minimum calculated discharge temperature because then that
         particular zone would not have sufficient cooling capacity. 
     \item For each \(T_{sa}\) ranging from \(T_{sa,min}\) (which is
@@ -911,7 +913,7 @@ For each terminal unit, will need the following information \par
 \end{algorithm}
 
 
-The brute force approach was taken in the prototype code. In future implementations,
+The brute-force approach was taken in the prototype code. In future implementations,
 improvements could be made to the optimization approach for improved
 performance.
 

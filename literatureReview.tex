@@ -13,7 +13,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%                           SECTION II
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \chapter{\texorpdfstring{\MakeUppercase{Literature Review}}{Literature Review}}
 
 
@@ -55,7 +54,7 @@ it made no discussion on actual implementation. The simulated results
 showed that optimizing the balance between fan, cooling, and reheat
 energy resulted in approximately 6\% energy savings annually versus a
 fixed supply air temperature setpoint. They showed that the benefit was
-most promising in the more temperate weather, when the VAV system was
+most promising in the more temperate weather when the VAV system was
 running above the minimum primary airflow. The proposed work would not only
 be optimizing the supply air temperature, but also the fan static pressure setpoint.   
 
@@ -99,7 +98,7 @@ could make a 5-8\% improvement in annual energy use
 \cite{Crowther2004}. Henze has also been active in
 optimizing thermal storage systems \cite{Henze2005} along with
 Kintner-Meyer and Emery \cite{KintnerMeyer1995}. Lu et al. also focused
-on the optimization of the entire HVAC system, plant and building, in a
+on the optimization of the entire HVAC system, plant, and building, in a
 series of papers. \cite{LuLu2004, LuLu2005Part1, LuLu2005Part2,
 LuLu2005HVACSystemOptimization}. 
 
@@ -156,9 +155,7 @@ models.
 % /_____/_/  |_/____/   \____/\____/_/ /_/ /_/_/ /_/ /_/\__,_/_/ /_/ 
                                                                                                                                
 
-
 \section{BAS Communication}
-
 There are many different networking and communication levels and
 protocols related to buildings. Kastner, Neugschwandtner, and Soucek et
 al. provided a summary of the different systems that exist in buildings
@@ -241,7 +238,7 @@ relationships to one another, and other modifiers.
 \section{Summary of Literature}
 
 Not surprisingly, the goal of any controlled system is to operate
-optimally. It is to be  expected that there would be a wealth of
+optimally. It is to be expected that there would be a wealth of
 literature on the optimization of all different components in a
 particular HVAC system. Any optimization problem has objectives and
 constraints. Many different objective functions and constraints to
@@ -264,12 +261,12 @@ sensors or information that are currently unavailable in typical
 commercial HVAC set-ups. For large-scale implementation, a methodology
 must use the minimum number of trends to complete useful optimization.
 
-For an individual system, there are more than enough well documented and
+For an individual system, there are more than enough well-documented and
 effective optimization methods and algorithms. Yet very few buildings in
 practice have these optimizations in place because the other numerous
 challenges have not been fully solved. These challenges include
-complexity in implementing with different BAS vendors, training a staff
-to understand the logic behind the optimizations, and simply the
+complexity in implementing with different BAS vendors, training staff
+members to understand the logic behind the optimizations, and simply the
 technician effort to install and setup implementations.
 
 This research proposes its own intuitive optimization method based on
@@ -420,22 +417,23 @@ mixed air temperature, and supply air temperature. It is also related to the mix
 air humidity. 
 
 
-\subsubsection{Cooling Energy} At the air handler level, the sensible
-cooling energy is related to the supply flow, and the difference between
-the mixed air temperature, and the supply air temperature. The supply
-flows can vary significantly from one air handler to another, and also
-under different loadings. 
+\subsubsection{Cooling Energy} 
+
+At the air handler level, the sensible cooling energy is related to the
+supply flow, and the difference between the mixed air temperature, and
+the supply air temperature. The supply flows can vary significantly from
+one air handler to another, and also under different loadings. 
 
 The mixed air temperature is the lowest priority of the three air-side
 parameters for estimating the sensible cooling energy in the AHU. A
 reasonable estimate of the outdoor air temperature is available from
 local weather stations, in addition to commonly trended outdoor air
 temperatures at the site itself. The return air temperature in air
-handling units are near the space temperature setpoints. It is known
-that the mixed air temperature must be between the return and outdoor
-air temperature (if the airstreams are indeed being mixed). Without any
-other information, the most safe estimate for the mixed air temperature
-would be halfway between these two measurements. 
+handling units is normally near the space temperature setpoints. It is
+known that the mixed air temperature must be between the return and
+outdoor air temperature (if the airstreams are indeed being mixed).
+Without any other information, the safest estimate for the mixed air
+temperature would be halfway between these two measurements. 
 
 As an argument for the claim that mixed air temperature is the lowest priority of
 the 3 parameters, the difference between \(T_{oa}\) and 72\(^\circ\)F
@@ -450,7 +448,7 @@ air temperature. With any additional information regarding the outdoor
 air fraction, the estimate would be even better. 
 
 Determining the latent load across the cooling coil is difficult using
-air-side parameters. Humidity sensors are traditionally unreliable and
+air-side parameters. Humidity sensors are traditionally unreliable, and
 two would be necessary to calculate an absolute humidity
 difference.
 
@@ -470,7 +468,7 @@ If the building is heated using natural gas, the natural gas consumption
 can be an adequate indicator of the level of reheat use in the building.
 At the current time, trending all the data from terminal units is
 uncommon. The sensors are typically available, however, the number of
-terminal units and large amount of data to be handled are issues that
+terminal units and a large amount of data to be handled are issues that
 cause projects to decline to pursue the collection of the terminal unit data.
 
 Having the supply air temperature and supply air flow is important
@@ -496,13 +494,13 @@ the discharge temperature to the zones.
     and latent cooling load and estimation of the outdoor air fraction
 \item Return air temperature -- Aids in the estimation of the outdoor air fraction or ventilation load.
 \item VSD speed, VFD frequency, etc. -- Indicator of the part-load ratio for the equipment, which may be used in the estimation of fan energy. 
-\item Preheat Temperature -- Sets this parameter in the model, aiding the estimation of the heating end uses.
+\item Preheat Temperature -- Sets this parameter in the model, aiding in the estimation of the heating end uses.
 \end{enumerate}
 
 Sensors that may be of medium usefulness:
 
 \begin{itemize}
-\item Fan Status or occupied/unoccupied status -- Can give indication about the runtimes and schedules of the building.
+\item Fan Status or occupied/unoccupied status -- Can give an indication about the runtimes and schedules of the building.
 \item Supply air static pressure -- Unless the precise location of the
     sensor and the overall duct layout is known, it is of little use in
     calculating the fan power. It does provide an indication of whether the
@@ -522,7 +520,7 @@ Sensors that may be of medium usefulness:
     consideration.
 \end{itemize}
 
-Sensors that are commonly trended and are not useful in estimating the energy use breakdown of a building:
+Sensors that are commonly trended and are not useful for estimating the energy use breakdown of a building:
 \begin{itemize}
 \item Return air CO\(_2\) -- Not directly related to measuring the energy use.
 \item Damper commands -- Since duct layout and fluid flow models are not feasible, the damper commands do not provide information towards the calculation of the energy use. 

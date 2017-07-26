@@ -1,0 +1,51 @@
+A major driving principle of the presented work is that the methodology needs to be scalable. One reason for difficulties in implementing fault detection and diagnostic algorithms and other optimization methods is that there is a significant amount of initial investment necessary. This initial investment can also be cost prohibitive. 
+In more complex schemes, it may be necessary to install additional sensors that are typically not available in commercial HVAC systems.  Along with the sensor cost, there is the cost to tie the sensors into the BAS. The updated logic will likely be coded by a controls contractor, adding more cost. On a large campus, this reprogramming can also take a significant amount of time to complete. 
+Another issue is that of risk. There is the risk that if the controls do not function properly and are too complex for the current building operator, the controls cannot be easily removed and set back to the previous state. 
+In the proposed setup, the change to the existing BAS is minimal. The control logic remains exactly the same. A small executable script can be installed on the BAS computer that can host code that will send an HTTP request to a remote server holding the historical data and the optimization methods. 
+Figure 1 shows potential information flow. Over any period, historical trend data representing the system is stored in a server.  This data dump may come all at once, weekly, daily or even sub-daily.  Once enough data has been stored on the server, a client BAS computer (potentially one of many) can make an HTTP request that will essentially carry information related to the current time and what equipment the request corresponds to. Each AHU will have a unique identifier that the main web server understands. 
+The web server will implement the methods described in this document and will send a response back to the client with the setpoints for the system that will be near-optimal in a steady-state sense, given the expected conditions at the building and individual zones. 
+Standards for the format of information transfer are critical for rapid adoption. An Application  Program Interface (API) is the public interface of methods and routines that allow third-party programmers to develop programs from the base building blocks. 
+Another important point of consideration is the format of the data actually being transferred. In the software industry, there are several types of data exchange formats, two popular ones being JavaScript Object Notation (JSON) and Extensible Markup Language (XML). 
+The advantage of JSON over XML is that JSON requires fewer characters to describe simple objects. Unlike XML, it does not support explicit schema definition. 
+There are several key advantages to a system similar to the proposed:
+1. No real-time data transmission. Managing the networking of large BAS systems is difficult enough as is. It is not feasible for a single server to handle live streams of BAS point information from thousands of buildings. 
+1. The system can be added or removed quickly and without side-effects. Because the logic lives at an abstraction level above the BAS code, no changes to the system need to be made locally. 
+1. Routines only have to be added once for different equipment and setup types, allowing the same methods to expand to many different buildings. 
+The equipment can be separated by project, and a call such as
+could return all the possible set up equipment.
+The interface for receiving the optimal setpoints could have a url similar to 
+The proposed system was implemented in the software tool Implementer, a web application developed at the Energy Systems Laboratory. Implementer can analyze trend data from any system that has an ability to store timestamp value pairs and allow access to them. 
+The current systems supported by Implementer include:
+1. Alerton
+1. Andover Continuum
+1. Automated Logic
+1. Delta Controls Historian
+1. Emerson Ovation
+1. Honeywell Hoboware
+1. Johnson Controls Metasys
+1. Reliable Controls
+1. Siemens APOGEE
+1. TAC I/NET Seven
+1. TAC I/A Series
+1. Trane Tracer
+1. Tridium Niagara 
+Before this process can begin, the sensors will need to be mapped in a way that the server can understand. 
+In Implementer, trends are given meaning through the use of Labels. Labels are similar to the concept of tagging that is used in other systems, such as a system that implements Project Haystack. 
+Trends can receive labels in several ways. For trends in air handling units, the label can automatically be derived from the type of sensor and location on a schematic. A sample schematic from the NCTM project is shown in Figure 1. For example, a temperature sensor that is at the outlet of the air handling unit, unaffected by any other temperature affecting device, is defined to have the supply air temperature label. 
+Labels can also be created manually. Figure 1 shows how all AUX TEMP trends from the different fan powered VAV (FPVAV) units are labeled as DischargeTemps.
+An entire site or building is organized into containers and a hierarchy of components. A building container is a parent to air handling unit containers, and air handling unit containers are parents to terminal unit containers. Figure 1 shows a portion of the hierarchy for the NCTM project.
+In order to complete the optimization, the inputs and functions for the various trends need to be input. It is proposed that the use of a container hierarchy, labels or tags, and custom equations be used to develop the system.
+Implementer uses something called container properties, and one of the properties can be set to a JSON object that contains all the necessary pointers to values or custom equations.
+The necessary inputs for the AHU container would be 
+1. Exponent for the fan curve, Mitch
+1. Prediction function for Mitch 
+1. Design fan power Mitch
+1. Design AHU flow 
+For the terminal units, if a series fan powered terminal unit is assumed, the necessary inputs will be
+1. Zone temperature setpoint prediction
+1. Zone load prediction
+1. Plenum temperature prediction
+1. Minimum damper position
+Parameters needed for the optimization are input for each container in the container details portion of Implementer. The settings are formatted in JSON, as shown in Figure 1. The properties include options such as pointers to how the mixed air temperature should be calculated, the maximum supply humidity ratio, and the assumed part load ratio fan exponent. 
+These pointers can be a static value, another property, an actual trend from the building automation system, or a custom equation built up using the powerful functions available in Implementer.
+Any calculation  from the optimization analysis can be output as a trend in Implementer and can be plotted and visualized using any of the tools available. 
