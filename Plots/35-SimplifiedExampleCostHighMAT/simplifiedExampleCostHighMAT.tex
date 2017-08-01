@@ -1,0 +1,44 @@
+\RequirePackage{luatex85}
+\documentclass[12pt]{article}
+\usepackage[active, tightpage]{preview}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.3}
+\PreviewEnvironment{tikzpicture}
+
+\begin{document}
+
+\begin{tikzpicture}
+\begin{axis}
+[
+xlabel={Supply air temperature [\(^{\circ{}}\)F]},
+ylabel= {Total Cost [\$/h]},
+xmin=45,
+xmax=65,
+ymin=0,
+ymax=0.3,
+legend pos=outer north east,
+]
+\addplot[dashed] table[col sep=comma, x=SAT_F,y=TotalCost]{simplifiedExampleDataCostHighMAT.csv};
+\addlegendentry{Total Cost}
+\addplot[blue] table[col sep=comma, x=SAT_F,y=CoolingCost]{simplifiedExampleDataCostHighMAT.csv};
+\addlegendentry{Cooling Cost}
+\addplot[orange] table[col sep=comma, x=SAT_F,y=FanCost]{simplifiedExampleDataCostHighMAT.csv};
+\addlegendentry{Fan Cost}
+\addplot[red] table[col sep=comma, x=SAT_F,y=ReheatCost]{simplifiedExampleDataCostHighMAT.csv};
+\addlegendentry{Reheat Cost}
+
+    \addplot[dotted] coordinates {
+            (49.6, 0)
+            ( 49.6, 0.3 )
+        };
+
+    \node[anchor=west] (MinCost) at (axis cs:51,0.15) {Min Cost};
+    \draw[->] (MinCost.south west) -- (axis cs:49.6,0.0941);
+
+\end{axis}
+\end{tikzpicture}
+
+\end{document}
+

@@ -28,8 +28,32 @@ is the resulting flow under the highest tested supply air temperature
 \SI{65}{\degreeF}. The resulting design fan power is \SI{2.75}{\hp}. 
 
 \begin{equation}
-    \text{FFLP} = 0.1 + (0.9)(\text{PLR})^{2.5}
+    \text{FFLP} = A + \left(1-A\right)(\text{PLR})^{n} =   0.1 + (0.9)(\text{PLR})^{2.5}
 \end{equation}
+The fan power is 
+\begin{equation}
+    \dot{W}_{fan} = \text{FFLP} \; \dot{W}_{design} = \text{FFLP}\left(\SI{2.75}{\hp}\right) 
+\end{equation}
+
+The required flow for each zone is calculated as 
+\begin{equation}
+    \flow{z} = \text{MAX} \left( \frac{\heatenergy{z}}{C_{a}
+    \left(T_{z} - T_{sa}\right)  }, \flow{min}  \right)
+\end{equation}
+The discharge temperature for each zone is
+\begin{equation}
+    T_{dis} = T_{z} - \frac{\heatenergy{z}}{C_{a} \; \flow{z}}
+\end{equation}
+The reheat power is 
+\begin{equation}
+    \heatenergy{reheat} = C_{a} \flow{z} \left(T_{dis} - T_{sa}\right)
+\end{equation} 
+and the sensible cooling power is 
+\begin{equation}\label{eq:sensibleCoolingPower}
+    \heatenergy{cool} = C_{a} \flow{tot} \left(T_{ma} - T_{sa}\right)
+\end{equation} 
+where \(\flow{tot}\) is the total flow for all the zones. 
+
 
 \begin{table}
 \centering
@@ -59,18 +83,16 @@ the terminal units is
 \begin{equation}\label{eq:requiredFlow}
     \flow{req} = \frac{\heatenergy{z}}{C_{a} \left(T_{z} - T_{sa}\right)}
 \end{equation}
-The sensible cooling load at the air handling unit is then
-\begin{equation}
-    \heatenergy{cool} = C_{a} \flow{req} \left(T_{ma} - T_{sa}\right)
-\end{equation} 
 %
-Substituting \eqreftext{} \ref{eq:requiredFlow} results in
+Substituting \eqreftext{} \ref{eq:requiredFlow} into  
+\eqreftext{} \ref{eq:sensibleCoolingPower} results in
 %
 \begin{equation}
     \heatenergy{cool} = C_{a}  \frac{\heatenergy{z}}{C_{a} \left(T_{z} -
     T_{sa}\right)}\left(T_{ma} - T_{sa}\right) = \heatenergy{z}
     \frac{T_{ma} - T_{sa}}{T_{z} - T_{sa}}
 \end{equation}
+
 
 What is of interest is how the sensible cooling power is impacted when
 the supply air temperature is increased. To investigate, the derivative
@@ -110,7 +132,35 @@ balance between the cooling, reheat, and fan power. It is possible that
 the optimization will potentially suggest lowering the supply air
 temperature when the conditions are appropriate.
 
+This conclusion is affirmed as well after investigating the impact of
+energy cost. The following analysis assumes the fan power is met by
+electricity, the cooling is from district chilled water, and the reheat
+is from district hot water, and the prices are those from the posted
+Texas A\&M Utilities and Energy Services rates for
+FY2016\footnote{https://utilities.tamu.edu/2015/08/31/cost-and-fees-for-utility-services-fy2016/}
+The rates are 
 
+\begin{itemize}
+    \item Electricity -- \$0.082/kWh
+    \item Chilled Water -- \$15.25/MMBTU
+    \item Hot Water -- \$15.03/MMBTU
+\end{itemize}
+
+When the cost of electricity is taken into account, the importance of
+the relationship between fan power and the supply air temperature is
+increased. Chilled water is usually produced with a chiller having a COP
+greater than 3 while the electricity is consumed directly for the fan.
+When the impact of cost is added, the cost penalty for fan power grow
+significantly at higher supply air temperatures, which can be seen in
+\figref{} \ref{fig:simplifiedExampleCost}. 
+
+With cost as the optimization function, the optimal supply air
+temperature is reduced from \SI{57}{\degF} to \SI{49.6}{\degF}. However,
+the slope of the total cost curve is flat for supply air temperatures
+between \SI{45}{\degF} and \SI{55}{\degF} and any of those temperatures
+would be adequate for this particular example. 
+
+% Plots/33-SimplifiedExampleFlow/simplifiedExampleFlow.tex
 \begin{figure}
 \centering
 \includegraphics{Plots/33-SimplifiedExampleFlow/simplifiedExampleFlow.pdf}
@@ -119,13 +169,22 @@ air temperatures.}
 \label{fig:simplifiedExampleFlow}
 \end{figure}
 
+\newcommand{\variationCaption}[1]{Variation of total #1 with respect to different supply air temperatures. }
+
 \begin{figure}
 \centering
 \includegraphics{Plots/32-SimplifiedExample/simplifiedExample.pdf}
-\caption{Variation of total power with respect to different supply air
-temperatures. }
+\caption{\variationCaption{power}}
 \label{fig:simplifiedExamplePower}
 \end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{Plots/35-SimplifiedExampleCostHighMAT/simplifiedExampleCostHighMAT.pdf}
+\caption{\variationCaption{cost}}
+\label{fig:simplifiedExampleCost}
+\end{figure}
+
 
 If the mixed air temperature is reduced from \SI{80}{\degreeF} to
 \SI{65}{\degreeF}, the resulting total power function changes
@@ -137,13 +196,27 @@ cooling power function is always negative, since the numerator in
 result of this is that the minimum total power occurs at the maximum of
 the supply air temperature search range.   
 
+The optimal supply temperature changes drastically when the cost
+differences between electricity and district chilled and hot water is
+considered. The lowest power occurs at the highest supply air
+temperature, while the lowest cost occurs at \SI{55.4}{\degreeF}. 
+
+\newcommand{\variationCaptionLowMAT}[1]{Variation of total #1 with respect to different supply air
+temperatures, with a mixed air temperature of \SI{65}{\degreeF} instead
+of the original \SI{80}{\degreeF}.}
+
 \begin{figure}
 \centering
 \includegraphics{Plots/34-SimplifiedExampleLowerMAT/simplifiedExampleLowerMAT.pdf}
-\caption{Variation of total power with respect to different supply air
-temperatures, with a mixed air temperature of \SI{65}{\degreeF} instead
-of the original \SI{80}{\degreeF}.}
+\caption{\variationCaptionLowMAT{power}}
 \label{fig:simplifiedExamplePowerLowerMAT}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{Plots/36-SimplifiedExampleCostLowerMAT/simplifiedExampleCostHighMAT.pdf}
+\caption{\variationCaptionLowMAT{cost}}
+\label{fig:simplifiedExampleCostLowerMAT}
 \end{figure}
 
 

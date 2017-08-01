@@ -50,7 +50,7 @@ Analyzing from 4/29/2017 through 5/6/2017.
 
 Unit |  Details
 -----------------------------------------
-FPB-01 | Does not have data. 
+FPB-01 | Does not have data. Doesn't even exist 
 FPB-02 | Data seems to be working. 
 FPB-03 | Is constant or zero.
 FPB-04 | Working
