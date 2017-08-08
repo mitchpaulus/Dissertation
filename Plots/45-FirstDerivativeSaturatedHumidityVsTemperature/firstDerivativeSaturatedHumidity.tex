@@ -1,0 +1,28 @@
+\RequirePackage{luatex85}
+\documentclass[12pt]{article}
+\usepackage[active, tightpage]{preview}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+\usepackage{pgfplots}
+\usepackage{physics}
+\pgfplotsset{compat=1.14}
+\PreviewEnvironment{tikzpicture}
+
+\begin{document}
+
+\begin{tikzpicture}
+\begin{axis}
+[
+xlabel={Temperature [\(^{\circ{}}\)F]},
+ylabel={\(\displaystyle \dv{\omega_{sat}}{T_{sa}}\)},
+legend pos=north west,
+y label style={rotate=-90},
+ymin=0,
+]
+\addplot[no marks] table[col sep=comma, x=Temperature_F,y=firstDerivativeOmega]{saturationHumidityVsTemperature.csv};
+
+\end{axis}
+\end{tikzpicture}
+
+\end{document}
+

@@ -141,7 +141,7 @@ FY2016\footnote{https://utilities.tamu.edu/2015/08/31/cost-and-fees-for-utility-
 The rates are 
 
 \begin{itemize}
-    \item Electricity -- \$0.082/kWh
+    \item Electricity -- \$0.082/kWh \(\approx\) \$24/MMBTU
     \item Chilled Water -- \$15.25/MMBTU
     \item Hot Water -- \$15.03/MMBTU
 \end{itemize}
@@ -155,10 +155,9 @@ significantly at higher supply air temperatures, which can be seen in
 \figref{} \ref{fig:simplifiedExampleCost}. 
 
 With cost as the optimization function, the optimal supply air
-temperature is reduced from \SI{57}{\degF} to \SI{49.6}{\degF}. However,
-the slope of the total cost curve is flat for supply air temperatures
-between \SI{45}{\degF} and \SI{55}{\degF} and any of those temperatures
-would be adequate for this particular example. 
+temperature is reduced from \SI{57}{\degF} to \SI{56.7}{\degF} because
+of the higher price of electricity as compared to the district chilled
+water and hot water price. 
 
 % Plots/33-SimplifiedExampleFlow/simplifiedExampleFlow.tex
 \begin{figure}
@@ -196,10 +195,10 @@ cooling power function is always negative, since the numerator in
 result of this is that the minimum total power occurs at the maximum of
 the supply air temperature search range.   
 
-The optimal supply temperature changes drastically when the cost
+The optimal supply temperature changes slightly when the cost
 differences between electricity and district chilled and hot water is
-considered. The lowest power occurs at the highest supply air
-temperature, while the lowest cost occurs at \SI{55.4}{\degreeF}. 
+considered. The lowest power and cost both occur at the highest supply air
+temperature. 
 
 \newcommand{\variationCaptionLowMAT}[1]{Variation of total #1 with respect to different supply air
 temperatures, with a mixed air temperature of \SI{65}{\degreeF} instead
@@ -214,10 +213,261 @@ of the original \SI{80}{\degreeF}.}
 
 \begin{figure}
 \centering
-\includegraphics{Plots/36-SimplifiedExampleCostLowerMAT/simplifiedExampleCostHighMAT.pdf}
+\includegraphics{Plots/36-SimplifiedExampleCostLowerMAT/simplifiedExampleCostLowMAT.pdf}
 \caption{\variationCaptionLowMAT{cost}}
 \label{fig:simplifiedExampleCostLowerMAT}
 \end{figure}
 
 
+\section{Function Analysis}
+
+While attempting to optimize an AHU system, it is helpful to understand
+how the supply temperature affects all portions of the total power. The
+following analysis looks at a simplified single duct variable air volume
+system, with terminal units having a traditional control sequence,
+initiating reheat at minimum flow. 
+
+The investigation is going to assume that at a given supply air
+temperature, a certain amount of terminal units are going to be in
+reheat mode, operating at minimum flow, while the others are operating
+in cooling mode. The total flow for the system is then 
+%
+\begin{equation}
+    \flow{tot} = \flow{min,1} + \flow{min,2} + \ldots +
+    \frac{\heatenergy{z,3}}{C_{a} \left(T_{z,3} - T_{sa}\right) } +
+    \frac{\heatenergy{z,4}}{C_{a} \left(T_{z,4} - T_{sa}\right) } +
+    \ldots
+\end{equation}
+%
+If the zone temperatures, \(T_{z}\) are all the same, then the terms
+related to zones in cooling can be combined. All the flows related to
+the zones operating at minimum flow can also be combined.
+\begin{equation}
+    \flow{tot} = \sum \flow{mins} + \frac{\sum \heatenergy{z,tot}}{C_{a} \left(T_{z} - T_{sa}\right) } 
+\end{equation}
+%
+For clarity, for the rest of the derivations, the sum will be assumed,
+and the system can just be imagined as a combined, two terminal unit
+system, in which one of the units is operating at minimum flow and the
+other terminal unit is in a cooling mode.
+
+\subsection{Sensible Cooling Power}
+
+\newcommand{\totalFlow}{\flow{min} + \frac{\heatenergy{z}}{C_{a}\left(T_{z}-T_{sa}\right)}}
+The total sensible cooling power, \(\heatenergy{c,s}\), is
+\begin{equation}\label{eq:sensiblePowerTotal}
+    \heatenergy{c,s} =  C_{a} \flow{tot} \left(T_{ma}-T_{sa}\right)
+\end{equation}
+where \(\flow{tot}\) is 
+\begin{equation}\label{eq:totalFlowSimpleExample}
+    \flow{tot} = \totalFlow{}
+\end{equation}
+Substituting \eqreftext{} \ref{eq:totalFlowSimpleExample} into
+\ref{eq:sensiblePowerTotal} and taking the derivative with respect to
+the supply air temperature, \(T_{sa}\), results in
+\begin{equation}\label{eq:firstDerivativeSensible}
+    \dv{\heatenergy{c,s}}{T_{sa}} = \frac{\heatenergy{z} (T_{ma}-T_{z})}{(T_{sa}-T_{z})^2}-C_{a} \flow{min}
+\end{equation}
+If the mixed air temperature is less than the zone temperature, the
+numerator of the first term becomes negative and the second term is
+always negative, so the entire slope will also be negative.
+\(\heatenergy{z}\) is assumed to be a cooling load and therefore is also
+a positive value. 
+
+A negative slope for \(\dv{\heatenergy{c,s}}{T_{sa}}\) implies that the
+total sensible cooling energy decreases as the supply air temperature is
+raised. However, if the mixed air temperature is greater than the zone
+temperature, and the magnitude is greater than the contribution from
+the second term relating to the terminal units that are in reheat,
+this slope can become positive, implying the opposite case. 
+
+The second derivative of the function is taken to determine the
+curvature of the function. Taking the derivative of \eqreftext{}
+\ref{eq:firstDerivativeSensible} results in
+\begin{equation}
+    \dv[2]{\heatenergy{c,s}}{T_{sa}} = \frac{2 \heatenergy{z} \left(T_{ma}-T_z\right)}{\left(T_z-T_{sa}\right)^3}
+\end{equation}
+The sign of \(\dv[2]{\heatenergy{c,s}}{T_{sa}}\) is solely determined by
+the sign of \((T_{ma} - T_{sa})\) since \(\heatenergy{z}\) is positive
+and \(T_z > T_{sa} \). This means that if the mixed air temperature is
+greater than the zone temperature, there can be a power penalty for
+raising the supply air temperature, and this penalty gets worse as the
+supply air temperature is increased. 
+
+
+\subsection{Latent Cooling Power}
+
+The total latent cooling power, \(\heatenergy{c,l}\), is 
+\begin{equation}\label{eq:latentCoolingPower}
+   \heatenergy{c,l} = H \left(\totalFlow \right) \left( \omega_{ma} -
+   \omega_{sat} \right) 
+\end{equation}
+where \(H\) is a volumetric heat of vaporization for water and \(\omega_{sat}\)
+is the saturation humidity ratio at a given supply air temperature, which means
+that it is a function of the supply air temperature.  For this analysis it is
+assumed that a latent load does exist and \(\omega_{ma} > \omega_{sat}(\sat{})\). 
+
+Taking the derivative of \eqreftext{} \ref{eq:latentCoolingPower} results in
+\begin{equation}\label{eq:firstDerivativeLatentPower}
+    \dv{\heatenergy{c,l}}{\sat{}} = \frac{H \heatenergy{z} \left(\omega_{ma} -\omega_{sat} \right)}{C_{a} (T_{z}-\sat{})^2} 
+    -H \dv{\omega_{sat}}{\sat{}} \left(\frac{\heatenergy{z}}{C_{a} (T_{z}-\sat{})}+\flow{min}\right) 
+\end{equation}
+
+At this point, it is helpful to examine the relationship between the
+saturated humidity ratio versus temperature. 
+
+As a useful approximation, the relationship between the saturation
+humidity ratio and temperature can be described by a third order
+polynomial in a restricted range. Over the range of \SI{20}{\degreeF} to
+\SI{110}{\degreeF}, the saturation humidity ratio at sea level pressure
+can be approximated by
+    %\omega_{sat} = 8.06351798049242e-08 T^3 -7.22842996070465e-06 T^2 + 0.000384513331591622 T   -0.00358762959892911
+\begin{multline}
+    \omega_{sat} = \left(8.0635 \times 10^{-8}\right) T^3 \\ 
+    - \left(7.2284 \times 10^{-6}\right)  T^2 + \left(3.8451\times 10^{-4}\right) T \\
+    -  3.5876\times 10^{-3}
+\end{multline}
+where \(T\) is in units of \si{\degreeF}. The maximum absolute error in
+this range is approximately \num[group-separator={ }]{0.00058787} and the median absolute
+deviation is \num[group-separator={ }]{0.000164}. A plot of the fit
+versus the more explicit computation is shown in \figref{}
+\ref{fig:saturationHumidityRatioVsTemperature}. The first and second
+derivative of \(\omega_{sat}\) is shown in \figref{}
+\ref{fig:firstDeriviativeSaturationHumidityRatioVsTemperature} and
+\figref{}
+\ref{fig:secondDeriviativeSaturationHumidityRatioVsTemperature}. It is
+clear that the first derivative is always positive and the second
+derivative is positive after \SI{30}{\degreeF}.
+
+\begin{figure}
+\centering
+\includegraphics{Plots/44-SaturatedHumidityVsTemperature/saturationHumidityVsTemperature.pdf}
+\caption{Saturation humidity ratio versus temperature.}
+\label{fig:saturationHumidityRatioVsTemperature}
+\end{figure}
+
+
+% Plots/45-FirstDerivativeSaturatedHumidityVsTemperature/firstDerivativeSaturatedHumidity.tex
+\begin{figure}
+\centering
+\includegraphics{Plots/45-FirstDerivativeSaturatedHumidityVsTemperature/firstDerivativeSaturatedHumidity.pdf}
+\caption{First derivative of the saturation humidity ratio versus temperature.}
+\label{fig:firstDeriviativeSaturationHumidityRatioVsTemperature}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{Plots/46-SecondDerivativeSaturatedHumidityVsTemperature/secondDerivativeSaturatedHumidity.pdf}
+\caption{Second derivative of the saturation humidity ratio versus temperature.}
+\label{fig:secondDeriviativeSaturationHumidityRatioVsTemperature}
+\end{figure}
+
+With this information about the derivatives of the saturation humidity
+ratio, it's clear that the first term in \eqreftext{}
+\ref{eq:firstDerivativeLatentPower} is positive, while the second term
+is negative. With typical values for the parameters, this results in a
+negative slope. 
+
+The second derivative of the saturation humidity ratio with respect to
+supply air temperature is
+\begin{equation}
+    \dv[2]{\heatenergy{c,l}}{\sat{}}  =  -H \dv[2]{\omega_{sat}}{\sat{}} \left(\frac{\heatenergy{z}}{C_{a}
+            (T_{z}-\sat{})}+\flow{min}\right)+\frac{2 H
+            \heatenergy{z} (\omega_{ma}-\omega_{sat})}{C_{a}
+            (T_{z}-\sat{})^3}-\frac{2 H \heatenergy{z}
+        \dv{\omega_{sat}}{\sat{}}}{C_{a} (T_{z}-\sat{})^2}
+\end{equation}
+From inspection, it is difficult to discern whether this second
+derivative is typically positive or negative. From experimentation it
+has been found that this value is typically negative, resulting in
+increasing savings with regards to the latent cooling power by
+increasing the supply air temperature. 
+
+\subsection{Fan Power}
+
+The total fan power is
+\begin{equation}\label{eq:fanPowerForDerivative}
+    \power{fan} = \left(A + \left(1-A\right)\left(\frac{\totalFlow{}}{\flow{des}}\right)^{n}\right) \power{des}
+\end{equation}
+The first derivative of the fan power with respect to supply air
+temperature is
+\begin{equation}
+    \dv{\power{fan}}{\sat{}} =\frac{(1-A) n \heatenergy{z} \power{des}
+    \left(\frac{\frac{\heatenergy{z}}{C_{a}
+(T_{z}-\sat{})}+\flow{min}}{\flow{des}}\right)^{n-1}}{C_{a} \flow{des}
+(T_{z}-\sat{})^2} 
+\end{equation}
+or replacing with the definition of the part load ratio, PLR
+\begin{equation}
+    \dv{\power{fan}}{\sat{}} =\frac{(1-A) n \heatenergy{z} \power{des}
+    \left( \text{PLR} \right)^{n-1}}{C_{a} \flow{des}
+(T_{z}-\sat{})^2} 
+\end{equation}
+The first derivative is always positive, as expected. As the supply air
+temperature is increased, it will require an increase in fan power.
+
+The second derivative of fan power with respect to supply air
+temperature is 
+\begin{equation}\label{eq:secondDerivativeFanPower}
+    \frac{\left(1-A\right) n \heatenergy{z} \power{des} \left(2 C_{a}
+            \flow{min}
+                    (T_{z}-\sat{})+(n+1) \heatenergy{z}\right) \left(\frac{\frac{\heatenergy{z}}{C_{a}
+                (T_{z}-\sat{})}+\flow{min}}{\flow{des}}\right)^n}{\left(T_{z}-\sat{}\right)^2
+            \left(C_{a} \flow{min} \left(T_{z}-\sat{}\right)+\heatenergy{z}\right)^2}
+\end{equation}
+While \eqreftext{} \ref{eq:secondDerivativeFanPower} is complicated and
+has many terms, it is strictly positive, which means that the fan power
+penalty from raising the supply air temperature increases with
+increasing supply air temperature, an expected result. 
+
+
+\subsection{Reheat Power}
+
+Of the four major components (sensible cooling, latent cooling, fan, and
+reheat), reheat power is the most straightforward to analyze. The total
+reheat power has contributions from only the zones that are at minimum
+flow and is equal to
+\begin{equation}
+    \heatenergy{r} = C_{a} \flow{min} \left(T_{dis} - \sat{} \right)
+\end{equation}
+The required discharge temperature is
+\begin{equation}
+    T_{dis} = T_{z} - \frac{\heatenergy{z}}{C_{a} \flow{min} }
+\end{equation}
+Substituting the equation for \(T_{dis}\) into the total reheat power
+equation results in
+\begin{equation}
+    \heatenergy{r} = C_{a} \flow{min} \left(T_{z} - \frac{\heatenergy{z}}{C_{a} \flow{min} } - \sat{} \right) 
+\end{equation}
+The derivative of the reheat power with respect to the supply air
+temperature is just
+\begin{equation}
+    \dv{\heatenergy{r}}{\sat{}} = -C_{a} \flow{min}
+\end{equation}
+and the second derivative is 0. 
+
+As expected, when the supply air temperature is raised, the reheat power
+decreases, and this decrease is linear, different from the other
+components which have had a non-zero second derivative implying
+curvature. 
+
+\subsection{Summary}
+
+The following derivations were for a simplified model of a single duct
+variable air volume system. The zone temperatures from each zone were
+assumed to be equal which allowed for the zones in reheat and the zones
+not in reheat to be combined. The traditional control sequence here is
+also falling out of favor, with dual-maximum logic becoming more
+popular. The analysis is also only valid as long as a box does not
+transition from cooling to reheat in the span of supply air temperatures
+analyzed. 
+
+Even with these simplifications, it is clear that an explicit solution
+would be a difficult endeavor. Even in the simplified model, there are
+many interactions between the four major contributors to energy use. The
+exercise showed that fan, reheat, and latent portions have a
+straightforward dependence on the supply air temperature. However, it
+was shown that the sensible cooling power can have its relationship
+flipped depending on the relationship between the mixed air temperature
+and the zone temperatures. 
 

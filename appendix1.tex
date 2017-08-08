@@ -122,7 +122,7 @@ The threshold function is the derivative of the ramp function. The
 threshold function can be approximated arbitrarily well using the
 logistic function. The logistic function has the form
 \begin{equation}\label{eq:ThresholdFunction}
-    y=\frac{1}{1-e^{k\left(x-x_{0}\right)}}  
+    y=\frac{1}{1+e^{-k\left(x-x_{0}\right)}}  
 \end{equation}
 As \(k\to\infty\), the function equals the threshold function. The
 integral of the threshold function is the ramp function. Integrating 
@@ -137,8 +137,7 @@ The function is usually applied to flow for terminal units with a
 minimum flow setting. In this case, the function becomes
 
 \begin{equation}
-    \flow{} = \frac{\ln \left(1+e^{k\left( \flow{req} - \flow{min}
-    \right)\right)}  }{k} + \flow{min}
+    \flow{} = \frac{\ln \left(1+e^{k\left( \flow{req} - \flow{min} \right)\right)}}{k} + \flow{min}
 \end{equation}
 
 

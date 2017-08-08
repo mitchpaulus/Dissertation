@@ -1,0 +1,6 @@
+\begin{figure}
+\centering
+\includegraphics[]{Plots/2017-08-07-0928-BtuhrvsOADryBulbTemperatureNOAAF.pdf}
+\caption{SampleCaption}
+\label{fig:2017-08-07-0928-BtuhrvsOADryBulbTemperatureNOAAF}
+\end{figure}

@@ -1,0 +1,28 @@
+\RequirePackage{luatex85}
+\documentclass[12pt]{article}
+\usepackage[active, tightpage]{preview}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+\PreviewEnvironment{tikzpicture}
+
+\begin{document}
+
+\begin{tikzpicture}
+\begin{axis}
+[
+xlabel={Temperature [\(^{\circ{}}\)F]},
+    ylabel={Saturation humidity ratio},
+legend pos=north west,
+]
+\addplot[] table[col sep=comma, x=Temperature_F,y=omega]{saturationHumidityVsTemperature.csv};
+\addlegendentry{Actual}
+\addplot[blue, dashed] table[col sep=comma, x=Temperature_F,y=pred_omega]{saturationHumidityVsTemperature.csv};
+\addlegendentry{From polynomial}
+
+\end{axis}
+\end{tikzpicture}
+
+\end{document}
+

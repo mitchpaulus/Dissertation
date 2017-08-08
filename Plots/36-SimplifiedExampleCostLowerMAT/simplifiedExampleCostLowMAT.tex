@@ -17,25 +17,25 @@ ylabel= {Total Cost [\$/h]},
 xmin=45,
 xmax=65,
 ymin=0,
-ymax=0.3,
+ymax=0.5,
 legend pos=outer north east,
 ]
-\addplot[dashed] table[col sep=comma, x=SAT_F,y=TotalCost]{simplifiedExampleDataCostLowerMAT.csv};
+\addplot[dashed] table[col sep=comma, x=SAT_F,y=TotalCost]{simplifiedExampleData.csv};
 \addlegendentry{Total Cost}
-\addplot[blue] table[col sep=comma, x=SAT_F,y=CoolingCost]{simplifiedExampleDataCostLowerMAT.csv};
+\addplot[blue] table[col sep=comma, x=SAT_F,y=CoolingCost]{simplifiedExampleData.csv};
 \addlegendentry{Cooling Cost}
-\addplot[orange] table[col sep=comma, x=SAT_F,y=FanCost]{simplifiedExampleDataCostLowerMAT.csv};
+\addplot[orange] table[col sep=comma, x=SAT_F,y=FanCost]{simplifiedExampleData.csv};
 \addlegendentry{Fan Cost}
-\addplot[red] table[col sep=comma, x=SAT_F,y=ReheatCost]{simplifiedExampleDataCostLowerMAT.csv};
+\addplot[red] table[col sep=comma, x=SAT_F,y=ReheatCost]{simplifiedExampleData.csv};
 \addlegendentry{Reheat Cost}
 
-    \addplot[dotted] coordinates {
-            (55.4, 0)
-            ( 55.4, 0.3 )
-        };
+    %\addplot[dotted] coordinates {
+            %(55.4, 0)
+            %( 55.4, 0.5 )
+        %};
 
-    \node[anchor=east] (MinCost) at (axis cs:52,0.15) {Min Cost};
-    \draw[->] (MinCost.south east) -- (axis cs:55.4,0.0605);
+    %\node[anchor=east] (MinCost) at (axis cs:52,0.15) {Min Cost};
+    %\draw[->] (MinCost.south east) -- (axis cs:55.4,0.0605);
 
 \end{axis}
 \end{tikzpicture}
