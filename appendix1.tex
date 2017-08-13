@@ -126,18 +126,29 @@ logistic function. The logistic function has the form
 \end{equation}
 As \(k\to\infty\), the function equals the threshold function. The
 integral of the threshold function is the ramp function. Integrating 
-Eq. \ref{eq:ThresholdFunction} results in 
+Eq. \ref{eq:ThresholdFunction} results in the family of solutions
 \begin{equation}
-    y=\frac{\ln \left(1+e^{k\left(x-x_{0}\right)}\right) }{k} + C
+    y=x+\frac{\ln \left(1+e^{-k\left(x-x_{0}\right)}\right) }{k} + C
 \end{equation}
+When \(x > x_{0}\), the \(\ln \left(1+e^{-k\left(x-x_{0}\right)}\right)
+\) term goes to 0, and the function is equal to \(x+C\), which has a
+derivative of 1 with respect to \(x\).
+
+When \(x < x_{0}\), the \(\frac{\ln \left(1+e^{-k\left(x-x_{0}\right)}\right) }{k}\) term goes to \(x_{0} - x \), and the function is equal to 
+\begin{equation}
+    y = x + \left(x_{0} - x \right) + C = x_{0} + C
+\end{equation}
+
 This function approximates the ramp function arbitrarily well as
 \(k\to\infty\). 
 
 The function is usually applied to flow for terminal units with a
-minimum flow setting. In this case, the function becomes
+minimum flow setting. In this case, the value for the constant \(C\)
+equals 0 so that \(x_{0}\) and \(x_{0}  +C \) are equal, and the function becomes
 
 \begin{equation}
-    \flow{} = \frac{\ln{} \left(1+e^{k\left( \flow{req} - \flow{min} \right)}\right)}{k} + \flow{min}
+    \flow{} = \flow{req} + \frac{\ln{} \left(1+e^{-k\left( \flow{req} - \flow{min}
+    \right)}\right)}{k} 
 \end{equation}
 
 
