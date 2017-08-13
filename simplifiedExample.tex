@@ -2,8 +2,9 @@
 
 This chapter serves to show a simplified example of the optimization of
 the supply air temperature under one given condition. The single example
-is studied in detail in order to present the various competing concerns
-impacting the total power required to satisfy the building loads. 
+is studied in detail in order to elucidate the various competing
+components impacting the total power required to satisfy the building
+loads. 
 
 For simplicity, a single duct variable air volume system with two
 terminal units is assumed. Hot and dry outdoor air conditions are
@@ -17,7 +18,8 @@ The minimum flow setting for the terminal units is \SI{400}{\cfm}. The
 room temperature is \SI{72}{\degreeF} and the mixed air temperature is
 \SI{80}{\degreeF}.
 
-The fan is assumed to have the following part-load behavior. The design
+The fan is assumed to have the following part-load behavior described in
+\eqreftext{} \ref{eq:simplifiedExampleFFLP}. The design
 flow is chosen so that at a supply temperature of \SI{65}{\degreeF} the
 fan is at design flow. 
 
@@ -27,7 +29,7 @@ Under the chosen conditions, the design flow is \SI{3503}{\cfm}, which
 is the resulting flow under the highest tested supply air temperature
 \SI{65}{\degreeF}. The resulting design fan power is \SI{2.75}{\hp}. 
 
-\begin{equation}
+\begin{equation}\label{eq:simplifiedExampleFFLP}
     \text{FFLP} = A + \left(1-A\right)(\text{PLR})^{n} =   0.1 + (0.9)(\text{PLR})^{2.5}
 \end{equation}
 The fan power is 
@@ -94,7 +96,7 @@ Substituting \eqreftext{} \ref{eq:requiredFlow} into
 \end{equation}
 
 
-What is of interest is how the sensible cooling power is impacted when
+Of interest is how the sensible cooling power is impacted when
 the supply air temperature is increased. To investigate, the derivative
 of the sensible cooling power equation is found.
 
@@ -104,10 +106,10 @@ of the sensible cooling power equation is found.
 \end{equation}
 
 What \eqreftext{} \ref{eq:derivativeOfSensibleCooling} shows is the
-non-intuitive result that during times of cooling, corresponding to a
-positive \(\heatenergy{z}\), and when the mixed air temperature is
-greater than the zone temperature, corresponding to a positive value in
-the numerator of \eqreftext{} \ref{eq:derivativeOfSensibleCooling}, that
+non-intuitive result that during times of cooling (corresponding to a
+positive \(\heatenergy{z}\)) and when the mixed air temperature is
+greater than the zone temperature (corresponding to a positive value in
+the numerator of \eqreftext{} \ref{eq:derivativeOfSensibleCooling}), that
 the sensible cooling power \textit{increases} with increasing supply air
 temperature. If a cooling load exists and the mixed air temperature is
 less than the zone temperature, then the opposite is true, increasing
@@ -133,7 +135,7 @@ the optimization will potentially suggest lowering the supply air
 temperature when the conditions are appropriate.
 
 This conclusion is affirmed as well after investigating the impact of
-energy cost. The following analysis assumes the fan power is met by
+energy cost. The following analysis assumes the fan power uses 
 electricity, the cooling is from district chilled water, and the reheat
 is from district hot water, and the prices are those from the posted
 Texas A\&M Utilities and Energy Services rates for
@@ -150,7 +152,7 @@ When the cost of electricity is taken into account, the importance of
 the relationship between fan power and the supply air temperature is
 increased. Chilled water is usually produced with a chiller having a COP
 greater than 3 while the electricity is consumed directly for the fan.
-When the impact of cost is added, the cost penalty for fan power grow
+When the impact of cost is added, the cost penalty for fan power can grow
 significantly at higher supply air temperatures, which can be seen in
 \figref{} \ref{fig:simplifiedExampleCost}. 
 
@@ -168,7 +170,9 @@ air temperatures.}
 \label{fig:simplifiedExampleFlow}
 \end{figure}
 
-\newcommand{\variationCaption}[1]{Variation of total #1 with respect to different supply air temperatures. }
+\newcommand{\variationCaption}[1]{Variation of total #1 with respect to
+different supply air temperatures, using \SI{80}{\degreeF} as the mixed
+air temperature. }
 
 \begin{figure}
 \centering
@@ -225,7 +229,7 @@ While attempting to optimize an AHU system, it is helpful to understand
 how the supply temperature affects all portions of the total power. The
 following analysis looks at a simplified single duct variable air volume
 system, with terminal units having a traditional control sequence,
-initiating reheat at minimum flow. 
+initiating reheat at a constant minimum flow. 
 
 The investigation is going to assume that at a given supply air
 temperature, a certain amount of terminal units are going to be in
@@ -305,7 +309,9 @@ The total latent cooling power, \(\heatenergy{c,l}\), is
 where \(H\) is a volumetric heat of vaporization for water and \(\omega_{sat}\)
 is the saturation humidity ratio at a given supply air temperature, which means
 that it is a function of the supply air temperature.  For this analysis it is
-assumed that a latent load does exist and \(\omega_{ma} > \omega_{sat}(\sat{})\). 
+assumed that a latent load does exist and \(\omega_{ma} >
+\omega_{sat}(\sat{})\). If \(\omega_{sat}(\sat{}) > \omega_{ma}\), then
+the latent load is zero and all its derivatives are zero as well.
 
 Taking the derivative of \eqreftext{} \ref{eq:latentCoolingPower} results in
 \begin{equation}\label{eq:firstDerivativeLatentPower}
@@ -380,7 +386,7 @@ supply air temperature is
 From inspection, it is difficult to discern whether this second
 derivative is typically positive or negative. From experimentation it
 has been found that this value is typically negative, resulting in
-increasing savings with regards to the latent cooling power by
+rapidly increasing savings with regards to the latent cooling power by
 increasing the supply air temperature. 
 
 \subsection{Fan Power}
@@ -397,7 +403,7 @@ temperature is
 (T_{z}-\sat{})}+\flow{min}}{\flow{des}}\right)^{n-1}}{C_{a} \flow{des}
 (T_{z}-\sat{})^2} 
 \end{equation}
-or replacing with the definition of the part load ratio, PLR
+or replacing with the definition of the part load ratio (PLR),
 \begin{equation}
     \dv{\power{fan}}{\sat{}} =\frac{(1-A) n \heatenergy{z} \power{des}
     \left( \text{PLR} \right)^{n-1}}{C_{a} \flow{des}
@@ -419,7 +425,6 @@ While \eqreftext{} \ref{eq:secondDerivativeFanPower} is complicated and
 has many terms, it is strictly positive, which means that the fan power
 penalty from raising the supply air temperature increases with
 increasing supply air temperature, an expected result. 
-
 
 \subsection{Reheat Power}
 
@@ -448,7 +453,7 @@ and the second derivative is 0.
 
 As expected, when the supply air temperature is raised, the reheat power
 decreases, and this decrease is linear, different from the other
-components which have had a non-zero second derivative implying
+components which have had a non-zero second derivative, implying
 curvature. 
 
 \subsection{Summary}
@@ -456,14 +461,15 @@ curvature.
 The following derivations were for a simplified model of a single duct
 variable air volume system. The zone temperatures from each zone were
 assumed to be equal which allowed for the zones in reheat and the zones
-not in reheat to be combined. The traditional control sequence here is
-also falling out of favor, with dual-maximum logic becoming more
+not in reheat to be combined. The traditional control sequence analyzed
+here is also falling out of favor, with dual-maximum logic becoming more
 popular. The analysis is also only valid as long as a box does not
 transition from cooling to reheat in the span of supply air temperatures
 analyzed. 
 
-Even with these simplifications, it is clear that an explicit solution
-would be a difficult endeavor. Even in the simplified model, there are
+Even with these simplifications, it is clear that analytically solving
+for the optimal supply air temperature using traditional calculus
+techniques would be a difficult endeavor. Even in the simplified model, there are
 many interactions between the four major contributors to energy use. The
 exercise showed that fan, reheat, and latent portions have a
 straightforward dependence on the supply air temperature. However, it

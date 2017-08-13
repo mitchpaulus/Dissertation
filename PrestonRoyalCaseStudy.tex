@@ -131,4 +131,63 @@ because of data quality issues. The data was not produced consistently
 and had long gaps during many days. In addition, a flow sensor for
 FPB-05 was constant at 0, and this issue was not resolved. 
 
+\section{Estimated Savings}
+
+Only 7 of the 14 air handling units had usable data. The estimated
+savings from this pseudo-synthetic data set was examined. Several
+assumptions were made in order to make the analysis possible. 
+
+\begin{itemize}
+    \item There was no mixed air temperature sensor available, so the
+        mixed air temperature was assumed to be between the outdoor air
+        temperature and the return air temperature with the following
+        relationship
+\begin{equation}
+\mat{} = 0.3 \oat{} + 0.7 \rat{}
+\end{equation}
+\item The mixed air humidity ratio was also not known. It was assumed to
+    have a similar relationship as the mixed air temperature, however,
+    during times of low humidity, the mixed air humidity ratio will just
+    be the outdoor air humidity ratio
+\begin{equation}
+    \omega_{ma} = \text{MIN}\left(\omega_{oa}, 0.3 \omega_{oa} + 0.7
+    \omega_{sat}\left(\sat{}\right) \right)
+\end{equation}
+\item The minimum flow rate percentage for the terminal units was
+    assumed to be 30\%. 
+\end{itemize}
+
+Data existed from December 1\textsuperscript{st}, 2015 to October
+22\textsuperscript{nd}, 2016. Timestamps when the air handling unit was
+off was ignored. 
+
+Times when the actually supply air temperature was out of a reasonable
+range was also ignored. 
+
+Over the course of the approximately 323 day period, the potential
+percent dollar savings was 15\%. In general, the savings were due to
+raising the supply air temperature, which while increasing the total fan
+energy, decreased the required cooling and reheat energy. 
+
+The cost of sensible cooling was the largest component, over 50\% for
+both the actual and optimal operations. 
+
+\begin{table}
+\centering
+\caption{Estimated savings from the partial data set originating from Preston Royal library.}
+\label{tab:prestonRoyalSavings}
+
+\begin{tabular}{lllS}
+\toprule
+    Component               & { Estimated Actual (\$) } & { Optimal (\$) }     & { Savings (\$) } \\ \midrule
+    Fan Energy              & \num{431.28} (11\%)       & \num{563.30} (17\%)  & -132.02          \\
+    Sensible Cooling Energy & \num{2222.51} (55\%)      & \num{1986.98} (59\%) & 235.53           \\
+    Latent Cooling Energy   & \num{642.57} (16\%)       & \num{461.60} (14\%)  & 180.97           \\
+    Reheat Energy           & \num{717.27} (18\%)       & \num{376.87}  (11\%) & 340.4            \\ \midrule
+    Total                   & \num{4013.64}             & \num{3388.75}        & 623.457          \\ \bottomrule
+\end{tabular}
+
+\end{table}
+
+
 

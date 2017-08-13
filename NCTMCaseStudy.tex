@@ -27,7 +27,7 @@ laboratory with 48 workstations on the second floor.
 On the academic side, three dedicated outdoor air handling
 units (OAHU) serve seven child air handling units. Two of the air handling
 units are constant speed, and the others are variable air volume. OAHU
-1-1 serves its wet lab and also feeds into AHU 1-1 and AHU 1-2. OAHU
+1-1 serves its own wet lab and also feeds into AHU 1-1 and AHU 1-2. OAHU
 1-2 serves AHU 1-3 and 1-4 on the first floor. OAHU 2-1 serves three
 air handlers on the second floor, AHU 2-1, 2-2, and 2-3. 
 
@@ -37,7 +37,7 @@ Various specifications for the air handling units are shown in Tables
 This document focuses on the academic side of the building since
 Utilities and Energy services with Texas A\&M University are only
 allowed to make immediate changes to the HVAC system on this side. In
-summary, the relevant parameters concerning NCTM are that it houses
+summary, the relevant facts concerning NCTM are that it houses
 several biopharmaceutical labs, it has an academic side that can be
 immediately changed and a manufacturing side that cannot be immediately
 changed, and relies on dedicated outdoor air handling units to pretreat
@@ -120,7 +120,7 @@ served for each of the terminal units.
 \label{tab:TerminalUnitInformation}
 \begin{tabular}{@{}llrl@{}}
 \toprule
-AHU &  Terminal Unit & \parbox{1.5cm}{Flow\\(CFM) }& Space Served \\ \midrule
+AHU &  Terminal Unit & \parbox{1.5cm}{\centering Flow\\(CFM) }& Space Served \\ \midrule
 %%\parbox{2cm}{AHU-1-1 \\ (5 hp)} & \multicolumn{3}{l}{No boxes - Serves Teaching Module alone, Constant Fan} \\ \midrule
 AHU-1-2  & FPVAV-1-7  & 1,400 & Difficult to tell                   \\ \cmidrule(r){2-4}
 (5 hp)   & FPVAV-1-8  & 700   & Vestibule/Men's \&  Women's bathroom \\ \cmidrule(r){2-4}
@@ -317,8 +317,8 @@ historical data. \figref{}
 \ref{fig:AHU21MixedAirTempvsOADryBulbTemperatureNOAA} shows an example of an
 AHU in which \(\mat\) does not change significantly throughout time. \figref{}
 \ref{fig:AHU21MixedAirTempvsOADryBulbTemperatureNOAA} and
-\ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA} both show 90 days
-of data from March 14, 2016 to June 12, 2016. 
+\ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA} both show
+data spanning 90 days from March 14, 2016 to June 12, 2016. 
 
 In the case of \figref{}
 \ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA}, \(\mat\) is less
@@ -355,16 +355,17 @@ back in history (at least a day before) under the following parameters:
     \item Searching backward incrementally until 30 data points found
 \end{itemize}
 
-The median of the found data points is the resulting prediction. The following
-plots show the model fits for the different air handling units at NCTM. The
-data covers a period of 180 days. Figures
-\ref{fig:2016-09-07-1218-AHU12MixedAirTempvsOADryBulbTemperatureNOAA} and
-\ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA-2} show that the
-prediction algorithm can adequately handle the differences from when the air
-handling unit is on as well as off. The significant amount of spread in the
-mixed air temperature is due to data in which the air handler turns off and is
-allowed to drift, typically to a higher temperature in the climate of College
-Station. 
+The median of the data points matching the creiterion listed is the
+resulting predicted value. The following plots show the model fits for
+the different air handling units at NCTM. The data covers a period of
+180 days. Figures
+\ref{fig:2016-09-07-1218-AHU12MixedAirTempvsOADryBulbTemperatureNOAA}
+and \ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA-2} show that
+the prediction algorithm can adequately handle the differences from when
+the air handling unit is on as well as off. The significant amount of
+spread in the mixed air temperature is due to data in which the air
+handler turns off and is allowed to drift, typically to a higher
+temperature in the climate of College Station. 
 
 Figures
 \ref{fig:2016-09-07-1335-MixedAirTempPredictionforAHU12vsAHU12MixedAirTemp}
@@ -431,9 +432,9 @@ weekends and holidays, and times between 6:00 PM and 8:00 AM.
 \end{figure}
 
 
-The sensitivity to the ``nearest neighbor'' parameters was tested. The
-parameter values were varied as shown in \tableref{}
-\ref{tab:NearestNeighborVariations}.
+The sensitivity of the prediction results to the selected ``nearest
+neighbor'' parameters was tested. The parameter values were varied as
+shown in \tableref{} \ref{tab:NearestNeighborVariations}.
 
 \begin{table}
 \centering
@@ -448,7 +449,7 @@ parameter values were varied as shown in \tableref{}
 \end{table}
 
 
-With three parameters and 3 different variations for each, this resulted
+With three parameters and three different variations for each, this resulted
 in 27 test cases. The results of this testing are shown in \tableref{}
 \ref{tab:MATTestingResults}. TS stands for timestamps and is related to
 the time of day threshold. Since the data was aligned to 15 minute
@@ -461,8 +462,8 @@ data points.
 
 The model was insensitive to the parameters. Because Fahrenheit is not on
 a ratio scale, that is, having a meaningful zero, the typical
-goodness-of-fit parameter coefficient of variation of the root mean
-squared error (RMSE) has less meaning.  Therefore, instead of using the
+goodness-of-fit parameter, the coefficient of variation of the root mean
+squared error (RMSE), has less meaning.  Therefore, instead of using the
 mean as the normalization parameter in the CV-RMSE metric, the range or
 the spread of the original data was used. It is denoted as CV-RMSE* for
 the remainder of this document. 
@@ -546,9 +547,10 @@ parameters used in predicting mixed air temperature. }
 
 \section{Analysis of the Plenum Air Temperature}
 
-Under certain assumptions, an estimation for the plenum air temperature for the
-series fan powered terminal units is possible. If the terminal unit is modeled
-as a simple mixing problem, the plenum air temperature will be 
+Under certain assumptions, an estimation for the plenum air temperature
+for the series fan powered terminal units is possible. If the terminal
+unit is modeled as a simple mixing problem, with negligible impact from
+the fan, the plenum air temperature will be 
 \begin{equation}
     T_{plenum}=\frac{\flow{tot}T_{dis}-\flow{pri}T_{sa}}{\flow{tot} -\flow{pri}}
 \end{equation}
@@ -593,7 +595,7 @@ Equation \ref{eq:plenumUncertainty} becomes
 \end{equation}
 which results in a final uncertainty of \SI{3.91}{\degreeF}, which is
 nearly four times larger than the initially assumed uncertainties for
-the temperatures (\SI{1}{\degreeF}). When \(T_{plen}\) is reduced even
+the temperatures (\SI{1}{\degreeF}). When \(\flow{plen}\) is reduced even
 further, this uncertainty grows substantially.  
 
 For further analysis, \eqreftext{} \ref{eq:plenumUncertainty} can be manipulated into a simpler form.
@@ -632,7 +634,7 @@ uncertainty for both \(T_{dis} \) and \(T_{pri}\).
 What the plots show is that the fraction of primary flow, \(F\), has to
 be less than 40\% in most cases to have an uncertainty in
 \(T_{plen}\) that is less than double the uncertainty in \(T_{dis}\) and
-\(T_{pri}\) (2 on the normalized y-axis). 
+\(T_{pri}\) (a value of 2 on the normalized y-axis). 
 
 
 % Plots/2017-06-07-TplenUncertainty.tex
