@@ -6,20 +6,24 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.13}
 \PreviewEnvironment{tikzpicture}
+\input{../tikz/tikzDefaults}
 
 \begin{document}
 
 \begin{tikzpicture}
 \begin{axis}
 [
-xlabel={Temperature [\(^{\circ{}}\)F]},
-    ylabel={Saturation humidity ratio},
-legend pos=north west,
+xychart,
+xlabel={Primary Air Flow [CFM]},
+ylabel={\(T_{dis} - T_{sa}\) [\(^{\circ{}}\)F]},
+xmin = 0,
+xmax = 1000,
+ymin = 0,
+ymax=16,
+xtick={0,100,...,1000},
+ytick={0,2,...,16},
 ]
-\addplot[] table[col sep=comma, x=Temperature_F,y=omega]{saturationHumidityVsTemperature.csv};
-\addlegendentry{Actual}
-\addplot[blue, dashed] table[col sep=comma, x=Temperature_F,y=pred_omega]{saturationHumidityVsTemperature.csv};
-\addlegendentry{From polynomial}
+\addplot[xymarker] table[col sep=tab,x index=3, y index=4]{../Data/2016-05-10-AHU-2-14-Temp-Rise.txt};
 
 \end{axis}
 \end{tikzpicture}
