@@ -897,7 +897,7 @@ air temperature using the zone temperature assumption for TU-2-7.}
 \end{figure}
 
 The opposite case can be seen with TU-2-15, as shown in \figref{}
-\ref{fig:2017-01-09-1434-TboxDischargeMixedAirTempfromRoomTempforFPVAV215vsTboxPLRforFPVAV215}
+\ref{fig:2017-01-09-1434-TboxDischargeMixedAirTempfromRoomTempforFPVAV215vsTboxPLRforFPVAV215}.
 In this case, the values are all negative, indicating that the plenum
 temperature is lower than the zone temperature. The plots are from the
 same period and cover a broad range of outdoor air temperatures from
@@ -937,9 +937,9 @@ An important factor in the optimization methodology is the prediction of
 the zone loads at a given time, without access to current live sensor
 information. 
 
-Before analyzing the prediction ability of different zone loads, it is
-important to gather insight into the nature of the calculated variable
-that is proposed to be used as the surrogate for zone load.   
+Before analyzing how well different zone loads can be predicted, it is
+important to gather insight into the nature of the calculated zone load
+variable that is proposed to be used as the surrogate for the actual zone load.   
 
 If the zone loads are being met and steady-state conditions are assumed,
 the sensible zone load will be
@@ -1075,19 +1075,21 @@ margin. It has estimated loads near 50,000 BTU/hr.
 
 %% These items come from the analysis done with plus minus 15 min and 3 degree F OAT bounds in file Batch Plots -- Mitch Dissertation N -- 2016-09-14 0952
 
-An interesting pattern was that the initial prediction routine overpredicted
-the zone load when the zone load was closer to the heating range and
-underpredicted the zone load during times of high cooling load. This bias was
-seen in every terminal unit in the building, and this bias occurred with both
-the largest and smallest terminal units. Figures
+An interesting pattern was that the initial prediction routine
+overpredicted the zone load when the zone cooling load was small or was
+a heating load and underpredicted the zone load during times of high
+cooling load. This bias was seen in every terminal unit in the building,
+and this bias occurred with both the largest and smallest terminal
+units. Figures
 \ref{fig:2016-09-14-1028-ZoneLoadResidualforContainerFPVAV22vsZoneLoadforContainerFPVAV22}
 through
 \ref{fig:2016-09-14-1020-ZoneLoadResidualforContainerFPVAV27vsZoneLoadforContainerFPVAV27}
-show examples of this phenomenon. This is because the median of sub-sets of
-data was used for the prediction. The method will always underpredict the
-highest value and overpredict the lowest value.  The date period analyzed was
-from March 1, 2016, to August 1, 2016, ignoring when the AHUs were off, federal
-holidays and weekends, and hours from 5 PM to 9 AM. 
+show examples of this phenomenon. This is because the median of data
+under similar conditions was used for the prediction. The method will
+always underpredict the highest value and overpredict the lowest value.
+The date period analyzed was from March 1, 2016, to August 1, 2016,
+ignoring when the AHUs were off, federal holidays and weekends, and
+hours from 5 PM to 9 AM. 
 
 \newcommand{\zoneLoadCaption}[1]{Bias in zone load prediction for #1.}
 
@@ -1162,7 +1164,7 @@ A main takeaway of the tests, however, was that the results were
 insensitive to the parameters. This means that the parameters may be
 adjusted for benefits in other areas such as performance. By having
 large thresholds and less data points, less historical data needs to be
-searched, and the time to complete the algorithm is reduced.
+searched, and the time to complete the calculations is reduced.
 
 A plot of these results in order of predictive ability is shown in
 \figref{} \ref{fig:ZoneLoadInOrder}. 
@@ -1278,9 +1280,6 @@ pressure setpoints of these AHUs to be reduced.
 \label{fig:MaxDamperPositionforContainerAHU23vsOADryBulbTemperatureNOAA}
 \end{figure}
 
-
-\subsection{Critical Zones for NCTM}
-
 An investigation into the critical zones based on historical data was
 completed. 15 minute interval data from January 1, 2016, through June 1,
 2016, was used to check which damper positions were most open at a given
@@ -1316,10 +1315,17 @@ AHU (\# of term. units)      & Unit       & {Count of Max} & {Percent as Critica
 \end{tabular}
 \end{table}
 
+This analysis was not actively used to optimize the air handling unit
+system at NCTM. However, if more information were available regarding
+the fan and duct system, it could be used to also optimize the supply
+air static pressure setpoint in combination with the supply air
+temperature. It is useful to see, however, that the potential to reduce
+the pressure drop throughout the system exists, which would aid in the
+goal of energy efficient operation. 
 
-\subsection{Accuracy of Mechanical Specifications}
+\section{Accuracy of Mechanical Specifications}
 
-In the simplified analysis and modeling such as being proposed, it would
+In the simplified analysis and modeling being proposed, it would
 be ideal if the specifications in the mechanical drawings can be used
 directly.  One important parameter is the design flow rate for the
 terminal unit.  \tableref{} \ref{tab:TerminalUnitInformation} shows the

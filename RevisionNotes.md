@@ -91,3 +91,19 @@ FPB-12 | Working
 FPB-13 | Stretches of constant data
 FPB-14 | Stretches of constant data
 FPB-15 | Stretches of constant data
+
+
+### Chapter Page Locations
+
+Chapter  |  Old |  New
+-----------------------
+Literature Review        | 16 - 30   | 19 - 33   |
+Optimization Methodology | 31 - 48   | 34 - 54   |
+Simplified Example       |           | 55 - 69   |
+Technology Setup         | 49 - 57   | 70 - 78   |
+NCTM Case Study          | 58 - 101  | 79 - 135  |
+Preston Royal Case Study | 106 - 109 | 
+Conclusions through end  | 110 - 123 | 145 - 178 |
+
+
+
