@@ -1,0 +1,30 @@
+\RequirePackage{luatex85}
+\documentclass[12pt]{article}
+\usepackage[active, tightpage]{preview}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+\PreviewEnvironment{tikzpicture}
+
+\input{../tikz/tikzDefaults}
+
+\begin{document}
+
+\begin{tikzpicture}
+\begin{axis}
+    [xychart,
+    xlabel={Zone load for FPVAV-1-9 [Btu/h]},
+    ylabel={Estimated Plenum Temperature [\(^{\circ{}}\)F]},
+    xmin=0,
+    xmax=25000,
+    ymin=-1500,
+    ymax=1500,
+]
+\addplot[xymarker] table[col sep=tab,x=ZoneLoadforContainerFPVAV19,y=PlenumTemperatureforContainerFPVAV19]{../Data/2016-09-16-1006-PlenumTemperatureforContainerFPVAV19vsZoneLoadforContainerFPVAV19.dat};
+
+\end{axis}
+\end{tikzpicture}
+
+\end{document}
+

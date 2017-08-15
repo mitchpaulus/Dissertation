@@ -1,0 +1,32 @@
+\RequirePackage{luatex85}
+\documentclass[12pt]{article}
+\usepackage[active, tightpage]{preview}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+\PreviewEnvironment{tikzpicture}
+
+\input{../tikz/tikzDefaults}
+
+\begin{document}
+
+\begin{tikzpicture}
+\begin{axis}
+[
+xychart,
+align=center,
+xlabel={Zone Load for FPVAV-2-7 [Btu/hr]},
+ylabel={Zone Load Residual for \\  FPVAV-2-7 [Btu/hr]},
+xmin=0,
+xmax=4000,
+ymin=-3000,
+ymax=3000,
+]
+\addplot[xymarker] table[col sep=tab,x=ZoneLoadforContainerFPVAV27, y=ZoneLoadResidualforContainerFPVAV27]{../Data/2016-09-14-1020-ZoneLoadResidualforContainerFPVAV27vsZoneLoadforContainerFPVAV27.dat};
+
+\end{axis}
+\end{tikzpicture}
+
+\end{document}
+
