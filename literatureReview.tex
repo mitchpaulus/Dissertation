@@ -46,7 +46,7 @@ the time constant of the thermal loads on the building are on the order
 of minutes to hours, it is appropriate to focus on the steady state
 behavior of AHUs \cite{Bourdouxhe1998}.
 
-Ke and Mumma were one of the first to attempt to balance the benefits of
+Ke and Mumma among the first to attempt to balance the benefits of
 raising the supply air temperature with the penalties associated with
 increased fan energy and decreased dehumidification potential
 \cite{Ke1997OptimizedSystems}. This paper was limited in the fact that
@@ -270,8 +270,8 @@ members to understand the logic behind the optimizations, and simply the
 technician effort to install and setup implementations.
 
 This research proposes its own intuitive optimization method based on
-small first-principle models using historical data to calibrate that is
-designed to efficient in scaling. The research investigates how to use
+small first-principle models using historical data that is
+designed to efficiently scale. The research investigates how to use
 current communication protocols with BAS systems and implementable
 methodologies to apply a single set of optimization logic and code to
 many and varied air handling units. 
@@ -290,9 +290,9 @@ The following suggestions are based on the data for over \num{150000}
 trends stored in Implementer along with personal experience. Implementer
 is a web application developed by the Energy Systems Laboratory that
 aids engineers in the collection and analysis of trend data from
-buildings.  The statistical results presented use data til April 13,
+buildings.  The statistical results presented use data til April 13, 
 2016. The total number of configured single duct AHUs at this time was
-846. The number of trends that existed in these 846 containers was
+846. The number of trends that existed in these 846 AHUs was
 11,806, or approximately 14 trends per AHU. Table
 \ref{tab:PointBreakdown} gives the percentage breakdown of the types of
 points that we have seen in current Implementer projects. Note that due
@@ -381,7 +381,7 @@ If the building in question consumes district chilled and hot water for
 thermal HVAC processes, the importance of additional trends is lessened
 since it is clear that the chilled water is used to meet the cooling
 load of the building and similarly for the hot water. The electricity
-use is then left to lights and equipment, along with the fan energy.
+use is then left to lights and equipment, along with the fan and pump energy.
 
 However, if natural gas and electricity are the only energy supply types
 for the building, additional information coming from trend data becomes
@@ -404,7 +404,7 @@ use together.
 
 The fan power is trended directly on less than 10\% of systems in
 Implementer. The next best option in 15\% of the cases is using the
-supply flow along with manufacturers specifications to estimate
+supply flow along with manufacturers' specifications to estimate
 fan power. With the design flow values from mechanical drawings,
 fractional power curves based on part-load ratio can be used to estimate
 the fan energy use. 
@@ -480,7 +480,9 @@ potentially having measured natural gas use, the only parameter left is
 the discharge temperature to the zones. 
 
 \subsubsection{Prioritization} \label{sec:Prioritization}
-\begin{enumerate}
+The following sensors, in no particular order, are the most useful with
+regards to energy modeling and determining the energy use breakdown. 
+\begin{itemize}
 \item Supply air temperature -- This parameter is crucial in estimating both the sensible cooling energy and the reheat energy of the system. 
 \item Fan Power -- Directly returns the energy end use for fans.
 \item Supply air flow -- A key parameter in estimating the flow both at the AHU and the total of which is going to the terminal units, affecting both the cooling and reheat energy end uses.
@@ -495,7 +497,7 @@ the discharge temperature to the zones.
 \item Return air temperature -- Aids in the estimation of the outdoor air fraction or ventilation load.
 \item VSD speed, VFD frequency, etc. -- Indicator of the part-load ratio for the equipment, which may be used in the estimation of fan energy. 
 \item Preheat Temperature -- Sets this parameter in the model, aiding in the estimation of the heating end uses.
-\end{enumerate}
+\end{itemize}
 
 Sensors that may be of medium usefulness:
 

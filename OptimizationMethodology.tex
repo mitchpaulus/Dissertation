@@ -25,10 +25,10 @@ energy, cooling energy, and reheat energy.
 The optimization problem to be solved in standard form is
 \begin{equation}
     \begin{aligned}
-        & \underset{T_{sa}}{\text{minimize}} & & \dot{E}_{fan} + \dot{E}_{cooling} + \dot{E}_{reheat} \\
-        & \text{subject to} & & T_{sa} \geq T_{sa,min} \\
-        &&& T_{sa} \leq \text{MIN}\left(\mat, \text{MIN}\left(T_{dis,1}, T_{dis,2}, \ldots, T_{dis,n} \right) \right) \\
-        &&& \text{IF } \omega_{oa} > \omega_{max},\,T_{sa} \leq T_{sa,\omega}
+        & \underset{\sat{}}{\text{minimize}} & & \dot{E}_{fan} + \dot{E}_{cooling} + \dot{E}_{reheat} \\
+        & \text{subject to} & & \sat{} \geq T_{sa,min} \\
+        &&& \sat{} \leq \text{MIN}\left(\mat, \text{MIN}\left(T_{dis,1}, T_{dis,2}, \ldots, T_{dis,n} \right) \right) \\
+        &&& \text{IF } \omega_{oa} > \omega_{max},\,\sat{} \leq T_{sa,\omega}
     \end{aligned}
 \end{equation}
 
@@ -73,7 +73,7 @@ energy use is
 For a series flow terminal unit, the total flow is ideally constant.
 \(\flow{tot}\) is known from the specification of the terminal unit and
 \(\flow{pri}\) is a measured variable. \(\flow{plen}\) can be calculated from
-Eq. (\ref{eq:TotalFlow}).
+\eqreftext{} (\ref{eq:TotalFlow}).
 
 %-------------------------------------------------------------------------------------------
 \begin{figure}
@@ -382,7 +382,7 @@ uncertainty in the flow, it becomes the dominant source of uncertainty.
 
 \begin{figure}
 \centering
-\includegraphics[]{Plots/2017-05-16-ZoneLoadUncertaintyVsFlowUncertainty.pdf}
+\includegraphics{Plots/2017-05-16-ZoneLoadUncertaintyVsFlowUncertainty.pdf}
 \caption{Zone load uncertainty versus flow uncertainty.}
 \label{fig:ZoneLoadUncVsFlowUnc}
 \end{figure}
@@ -395,7 +395,7 @@ uncertainty in the flow, it becomes the dominant source of uncertainty.
 \subsection{Analysis of Fraction of Full Load Power Uncertainty}
 \begin{figure}
 \centering
-\includegraphics[]{Plots/2017-05-12-Fcurve.pdf}
+\includegraphics{Plots/2017-05-12-Fcurve.pdf}
 \caption{Fraction of full load power for a fan.}
 \label{fig:FCurve}
 \end{figure}
@@ -449,7 +449,9 @@ are used, a plot can be created showing the relative importance in the
 uncertainty as a function of PLR. This plot is shown in \figref{}
 \ref{fig:FFLRUncertainty}. The series are the squared values of the
 uncertainty terms, for example, the \(A\) series is 
-
+\begin{equation}
+    \left(\left(1-\text{PLR}^n\right) \delta A\right)^{2}
+\end{equation}
 
 Over the input range of PLR, there are three different regimes in which
 each input variable contributes the most to the uncertainty. The
@@ -463,8 +465,9 @@ part load power at 0 load, is the most important.
 
 At the extreme values of PLR, 0 and 1, the uncertainty from two the
 components is 0. At a PLR of 0, there is no uncertainty contribution
-from the exponent and PLR terms. At a PLR of 1, there is no uncertainty
-contribution from the exponent and the constant \(A\) terms. 
+from the exponent and PLR terms, and uncertainty from the \(A\) term. At
+a PLR of 1, there is no uncertainty contribution from the exponent and
+the constant \(A\) terms, but uncertainty in the PLR term. 
 
 So to reduce the total uncertainty across all ranges of part load ratios
 will require better knowledge of all the input variables.
@@ -479,7 +482,7 @@ of PLR, however.
 % Plots/2017-05-15-FFLPUncertainty.tex
 \begin{figure}
 \centering
-\includegraphics[]{Plots/2017-05-15-FFLPUncertainty.pdf}
+\includegraphics{Plots/2017-05-15-FFLPUncertainty.pdf}
 \caption{Relative uncertainty contributions for fraction of full load
 fan power when \(n=2\). (\(A=0.2\), \(\delta A = 0.05\), \(n=2\), \(\delta n =0.04\), \(\delta \text{PLR}=0.05\))}
 \label{fig:FFLRUncertainty}
@@ -671,7 +674,7 @@ flow, the static pressure rise can be estimated, and used for all the
 Without further information regarding the actual terminal unit pressure
 drop relationships, this method loses its potential usefulness. For this
 reason, a simple approach of using an exponential part load ratio (PLR)
-function was employed as shown in Eq. \ref{eq:PartLoadRatio}. The value
+function was employed as shown in \eqreftext{} \ref{eq:PartLoadRatio}. The value
 of \(n\) was varied from 2 to 3, and the sensitivity to this parameter was
 examined.
 
@@ -818,7 +821,7 @@ inputs are listed in \tableref{} \ref{tab:RequiredInputsForAHUs} and
 \label{tab:RequiredInputsForAHUs}
 \begin{tabular}{lcl}\toprule
     Inputs for Air Handling Unit   & Symbol            & Coming From      \\ \midrule
-    Mixed Air Temperature          & \(T_{ma}\)        & Nearest Neighbor \\
+    Mixed Air Temperature          & \(\mat{}\)        & Nearest Neighbor \\
     Fan Exponent                   & \(n\)             & Constant         \\
     Design Fan Power               & \(\dot{W}_{fan}\) & Specifications   \\
     Design Fan Flow                & \(\flow{design}\) & Specifications   \\
@@ -852,14 +855,14 @@ other types of terminal units, the method follows similarly.
         \end{equation}
     \item Calculate the maximum \(T_{sa,max}\) for the search range as 
         \begin{equation}
-            T_{sa,max}  = \text{MIN}\left(T_{ma}, \text{MIN}(T_{dis}) \right)
+            T_{sa,max}  = \text{MIN}\left(\mat{}, \text{MIN}(T_{dis}) \right)
         \end{equation}
-        The \(T_{sa,max}\) cannot be greater than \(T_{ma}\) since it is
+        The \(T_{sa,max}\) cannot be greater than \(\mat{}\) since it is
         assumed that only cooling is happening in the supply air duct
         after the mixing chamber. \(T_{sa,max}\) cannot be greater than
         the minimum calculated discharge temperature because then that
         particular zone would not have sufficient cooling capacity. 
-    \item For each \(T_{sa}\) ranging from \(T_{sa,min}\) (which is
+    \item For each \(\sat{}\) ranging from \(T_{sa,min}\) (which is
         chosen prior by the user) to the maximum \(T_{sa,max}\) just
         calculated, using 1/8\(^{\circ}\)F step size, calculate total
         power
@@ -871,11 +874,13 @@ other types of terminal units, the method follows similarly.
         \end{equation}
     \item Calculate reheat for each terminal unit using energy balance
         \begin{equation}\label{eq:reheatPerZone}
-            \dot{Q}_{reheat} = \heatCapacity \left(\flow{tot} T_{dis} - \flow{pri} T_{sa} - \flow{plen} T_{plen}\right)  
+            \dot{Q}_{reheat} = \heatCapacity \left(\flow{tot} T_{dis} -
+            \flow{pri} \sat{} - \flow{plen} T_{plen}\right)  
         \end{equation}
     \item Calculate cooling power using cooling coil energy balance
         \begin{equation}\label{eq:TotalCoolingPower}
-            {\dot Q_{cooling}} = {\flow{supply}}\,\heatCapacity\:\left( {{T_{ma}} - {\sat}} \right) + h_v\rho_a{\flow{supply}}\:\left( {{\omega _{ma}} - {\omega _{sa}}} \right)
+            {\dot Q_{cooling}} = {\flow{supply}}\,\heatCapacity\:\left(
+            {{\mat{}} - {\sat}} \right) + h_v\rho_a{\flow{supply}}\:\left( {{\omega _{ma}} - {\omega _{sa}}} \right)
         \end{equation}
     \item Calculate fan power using part load ratio curve
         \begin{equation}\label{eq:TotalFanPower}
@@ -890,12 +895,12 @@ other types of terminal units, the method follows similarly.
 \begin{algorithm}
 \SetAlgoLined
 Need the following information for the AHU\par
-\KwData{\(T_{ma}\), \(n\), \(\power{fan,design}\), \(\flow{design}\), \(A\)}
+\KwData{\(\mat{}\), \(n\), \(\power{fan,design}\), \(\flow{design}\), \(A\)}
 For each terminal unit, will need the following information \par
 \KwData{\(\flow{z,tot}\), \(\flow{pri,min}\), \(T_{z}\), \(T_{plen}\), \(\heatenergy{z}\) }
-\KwResult{Optimal \(T_{sa}\)}
+\KwResult{Optimal \(\sat{}\)}
 
-\For{\(T_{sa} \leftarrow T_{sa,min}\) \KwTo \(T_{sa,max}\) }{
+\For{\(\sat{} \leftarrow T_{sa,min}\) \KwTo \(T_{sa,max}\) }{
 
     \For{\(i \leftarrow 1 \) \KwTo number of terminal units}{
         Calculate \(V_{pri,i}\) using \eqreftext{} \ref{eq:PrimaryFlowRequired}\;
@@ -909,7 +914,7 @@ For each terminal unit, will need the following information \par
 }
 
 
-\caption{Algorithm to determine optimal \(T_{sa}\)}
+\caption{Algorithm to determine optimal \(\sat{}\)}
 \end{algorithm}
 
 

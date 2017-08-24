@@ -40,7 +40,7 @@ The fan power is
 The required flow for each zone is calculated as 
 \begin{equation}
     \flow{z} = \text{MAX} \left( \frac{\heatenergy{z}}{C_{a}
-    \left(T_{z} - T_{sa}\right)  }, \flow{min}  \right)
+    \left(T_{z} - \sat{}\right)  }, \flow{min}  \right)
 \end{equation}
 The discharge temperature for each zone is
 \begin{equation}
@@ -48,11 +48,11 @@ The discharge temperature for each zone is
 \end{equation}
 The reheat power is 
 \begin{equation}
-    \heatenergy{reheat} = C_{a} \flow{z} \left(T_{dis} - T_{sa}\right)
+    \heatenergy{reheat} = C_{a} \flow{z} \left(T_{dis} - \sat{}\right)
 \end{equation} 
 and the sensible cooling power is 
 \begin{equation}\label{eq:sensibleCoolingPower}
-    \heatenergy{cool} = C_{a} \flow{tot} \left(T_{ma} - T_{sa}\right)
+    \heatenergy{cool} = C_{a} \flow{tot} \left(\mat{} - \sat{}\right)
 \end{equation} 
 where \(\flow{tot}\) is the total flow for all the zones. 
 
@@ -83,7 +83,7 @@ decreases depends on several factors.
 For example, during times when there is no reheat, the required flow for
 the terminal units is 
 \begin{equation}\label{eq:requiredFlow}
-    \flow{req} = \frac{\heatenergy{z}}{C_{a} \left(T_{z} - T_{sa}\right)}
+    \flow{req} = \frac{\heatenergy{z}}{C_{a} \left(T_{z} - \sat{}\right)}
 \end{equation}
 %
 Substituting \eqreftext{} \ref{eq:requiredFlow} into  
@@ -91,8 +91,8 @@ Substituting \eqreftext{} \ref{eq:requiredFlow} into
 %
 \begin{equation}
     \heatenergy{cool} = C_{a}  \frac{\heatenergy{z}}{C_{a} \left(T_{z} -
-    T_{sa}\right)}\left(T_{ma} - T_{sa}\right) = \heatenergy{z}
-    \frac{T_{ma} - T_{sa}}{T_{z} - T_{sa}}
+    \sat{}\right)}\left(\mat{} - \sat{}\right) = \heatenergy{z}
+    \frac{\mat{} - \sat{}}{T_{z} - \sat{}}
 \end{equation}
 
 
@@ -101,8 +101,8 @@ the supply air temperature is increased. To investigate, the derivative
 of the sensible cooling power equation is found.
 
 \begin{equation}\label{eq:derivativeOfSensibleCooling}
-    \dv{\heatenergy{cool}}{T_{sa}} = \heatenergy{z} \frac{T_{ma} -
-    T_{z}}{\left(T_{z} - T_{sa}\right)^{2}}
+    \dv{\heatenergy{cool}}{\sat{}} = \heatenergy{z} \frac{\mat{} -
+    T_{z}}{\left(T_{z} - \sat{}\right)^{2}}
 \end{equation}
 
 What \eqreftext{} \ref{eq:derivativeOfSensibleCooling} shows is the
@@ -227,9 +227,9 @@ of the original \SI{80}{\degreeF}.}
 
 While attempting to optimize an AHU system, it is helpful to understand
 how the supply temperature affects all portions of the total power. The
-following analysis looks at a simplified single duct variable air volume
-system, with terminal units having a traditional control sequence,
-initiating reheat at a constant minimum flow. 
+analysis in this section relates to a simplified single duct variable
+air volume system, with terminal units having a traditional control
+sequence, initiating reheat at a constant minimum flow. 
 
 The investigation is going to assume that at a given supply air
 temperature, a certain amount of terminal units are going to be in
@@ -238,8 +238,8 @@ in cooling mode. The total flow for the system is then
 %
 \begin{equation}
     \flow{tot} = \flow{min,1} + \flow{min,2} + \ldots +
-    \frac{\heatenergy{z,3}}{C_{a} \left(T_{z,3} - T_{sa}\right) } +
-    \frac{\heatenergy{z,4}}{C_{a} \left(T_{z,4} - T_{sa}\right) } +
+    \frac{\heatenergy{z,3}}{C_{a} \left(T_{z,3} - \sat{}\right) } +
+    \frac{\heatenergy{z,4}}{C_{a} \left(T_{z,4} - \sat{}\right) } +
     \ldots
 \end{equation}
 %
@@ -247,56 +247,124 @@ If the zone temperatures, \(T_{z}\) are all the same, then the terms
 related to zones in cooling can be combined. All the flows related to
 the zones operating at minimum flow can also be combined.
 \begin{equation}
-    \flow{tot} = \sum \flow{mins} + \frac{\sum \heatenergy{z,tot}}{C_{a} \left(T_{z} - T_{sa}\right) } 
+    \flow{tot} = \sum \flow{mins} + \frac{\sum \heatenergy{z,tot}}{C_{a}
+    \left(T_{z} - \sat{}\right) } 
 \end{equation}
 %
 For clarity, for the rest of the derivations, the sum will be assumed,
 and the system can just be imagined as a combined, two terminal unit
 system, in which one of the units is operating at minimum flow and the
-other terminal unit is in a cooling mode.
+other terminal unit is in a cooling mode. 
 
 \subsection{Sensible Cooling Power}
 
-\newcommand{\totalFlow}{\flow{min} + \frac{\heatenergy{z}}{C_{a}\left(T_{z}-T_{sa}\right)}}
+\newcommand{\totalFlow}{\flow{min} +
+\frac{\heatenergy{z}}{C_{a}\left(T_{z}-\sat{}\right)}}
 The total sensible cooling power, \(\heatenergy{c,s}\), is
 \begin{equation}\label{eq:sensiblePowerTotal}
-    \heatenergy{c,s} =  C_{a} \flow{tot} \left(T_{ma}-T_{sa}\right)
+    \heatenergy{c,s} =  C_{a} \flow{tot} \left(\mat{}-\sat{}\right)
 \end{equation}
 where \(\flow{tot}\) is 
 \begin{equation}\label{eq:totalFlowSimpleExample}
     \flow{tot} = \totalFlow{}
 \end{equation}
-Substituting \eqreftext{} \ref{eq:totalFlowSimpleExample} into
-\ref{eq:sensiblePowerTotal} and taking the derivative with respect to
-the supply air temperature, \(T_{sa}\), results in
-\begin{equation}\label{eq:firstDerivativeSensible}
-    \dv{\heatenergy{c,s}}{T_{sa}} = \frac{\heatenergy{z} (T_{ma}-T_{z})}{(T_{sa}-T_{z})^2}-C_{a} \flow{min}
+There are two different assumptions that can be made relating to the
+outside air flow. The first assumption is that the outside air flow is
+constant, while the second assumption is that the fraction of outside
+air is constant. 
+
+\subsubsection{Constant Outside Air Flow} 
+
+If the amount of outside air flow is constant at \(\flow{oa}\), and the
+return air temperature is assumed to be equal to the zone temperature,
+then the mixed air temperature can be estimated as 
+\begin{equation}\label{eq:mixedAirConstantOAFlow}
+    \mat{} = \frac{\oat{} \flow{oa} + \left(\flow{tot}-\flow{oa}\right) T_{z}}{\flow{tot}} 
 \end{equation}
-If the mixed air temperature is less than the zone temperature, the
+Substituting \eqreftext{} \ref{eq:mixedAirConstantOAFlow} into
+\ref{eq:sensiblePowerTotal} results in
+\begin{equation}
+    \heatenergy{c,s} = C_{a} \flow{tot} \left[ \frac{\oat{} \flow{oa} +
+    \left(\flow{tot}-\flow{oa}\right) T_{z}}{\flow{tot}}  - \sat{}  \right]
+\end{equation}
+Rearranging results in
+\begin{equation}
+    \heatenergy{c,s} = C_{a} \left[ \flow{oa} \left(\oat{} - T_{z}\right) + \flow{tot}
+    \left(T_{z} - \sat{}\right)  \right]
+\end{equation}
+When \(\flow{tot}\) is replaced with \eqreftext{}
+\ref{eq:totalFlowSimpleExample}, the (\(T_{z}-\sat{}\)) term cancels
+out, and the final form for \(\heatenergy{c,s}\) is 
+\begin{equation}\label{eq:sensiblePowerConstantOAFlow}
+    \heatenergy{c,s} = \heatenergy{z} + C_{a} \flow{oa}
+    \left(\oat{}-T_{z}\right)  + C_{a} \flow{min} \left(T_{z} - \sat{} \right)
+\end{equation}
+The portion of \eqreftext{} \ref{eq:sensiblePowerConstantOAFlow} that
+depends on the supply air temperature is related to the minimum flow, or
+the zones that are in reheat. If no zones were in reheat, then the
+sensible cooling power would not depend on the supply air temperature. 
+
+The derivative of \eqreftext{} \ref{eq:sensiblePowerConstantOAFlow} is
+\begin{equation}
+    \dv{\heatenergy{c,s}}{\sat{}} = -C_{a} \flow{min} 
+\end{equation}
+which means that the sensible cooling power decreases as the supply air
+temperature is raised at a constant slope. 
+
+%\eqreftext{}
+%\ref{eq:sensiblePowerConstantOAFlow} could also have been derived using
+%an energy balance which included both the zones and the air handling
+%unit. 
+
+\subsubsection{Constant Outside Air Fraction}
+
+If the percentage of outside air is held constant instead of the flow,
+the analysis of the sensible cooling load changes. If the outside air
+fraction, \(X_{oa}\) is constant, and the return air temperature is assumed to be
+equal to the zone temperature, an estimation of the mixed air temperature is
+\begin{equation}\label{eq:mixedAirTempConstantOAF}
+    \mat{} = T_{z} + X_{oa} \left(\oat{} - T_{z}\right)
+\end{equation}
+Substituting \eqreftext{} \ref{eq:mixedAirTempConstantOAF} into
+\ref{eq:sensiblePowerTotal} and expanding \(\flow{tot}\) results in
+\begin{equation}\label{eq:sensibleCoolingPowerExpandedConstantOAF}
+    \heatenergy{c,s} = C_{a} \left[ \totalFlow{} \right] \left[ T_{z} + X_{oa} \left(\oat{} - T_{z}\right) - \sat{}  \right]
+\end{equation}
+Taking the derivative of \eqreftext{}
+\ref{eq:sensibleCoolingPowerExpandedConstantOAF} with respect to
+\(\sat{}\) results in
+\begin{equation}\label{eq:firstDerivativeSensible}
+    \dv{\heatenergy{c,s}}{\sat{}} = \frac{\heatenergy{z} (\oat{}-T_{z})
+    X_{oa}}{(\sat{}-T_{z})^2}-C_{a} \flow{min}
+\end{equation}
+
+If the outdoor air temperature is less than the zone temperature, the
 numerator of the first term becomes negative and the second term is
 always negative, so the entire slope will also be negative.
-\(\heatenergy{z}\) is assumed to be a cooling load and therefore is also
-a positive value. 
+\(\heatenergy{z}\) is assumed to be a cooling load and therefore is
+always a positive value. 
 
-A negative slope for \(\dv{\heatenergy{c,s}}{T_{sa}}\) implies that the
-total sensible cooling energy decreases as the supply air temperature is
-raised. However, if the mixed air temperature is greater than the zone
-temperature, and the magnitude is greater than the contribution from
-the second term relating to the terminal units that are in reheat,
-this slope can become positive, implying the opposite case. 
+A negative slope for \(\dv{\heatenergy{c,s}}{\sat{}}\) implies that the
+total sensible cooling power decreases as the supply air temperature is
+raised. However, if the outdoor air temperature is greater than the zone
+temperature, and the magnitude of the first term is greater than the
+contribution from the second term relating to the terminal units that
+are in reheat, this slope can become positive, implying the opposite
+case. 
 
 The second derivative of the function is taken to determine the
 curvature of the function. Taking the derivative of \eqreftext{}
 \ref{eq:firstDerivativeSensible} results in
 \begin{equation}
-    \dv[2]{\heatenergy{c,s}}{T_{sa}} = \frac{2 \heatenergy{z} \left(T_{ma}-T_z\right)}{\left(T_z-T_{sa}\right)^3}
+    \dv[2]{\heatenergy{c,s}}{\sat{}} = \frac{2 \heatenergy{z}
+    \left(T_{oa}-T_z\right) X_{oa} }{\left(T_z-\sat{}\right)^3}
 \end{equation}
-The sign of \(\dv[2]{\heatenergy{c,s}}{T_{sa}}\) is solely determined by
-the sign of \((T_{ma} - T_{sa})\) since \(\heatenergy{z}\) is positive
-and \(T_z > T_{sa} \). This means that if the mixed air temperature is
+The sign of \(\dv[2]{\heatenergy{c,s}}{\sat{}}\) is solely determined by
+the sign of \((\oat{}-\sat{})\) since \(\heatenergy{z}\) is positive
+and \(T_z > \sat{} \). This means that if the outdoor air temperature is
 greater than the zone temperature, there can be a power penalty for
 raising the supply air temperature, and this penalty gets worse as the
-supply air temperature is increased. 
+supply air temperature is increased.  
 
 
 \subsection{Latent Cooling Power}
