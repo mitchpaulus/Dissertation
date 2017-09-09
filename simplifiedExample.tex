@@ -2,7 +2,7 @@
 
 This chapter serves to show a simplified example of the optimization of
 the supply air temperature under one given condition. The single example
-is studied in detail in order to elucidate the various competing
+is studied in detail to elucidate the various competing
 components impacting the total power required to satisfy the building
 loads. 
 
@@ -139,7 +139,7 @@ energy cost. The following analysis assumes the fan power uses
 electricity, the cooling is from district chilled water, and the reheat
 is from district hot water, and the prices are those from the posted
 Texas A\&M Utilities and Energy Services rates for
-FY2016\footnote{https://utilities.tamu.edu/2015/08/31/cost-and-fees-for-utility-services-fy2016/}
+FY2016\footnote{https://utilities.tamu.edu/2015/08/31/cost-and-fees-for-utility-services-fy2016/}.
 The rates are 
 
 \begin{itemize}
@@ -187,7 +187,6 @@ air temperature. }
 \caption{\variationCaption{cost}}
 \label{fig:simplifiedExampleCost}
 \end{figure}
-
 
 If the mixed air temperature is reduced from \SI{80}{\degreeF} to
 \SI{65}{\degreeF}, the resulting total power function changes
@@ -258,8 +257,7 @@ other terminal unit is in a cooling mode.
 
 \subsection{Sensible Cooling Power}
 
-\newcommand{\totalFlow}{\flow{min} +
-\frac{\heatenergy{z}}{C_{a}\left(T_{z}-\sat{}\right)}}
+\newcommand{\totalFlow}{\flow{min} + \frac{\heatenergy{z}}{C_{a}\left(T_{z}-\sat{}\right)}}
 The total sensible cooling power, \(\heatenergy{c,s}\), is
 \begin{equation}\label{eq:sensiblePowerTotal}
     \heatenergy{c,s} =  C_{a} \flow{tot} \left(\mat{}-\sat{}\right)

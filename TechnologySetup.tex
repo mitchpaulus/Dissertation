@@ -103,16 +103,6 @@ There are several key advantages to a system similar to the proposed:
         different buildings. 
 \end{enumerate}
 
-The equipment can be separated by project, and a call such as
-
-\url{https://domain/GetEquipmentForProject/?ProjectId={Project-Id}}
-
-could return all the possible set up equipment.
-
-The interface for receiving the optimal setpoints could have a URL
-similar to 
-
-\url{https://domain/setpoints/?id={Equipment-Id}\&{time=Datetime}}
 
 \section{Prototype Information}
 
@@ -147,22 +137,29 @@ In Implementer, trends are given meaning through the use of
 in other systems, such as a system that implements Project Haystack. 
 
 Trends can receive labels in several ways. For trends in air handling
-units, the label can automatically be derived from the type of sensor and
-location on a schematic. A sample schematic from the NCTM project is
-shown in \figref{} \ref{fig:AHUSchematic}. For example, a temperature
-sensor that is at the outlet of the air handling unit, unaffected by any
-other temperature affecting device, is defined to have the supply air
-temperature label. 
+units, the label can automatically be derived from the type of sensor
+and location on a schematic. A sample schematic from the NCTM project is
+shown in \figref{} \ref{fig:AHUSchematic}. The different types of
+equipment such as fans, coils, and temperature sensors are placed on the
+schematic and are associated with an actual sensor. For example, a
+temperature sensor that is at the outlet of the air handling unit,
+unaffected by any other temperature affecting device, is defined to have
+the \textit{supply air temperature} label. 
 
 Labels can also be created manually. \figref{} \ref{fig:CustomLabels}
 shows how all \textit{AUX TEMP} trends from the different fan powered
 VAV (FPVAV) units are labeled as \textit{DischargeTemps}.
 
-An entire site or building is organized into containers and a
-hierarchy of components. A building container is a parent to air
-handling unit containers, and air handling unit containers are parents
-to terminal unit containers. \figref{} \ref{fig:ContainerHierarchy}
-shows a portion of the hierarchy for the NCTM project.
+An entire site or building is organized into a hierarchy of components.
+Each component is related to a \textit{container}, in which trends can
+be associated with.  A building container is a parent to air handling
+unit containers, and air handling unit containers are parents to
+terminal unit containers.  \figref{} \ref{fig:ContainerHierarchy} shows
+a portion of the hierarchy for the NCTM project. Each line in \figref{}
+\ref{fig:ContainerHierarchy} is a different container. The indentation
+indicates the relationships. By organizing trends
+into containers which have parent-child relationships, along with
+labeling, automated algorithms and analysis can easily be set up.
 
 \begin{figure}
 \centering
@@ -243,7 +240,14 @@ Any calculation from the optimization analysis can be output as a trend
 in Implementer and can be plotted and visualized using any of the tools
 available. 
 
+The equipment can be separated by project, which typically a building or
+collection of buildings, and a call such as
+\url{https://domain/GetEquipmentForProject/?ProjectId={Project-Id}}
+could return all the possible set up equipment.
 
+The interface for receiving the optimal setpoints could have a URL
+similar to 
+\url{https://domain/setpoints/?id={Equipment-Id}\&{time=Datetime}}
 
 
 

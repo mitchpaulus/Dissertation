@@ -18,9 +18,9 @@
 
 \chapter{\texorpdfstring{\MakeUppercase{Optimization Methodology}}{Optimization Methodology}}
 
-To optimize the system, the energy use from each of the components
-comprising the air-side equipment needs to be estimated. This includes fan
-energy, cooling energy, and reheat energy.
+The energy use from each of the components comprising the air-side
+equipment needs to be estimated to optimize the system. This includes
+fan energy, cooling energy, and reheat energy.
 
 The optimization problem to be solved in standard form is
 \begin{equation}
@@ -56,7 +56,7 @@ to be to total cost, rather than the total power.
 
 \section{Reheat in Terminal Units}
 
-Terminal units can be distributed into 3 classifications for this work.
+Terminal units can be distributed into three classifications for this work.
 Terminal units with no fans, series flow, or parallel flow arrangements.
 
 \subsection{No Fan in Terminal Unit}
@@ -71,7 +71,7 @@ energy use is
 \subsection{Series Flow Configuration}
 
 For a series flow terminal unit, the total flow is ideally constant.
-\(\flow{tot}\) is known from the specification of the terminal unit and
+\(\flow{tot}\) is known from the specification of the terminal unit, and
 \(\flow{pri}\) is a measured variable. \(\flow{plen}\) can be calculated from
 \eqreftext{} (\ref{eq:TotalFlow}).
 
@@ -162,7 +162,7 @@ T_{mix} = \frac{{{\priflow}\left( {\sat} \right) + \plenflow \left( {{T_{plen}}}
 \end{equation}
 
 Another rearrangement of \ref{eq:TermUnitMixedAirTemperature} that is important is
-solving for \(\flow{pri}\). Under conditions when there is no reheat and the
+solving for \(\flow{pri}\). Under conditions when there is no reheat, and the
 primary flow is not at the minimum setting, the energy balance across the
 terminal unit is
 
@@ -190,12 +190,12 @@ flow, there will be resulting reheat.
 \end{equation}
 
 
-The increase in temperature is due to heat gain from the fan and from
+The increase in temperature is due to heat gain from the fan and
 any supplementary heating.
 
 The temperature rise from the fan, \(\Delta T_{fan}\), can be estimated from
 historical data when the supplementary heating is off, either when the heating
-coil is completely closed or all stages of electrical reheat are inactive. If
+coil is completely closed, or all stages of electrical reheat are inactive. If
 there is no other heating, the temperature increase from the fan is
 %
 \begin{equation}
@@ -221,12 +221,12 @@ and the reheat energy will be
 During periods of cooling, the fan in a parallel arrangement is off and the
 total flow is equal to the primary flow.
 
-The fan volume flow will be known from manufacturers specifications and
+The fan volume flow will be known from manufacturers specifications, and
 the total flow can be calculated using \eqreftext{} \ref{eq:TotalFlow}.
 The temperature from mixing the plenum air and primary can be estimated
-from \eqreftext{} \ref{eq:TermUnitMixedAirTemperature} or from
-historical data when the primary flow is at the minimum and there are no
-activated reheat components.
+from \eqreftext{} \ref{eq:TermUnitMixedAirTemperature} or historical
+data when the primary flow is at the minimum, and there are no activated
+reheat components.
 
 \subsection{Other Terminal Unit Types}
 
@@ -461,7 +461,7 @@ part load ratios, the uncertainty in the part load ratio itself is the
 most important factor. At part load ratios near 0.5, the exponent \(n\),
 which determines the curvature is the most important. At low part load
 ratios, the uncertainty in the value of \(A\), the limiting fraction of
-part load power at 0 load, is the most important.
+part load power at no load, is the most important.
 
 At the extreme values of PLR, 0 and 1, the uncertainty from two the
 components is 0. At a PLR of 0, there is no uncertainty contribution
