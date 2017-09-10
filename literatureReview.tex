@@ -19,14 +19,14 @@
 A significant amount of research has been completed in the field of
 control optimization schemes. Several different approaches including
 direct search methods, non-linear programming, genetic algorithms, and
-artificial neural networks have been suggested. Optimizations have been
+artificial neural networks have been researched. Optimizations have been
 completed at all levels of the HVAC system: Zone, AHU, and Plant.  
 
 When discussing optimization, it is important to be clear on what is
 meant by \textit{Controls Optimization}. When discussing the subject
 with a controls engineer, they will likely be analyzing parameters such
 as the settling time, overshoot, and rise time --- dynamic parameters.
-In contrast, this research focused more on the optimization of the
+In contrast, this research focused on the optimization of the
 \textit{steady-state} behavior of the system. 
 
 
@@ -46,7 +46,7 @@ the time constant of the thermal loads on the building are on the order
 of minutes to hours, it is appropriate to focus on the steady state
 behavior of AHUs \cite{Bourdouxhe1998}.
 
-Ke and Mumma among the first to attempt to balance the benefits of
+Ke and Mumma were among the first to attempt to balance the benefits of
 raising the supply air temperature with the penalties associated with
 increased fan energy and decreased dehumidification potential
 \cite{Ke1997OptimizedSystems}. This paper was limited in the fact that
@@ -55,20 +55,21 @@ showed that optimizing the balance between fan, cooling, and reheat
 energy resulted in approximately 6\% energy savings annually versus a
 fixed supply air temperature setpoint. They showed that the benefit was
 most promising in the more temperate weather when the VAV system was
-running above the minimum primary airflow. The proposed work would not only
-be optimizing the supply air temperature, but also the fan static pressure setpoint.   
+running above the minimum primary airflow. Ideally, the fan static
+pressure pressure setpoint would be optimized in conjunction with the
+supply air temperature as well. 
 
 Wang and Song also balanced supply air temperature with fan power and
 included economizer control \cite{Wang2012AirCycles}. They found energy
 savings reaching up to 90\% under the specific outdoor air conditions
 and space loads in their simulation. The universal control sequence they
 proposed relied on an outside air temperature sensor, supply air
-temperature sensor, and supply air flow sensor. A limitation of this
-work was the assumption that the terminal units did not have reheat. It
-is well known though that terminal unit reheat energy can be a
-significant contributor to energy consumption and the reduction of
-reheat is often the source of significant energy and money savings in
-existing building commissioning.  
+temperature sensor, and supply air flow sensor. A hindering assumption
+was that the terminal units did not have reheat. It is well known that
+terminal unit reheat energy can be a significant contributor to the
+total energy consumption and the reduction of reheat is often a source
+of significant energy and money savings in existing building
+commissioning.  
 
 Qin completed a dissertation in 2014 entitled, ``A Data-Driven Approach
 for System Approximation and Set Point Optimization, With a Focus in
@@ -86,12 +87,12 @@ Engdahl and Johansson also devoted investigation into the optimization
 of the supply air temperature setpoint in a VAV system
 \cite{Engdahl2004}, but only studied AHUs with 100\% outside air. 
 
-While the focus of this proposal is on air handling units, the research
+While the focus of this research is on air handling units, the research
 regarding the optimization of central plants should not be ignored
 \cite{Ahn2001, Yu2008OptimizingChillers}. At the plant level, Braun has
 completed a great deal of research \cite{braun1990, Braun2007RP1252,
 Braun2007HybridCooling, Braun2007GeneralControl}. He has investigated
-other optimizations, such as ones for night precooling with packaged
+optimizations of various systems, such as ones for night precooling with packaged
 rooftop systems \cite{Braun2005}. Crowther and Furlong showed that
 advanced optimization controls for chiller-tower condenser-pump systems
 could make a 5-8\% improvement in annual energy use
@@ -114,11 +115,10 @@ optimally operating HVAC system, which is not limited to
 Zheng1996,
 Ning2010Neuro-optimalSystem,Atthajariyakul2004,Cui2004,XuXinhua2009,SunZhongwei2011,Mumma1997EnergyControl,Mossolly-Ghali-Ghaddar_2009_Energy}.
 Wang and Ma provided a comprehensive review of supervisory control
-research \cite{Wang2008}. This literature is limited in
-regards to efficient methods of rapid implementation. The proposed
-research also presents a different optimization methodology that focuses
-on the use BAS trend data paired with small, calibrated, first-principle
-models. 
+research \cite{Wang2008}. The literature is limited in regards to
+efficient methods of rapid implementation. This research also presents a
+different optimization methodology that focuses on the use BAS trend
+data paired with first-principle models. 
 
 
 
@@ -212,7 +212,7 @@ Javascript Object Notation (JSON) \\
 Extensible Markup Language (XML)  \\
 \bottomrule
 \end{tabular}
-\caption{Important Standards/Technologies in Building Automation}
+\caption{Important standards/technologies in building automation.}
 \label{tab:CommunicationProtocols}
 \end{table}
 
@@ -240,11 +240,12 @@ relationships to one another, and other modifiers.
 Not surprisingly, the goal of any controlled system is to operate
 optimally. It is to be expected that there would be a wealth of
 literature on the optimization of all different components in a
-particular HVAC system. Any optimization problem has objectives and
-constraints. Many different objective functions and constraints to
-optimization problems in HVAC have been proposed. Numerous different
-optimization techniques and methods have been implemented and analyzed
-by different researchers. 
+particular HVAC system. 
+
+Any optimization problem has objectives and constraints. Many different
+objective functions and constraints to optimization problems in HVAC
+have been proposed. Numerous different optimization techniques and
+methods have been implemented and analyzed by different researchers. 
 
 However, there are several limitations and deficiencies in the
 optimization literature. Not all authors have focused on the scalability
@@ -253,21 +254,21 @@ implement complicated data-mining algorithms on every individual BAS or
 controller, partly due to installation time and partly due to the lack
 of facilities managers that have the necessary training to understand
 the algorithms and that can keep the system running properly. Facility
-managers already have difficulties in maintaining the most basic HVAC
-systems. 
+managers already have difficulties in maintaining traditional and
+straightforward HVAC systems. 
 
 Many of the techniques proposed in the literature also are dependent on
 sensors or information that are currently unavailable in typical
-commercial HVAC set-ups. For large-scale implementation, a methodology
-must use the minimum number of trends to complete useful optimization.
+commercial HVAC systems. For large-scale implementation, a methodology
+must function with a minimal number of sensors and remain useful.
 
 For an individual system, there are more than enough well-documented and
-effective optimization methods and algorithms. Very few buildings in
-practice have these optimizations in place because the other numerous
-challenges have not been fully solved. These challenges include
-complexity in implementing with different BAS vendors, training staff
-members to understand the logic behind the optimizations, and simply the
-technician effort to install and setup implementations.
+effective optimization methods and algorithms. Few buildings in practice
+have these optimizations in place because other numerous challenges
+have not been fully solved. These challenges include complexity in
+implementing with different BAS vendors, training staff members to
+understand the logic behind the optimizations, and simply the technician
+effort to install and setup implementations.
 
 This research proposes an intuitive optimization method based on
 small first-principle models using historical data that is
@@ -279,10 +280,12 @@ many and varied air handling units.
 \section{Typical Trends Available from Commissioning Projects}
 
 Unfortunately, at the current time, it is uncommon to have all the
-explicit sensors available for all portions of the HVAC system.  It is
-rare to have the capability to sub-meter the energy use of all the
-individual components including the fans, cooling coils, and heating
-coils. 
+sensor data trended for all portions of the HVAC system.  It is rare to
+have the capability to sub-meter the energy use of all the individual
+components including the fans, cooling coils, and heating coils. This
+section investigates what sensors have been typically available from
+existing building commissioning and provides suggestions for which
+trends are most important for energy-use breakdowns. 
 
 \subsection{Common Case}
 
@@ -297,7 +300,7 @@ buildings.  The statistical results presented use data until April 13,
 \ref{tab:PointBreakdown} gives the percentage breakdown of the types of
 points that we have seen in current Implementer projects. Note that due
 to special Implementer considerations, the occurrence percentage
-should not be evaluated directly (due to some projects not being
+should not be evaluated in absolute terms (due to some projects not being
 properly set up at all). The relative relationship between trend types is
 the more significant result.  
 
@@ -389,7 +392,7 @@ more important for disaggregating the energy end uses.
 
 It can normally be assumed that monthly utility bills are available.
 Having a smaller time interval on the utility data can also aid
-significantly in the calibration. Daily data can help aid in
+significantly in calibration. Daily data can help aid in
 discriminating weekday/weekend profiles, while hourly data can aid in
 exposing the diurnal cycle of the building. 
 
@@ -409,12 +412,12 @@ fan power. With the design flow values from mechanical drawings,
 fractional power curves based on part-load ratio can be used to estimate
 the fan energy use. 
 
-The cooling energy that results from the chiller/HVAC equipment can be
-estimated from the air-side energy balance across the cooling coils
-(assuming that this building is not using individual fan coil units or
-rooftop units). The cooling energy is related to the supply air flow,
-mixed air temperature, and supply air temperature. It is also related to the mixed
-air humidity. 
+%The cooling energy that results from the chiller/HVAC equipment can be
+%estimated from the air-side energy balance across the cooling coils
+%(assuming that this building is not using individual fan coil units or
+%rooftop units). The cooling energy is a function of the supply air flow,
+%mixed air temperature, and supply air temperature. It is also a function
+%of the mixed air humidity. 
 
 
 \subsubsection{Cooling Energy} 
@@ -459,17 +462,17 @@ five years of Implementer projects.
 
 \subsubsection{Reheat Energy}
 
-Unless the building has some other large hot water end uses, much of the
-natural gas use will be directly related to heating/reheat. Electricity
-use will then be distributed between lights and non-HVAC equipment,
-fans, along with chiller/HVAC equipment. 
+Unless the building has some other large hot water end uses, if the
+building consumes natural gas, much of this will be directly related to
+heating/reheat. Electricity use will then be distributed between lights
+and non-HVAC equipment, fans, along with chiller/HVAC equipment. 
 
 If the building is heated using natural gas, the natural gas consumption
 can be an adequate indicator of the level of reheat use in the building.
-At the current time, trending all the data from terminal units is
-uncommon. The sensors are typically available. However the number of
+At the current time, trended data from all terminal unit points is
+uncommon. The sensors are typically available, however, the number of
 terminal units and a large amount of data to be handled are issues that
-cause projects to decline to pursue the collection of the terminal unit
+cause persons to decline to pursue the collection of the terminal unit
 data.
 
 Having the supply air temperature and supply air flow is important
@@ -477,24 +480,23 @@ because it not only helps fix the parameters for the cooling energy end
 use at the AHU but also the parameters for estimating reheat in the
 terminal units. If the terminal units are aggregated together, with the
 knowledge of the total flow and supply air temperature, along with
-potentially having measured natural gas use, the only parameter left is
-the discharge temperature to the zones. 
+potentially having measured natural gas use, the only parameter left to
+estimate reheat is the discharge temperature to the zones. 
 
 \subsubsection{Prioritization} \label{sec:Prioritization}
 The following sensors, in no particular order, are the most useful with
 regards to energy modeling and determining the energy use breakdown. 
 \begin{itemize}
 \item Supply air temperature -- This parameter is crucial in estimating both the sensible cooling energy and the reheat energy of the system. 
-\item Fan Power -- Directly returns the energy end use for fans.
+\item Fan power -- Directly returns the energy end use for fans.
 \item Supply air flow -- A key parameter in estimating the flow both at the AHU and the total of which is going to the terminal units, affecting both the cooling and reheat energy end uses.
 \item Outdoor air flow -- Important in fixing the ventilation load at the AHU.
 \item Terminal unit flows -- Helps set the minimum primary air flow parameter, a sensitive parameter affecting the reheat. 
 \item Terminal unit discharge temperatures -- Aids the estimation of
-    zone reheat. Although this trend may not be as useful if the
-    terminal units bring in plenum air for mixing. 
+    zone reheat. 
 \item Space temperature -- Defines the zone temperatures. 
 \item Mixed air temperature -- Aids in the determination of the sensible
-    and latent cooling load and estimation of the outdoor air fraction
+    and latent cooling load and estimation of the outdoor air fraction.
 \item Return air temperature -- Aids in the estimation of the outdoor air fraction or ventilation load.
 \item VSD speed, VFD frequency, etc. -- Indicator of the part-load ratio for the equipment, which may be used in the estimation of fan energy. 
 \item Preheat Temperature -- Sets this parameter in the model, aiding in the estimation of the heating end uses.
@@ -514,7 +516,7 @@ Sensors that may be of medium usefulness:
     under conditions of control overrides or other faults.
 \item Return air relative humidity -- May be an indicator of the level of latent load in the building. If the return air absolute humidity levels are relatively dry, the latent load may be zero or negligible. 
 \item Outdoor air temperatures -- In some circumstances, the temperature
-    of the fresh air may differ from the outdoor air temperature in the
+    of the ventilation air may differ from the outdoor air temperature in the
     local community, in which the local measurement will be a better
     indicator of the temperature of the air that is entering the AHU
     from the outdoors. However, the local weather station measurements
@@ -525,9 +527,9 @@ Sensors that may be of medium usefulness:
 
 Sensors that are commonly trended and are not useful for estimating the energy use breakdown of a building:
 \begin{itemize}
-\item Return air CO\(_2\) -- Not directly related to measuring the energy use.
+\item Return air CO\(_2\) -- Not directly related to estimating the energy use.
 \item Damper commands -- Since duct layout and fluid flow models are not feasible, the damper commands do not provide information towards the calculation of the energy use. 
-\item Chilled water valve/Hot water valve -- It is the actuator for controlling the supply air temperature, but does not provide information related to energy use.
+\item Chilled water valve/hot water valve -- It is the actuator for controlling the supply air temperature, but does not provide information related to energy use.
 \end{itemize}
 
 

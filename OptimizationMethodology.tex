@@ -62,7 +62,7 @@ Terminal units with no fans, series flow, or parallel flow arrangements.
 \subsection{No Fan in Terminal Unit}
 
 If there is no fan and only a damper for air volume modulation, then the reheat
-energy use is
+power is
 
 \begin{equation} \label{eq:ReheatEnergy}
     {\dot E_{reheat}} = \sum\limits_i {{\flow{i}}\rho_a c_{p,a}\:\left( {{T_{i,dis}} - {T_{i,sa}}} \right)}
@@ -142,7 +142,7 @@ table[x=RoomTemp,y=Tdischarge,col sep=tab]{SeriesFanPlot.dat};
 ) {Cooling};
 \end{axis}
 \end{tikzpicture}
-\caption{Example Series Terminal Unit Flow Operation}
+\caption{Example series terminal unit flow operation.}
 \label{fig:SeriesFlow}
 
 \end{figure}
@@ -210,7 +210,7 @@ For other times, the temperature increase due to reheat will be
 \Delta {T_{reheat}} = {T_{dis}} - \left( {\Delta {T_{fan}} + {T_{mix}}} \right),
 \end{equation}
 %
-and the reheat energy will be
+and the reheat power will be
 %
 \begin{equation}
 {\dot Q_{reheat}} = {\dot V_{tot}}{\rho _a}{c_{p,a}}\left( {\Delta {T_{reheat}}} \right).
@@ -221,7 +221,7 @@ and the reheat energy will be
 During periods of cooling, the fan in a parallel arrangement is off and the
 total flow is equal to the primary flow.
 
-The fan volume flow will be known from manufacturers specifications, and
+The fan volume flow will be known from manufacturers' specifications, and
 the total flow can be calculated using \eqreftext{} \ref{eq:TotalFlow}.
 The temperature from mixing the plenum air and primary can be estimated
 from \eqreftext{} \ref{eq:TermUnitMixedAirTemperature} or historical
@@ -235,47 +235,8 @@ in this document, induction units being one example. Models can be made
 using a combination of energy balances, historical data under particular
 conditions, and appropriate assumptions.
 
-\section{Required Sensors}
 
-The discharge air temperature from terminal units is a required sensor
-that currently is unavailable in many buildings.  \tableref{}
-\ref{tab:NecessarySensors} lists the minimum set of sensors required.
-
-%The sensors that are least likely to be available are the static
-%pressure at the fan and the discharge air temperature from each terminal
-%unit.
-
-\begin{table}
-\centering
-\begin{tabular}{l l}
-\toprule
-
-Level & Sensor \\
-\midrule\midrule
-\multirow{2}{*}{Weather} & Outdoor Air Temperature \\
- & Outdoor Dew Point Temperature \\
-
- \midrule
-
-\multirow{6}{*}{AHU}              & Supply Air Temperature      \\
-                                  & Mixed Air Temperature       \\
-                                  & Fan Power                   \\
-                                  & VFD Command                 \\
-                                  & Static Pressure at Fan      \\
-                                  & Static Pressure for Control \\
-\midrule
-\multirow{4}{*}{Terminal Units}   & Primary Air Flow Rate       \\
-                                  & Discharge Air Temperature   \\
-                                  & Primary Damper Position     \\
-
-\bottomrule
-
-\end{tabular}
-\caption{Necessary Sensors}
-\label{tab:NecessarySensors}
-\end{table}
-
-\section{Predicting Zone Loads}
+\section{Predicting Zone Loads}\label{sec:PredictingZoneLoads}
 
 The zone loads can be estimated from terminal unit data of airflow rate,
 terminal unit leaving temperature and zone temperature. Note that using
@@ -290,9 +251,9 @@ a point source, and as such we will have to rely on this estimation.
 The independent variables available for prediction are the current time
 and outdoor air conditions. The current time can be separated into a
 time of day, the day of the week, weekdays/weekends and such. Outdoor air
-temperature correlates with the external load. As a reminder, this
-approach does not have access to live values of sensors and only relies
-on historical data.
+temperature correlates with the external load. As a reminder, 
+it is assumed that there is no access to live values of sensors and only
+historical data with the outdoor conditions and current time can be used.
 
 The approach used to estimate parameters is a related to the concept of
 a \textit{nearest neighbor}. The nearest neighbors are defined by any
@@ -302,9 +263,8 @@ previous data that:
     \item Was within \(n\) hours of the time of day, specified as
         plus or minus a certain number of integer time steps relating to
         the time interval between the data points.
-\item Was the same day of the week
-\item Had a corresponding \(T_{db}\) that is within a specified
-    threshold (say \SI{1}{\degreeF} of the current \(T_{db}\)).
+\item Was the same day of the week.
+\item Had the same \(T_{db}\) within a specified threshold (say \SI{1}{\degreeF} of the current \(T_{db}\)).
 \end{enumerate}
 
 The median value of the nearest neighbors can be used to estimate the
@@ -314,10 +274,11 @@ that up to 50\% of the data can be contaminated before the median statistic
 will no longer be reliable. For the mean, one arbitrarily large data point can
 turn the mean statistic unreliable.
 
-This work initially used the most recent 30 data points in the median
-calculation. A threshold of 30 points was chosen since this is the
-threshold in which the sample median should approximate the actual
-median if the population is assumed to have a normal distribution.
+This work initially used the most recent 30 data points that met the
+nearest neighbor criterion in the median calculation. A threshold of 30
+points was chosen since this is the threshold in which the sample median
+should approximate the actual median if the population is assumed to
+have a normal distribution.
 
 It is advised that in this approach, that the initial historical data be sorted
 in order of temperature, followed by the date time.  The lookup for the
@@ -337,8 +298,7 @@ zone loads.
 If the sensible zone load is described as an open system with a constant specific
 heat, then
 \begin{equation}
-    \dot{Q}_{zone} =  \frac{\flow{zone}}{\nu} c_{air} \left(T_{room} -
-    T_{sup}\right)
+    \dot{Q}_{z} =  \frac{\flow{zone}}{\nu} c_{air} \left(T_{z} - T_{dis}\right)
 \end{equation}
 %where \(\flow{zone}\) is in units of CFM, \(\nu\) is in
 %\si{\feet\cubed\per\pound}, \(c_{air}\) is in
@@ -347,18 +307,19 @@ heat, then
 
 The total uncertainty in the prediction will be
 \begin{equation}
-    \delta \dot{Q}_{zone} = c_{air} \sqrt{ \left( \frac{\left(T_{room} - T_{sup}\right)}{\nu} \delta \flow{} \right)^2 
-    + \left( \frac{- \left(T_{room} - T_{sup}\right) \flow{}}{\nu^{2}} \delta \nu \right)^{2}  
-+ \left( \frac{\flow{}}{\nu} \delta T_{room}\right)^{2}
-+ \left(\frac{-\flow{}}{\nu} \delta T_{sup}\right)^{2}
+    \delta \dot{Q}_{z} = c_{air} \sqrt{ \left( \frac{\left(T_{z} -
+        T_{dis}\right)}{\nu} \delta \flow{} \right)^2 
+    + \left( \frac{- \left(T_{z} - T_{dis}\right) \flow{}}{\nu^{2}} \delta \nu \right)^{2}  
++ \left( \frac{\flow{}}{\nu} \delta T_{z}\right)^{2}
++ \left(\frac{-\flow{}}{\nu} \delta T_{dis}\right)^{2}
 }
 \end{equation}
 For the sake of analysis, the following reasonable parameters were assumed:
 \begin{enumerate}
-    \item \(T_{room} = \SI{72}{\degF} \)
-    \item \(T_{sup} = \SI{55}{\degF} \)
+    \item \(T_{z} = \SI{72}{\degF} \)
+    \item \(T_{dis} = \SI{55}{\degF} \)
     \item \(\nu = \SI{13.5}{\feet\cubed\per\poundMass}\)
-    \item \(\delta T_{room} = \delta T_{sup} = \SI{1}{\degF}\)
+    \item \(\delta T_{z} = \delta T_{dis} = \SI{1}{\degF}\)
     \item \( \delta \nu = \SI{1}{\feet\cubed\per\poundMass} \)
 \end{enumerate}
 
@@ -371,13 +332,13 @@ uncertainty in the flow, it becomes the dominant source of uncertainty.
 
 
 %\begin{equation}
-    %\delta \dot{Q}_{zone} = \sqrt{\frac{3600 c^2 {\delta \nu}^2 V^2
-    %(T_{room}-T_{zone})^2}{\nu ^4}+\frac{3600 c^2
-    %{\delta T_{room}}^2 V^2}{\nu ^2}+\frac{3600 c^2 {\delta T_{sup}}^2
+    %\delta \dot{Q}_{z} = \sqrt{\frac{3600 c^2 {\delta \nu}^2 V^2
+    %(T_{z}-T_{z})^2}{\nu ^4}+\frac{3600 c^2
+    %{\delta T_{z}}^2 V^2}{\nu ^2}+\frac{3600 c^2 {\delta T_{dis}}^2
        %V^2}{\nu ^2}+\frac{3600 c^2
-       %{\delta \flow{}}^2 (T_{room}-T_{zone})^2}{\nu ^2}+\frac{3600
+       %{\delta \flow{}}^2 (T_{z}-T_{z})^2}{\nu ^2}+\frac{3600
        %{\delta c}^2 V^2
-             %(T_{room}-T_{zone})^2}{\nu ^2}}
+             %(T_{z}-T_{z})^2}{\nu ^2}}
 %\end{equation}
 
 \begin{figure}
@@ -410,11 +371,11 @@ where \(A\) is the fraction of power at zero load, \(n\) is an exponent
 typically ranging from 1 to 3, and PLR is the part load
 ratio defined to be
 \begin{equation}
-    \text{PLR} = \frac{\flow{act}}{\flow{design}}
+    \text{PLR} = \frac{\flow{act}}{\flow{des}}
 \end{equation}
 The actual fan power at any point is then
 \begin{equation}
-    \power{act}  = F \power{design}
+    \power{act}  = F \power{des}
 \end{equation}
 The uncertainty of \(F\) can be explored with the Kline-McClintock
 formulation.
@@ -465,9 +426,9 @@ part load power at no load, is the most important.
 
 At the extreme values of PLR, 0 and 1, the uncertainty from two the
 components is 0. At a PLR of 0, there is no uncertainty contribution
-from the exponent and PLR terms, and uncertainty from the \(A\) term. At
+from the exponent and PLR terms, and only uncertainty from the \(A\) term. At
 a PLR of 1, there is no uncertainty contribution from the exponent and
-the constant \(A\) terms, but uncertainty in the PLR term. 
+the constant \(A\) terms, but only uncertainty in the PLR term. 
 
 So to reduce the total uncertainty across all ranges of part load ratios
 will require better knowledge of all the input variables.
@@ -528,13 +489,13 @@ This would put the maximum uncertainty in \(F\) to about 0.04.
 \section{Fan Modeling}\label{sec:FanModeling}
 
 Fan energy is a significant component of the air side energy use for air
-conditioning. Fan static pressure, flow, speed, and power would ideally
+conditioning. Ideally, fan static pressure, flow, speed, and power would
 all be measured.  The total primary air flow can either be measured
 directly (ideal) or estimated from the sum of the terminal
 unit flows. With this information, a complete set of fan curves can be
 created.
 
-Without all the sensors it is difficult to create a first-principle based model
+Without all these sensors it is difficult to create a first-principle based model
 of the air-side equipment. Statistical techniques would be necessary to relate
 the speed of the fan, \(\dot N\), and the damper positions,
 \(\damp{i,damper}\).
@@ -546,7 +507,7 @@ result given the following setup.
 Estimating the system pressure loss for particular conditions is
 necessary for determining the potential fan energy at different speeds.
 The node layout of the terminal units will need to be created. If the air
-flow through each terminal unit is measured the flow through each
+flow through each terminal unit is measured, the flow through each
 portion of the duct work can be estimated.
 
 The first methodology developed attempted to break the air side pressure
@@ -604,8 +565,8 @@ in each duct section will be proportional to a constant and the flow
 through the section squared. Figure \ref{fig:flowVersusDamperPos} shows
 the typical types of responses for a damper or valve.
 
-At a given pressure drop, if the damper is fully open, ``full flow''
-will result. 
+Looking at the pressure drop through the dampers, at a given pressure
+drop, if the damper is fully open, ``full flow'' will result. 
 \begin{equation}\label{eq:PressureDrop}
     \Delta P_{\text{fan}} = C_{\text{full flow}}\left(\flow{\text{full flow}}\right)^2
 \end{equation}
@@ -653,9 +614,10 @@ relationships like the following
                     &= C_1 \left(\flow{1}+\flow{2}+\flow{3} \right)^2 + C_3\left(\flow{2}+\flow{3} \right)^2 + C_5\flow{3}^2 + \frac{C_6}{\damp{3}^2}\flow{3}^2
 \end{align}
 
-With historical data, the terminal unit flows and the
-damper positions in the unit are known at each timestep. There are 3 equations with 6
-unknowns, however, and the problem becomes underconstrained.
+With historical data, the terminal unit flows and the damper positions
+in the unit are known at each timestep. There are 3 equations with 6
+unknowns (unknowns being \(C_{1}\) through \(C_{6}\)), however, and the
+problem becomes underconstrained. 
 
 A calibration for the pressure drop coefficients is possible. If the sum
 of the standard deviations between the three equations is used to
@@ -680,21 +642,22 @@ examined.
 
 
 \begin{equation}\label{eq:PartLoadRatio}
-    \dot{W}_{\text{fan}} = \dot{W}_{\text{design}} \left(\text{PLR}\right)^n
+    \dot{W}_{\text{fan}} = \dot{W}_{\text{des}} \left(\text{PLR}\right)^n
 \end{equation}
 
 Later work also included a constant bias at zero load, having the form
 \begin{equation}
-    \dot{W}_{\text{fan}} = \dot{W}_{\text{design}} \left(A +
+    \dot{W}_{\text{fan}} = \dot{W}_{\text{des}} \left(A +
     \left(1-A\right)\text{PLR}^{n}\right)
 \end{equation}
 
 \section{Predicting the Mixed Air Temperature}
 
 The mixed air temperature is the third most common temperature sensor in
-air handling units based on the data available in Implementer
-(see \tableref{} \ref{tab:PointBreakdown}). In most cases, the nearest-neighbor
-approach can be applied directly to the mixed air temperature trend.
+air handling units based on the data available in Implementer (see
+\tableref{} \ref{tab:PointBreakdown}). In most cases, the nearest
+neighbor approach can be applied directly to the mixed air temperature
+trend.
 
 If a sensor is not available, it is possible to estimate the mixed air
 temperature using an energy balance approach with the outdoor air temperature,
@@ -753,7 +716,7 @@ outdoor and return air flows.
 %% \begin{equation}\label{eq:KimlaFanPower}
 %% \frac{\dot{W}}{\dot{W}_{rated}} = 0.0013+0.147\left(PLR \right)+0.9506\left(PLR \right)^2-0.0998\left(PLR \right)^3
 %% \end{equation}
-%% where \(PLR\) is defined as \(\frac{\flow{}}{\flow{\text{design}}}\).
+%% where \(PLR\) is defined as \(\frac{\flow{}}{\flow{\text{des}}}\).
 %%
 %% Since we are going to be using the gradient of this function, it is
 %% desired to reduce the order to the polynomial from 3 to 2. The
@@ -763,17 +726,17 @@ outdoor and return air flows.
 %% \frac{\dot{W}}{\dot{W}_{rated}} = 0.21\left(PLR \right)+0.8\left(PLR \right)^2
 %% \end{equation}
 %%
-%% The total energy is the combination of fan, cooling, and reheat energy.
+%% The total energy is the combination of fan, cooling, and reheat power.
 %% If there are \(n\) terminal units, the total energy can be written as
 %% \begin{multline}\label{eq:totalEnergy}
-    %% \energy=\dot{W}_{rated}\;0.8 \left(\frac{\flowsum}{\flow{\text{design}}} \right)^2 + \dot{W}_{rated}\;0.21 \left(\frac{\flowsum}{\dot{V}_{design}} \right)\\
+    %% \energy=\dot{W}_{rated}\;0.8 \left(\frac{\flowsum}{\flow{\text{des}}} \right)^2 + \dot{W}_{rated}\;0.21 \left(\frac{\flowsum}{\dot{V}_{des}} \right)\\
 %% +1.08\left(\flowsum \right)\left(T_{ma}-T_{sa} \right)\\
 %% +1.08\left(\flow{1} \right)\left(T_{z,1}-\frac{\dot{Q}}{1.08\; \flow{1}} -T_{sa}\right) +1.08\left(\flow{2} \right)\left(T_{z,2}-\frac{\dot{Q}}{1.08\; \flow{2}} -T_{sa}\right)\\
 %% +\ldots+1.08\left(\flow{n} \right)\left(T_{z,n}-\frac{\dot{Q}}{1.08\; \flow{n}} -T_{sa}\right)
 %% \end{multline}
 %% The first line is related to the fan energy, the second line is related
 %% to the cooling load at the air handling unit, and the last two lines
-%% relate to reheat energy use.  This function \ref{eq:totalEnergy} is
+%% relate to reheat power use.  This function \ref{eq:totalEnergy} is
 %% minimized under the constraints
 %% \begin{align}
     %% V_{min}&\leq \flow{1}, \flow{2}, \ldots \flow{n} \\
@@ -784,8 +747,8 @@ outdoor and return air flows.
 %%
 %% The partial derivatives of \ref{eq:totalEnergy} are
 %% \begin{multline}
-    %% \pdv{\dot{E}}{V_i}=\frac{\dot{W}_{design}\;1.6}{\flow{design}^2} \left(\flowsum \right)\\
-    %% +\frac{0.2\;\dot{W}_{design}}{\dot{V}_{design}}+ 1.08\left(\mat+T_{z,i} -2T_{sa}\right)
+    %% \pdv{\dot{E}}{V_i}=\frac{\dot{W}_{des}\;1.6}{\flow{des}^2} \left(\flowsum \right)\\
+    %% +\frac{0.2\;\dot{W}_{des}}{\dot{V}_{des}}+ 1.08\left(\mat+T_{z,i} -2T_{sa}\right)
 %% \end{multline}
 %% \begin{equation}
     %% \pdv{\dot{E}}{\sat}=-2.16\left(\flowsum \right)
@@ -796,7 +759,8 @@ outdoor and return air flows.
 Since the system is not expected to determine semi-optimal
 control setpoints at small time intervals, say less than a second, it is
 plausible that a straightforward, brute-force approach would be
-appropriate.  The brute-force approach has several advantages including
+appropriate to determine the optimal supply air temperature.  The
+brute-force approach has several advantages including
 \begin{enumerate}
         \item Straightforward to program and debug
         \item Robust to small changes in energy prediction algorithm
@@ -824,7 +788,7 @@ inputs are listed in \tableref{} \ref{tab:RequiredInputsForAHUs} and
     Mixed Air Temperature          & \(\mat{}\)        & Nearest Neighbor \\
     Fan Exponent                   & \(n\)             & Constant         \\
     Design Fan Power               & \(\dot{W}_{fan}\) & Specifications   \\
-    Design Fan Flow                & \(\flow{design}\) & Specifications   \\
+    Design Fan Flow                & \(\flow{des}\)    & Specifications   \\
     Fan Curve Constant             & \(A\)             & Constant         \\
     Minimum Supply Air Temperature & \(T_{sa,min}\)    & Constant         \\ \bottomrule
 \end{tabular}
@@ -845,7 +809,7 @@ inputs are listed in \tableref{} \ref{tab:RequiredInputsForAHUs} and
 \end{table}
 
 
-The algorithm described assumes a series fan powered terminal unit. For
+The algorithm described assumes series fan powered terminal units. For
 other types of terminal units, the method follows similarly. 
 
 \begin{enumerate}
@@ -864,27 +828,28 @@ other types of terminal units, the method follows similarly.
         particular zone would not have sufficient cooling capacity. 
     \item For each \(\sat{}\) ranging from \(T_{sa,min}\) (which is
         chosen prior by the user) to the maximum \(T_{sa,max}\) just
-        calculated, using 1/8\(^{\circ}\)F step size, calculate total
-        power
+        calculated, using a reasonable step size (say 1/8\(^{\circ}\)F),
+        calculate the total power of the system using the following
+        steps.
     \item For each terminal unit, calculate the primary air flow required
     \begin{equation} \flow{pri, req} = \zoneTotalFlow \left( \frac{T_{plen} - \dat }{T_{plen} - \sat} \right) \end{equation}
-    \item Calculate actual primary airflow
+    \item Calculate the actual primary airflow
         \begin{equation}\label{eq:PrimaryFlowRequired}
             \flow{pri} = \text{MAX}\left(\flow{pri,req}, \flow{pri,min}  \right)
         \end{equation}
-    \item Calculate reheat for each terminal unit using energy balance
+    \item Calculate reheat power for each terminal unit using an energy balance
         \begin{equation}\label{eq:reheatPerZone}
             \dot{Q}_{reheat} = \heatCapacity \left(\flow{tot} T_{dis} -
             \flow{pri} \sat{} - \flow{plen} T_{plen}\right)  
         \end{equation}
-    \item Calculate cooling power using cooling coil energy balance
+    \item Calculate cooling power using a cooling coil energy balance
         \begin{equation}\label{eq:TotalCoolingPower}
             {\dot Q_{cooling}} = {\flow{supply}}\,\heatCapacity\:\left(
             {{\mat{}} - {\sat}} \right) + h_v\rho_a{\flow{supply}}\:\left( {{\omega _{ma}} - {\omega _{sa}}} \right)
         \end{equation}
     \item Calculate fan power using part load ratio curve
         \begin{equation}\label{eq:TotalFanPower}
-            \dot{W}_{fan} = \left[A + \left(1-A\right)\left(\frac{\flow{pri,tot}}{\flow{design}}\right)^{n}\right] \dot{W}_{fan,design} 
+            \dot{W}_{fan} = \left[A + \left(1-A\right)\left(\frac{\flow{pri,tot}}{\flow{des}}\right)^{n}\right] \dot{W}_{fan,design} 
         \end{equation}
     \item Calculate total power 
         \begin{equation}\label{eq:TotalPowerSystem}
@@ -895,7 +860,7 @@ other types of terminal units, the method follows similarly.
 \begin{algorithm}
 \SetAlgoLined
 Need the following information for the AHU\par
-\KwData{\(\mat{}\), \(n\), \(\power{fan,design}\), \(\flow{design}\), \(A\)}
+\KwData{\(\mat{}\), \(n\), \(\power{fan,design}\), \(\flow{des}\), \(A\)}
 For each terminal unit, will need the following information \par
 \KwData{\(\flow{z,tot}\), \(\flow{pri,min}\), \(T_{z}\), \(T_{plen}\), \(\heatenergy{z}\) }
 \KwResult{Optimal \(\sat{}\)}
@@ -914,13 +879,13 @@ For each terminal unit, will need the following information \par
 }
 
 
-\caption{Algorithm to determine optimal \(\sat{}\)}
+\caption{Algorithm to determine optimal \(\sat{}\).}
 \end{algorithm}
 
 
-The brute-force approach was taken in the prototype code. In future implementations,
-improvements could be made to the optimization approach for improved
-performance.
+The brute-force approach was employed in the prototype code. In future
+implementations, improvements could be made to the optimization approach
+for improved performance.
 
 \section{Determining the Supply Air Static Pressure Requirement}
 
@@ -944,6 +909,40 @@ pressure setpoint, then the system can slowly begin to explore until the
 desired number of data points are available. For example, the system
 could reduce the static pressure setpoint in increments of 0.1'' w.g.
 
+\section{Required Sensors}
+
+\tableref{} \ref{tab:NecessarySensors} lists the minimum set of sensors
+required. The discharge air temperature from terminal units is a required
+sensor that currently is the least likely to be available.  
+
+%The sensors that are least likely to be available are the static
+%pressure at the fan and the discharge air temperature from each terminal
+%unit.
+
+\begin{table}
+\centering
+\begin{tabular}{l l}
+\toprule
+Level & Sensor \\
+\midrule\midrule
+\multirow{2}{*}{Weather} & Outdoor Air Temperature \\
+ & Outdoor Dew Point Temperature \\ \midrule
+\multirow{1}{*}{AHU}              & Mixed Air Temperature      \\
+                                  %& Supply Air Temperature       \\
+                                  %& Fan Power                   \\
+                                  %& VFD Command                 \\
+                                  %& Static Pressure at Fan      \\
+                                  %& Static Pressure for Control \\
+\midrule
+\multirow{3}{*}{Terminal Units}  & Primary Air Flow Rate     \\
+                                 & Discharge Air Temperature \\
+                                 & Zone Temperature          \\
+                                  % & Primary Damper Position   \\
+\bottomrule
+\end{tabular}
+\caption{Necessary sensors.}
+\label{tab:NecessarySensors}
+\end{table}
 
 
 

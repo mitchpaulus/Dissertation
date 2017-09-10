@@ -26,12 +26,12 @@ legend pos=outer north east,
 clip=false,
     y label style={rotate=-90},
 ]
-\addplot+[no marks, smooth, solid] table[col sep=comma,x=Fpri,y=Vunc0]{../Data/2017-06-07-TplenUncVaryVPerc.csv};
-\addplot+[no marks, smooth, solid] table[col sep=comma,x=Fpri,y=Vunc0.04]{../Data/2017-06-07-TplenUncVaryVPerc.csv};
-\addplot+[no marks, smooth, solid] table[col sep=comma,x=Fpri,y=Vunc0.08]{../Data/2017-06-07-TplenUncVaryVPerc.csv};
-\addplot+[no marks, smooth, solid] table[col sep=comma,x=Fpri,y=Vunc0.12]{../Data/2017-06-07-TplenUncVaryVPerc.csv};
-\addplot+[no marks, smooth, solid] table[col sep=comma,x=Fpri,y=Vunc0.16]{../Data/2017-06-07-TplenUncVaryVPerc.csv};
-\addplot+[no marks, smooth, solid] table[col sep=comma,x=Fpri,y=Vunc0.2]{../Data/2017-06-07-TplenUncVaryVPerc.csv};
+\addplot+[no marks, smooth, solid, thick, black] table[col sep=comma,x=Fpri,y=Vunc0]{../Data/2017-06-07-TplenUncVaryVPerc.csv};
+\addplot+[no marks, smooth, solid, thick, red] table[col sep=comma,x=Fpri,y=Vunc0.04]{../Data/2017-06-07-TplenUncVaryVPerc.csv};
+\addplot+[no marks, smooth, solid, thick, blue] table[col sep=comma,x=Fpri,y=Vunc0.08]{../Data/2017-06-07-TplenUncVaryVPerc.csv};
+\addplot+[no marks, smooth, solid, thick, teal] table[col sep=comma,x=Fpri,y=Vunc0.12]{../Data/2017-06-07-TplenUncVaryVPerc.csv};
+\addplot+[no marks, smooth, solid, thick, magenta] table[col sep=comma,x=Fpri,y=Vunc0.16]{../Data/2017-06-07-TplenUncVaryVPerc.csv};
+\addplot+[no marks, smooth, solid, thick, brown] table[col sep=comma,x=Fpri,y=Vunc0.2]{../Data/2017-06-07-TplenUncVaryVPerc.csv};
 \addlegendentry{\(\delta \dot{V}_{perc} = 0\%\)}
 \addlegendentry{\(\delta \dot{V}_{perc} = 4\%\)}
 \addlegendentry{\(\delta \dot{V}_{perc} = 8\%\)}

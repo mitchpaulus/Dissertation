@@ -123,18 +123,11 @@ same space, one terminal unit can be experiencing a large cooling load
 \label{fig:2017-08-07-0928-BtuhrvsOADryBulbTemperatureNOAAF12}
 \end{figure}
 
-
-
-
-The optimization could not be completed for Preston Royal Library
-because of data quality issues. The data was not produced consistently
-and had long gaps during many days. In addition, a flow sensor for
-FPB-05 was constant at 0, and this issue was not resolved. 
-
 \section{Estimated Savings}
 
 Only 7 of the 14 air handling units had usable data. The estimated
-savings from this pseudo-synthetic data set was examined. Several
+savings from this pseudo-synthetic data set was examined. A portion of
+the library was able to be optimized, utilizing several
 assumptions were made in order to make the analysis possible. 
 
 \begin{itemize}
@@ -151,7 +144,7 @@ assumptions were made in order to make the analysis possible.
     be the outdoor air humidity ratio
 \begin{equation}
     \omega_{ma} = \text{MIN}\left(\omega_{oa}, 0.3 \omega_{oa} + 0.7
-    \omega_{sat}\left(\sat{}\right) \right)
+    \omega_{sa}\left(\sat{}\right) \right)
 \end{equation}
 \item The minimum flow rate percentage for the terminal units was
     assumed to be 30\%. 
@@ -159,7 +152,7 @@ assumptions were made in order to make the analysis possible.
 
 Data existed from December 1\textsuperscript{st}, 2015 to October
 22\textsuperscript{nd}, 2016. Timestamps when the air handling unit was
-off was ignored. 
+off were ignored. 
 
 Times when the actually supply air temperature was out of a reasonable
 range was also ignored. 

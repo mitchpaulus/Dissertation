@@ -111,6 +111,9 @@ The proposed system was implemented in the software tool
 Laboratory. Implementer can analyze trend data from any system that has
 an ability to store timestamp value pairs and allow access to them. 
 
+Various terms specifically related to Implementer are described in
+\tableref{} \ref{tab:ImplementerTerms}.  
+
 The current systems supported by Implementer include:
 
 \begin{itemize}
@@ -132,33 +135,56 @@ The current systems supported by Implementer include:
 Before this process can begin, the sensors will need to be mapped in a
 way that the server can understand. 
 
+\begin{table}
+\centering
+\caption{Terms specific to Implementer.}
+\label{tab:ImplementerTerms}
+
+\begin{tabular}{lp{5in}}
+\toprule
+    Term    & Description                                                                                      \\  \midrule
+    Project & Information typically related to a collection of buildings                                       \\
+    Label   & A known sensor type that can be associated with a trend, also called a tag by other software     \\
+ Container  & An item that has a collection of trends associated,
+ usually corresponding to a piece of equipment. Containers are set up into a tree
+ structure with parent-child relationships, for example, a container
+ representing an AHU would be a \textit{parent} container to a terminal
+ unit. \\ \bottomrule
+\end{tabular}
+
+\end{table}
+
 In Implementer, trends are given meaning through the use of
 \textit{Labels}. Labels are similar to the concept of tagging that is used
 in other systems, such as a system that implements Project Haystack. 
 
+Implementer stores data in \textit{projects}. A project typically is a
+collection of buildings from a campus, but could be a single building. 
+
 Trends can receive labels in several ways. For trends in air handling
 units, the label can automatically be derived from the type of sensor
-and location on a schematic. A sample schematic from the NCTM project is
-shown in \figref{} \ref{fig:AHUSchematic}. The different types of
-equipment such as fans, coils, and temperature sensors are placed on the
-schematic and are associated with an actual sensor. For example, a
-temperature sensor that is at the outlet of the air handling unit,
-unaffected by any other temperature affecting device, is defined to have
-the \textit{supply air temperature} label. 
+and location on a schematic. A screenshot of a sample schematic from the
+NCTM project is shown in \figref{} \ref{fig:AHUSchematic}. The different
+types of equipment such as fans, coils, and temperature sensors are
+placed on the schematic and are associated with an actual sensor. For
+example, a temperature sensor that is at the outlet of the air handling
+unit, unaffected by any other temperature affecting device, is defined
+to have the \textit{supply air temperature} label. 
 
 Labels can also be created manually. \figref{} \ref{fig:CustomLabels}
-shows how all \textit{AUX TEMP} trends from the different fan powered
-VAV (FPVAV) units are labeled as \textit{DischargeTemps}.
+shows a screenshot of how all \textit{AUX TEMP} trends from the
+different fan powered VAV (FPVAV) units are labeled as
+\textit{DischargeTemps}.
 
 An entire site or building is organized into a hierarchy of components.
-Each component is related to a \textit{container}, in which trends can
-be associated with.  A building container is a parent to air handling
-unit containers, and air handling unit containers are parents to
-terminal unit containers.  \figref{} \ref{fig:ContainerHierarchy} shows
-a portion of the hierarchy for the NCTM project. Each line in \figref{}
-\ref{fig:ContainerHierarchy} is a different container. The indentation
-indicates the relationships. By organizing trends
-into containers which have parent-child relationships, along with
+Each component is related to a \textit{container}, which trends can be
+associated with.  A building container is a parent to air handling unit
+containers, and air handling unit containers are parents to terminal
+unit containers.  \figref{} \ref{fig:ContainerHierarchy} shows a
+screenshot of a portion of the container hierarchy for the NCTM project.
+Each line in \figref{} \ref{fig:ContainerHierarchy} is a different
+container. The indentation indicates the relationships. By organizing
+trends into containers which have parent-child relationships, along with
 labeling, automated algorithms and analysis can easily be set up.
 
 \begin{figure}
@@ -196,7 +222,7 @@ The necessary inputs for the AHU container would be
 \begin{enumerate}
     \item Exponent for the fan curve, \(n\)
     \item Prediction function for \(\mat{}\) 
-    \item Design fan power \(\dot{W}_{design}\)
+    \item Design fan power \(\dot{W}_{des}\)
     \item Design AHU flow 
 \end{enumerate}
 For the terminal units, if a series fan powered

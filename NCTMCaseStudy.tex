@@ -312,18 +312,20 @@ FPVAV-1-11    & 30                 \\ \bottomrule
 
 \section{Analysis of the Mixed Air Temperature at the AHU}
 
-This section investigates the feasibility of estimating \(\mat\) based on
-historical data. \figref{}
-\ref{fig:AHU21MixedAirTempvsOADryBulbTemperatureNOAA} shows an example of an
-AHU in which \(\mat\) does not change significantly throughout time. \figref{}
-\ref{fig:AHU21MixedAirTempvsOADryBulbTemperatureNOAA} and
-\ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA} both show
-data spanning 90 days from March 14, 2016 to June 12, 2016. 
-
-In the case of \figref{}
+This section investigates the feasibility of estimating \(\mat\) based
+on historical data. The historical data of mixed air temperature differs
+from one air handling unit to another. \figref{}
+\ref{fig:AHU21MixedAirTempvsOADryBulbTemperatureNOAA} shows an example
+of an AHU in which \(\mat\) does not change significantly throughout
+time, having a range of approximately \SI{6}{\degreeF}, excluding a few
+outliers.  In the case of \figref{}
 \ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA}, \(\mat\) is less
-constant but still appears to be a function of \(\oat\) as a first
-order approximation. 
+constant but still appears to be a function of \(\oat\) as a first order
+approximation. \figref{}
+\ref{fig:AHU21MixedAirTempvsOADryBulbTemperatureNOAA} and
+\ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA} both show data
+spanning 90 days from March 14, 2016 to June 12, 2016. 
+
 
 
 %%These are found in Batch Plots -- Mitch Dissertation N -- 2016-06-13 1354.xlsx batch plot output. 
@@ -342,10 +344,8 @@ order approximation.
 \label{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA}
 \end{figure}
 
-
-The result of the \textit{nearest neighbor} approach is shown in \figref{}
-\ref{fig:2016-09-07-1218-AHU12MixedAirTempvsOADryBulbTemperatureNOAA} and
-\ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA-2}. The algorithm looked
+The \textit{nearest neighbor} approach was used to predict the mixed air
+temperatures. The algorithm looked
 back in history (at least a day before) under the following parameters:
 
 \begin{itemize}
@@ -355,10 +355,16 @@ back in history (at least a day before) under the following parameters:
     \item Searching backward incrementally until 30 data points found
 \end{itemize}
 
-The median of the data points matching the creiterion listed is the
-resulting predicted value. The following plots show the model fits for
-the different air handling units at NCTM. The data covers a period of
-180 days. Figures
+
+
+
+\figref{}
+\ref{fig:2016-09-07-1218-AHU12MixedAirTempvsOADryBulbTemperatureNOAA}
+and \ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA-2} show the
+results versus outdoor air temperature.  The median of the data points
+matching the criterion listed is the resulting predicted value. The
+following plots show the model fits for the different air handling units
+at NCTM. The data covers a period of 180 days. Figures
 \ref{fig:2016-09-07-1218-AHU12MixedAirTempvsOADryBulbTemperatureNOAA}
 and \ref{fig:AHU13MixedAirTempvsOADryBulbTemperatureNOAA-2} show that
 the prediction algorithm can adequately handle the differences from when
@@ -460,23 +466,24 @@ minutes, \(\pm\SI{3}{\degF}\) for \(T_{oa}\), and 15 data points. The
 worst case was using \(\pm\)15 minutes, \(\pm \SI{1}{\degF}\), and 30
 data points. 
 
-The model was insensitive to the parameters. Because Fahrenheit is not on
-a ratio scale, that is, having a meaningful zero, the typical
-goodness-of-fit parameter, the coefficient of variation of the root mean
-squared error (RMSE), has less meaning.  Therefore, instead of using the
-mean as the normalization parameter in the CV-RMSE metric, the range or
-the spread of the original data was used. It is denoted as CV-RMSE* for
-the remainder of this document. 
+ Because Fahrenheit is not on a ratio scale, that is, having a
+ meaningful zero, the typical goodness-of-fit parameter, the coefficient
+ of variation of the root mean squared error (RMSE), has less meaning.
+ Therefore, instead of using the mean as the normalization parameter in
+ the CV-RMSE metric, the range or the spread of the original data was
+ used. It is denoted as CV-RMSE* for the remainder of this document. 
 
 \begin{equation}\label{eq:CVRMSEStar}
 \text{CV-RMSE*} = \frac{\text{RMSE}}{y_{max}-y_{min}}
 \end{equation}
 
-
-The average CV-RMSE* ranged from 8.97\% to 10.75\%. The models with the
-lowest CVs had the largest range in the timestamp and \(T_{oa}\)
-threshold. This observation is an indication that using more recent data
-was more valuable than using data from conditions matching more closely. 
+The model was insensitive to the parameters.  The average CV-RMSE*
+ranged from 8.97\% to 10.75\%. The models with the lowest CVs had the
+largest range in the timestamp and \(T_{oa}\) threshold. This
+observation is an indication that using more recent data was more
+valuable than using data from conditions matching more closely, though
+the more important fact was that the overall difference from highest to
+lowest CV-RMSE* was only 1.78 percentage points. 
 
 A graphical view of the results in order of the best set parameters to
 the worst set of parameters is shown in \figref{}
@@ -548,22 +555,25 @@ parameters used in predicting mixed air temperature. }
 
 \section{Analysis of the Plenum Air Temperature}
 
-Under certain assumptions, an estimation for the plenum air temperature
-for the series fan powered terminal units is possible. If the terminal
-unit is modeled as a simple mixing problem, with negligible impact from
-the fan, the plenum air temperature will be 
-\begin{equation}
-    T_{plenum}=\frac{\flow{tot}T_{dis}-\flow{pri}\sat{}}{\flow{tot} -\flow{pri}}
+Reheat is a major component of energy use, and for a series fan powered
+box, the plenum air temperature is required to calculate the reheat
+power.  This section analyzes the estimation of the plenum air
+temperature and the corresponding uncertainty.  If the terminal unit is
+modeled as a simple mixing problem, with negligible impact from the fan,
+the plenum air temperature will be 
+\begin{equation}\label{eq:PlenumTemperatureSimpleMixing}
+    T_{plen}=\frac{\flow{tot}T_{dis}-\flow{pri}\sat{}}{\flow{tot} -\flow{pri}}
 \end{equation}
 
-Since \(T_{plenum}\) is a function of 4 variables, it is important to
-consider the uncertainty in the estimation. Clearly, when
-\(\flow{plenum}\) is low, assumed to be equivalent to \(\flow{tot} -
-\flow{pri}\), the uncertainty in  \(T_{plenum}\) grows significantly, and
-when the flow is equal to zero \(T_{plenum}\) is undefined. 
+Since \(T_{plen}\) is a function of 4 variables, each with their own
+uncertainties, it is important to consider the uncertainty in the
+estimation. Clearly, when \(\flow{plen}\) (or \(\flow{tot} -
+\flow{pri}\), the denominator of \eqreftext{} \ref{eq:PlenumTemperatureSimpleMixing}) is low, the uncertainty in \(T_{plen}\) grows
+significantly, and when the flow is equal to zero \(T_{plen}\) is
+undefined. 
 
 Using the Kline-McKlintock formulation of uncertainty, the uncertainty
-of \(T_{plenum}\) is 
+of \(T_{plen}\) is 
 
 \begin{multline}
     \delta T_{plen} = \left[\left( \pdv{T_{plen}}{\flow{pri}} \delta \flow{pri}   \right)^2  +\left( \pdv{T_{plen}}{\flow{tot}} \delta \flow{tot}   \right)^2 + \right. \\
@@ -604,15 +614,19 @@ further, this uncertainty grows substantially.
 
 For further analysis, \eqreftext{} \ref{eq:plenumUncertainty} can be manipulated into a simpler form.
 The first substitution assumes the uncertainty for \(T_{dis}\) and
-\(T_{pri}\) are taken to be the same and constant at a value of \(\delta
-T\). The uncertainty of the flows can be done on a percent basis,
-(\(\pm 10\%\) for example, and that percentage, a value from 0 to 1 can
+\(T_{pri}\) are the same and constant at a value of \(\delta
+T\). The uncertainty of the flows can be done on a percent basis
+(\(\pm 10\%\) for example, and that percentage, a value from 0 to 1, can
 be denoted as \(\delta \flow{perc}\)).  The difference between
 \(T_{dis}\) and \(T_{pri}\) can be replaced by \(\Delta T\).  The final substitution is that
 the flows for \(\flow{pri}\) and \(\flow{plen}\) are taken to be a
 fraction of the total flow.  \(F_{pri}\) is defined to be the fraction
 of the total flow that comes from the primary stream, a value between 0
 and 1. Therefore,
+\begin{equation}
+    \Delta T = T_{dis}  - T_{pri}
+\end{equation}
+and
 \begin{equation}
     \flow{pri} = F_{pri} \flow{tot}
 \end{equation} 
@@ -645,7 +659,8 @@ be less than 40\% in most cases to have an uncertainty in
 \begin{figure}
 \centering
 \includegraphics{Plots/2017-06-07-TplenUncertainty.pdf}
-\caption{Uncertainty in \(T_{plen}\), \(\delta T_{plen}\), at different levels of \(\Delta T\). }
+\caption{Uncertainty in \(T_{plen}\), \(\delta T_{plen}\), at different
+levels of \(\Delta T = T_{dis} - T_{pri}\). }
 \label{fig:TPlenUncertaintyAcrossDeltaT}
 \end{figure}
 
@@ -707,7 +722,7 @@ terminal unit would be
     \mat = \frac{\priflow \sat + T_{z} \left( \totflow - \priflow \right) }{ \totflow}
     \label{eq:TerminalUnitMixedAirTemp}
 \end{equation}
-and the reheat energy could be estimated by
+and the reheat power could be estimated by
 \begin{equation}
     \heatenergy{} = 1.08 \left( CFM \right) \left( \mat - \dat  \right)
     \label{eq:TerminalUnitReheatEnergy}
@@ -717,7 +732,7 @@ and the reheat energy could be estimated by
 \ref{fig:2016-10-19-1424-ZoneReheatEnergyforContainerFPVAV216vsOADryBulbTemperatureNOAA}
 through
 \ref{fig:2016-10-19-1521-ZoneReheatEnergyforContainerFPVAV213vsOADryBulbTemperatureNOAA}
-show the reheat energy as determined by \eqreftext{}
+show the reheat power as determined by \eqreftext{}
 \ref{eq:TerminalUnitReheatEnergy}. They are from the period of February
 1, 2016, through May 1, 2016.  Timestamps during weekends, times between
 5:00 PM and 9:00 AM, and when the corresponding reheat valve command is
@@ -760,7 +775,7 @@ Ignoring:           & When AHU is Off                                      \\
 \begin{figure}
 \centering
 \includegraphics{Plots/2016-09-16-1639-FPVAV19AIRVOLUME-TikzData.pdf}
-\caption{Flowrates for FPVAV-1-9}
+\caption{Flowrates for FPVAV-1-9.}
 \label{fig:2016-09-16-1639-FPVAV19AIRVOLUME-TikzData}
 \end{figure}
 
@@ -854,24 +869,31 @@ shows a case in which the reheat is estimated to be a negative value,
 which likely means that the actual plenum temperature is greater than
 the assumed plenum temperature equal to the zone temperature. 
 
+
+
+\newcommand{\zoneReheatCaption}[1]{Zone reheat power for terminal unit #1.}
+
+% Plots/2016-10-19-1424-ZoneReheatEnergyforContainerFPVAV216vsOADryBulbTemperatureNOAA.tex
 \begin{figure}
 \centering
 \includegraphics{Plots/2016-10-19-1424-ZoneReheatEnergyforContainerFPVAV216vsOADryBulbTemperatureNOAA.pdf}
-\caption{Zone reheat energy for terminal unit 2-16.}
+\caption{\zoneReheatCaption{2-16}}
 \label{fig:2016-10-19-1424-ZoneReheatEnergyforContainerFPVAV216vsOADryBulbTemperatureNOAA}
 \end{figure}
 
+% Plots/2016-10-19-1438-ZoneReheatEnergyforContainerFPVAV24vsOADryBulbTemperatureNOAA.tex
 \begin{figure}
 \centering
 \includegraphics{Plots/2016-10-19-1438-ZoneReheatEnergyforContainerFPVAV24vsOADryBulbTemperatureNOAA.pdf}
-\caption{Zone reheat energy for terminal unit 2-4.}
+\caption{\zoneReheatCaption{2-4}}
 \label{fig:2016-10-19-1438-ZoneReheatEnergyforContainerFPVAV24vsOADryBulbTemperatureNOAA}
 \end{figure}
 
+% Plots/2016-10-19-1521-ZoneReheatEnergyforContainerFPVAV213vsOADryBulbTemperatureNOAA.tex
 \begin{figure}
 \centering
 \includegraphics{Plots/2016-10-19-1521-ZoneReheatEnergyforContainerFPVAV213vsOADryBulbTemperatureNOAA.pdf}
-\caption{Zone reheat energy for terminal unit 2-13.}
+\caption{\zoneReheatCaption{2-13}}
 \label{fig:2016-10-19-1521-ZoneReheatEnergyforContainerFPVAV213vsOADryBulbTemperatureNOAA}
 \end{figure}
 
@@ -1037,7 +1059,8 @@ from October 6, 2015, to June 1, 2016, are given in \tableref{}
 \label{tab:zoneLoadStats}
 \begin{tabular}{lrrrr} 
     \toprule
-    Terminal Unit & \parbox{2.3cm}{Med. Abs. \\ \(\epsilon\) (BTU/hr)} & \parbox{2.3cm}{Mean Abs. \\ \(\epsilon\)  (BTU/hr)} &  \parbox{2cm}{RMSE \\ (BTU/hr)} & \parbox{2cm}{MBE \\ (BTU/hr)} \\
+    Terminal Unit & \parbox{2.7cm}{Med. Abs. \\ Error (BTU/hr)} &
+    \parbox{2.7cm}{Mean Abs. \\ Error (BTU/hr)} &  \parbox{2cm}{RMSE \\ (BTU/hr)} & \parbox{2cm}{MBE \\ (BTU/hr)} \\
     \midrule
 FPVAV-2-7  & 108   & 171   & 298    & -41    \\
 FPVAV-2-16 & 135   & 385   & 704    & 59     \\
@@ -1080,9 +1103,16 @@ margin. It has estimated loads near 50,000 BTU/hr.
 %% These items come from the analysis done with plus minus 15 min and 3 degree F OAT bounds in file Batch Plots -- Mitch Dissertation N -- 2016-09-14 0952
 
 An interesting pattern was that the initial prediction routine
-overpredicted the zone load when the zone cooling load was small or was
+overpredicted the zone load (as calculated by \eqreftext{}
+\ref{eq:ApproximateZoneLoad}) when the zone cooling load was small or was
 a heating load and underpredicted the zone load during times of high
-cooling load. This bias was seen in every terminal unit in the building,
+cooling load. 
+
+The residual is defined as the predicted value minus the estimated
+value, so a positive value indicates overprediction, while a negative
+value indicates underprediction.
+
+This bias was seen in every terminal unit in the building,
 and this bias occurred with both the largest and smallest terminal
 units. Figures
 \ref{fig:2016-09-14-1028-ZoneLoadResidualforContainerFPVAV22vsZoneLoadforContainerFPVAV22}
@@ -1472,7 +1502,7 @@ The potential for energy savings at the NCTM building was investigated
 for the second floor AHUs. 
 
 Energy savings were estimated for a period from June
-1\textsuperscript{st} , 2016 to January 1\textsuperscript{st}, 2017.
+1\textsuperscript{st}, 2016 to January 1\textsuperscript{st}, 2017.
 Weekends, times when the AHUs were off, federal holidays, and times from
 5:00 PM to 9:00 AM were all ignored. 
 
@@ -1488,7 +1518,7 @@ To provide a sense of the sensitivity to the assumed parameters in the
 optimization, savings were determined using different exponents ranging
 from 2 to 3 for the PLR curve, along with the plenum temperature assumed
 to be the corresponding room temperature and the estimated constant
-temperature shown in \tableref{} \ref{tab:plenumStatistics}. 
+plenum temperature shown in \tableref{} \ref{tab:plenumStatistics}. 
 
 Based on the optimal supply air temperatures shown in Section
 \ref{sec:OptimalSupplyAirTemperatureResults}, the potential savings in
@@ -1496,7 +1526,9 @@ AHU-2-1 and AHU-2-2 will be small since the systems are already
 operating near optimal. However, the savings potential in AHU-2-3
 appeared promising since there was approximately a \SI{5}{\degreeF}
 difference between the operating supply air temperature and the
-predicted optimal supply air temperature. 
+predicted optimal supply air temperature. The savings results for
+AHU-2-3 under various different assumptions is shown in \tableref{}
+\ref{tab:NCTMAHU23SavingsResults}.
 
 \figref{}
 \ref{fig:2017-01-24-1607-VariableTotalPowervsOADryBulbTemperatureNOAA}
@@ -1507,14 +1539,18 @@ in the analysis. As expected, the energy use has a dependence on
 described in \cite{ASHRAE2014}. 
 
 The energy savings are primarily caused by increasing the supply air
-temperature. There already was a reset programmed for AHU-2-3, but the
-optimal reset would, in general, have a higher \(\sat\). 
+temperature, as seen in \figref{}
+\ref{fig:2017-01-25-1121-VariableSupplyAirTempvsOADryBulbTemperatureNOAA}.
+There already was a supply air temperature reset programmed for AHU-2-3,
+but the optimal reset would, in general, have a higher \(\sat\). 
 
 
 \begin{figure}
 \centering
 \includegraphics{Plots/2017-01-24-1607-VariableTotalPowervsOADryBulbTemperatureNOAA.pdf}
-\caption{Energy savings for AHU-2-3 assuming a fan PLR exponent of 2 and plenum temperatures equal to the corresponding room temperature.}
+\caption{Energy savings for AHU-2-3 assuming a fan PLR exponent of 2 and
+plenum temperatures equal to the corresponding room temperature. There
+is a 13.98 MMBTU difference, or 26\%.}
 \label{fig:2017-01-24-1607-VariableTotalPowervsOADryBulbTemperatureNOAA}
 \end{figure}
 
@@ -1522,7 +1558,8 @@ optimal reset would, in general, have a higher \(\sat\).
 \begin{figure}
 \centering
 \includegraphics{Plots/2017-01-25-1121-VariableSupplyAirTempvsOADryBulbTemperatureNOAA.pdf}
-\caption{Supply air temperature difference between actual and optimal.}
+\caption{Supply air temperature difference between actual and optimal
+for AHU-2-3.}
 \label{fig:2017-01-25-1121-VariableSupplyAirTempvsOADryBulbTemperatureNOAA}
 \end{figure}
 
@@ -1545,9 +1582,9 @@ optimal reset would, in general, have a higher \(\sat\).
 
 
 
-\begin{table}[htbp]
+\begin{table}
   \centering
-  \caption{Savings results, depending on model assumptions.}
+  \caption{Savings results for AHU-2-3, depending on model assumptions.}
   \begin{tabular}{C{2cm}C{4cm}R{2cm}R{2cm}r}
         \toprule
         Fan Exponent & Plenum Temperature Assumption & Actual (MMBTU) & Savings (MMBTU) & \% Savings \\
@@ -1558,7 +1595,7 @@ optimal reset would, in general, have a higher \(\sat\).
     3 & Static Temperature & 51.73 & 13.53 & 26\% \\
 \bottomrule
     \end{tabular}%
-  \label{tab:addlabel}%
+  \label{tab:NCTMAHU23SavingsResults}%
 \end{table}%
 
 

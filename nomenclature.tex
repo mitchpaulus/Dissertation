@@ -17,18 +17,44 @@
 \chapter*{\texorpdfstring{\MakeUppercase{NOMENCLATURE}}{NOMENCLATURE}}
 \addcontentsline{toc}{chapter}{NOMENCLATURE}  % Needs to be set to part, so the TOC doesnt add 'CHAPTER ' prefix in the TOC.
 
-\begin{tabular}{ll}
+\begin{longtable}{ll}
 AHU          & Air Handling Unit\tabularnewline
+ANN          & Artificial Neural Network                                 \\
 API          & Application Program Interface                             \\
+ARMA         & Autoregressive-Moving Average                             \\
 BAS          & Building Automation System\tabularnewline
+CAV          & Constant Air Volume                                       \\
+CCLT         & Cooling Coil Leaving Temperature                          \\
 CFM          & Cubic Feet per Minute                                     \\
+CHW          & Chilled Water                                             \\
+COP          & Coefficient of Performance                                \\
+CV           & Coefficient of Variation                                  \\
+DAT          & Discharge Air Temperature                                 \\
+DDC          & Direct Digital Control                                    \\
+DX           & Direct Expansion                                          \\
+EIB          & European Installation Bus                                 \\
+FFLP         & Fraction of Full Load Power                               \\
+FPVAV        & Fan Powered Variable Air Volume                           \\
+FSM          & Finite State Machine                                      \\
+HP           & Horsepower                                                \\
 HTTP         & Hypertext Transfer Protocol                               \\
 HVAC         & Heating, Ventilation, and Air-Conditioning\tabularnewline
+IAQ          & Indoor Air Quality                                        \\
 JSON         & JavaScript Object Notation                                \\
+MPC          & Model Predictive Control                                  \\
+NCTM         & National Center for Therapeutics Manufacturing            \\
+NOAA         & National Oceanic and Atmospheric Administration           \\
 OA           & Outdoor Air                                               \\
+OAHU         & Outdoor Air Handling Unit                                 \\
+PID          & Proportional-Integral-Derivative                          \\
 PLR          & Part Load Ratio                                           \\
 RA           & Return Air                                                \\
+RH           & Relative Humidity                                         \\
+RMSE         & Root Mean Squared Error                                   \\
+RT           & Return Temperature                                        \\
+S/S          & Start/Stop                                                \\
 SA           & Supply Air (from AHU)                                     \\
+VAV          & Variable Air Volume                                       \\
 XML          & eXtensible Markup Language                                \\
 \(\delta\)   & Uncertainty                                               \\
 \(\rho\)     & Density                                                   \\
@@ -40,15 +66,12 @@ XML          & eXtensible Markup Language                                \\
 \(\Delta P\) & Change in Pressure                                        \\
 \(t\)        & Time\tabularnewline
 \(T\)        & Temperature\tabularnewline
-\end{tabular}
-
-\begin{tabular}{ll}
 \(\dot{V}\) & Volume Flow Rate                                                                  \\
 \(\dot{W}\) & Power                                                                             \\
 \(X\)       & Fraction                                                                          \\
 \(C_{air}\) & \parbox[t]{5in}{Volumetric Heat Capacity [Energy per unit Volume per unit Temperature Difference] } \\
 \(H\)       & Volumetric Heat of Vaporization [Energy per unit Volume]                          \\
-\end{tabular}
+\end{longtable}
 
 
 \vspace{2em}
@@ -58,8 +81,10 @@ Subscripts
 \begin{tabular}{ll}
     a    & air                                    \\
     db   & dry-bulb                               \\
+    des  & design                                 \\
     dis  & discharge (from terminal unit to zone) \\
     ma   & mixed air                              \\
+    oa   & outdoor air                            \\
     plen & plenum                                 \\
     pri  & primary                                \\
     ra   & return air                             \\

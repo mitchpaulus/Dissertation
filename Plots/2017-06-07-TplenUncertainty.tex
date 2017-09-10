@@ -7,6 +7,7 @@
 \usepackage{amsmath}
 \pgfplotsset{compat=1.13}
 \PreviewEnvironment{tikzpicture}
+\usepackage{xcolor}
 
 \begin{document}
 
@@ -26,11 +27,11 @@ legend pos=outer north east,
 clip=false,
 y label style={rotate=-90},
 ]
-\addplot+[no marks, smooth, solid] table[col sep=comma,x=Fpri,y=DeltaT_0]{../Data/2017-06-07-TplenUnc.csv};
-\addplot+[no marks, smooth, solid] table[col sep=comma,x=Fpri,y=DeltaT_10]{../Data/2017-06-07-TplenUnc.csv};
-\addplot+[no marks, smooth, solid] table[col sep=comma,x=Fpri,y=DeltaT_20]{../Data/2017-06-07-TplenUnc.csv};
-\addplot+[no marks, smooth, solid] table[col sep=comma,x=Fpri,y=DeltaT_30]{../Data/2017-06-07-TplenUnc.csv};
-\addplot+[no marks, smooth, solid] table[col sep=comma,x=Fpri,y=DeltaT_40]{../Data/2017-06-07-TplenUnc.csv};
+\addplot[no marks, smooth, solid, color=black, thick] table[col sep=comma,x=Fpri,y=DeltaT_0]{../Data/2017-06-07-TplenUnc.csv};
+\addplot[no marks, smooth, solid, color=red, thick] table[col sep=comma,x=Fpri,y=DeltaT_10]{../Data/2017-06-07-TplenUnc.csv};
+\addplot[no marks, smooth, solid, color=blue, thick] table[col sep=comma,x=Fpri,y=DeltaT_20]{../Data/2017-06-07-TplenUnc.csv};
+\addplot[no marks, smooth, solid, color=teal, thick] table[col sep=comma,x=Fpri,y=DeltaT_30]{../Data/2017-06-07-TplenUnc.csv};
+\addplot[no marks, smooth, solid, color=magenta, thick] table[col sep=comma,x=Fpri,y=DeltaT_40]{../Data/2017-06-07-TplenUnc.csv};
 \addlegendentry{\(\Delta T = 0^{\circ}\text{F}\)}
 \addlegendentry{\(\Delta T = 10^{\circ}\text{F}\)}
 \addlegendentry{\(\Delta T = 20^{\circ}\text{F}\)}

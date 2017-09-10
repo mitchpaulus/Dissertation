@@ -34,7 +34,7 @@ is the resulting flow under the highest tested supply air temperature
 \end{equation}
 The fan power is 
 \begin{equation}
-    \dot{W}_{fan} = \text{FFLP} \; \dot{W}_{design} = \text{FFLP}\left(\SI{2.75}{\hp}\right) 
+    \dot{W}_{fan} = \text{FFLP} \; \dot{W}_{des} = \text{FFLP}\left(\SI{2.75}{\hp}\right) 
 \end{equation}
 
 The required flow for each zone is calculated as 
@@ -198,11 +198,6 @@ cooling power function is always negative, since the numerator in
 result of this is that the minimum total power occurs at the maximum of
 the supply air temperature search range.   
 
-The optimal supply temperature changes slightly when the cost
-differences between electricity and district chilled and hot water is
-considered. The lowest power and cost both occur at the highest supply air
-temperature. 
-
 \newcommand{\variationCaptionLowMAT}[1]{Variation of total #1 with respect to different supply air
 temperatures, with a mixed air temperature of \SI{65}{\degreeF} instead
 of the original \SI{80}{\degreeF}.}
@@ -253,7 +248,7 @@ the zones operating at minimum flow can also be combined.
 For clarity, for the rest of the derivations, the sum will be assumed,
 and the system can just be imagined as a combined, two terminal unit
 system, in which one of the units is operating at minimum flow and the
-other terminal unit is in a cooling mode. 
+other terminal unit is in cooling mode. 
 
 \subsection{Sensible Cooling Power}
 
@@ -338,7 +333,7 @@ Taking the derivative of \eqreftext{}
 
 If the outdoor air temperature is less than the zone temperature, the
 numerator of the first term becomes negative and the second term is
-always negative, so the entire slope will also be negative.
+always negative, so \(\dv{\heatenergy{c,s}}{\sat{}}\) will be negative.
 \(\heatenergy{z}\) is assumed to be a cooling load and therefore is
 always a positive value. 
 
@@ -348,7 +343,8 @@ raised. However, if the outdoor air temperature is greater than the zone
 temperature, and the magnitude of the first term is greater than the
 contribution from the second term relating to the terminal units that
 are in reheat, this slope can become positive, implying the opposite
-case. 
+case. This is similar to the case described at the beginning of this
+chapter. 
 
 The second derivative of the function is taken to determine the
 curvature of the function. Taking the derivative of \eqreftext{}
@@ -370,19 +366,19 @@ supply air temperature is increased.
 The total latent cooling power, \(\heatenergy{c,l}\), is 
 \begin{equation}\label{eq:latentCoolingPower}
    \heatenergy{c,l} = H \left(\totalFlow \right) \left( \omega_{ma} -
-   \omega_{sat} \right) 
+   \omega_{sa} \right) 
 \end{equation}
-where \(H\) is a volumetric heat of vaporization for water and \(\omega_{sat}\)
+where \(H\) is a volumetric heat of vaporization for water and \(\omega_{sa}\)
 is the saturation humidity ratio at a given supply air temperature, which means
 that it is a function of the supply air temperature.  For this analysis it is
 assumed that a latent load does exist and \(\omega_{ma} >
-\omega_{sat}(\sat{})\). If \(\omega_{sat}(\sat{}) > \omega_{ma}\), then
+\omega_{sa}(\sat{})\). If \(\omega_{sat}(\sat{}) > \omega_{ma}\), then
 the latent load is zero and all its derivatives are zero as well.
 
 Taking the derivative of \eqreftext{} \ref{eq:latentCoolingPower} results in
 \begin{equation}\label{eq:firstDerivativeLatentPower}
-    \dv{\heatenergy{c,l}}{\sat{}} = \frac{H \heatenergy{z} \left(\omega_{ma} -\omega_{sat} \right)}{C_{a} (T_{z}-\sat{})^2} 
-    -H \dv{\omega_{sat}}{\sat{}} \left(\frac{\heatenergy{z}}{C_{a} (T_{z}-\sat{})}+\flow{min}\right) 
+    \dv{\heatenergy{c,l}}{\sat{}} = \frac{H \heatenergy{z} \left(\omega_{ma} -\omega_{sa} \right)}{C_{a} (T_{z}-\sat{})^2} 
+    -H \dv{\omega_{sa}}{\sat{}} \left(\frac{\heatenergy{z}}{C_{a} (T_{z}-\sat{})}+\flow{min}\right) 
 \end{equation}
 
 At this point, it is helpful to examine the relationship between the
@@ -393,9 +389,9 @@ humidity ratio and temperature can be described by a third order
 polynomial in a restricted range. Over the range of \SI{20}{\degreeF} to
 \SI{110}{\degreeF}, the saturation humidity ratio at sea level pressure
 can be approximated by
-    %\omega_{sat} = 8.06351798049242e-08 T^3 -7.22842996070465e-06 T^2 + 0.000384513331591622 T   -0.00358762959892911
+    %\omega_{sa} = 8.06351798049242e-08 T^3 -7.22842996070465e-06 T^2 + 0.000384513331591622 T   -0.00358762959892911
 \begin{multline}
-    \omega_{sat} = \left(8.0635 \times 10^{-8}\right) T^3 \\ 
+    \omega_{sa} = \left(8.0635 \times 10^{-8}\right) T^3 \\ 
     - \left(7.2284 \times 10^{-6}\right)  T^2 + \left(3.8451\times 10^{-4}\right) T \\
     -  3.5876\times 10^{-3}
 \end{multline}
@@ -404,7 +400,7 @@ this range is approximately \num[group-separator={ }]{0.00058787} and the median
 deviation is \num[group-separator={ }]{0.000164}. A plot of the fit
 versus the more explicit computation is shown in \figref{}
 \ref{fig:saturationHumidityRatioVsTemperature}. The first and second
-derivative of \(\omega_{sat}\) is shown in \figref{}
+derivative of \(\omega_{sa}\) is shown in \figref{}
 \ref{fig:firstDeriviativeSaturationHumidityRatioVsTemperature} and
 \figref{}
 \ref{fig:secondDeriviativeSaturationHumidityRatioVsTemperature}. It is
@@ -437,17 +433,17 @@ derivative is positive after \SI{30}{\degreeF}.
 With this information about the derivatives of the saturation humidity
 ratio, it's clear that the first term in \eqreftext{}
 \ref{eq:firstDerivativeLatentPower} is positive, while the second term
-is negative. With typical values for the parameters, this results in a
-negative slope. 
+is negative. Through experimentation with typical values for the
+parameters, this results in a negative slope. 
 
 The second derivative of the saturation humidity ratio with respect to
 supply air temperature is
 \begin{equation}
-    \dv[2]{\heatenergy{c,l}}{\sat{}}  =  -H \dv[2]{\omega_{sat}}{\sat{}} \left(\frac{\heatenergy{z}}{C_{a}
+    \dv[2]{\heatenergy{c,l}}{\sat{}}  =  -H \dv[2]{\omega_{sa}}{\sat{}} \left(\frac{\heatenergy{z}}{C_{a}
             (T_{z}-\sat{})}+\flow{min}\right)+\frac{2 H
-            \heatenergy{z} (\omega_{ma}-\omega_{sat})}{C_{a}
+            \heatenergy{z} (\omega_{ma}-\omega_{sa})}{C_{a}
             (T_{z}-\sat{})^3}-\frac{2 H \heatenergy{z}
-        \dv{\omega_{sat}}{\sat{}}}{C_{a} (T_{z}-\sat{})^2}
+        \dv{\omega_{sa}}{\sat{}}}{C_{a} (T_{z}-\sat{})^2}
 \end{equation}
 From inspection, it is difficult to discern whether this second
 derivative is typically positive or negative. From experimentation it
