@@ -3,15 +3,15 @@
 A major driving principle of the presented work is that the methodology
 needs to be scalable. One reason for difficulties in implementing fault
 detection and diagnostic algorithms and other optimization methods is
-that there is a significant amount of initial investment necessary. This
-initial investment can also be cost prohibitive. 
+that there is a significant amount of initial investment necessary, in
+time, risk, and money. 
 
 In more complex schemes, it may be necessary to install additional
 sensors that are typically not available in commercial HVAC systems.
-Along with the sensor cost, there is the cost to tie the sensors into the
-BAS. The updated logic will likely be coded by a controls contractor,
-adding more cost. On a large campus, this reprogramming can also take a
-significant amount of time to complete. 
+Along with the sensor cost, there is the cost to configure the sensors
+into the BAS. The updated logic will likely be coded by a controls
+contractor, adding more cost. On a large campus, this reprogramming can
+also take a significant amount of time to complete. 
 
 Another issue is that of risk. There is the risk that if the controls do
 not function properly and are too complex for the current building
@@ -29,18 +29,19 @@ the optimization methods.
 
 
 \figref{} \ref{fig:NetworkFlow} shows potential information flow. Over
-any period, historical trend data representing the system is stored in a
-server.  This data dump may come all at once, weekly, daily or even
-sub-daily.  Once enough data has been stored on the server, a client BAS
-computer (potentially one of many) can make an HTTP request that will
-essentially carry information related to the current time and what
-equipment the request corresponds to. Each AHU will have a unique identifier
-that the main web server understands. 
+any period, historical trend data coming from the building or buildings
+are stored in a server.  This data sync may only happen once, weekly,
+daily or even sub-daily.  Once enough data has been stored on the
+server, a client BAS computer (potentially one of many) can make an HTTP
+request that will essentially carry information related to the current
+time and what equipment the request corresponds to. Each AHU will have a
+unique identifier that the main web server understands. 
 
 The web server will implement the methods described in this document and
-will send a response back to the client with the setpoints for the
-system that will be near-optimal in a steady-state sense, given the
-expected conditions at the building and individual zones. 
+will send a response back to the client with the \textit{setpoint
+values} for the system that will be near-optimal in a steady-state
+sense, given the expected conditions at the building and individual
+zones. 
 
 \subsection{Standards for Transmission}
 
@@ -52,11 +53,9 @@ develop programs from the base building blocks.
 Another important point of consideration is the format of the data being
 transferred. In the software industry, there are several types of data
 exchange formats, two popular ones being JavaScript Object Notation
-(JSON) and Extensible Markup Language (XML). 
-
-The advantage of JSON over XML is that JSON requires fewer characters to
-describe simple objects. Unlike XML, it does not support explicit schema
-definition. 
+(JSON) and Extensible Markup Language (XML). The advantage of JSON over
+XML is that JSON requires fewer characters to describe simple objects,
+though, it does not support explicit schema definition. 
 
 \begin{figure}
 \begin{tikzpicture}
@@ -108,10 +107,9 @@ There are several key advantages to a system similar to the proposed:
 
 The proposed system was implemented in the software tool
 \textit{Implementer}, a web application developed at the Energy Systems
-Laboratory. Implementer can analyze trend data from any system that has
-an ability to store timestamp value pairs and allow access to them. 
-
-Various terms specifically related to Implementer are described in
+Laboratory at Texas A\&M University. Implementer can analyze trend data
+from any system that has an ability to store timestamp-value pairs and
+allow access to them.  Various terms specifically related to Implementer are described in
 \tableref{} \ref{tab:ImplementerTerms}.  
 
 The current systems supported by Implementer include:
@@ -132,7 +130,7 @@ The current systems supported by Implementer include:
     \item Tridium Niagara 
 \end{itemize}
 
-Before this process can begin, the sensors will need to be mapped in a
+Before this process can begin, the sensors need to be mapped in a
 way that the server can understand. 
 
 \begin{table}
@@ -172,9 +170,9 @@ unit, unaffected by any other temperature affecting device, is defined
 to have the \textit{supply air temperature} label. 
 
 Labels can also be created manually. \figref{} \ref{fig:CustomLabels}
-shows a screenshot of how all \textit{AUX TEMP} trends from the
-different fan powered VAV (FPVAV) units are labeled as
-\textit{DischargeTemps}.
+shows a screenshot of how all the real \textit{AUX TEMP} trends from the
+different fan powered VAV (FPVAV) units at the case study NCTM building
+are labeled as \textit{DischargeTemps}.
 
 An entire site or building is organized into a hierarchy of components.
 Each component is related to a \textit{container}, which trends can be
@@ -190,27 +188,26 @@ labeling, automated algorithms and analysis can easily be set up.
 \begin{figure}
 \centering
 \includegraphics[scale=0.5]{Images/SampleAHUSchematic.PNG}
-\caption{Sample AHU schematic for AHU-2-2 in the NCTM building.}
+\caption{Screenshot of a sample AHU schematic for AHU-2-2 in the NCTM building in Implementer.}
 \label{fig:AHUSchematic}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.75]{Images/CustomLabels.PNG}
-\caption{Custom labels setup, showing how all \textit{AUX TEMP} trends
-are associated to the label \textit{DischargeTemps}. }
+\caption{Screenshot of the custom labels setup in Implementer, showing how all \textit{AUX TEMP} trends are associated to the label \textit{DischargeTemps}. }
 \label{fig:CustomLabels}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics{Images/ContainerHierarchy.PNG}
-\caption{Container Hierarchy for NCTM.}
+\caption{Screenshot of the container hierarchy for NCTM in Implementer.}
 \label{fig:ContainerHierarchy}
 \end{figure}
 
-To complete the optimization, the inputs and functions for the
-various trends need to be input. It is proposed that the use of a
+To execute the optimization, the inputs and functions for the
+various trends need to be set up. It is proposed that the use of a
 container hierarchy, labels or tags, and custom equations be used to
 develop the system.
 
@@ -220,18 +217,22 @@ pointers to values or custom equations.
 
 The necessary inputs for the AHU container would be 
 \begin{enumerate}
-    \item Exponent for the fan curve, \(n\)
     \item Prediction function for \(\mat{}\) 
-    \item Design fan power \(\dot{W}_{des}\)
     \item Design AHU flow 
+    \item Exponent for the fan curve, \(n\)
+    \item Fan curve constant, \(A\)
+    \item Design fan power \(\dot{W}_{des}\)
+    \item Maximum supply humidity ratio
+    \item Minimum outdoor air flow percent
 \end{enumerate}
 For the terminal units, if a series fan powered
 terminal unit is assumed, the necessary inputs will be
 \begin{enumerate}
-    \item Zone temperature setpoint prediction
-    \item Zone load prediction
-    \item Plenum temperature prediction
-    \item Minimum damper position
+    \item Design flow
+    \item Minimum flow percent
+    \item Prediction function for zone temperature setpoint.
+    \item Prediction function for zone load.
+    \item Prediction function for plenum temperature.
 \end{enumerate}
 
 Parameters needed for the optimization are input for each container in
@@ -268,12 +269,12 @@ available.
 
 The equipment can be separated by project, which typically a building or
 collection of buildings, and a call such as
-\url{https://domain/GetEquipmentForProject/?ProjectId={Project-Id}}
+\url{https://domain/GetEquipmentForProject?ProjectId={Project-Id}}
 could return all the possible set up equipment.
 
 The interface for receiving the optimal setpoints could have a URL
 similar to 
-\url{https://domain/setpoints/?id={Equipment-Id}\&{time=Datetime}}
+\url{https://domain/setpoints?id={Equipment-Id}\&{time=Datetime}}
 
 
 

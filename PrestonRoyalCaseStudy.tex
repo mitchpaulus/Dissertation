@@ -1,9 +1,9 @@
 \chapter{\texorpdfstring{\MakeUppercase{Preston Royal Case Study}}{Preston Royal Case Study}}
 
-Preston Royal Branch Library is a one-story building with
-\SI{12400}{\feet\squared} of gross floor area. The library opened in 1954. The
-facility consists of an open-space reading room and circulation, staff area,
-and an auditorium.
+Preston Royal Branch Library is a one-story building with               
+\SI{12400}{\feet\squared} of gross floor area in Dallas, TX. The        
+library opened in 1954. The facility consists of an open-space reading  
+room and circulation, staff area, and an auditorium.                    
 
 The library is served by a single air handling unit. A BAS graphic of
 the AHU is shown in \figref{} \ref{fig:PrestonRoyalAHUGraphic}. 
@@ -41,13 +41,13 @@ of the terminal units is shown in \figref{}
 
 \section{Preston Royal Zone Load Analysis}
 
-The zone load profile for Preston Royal showed similarities to the NCTM
-building. During operation, the estimated zone load fluctuated up and
-down throughout the day. \figref{}
-\ref{fig:2017-04-03-1250-ZoneLoadforFPB02-TikzData} shows an example of
-how the zone load cycles up and down many times per hour. Again, the
-hypothesized explanation for this is not that the actual heat gain in
-the space is fluctuating, but that the HVAC controls are oscillating. 
+The zone load profiles for Preston Royal showed similarities            
+to the NCTM building. During operation, the estimated zone              
+load fluctuated up and down throughout the day. \figref{}               
+\ref{fig:2017-04-03-1250-ZoneLoadforFPB02-TikzData} shows an example of 
+how the zone load cycles up and down many times per hour. Again, the    
+hypothesized explanation for this is not that the actual heat gain in   
+the space is fluctuating, but that the HVAC controls are oscillating.   
 
 \begin{figure}
 \centering
@@ -57,12 +57,13 @@ the space is fluctuating, but that the HVAC controls are oscillating.
 \end{figure}
 
 
-\figref{} \ref{fig:2017-06-05-0822-ZoneLoadforFPB02-TikzData} shows the
-zone load for all the terminal units at Preston Royal Library for 3 days
-from October 19\textsuperscript{th}, 2016 through October
-21\textsuperscript{st}, 2016. Of interest to note is that within the
-same space, one terminal unit can be experiencing a large cooling load
-(FPB-11) while another terminal unit is calling for heating (FPB-08). 
+\figref{} \ref{fig:2017-06-05-0822-ZoneLoadforFPB02-TikzData} shows     
+the zone load for all the terminal units at Preston Royal Library       
+for 3 days from October 19\textsuperscript{th}, 2016 through October    
+21\textsuperscript{st}, 2016. Of interest to note is that within the    
+same space, one terminal unit can be experiencing a relatively large    
+cooling load (FPB-11) while another terminal unit is calling for        
+heating (FPB-08).                                                       
 
 
 \begin{figure}
@@ -125,23 +126,23 @@ same space, one terminal unit can be experiencing a large cooling load
 
 \section{Estimated Savings}
 
-Only 7 of the 14 air handling units had usable data. The estimated
-savings from this pseudo-synthetic data set was examined. A portion of
-the library was able to be optimized, utilizing several
-assumptions were made in order to make the analysis possible. 
+Only 7 of the 14 terminal units at Preston Royal Library had usable     
+data. The estimated savings from this pseudo-synthetic data set was     
+examined. A portion of the library was able to be optimized, utilizing  
+several assumptions to make the analysis possible.                      
 
 \begin{itemize}
     \item There was no mixed air temperature sensor available, so the
         mixed air temperature was assumed to be between the outdoor air
         temperature and the return air temperature with the following
-        relationship
+        relationship:
 \begin{equation}
-\mat{} = 0.3 \oat{} + 0.7 \rat{}
+\mat{} = 0.3\; \oat{} + 0.7\; \rat{}
 \end{equation}
 \item The mixed air humidity ratio was also not known. It was assumed to
     have a similar relationship as the mixed air temperature, however,
     during times of low humidity, the mixed air humidity ratio will just
-    be the outdoor air humidity ratio
+    be the outdoor air humidity ratio.
 \begin{equation}
     \omega_{ma} = \text{MIN}\left(\omega_{oa}, 0.3 \omega_{oa} + 0.7
     \omega_{sa}\left(\sat{}\right) \right)
@@ -154,13 +155,13 @@ Data existed from December 1\textsuperscript{st}, 2015 to October
 22\textsuperscript{nd}, 2016. Timestamps when the air handling unit was
 off were ignored. 
 
-Times when the actually supply air temperature was out of a reasonable
+Times when the actual supply air temperature was out of a reasonable
 range was also ignored. 
 
-Over the course of the approximately 323 day period, the potential
-percent dollar savings was 15\%. In general, the savings were due to
-raising the supply air temperature, which while increasing the total fan
-energy, decreased the required cooling and reheat energy. 
+Over the course of the 323 day period, the potential percent dollar     
+savings was 15\%. In general, the savings were due to raising the       
+supply air temperature, which while increasing the total fan energy,    
+decreased the required cooling and reheat energy.                       
 
 The cost of sensible cooling was the largest component, over 50\% for
 both the actual and optimal operations. 

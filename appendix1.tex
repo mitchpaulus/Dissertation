@@ -24,12 +24,12 @@ This section shows a derivation of the Fourier Series for the ramp
 function, which is often used to model the output flow for a terminal
 unit.
 
-In many cases related to steady state algorithms for determining the
-energy use of an air handling unit, ramp functions are found. These ramp
-functions are usually difficult to deal with in optimization problems
-because they are not continuously differentiable. In this sense, it is
-desired to have a replacement or approximation to the function that is
-smooth and can be differentiated. 
+In various situations related to steady state analysis of the energy    
+use of an air handling unit, ramp functions are found. These ramp       
+functions are usually difficult to deal with in optimization problems   
+because they are not continuously differentiable. In this sense, it is  
+desired to have a replacement or approximation to the function that is  
+smooth and can be differentiated.                                       
 
 Fourier series are a useful tool for approximating arbitrary functions
 and can be used in this task. We can begin by focusing on the basic ramp
@@ -49,7 +49,6 @@ If we define our Fourier series to be defined over the interval \(-L
 \end{equation}
 
 The coefficients are equal to
-
 \begin{equation}
  a_0 = \frac{1}{2 L } \int_{-L}^{L} f(x) \; dx 
 \end{equation}
