@@ -42,16 +42,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{physics}
 \usepackage{pbox}
-\usepackage{hyperref}
-\hypersetup{colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-urlcolor=black}
 \usepackage{cancel}
 \usepackage{gensymb}
 \usepackage{textcomp} % For extra symbols.
-\usepackage{siunitxext}  %% My personal style file which adds english units to sinunitx
+\usepackage{siunitx}  %% Personal I.P. units added are in siunitx.cfg  
 \usepackage{url}  %% For sample url endpoints for the script.
 
 \usepackage{notoccite}
@@ -70,19 +64,26 @@ urlcolor=black}
 \DeclareSIUnit[number-unit-product={}]\degreeF{\degree{}F}
 \DeclareSIUnit\BTU{BTU}
 
+%\usepackage{hyperref}
+%\hypersetup{colorlinks,
+    %citecolor=black,
+    %filecolor=black,
+    %linkcolor=black,
+%urlcolor=black}
+
 % Hyperref setup below.  You should be able to get away with using uncommenting just the first line.
-%\usepackage[hidelinks]{hyperref}
+\usepackage[hidelinks]{hyperref}
 
 % if \usepackage[hidelinks]{hyperref} doesn't work try this.
 % \usepackage{hyperref}  % Hidelinks is an option that removes link visiability.  TAMU Thesis Offices prefers to not see the links. But often doesn't work.  
 % 
-% \hypersetup{
-%     colorlinks=true,
-%     linkcolor=black,
-%     citecolor=black,
-%     filecolor=black,
-%     urlcolor=black,
-% }
+ \hypersetup{
+     colorlinks=true,
+     linkcolor=black,
+     citecolor=black,
+     filecolor=black,
+     urlcolor=black,
+ }
 %%%%%%%  End of hyperref setup.  One of these two options should work, but my motto with hyperref is when in doubt, comment it out!
 %%%%%%%%%  This hopefully fixes the problem with vertical spacing of section headings at the top of the page..  Commented out in 1.0.7
 % \preto\section{%
