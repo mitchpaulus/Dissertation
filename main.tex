@@ -9,6 +9,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[12pt]{report}
+\usepackage{microtype}
 \usepackage[letterpaper]{geometry}
 \geometry{verbose,tmargin=1.25in,bmargin=1.25in,lmargin=1.4in,rmargin=1.15in}
 \usepackage[doublespacing]{setspace}
@@ -28,7 +29,7 @@
 \usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
 \usepackage{pgfplots}
 	%Used for plotting.
-\pgfplotsset{compat=1.3, width=10cm}
+\pgfplotsset{compat=1.15, width=10cm}
 \pgfplotsset{xychart/.append style={
         mark=o,
         grid=major,
@@ -132,13 +133,13 @@
 \renewcommand{\tamupapertype}{Dissertation}
 \renewcommand{\tamufullname}{Mitchell Thomas Paulus}
 \renewcommand{\tamudegree}{Doctor of Philosophy}
-\renewcommand{\tamuchairone}{Dr. David Claridge}
+\renewcommand{\tamuchairone}{David Claridge}
 % Uncomment out the next line if you have co-chairs.  You will also need to edit the titlepage.tex file.
 %\newcommand{\tamuchairtwo}{Additional Chair Name}
-\renewcommand{\tamumemberone}{Dr. Charles Culp}
-\newcommand{\tamumembertwo}{Dr. Bryan Rasmussen}
-\newcommand{\tamumemberthree}{Dr. Juan-Carlos Baltazar}
-\renewcommand{\tamudepthead}{Head of Department}
+\renewcommand{\tamumemberone}{Charles Culp}
+\newcommand{\tamumembertwo}{Bryan Rasmussen}
+\newcommand{\tamumemberthree}{Juan-Carlos Baltazar}
+\renewcommand{\tamudepthead}{Andreas Polycarpou}
 \renewcommand{\tamugradmonth}{December}
 \renewcommand{\tamugradyear}{2017}
 \renewcommand{\tamudepartment}{Mechanical Engineering}
@@ -155,6 +156,7 @@
 \include{abstract}
 \include{dedication}
 \include{acknowledgements}
+\include{contributors}
 \include{nomenclature}
 
 \include{lists}  % This is simply a file that formats and adds your toc, lof, and lot, please do not edit this unless you have a specific need. .

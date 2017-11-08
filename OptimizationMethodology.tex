@@ -116,6 +116,7 @@ table[x=RoomConditionsTotal,y=PercentDesignCFMTotal,col sep=tab]{SeriesFanPlot.d
 
 \end{axis}
 \end{tikzpicture}
+
 \begin{tikzpicture}
 \begin{axis}[
 	xmin=0,
@@ -142,9 +143,10 @@ table[x=RoomTemp,y=Tdischarge,col sep=tab]{SeriesFanPlot.dat};
 ) {Cooling};
 \end{axis}
 \end{tikzpicture}
+
 \caption{Example series terminal unit flow operation.}
 \label{fig:SeriesFlow}
-
+%
 \end{figure}
 %-------------------------------------------------------------------------------------------
 
@@ -921,6 +923,8 @@ sensor that currently is the least likely to be available.
 
 \begin{table}
 \centering
+\caption{Necessary sensors.}
+\label{tab:NecessarySensors}
 \begin{tabular}{l l}
 \toprule
 Level & Sensor \\
@@ -940,8 +944,6 @@ Level & Sensor \\
                                   % & Primary Damper Position   \\
 \bottomrule
 \end{tabular}
-\caption{Necessary sensors.}
-\label{tab:NecessarySensors}
 \end{table}
 
 

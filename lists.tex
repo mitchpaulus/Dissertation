@@ -1,12 +1,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  New template code for TAMU Theses and Dissertations starting Fall 2012.  
-%  For more info about this template or the 
-%  TAMU LaTeX User's Group, see http://www.howdy.me/.
+%  New template code for TAMU Theses and Dissertations starting Fall 2016.  
 %
-%  Author: Wendy Lynn Turner 
-%	 Version 1.7
-%  Last updated 3/24/2014
+%
+%  Author: Sean Zachary Roberson
+%  Version 3.17.09
+%  Last Updated: 9/21/2017
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -24,7 +23,7 @@
 \begin{singlespace}
 \renewcommand\contentsname{\normalfont} {\centerline{TABLE OF CONTENTS}}
 
-%\setcounter{tocdepth}{4} % This puts \subsubsection[]{×} in your List of Tables.  The default is 3.
+\setcounter{tocdepth}{4} % This puts \subsubsection[]{×} in your List of Tables.  The default is 3.
 
 
 %%%%%%%%%%%%%  Adds Page above the page number in TOC
@@ -33,9 +32,9 @@
 \hfill{\normalfont {Page}\par}}
 
 
-
 \tableofcontents
 
+%\addtocontents{toc}{\protect\afterpage{~\hfill\normalfont{Page}\par\medskip}}
 \end{singlespace}
 
 \pagebreak{}
@@ -66,7 +65,15 @@
 \setlength{\cftbeforesecskip}{0.30cm}
 \setlength{\cftbeforesubsecskip}{0.30cm}
 \setlength{\cftbeforefigskip}{0.4cm}
-\setlength{\cftbeforetabskip}{0.4cm} 
+\setlength{\cftbeforetabskip}{0.4cm}
+
+% Provided by Andy Philips.
+% needed to make chapter gaps look no different than sections:
+% \addtocontents{lof}{\protect\renewcommand*\protect\addvspace[1]{}}
+
+% Philips' document had 30 figures. Is there a maximum number of figures
+% that changes the spacing to non-uniform, i.e., not double-spaced
+% between all entries?
 
 \listoffigures
 
@@ -77,7 +84,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%                           lIST OF TABLES
+%%                           LIST OF TABLES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \phantomsection
@@ -87,11 +94,14 @@
 
 \setlength{\cftbeforelottitleskip}{-12pt} %% Positions the LOT title vertically to match the chapter titles
 
-\renewcommand{\cftafterlottitleskip}{12pt}
+%Note that the similar parameter in the LOF is 12pt; this
+%is intentional to make the spacing between the headers
+%and the first entry look consistent.
+\renewcommand{\cftafterlottitleskip}{1pt}
 
 
 \renewcommand{\cftafterlottitle}{%
-\\[4em]\mbox{}\hspace{4pt}TABLE\hfill{\normalfont Page}\vskip\baselineskip}
+\\[4em]\mbox{}\hspace{2pt}TABLE\hfill{\normalfont Page}\vskip\baselineskip}
 
 \begin{center}
 \begin{singlespace}
@@ -108,4 +118,4 @@
 \end{singlespace}
 \end{center}
 \endgroup
-\pagebreak{}  % Need this for the pagenumbering to be correct.
+\pagebreak{}  % Need this for the pagenumbering to be correct. 
