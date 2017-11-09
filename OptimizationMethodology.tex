@@ -116,34 +116,32 @@ table[x=RoomConditionsTotal,y=PercentDesignCFMTotal,col sep=tab]{SeriesFanPlot.d
 
 \end{axis}
 \end{tikzpicture}
-
+%
 \begin{tikzpicture}
 \begin{axis}[
-	xmin=0,
+    xmin=0,
     xmax=100,
     ymin=50,
     ymax=110,
-	grid=major,
-	ylabel = {Discharge Air Temperature \(^\circ\)F},
-	%height=9cm,
+    grid=major,
+    ylabel = {Discharge Air Temperature \(^\circ\)F},
+    %height=9cm,
     xtick=\empty,
     ytick={50,60,...,100},
     ymajorgrids=false,
-    clip = false,
+    %clip = false,
     clip mode=individual,
 ]
 \addplot[
-	no markers,
+    no markers,
     color=black,
     solid,
 ]
 table[x=RoomTemp,y=Tdischarge,col sep=tab]{SeriesFanPlot.dat};
-\node [anchor=south west] at (0, -60) {Heating};
-\node [anchor=south east] at (100, -60
-) {Cooling};
+\node [anchor=south west] at (0, 43) {Heating};
+\node [anchor=south east] at (100, 43) {Cooling};
 \end{axis}
 \end{tikzpicture}
-
 \caption{Example series terminal unit flow operation.}
 \label{fig:SeriesFlow}
 %
@@ -300,22 +298,24 @@ zone loads.
 If the sensible zone load is described as an open system with a constant specific
 heat, then
 \begin{equation}
-    \dot{Q}_{z} =  \frac{\flow{zone}}{\nu} c_{air} \left(T_{z} - T_{dis}\right)
+    \dot{Q}_{z} =  \frac{\flow{zone}}{\nu} c_{a} \left(T_{z} - T_{dis}\right)
 \end{equation}
 %where \(\flow{zone}\) is in units of CFM, \(\nu\) is in
 %\si{\feet\cubed\per\pound}, \(c_{air}\) is in
 %\si{\btu\per\pound\per\degreeF}, the temperatures are in
 %\si{\degreeF}, and the zone load is in \si{\btu\per\hour}.
-
+%
 The total uncertainty in the prediction will be
-\begin{equation}
-    \delta \dot{Q}_{z} = c_{air} \sqrt{ \left( \frac{\left(T_{z} -
+\begin{multline}
+    \delta \dot{Q}_{z} = c_{a} \left(
+ \left( \frac{\left(T_{z} -
         T_{dis}\right)}{\nu} \delta \flow{} \right)^2 
-    + \left( \frac{- \left(T_{z} - T_{dis}\right) \flow{}}{\nu^{2}} \delta \nu \right)^{2}  
+    + \left( \frac{-\left(T_{z} - T_{dis}\right) \flow{}}{\nu^{2}} \delta
+    \nu \right)^{2} \right. \\ \left.
 + \left( \frac{\flow{}}{\nu} \delta T_{z}\right)^{2}
 + \left(\frac{-\flow{}}{\nu} \delta T_{dis}\right)^{2}
-}
-\end{equation}
+\right)^{\frac{1}{2}} 
+\end{multline}
 For the sake of analysis, the following reasonable parameters were assumed:
 \begin{enumerate}
     \item \(T_{z} = \SI{72}{\degF} \)

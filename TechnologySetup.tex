@@ -70,7 +70,7 @@ though, it does not support explicit schema definition.
 
 \node [above=of Server] {Web Server};
 
-\node [right=of Server, align=left] {Historical data at \\ any syncing interval};
+\node [right=of Server, align=left, xshift=-5pt] {Historical data at \\ any syncing interval};
 
 \draw [->, out=225, in=315, thick, ] (Server) to node [yshift=1cm, align=center] {Optimal Setpoints} (BASComputer);
 
@@ -138,7 +138,7 @@ way that the server can understand.
 \caption{Terms specific to Implementer.}
 \label{tab:ImplementerTerms}
 
-\begin{tabular}{lp{5in}}
+\begin{tabular}{lp{4.9in}}
 \toprule
     Term    & Description                                                                                      \\  \midrule
     Project & Information typically related to a collection of buildings                                       \\
