@@ -14,3 +14,5 @@ main.pdf
 
 # Ignore all .docx files, usually just test files from pandoc -> docx conversions
 *.docx
+
+*.md
