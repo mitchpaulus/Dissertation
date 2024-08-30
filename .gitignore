@@ -16,3 +16,8 @@ main.pdf
 *.docx
 
 *.md
+
+.redo/
+
+*.pdf.png
+png_plots
